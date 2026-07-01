@@ -3,7 +3,31 @@
 [ext_resource type="FontFile" uid="uid://c8xiw3x7i7fmd" path="res://UI/PixelifySans-SemiBold.ttf" id="1_06t4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdnvj"]
-bg_color = Color(0.77, 0.06416665, 0, 1)
+bg_color = Color(0.76862746, 0.0627451, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pvmw"]
+bg_color = Color(0.4918368, 0.024409618, 4.813075e-08, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnucn"]
+bg_color = Color(0.6679866, 0.048357315, 0, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -15,7 +39,31 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68tq"]
-bg_color = Color(0, 0.58000004, 0.6, 1)
+bg_color = Color(0, 0.5803922, 0.6, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
+bg_color = Color(1.8049031e-06, 0.39510083, 0.4089907, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
+bg_color = Color(2.4546682e-06, 0.49135262, 0.5082128, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -80,6 +128,8 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_06t4h")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_sdnvj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8pvmw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_vnucn")
 text = "Start Game
 "
 metadata/_edit_use_anchors_ = true
@@ -93,5 +143,7 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_06t4h")
 theme_override_font_sizes/font_size = 30
 theme_override_styles/normal = SubResource("StyleBoxFlat_b68tq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_28flt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_48xlc")
 text = "Settings"
 metadata/_edit_use_anchors_ = true
