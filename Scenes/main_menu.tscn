@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://be1qjt71ldvgv"]
+[gd_scene format=3 uid="uid://ciw3fkuw3m8v8"]
 
 [ext_resource type="FontFile" uid="uid://c8xiw3x7i7fmd" path="res://UI/PixelifySans-SemiBold.ttf" id="1_06t4h"]
 
@@ -75,27 +75,30 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Main Menu" type="Control" unique_id=338399537]
+texture_filter = 1
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=686127915]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1437105745]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=686127915]
+anchors_preset = -1
+anchor_right = 0.9984375
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.32092434, 0.1440618, 0.43396783, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=571028145]
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1163658742]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2" unique_id=571028145]
 custom_minimum_size = Vector2(300, 500)
 custom_maximum_size = Vector2(-1, 10000)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -107,15 +110,15 @@ offset_right = 150.0
 offset_bottom = 321.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(0, 2)
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="Start Game" type="Button" parent="ColorRect/VBoxContainer" unique_id=460638644]
+[node name="Start Game" type="Button" parent="CanvasLayer2/VBoxContainer" unique_id=460638644]
 texture_filter = 1
-custom_minimum_size = Vector2(50, 40)
+custom_minimum_size = Vector2(200, 40)
 custom_maximum_size = Vector2(150, -1)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_06t4h")
@@ -127,11 +130,12 @@ text = "Start Game
 "
 metadata/_edit_use_anchors_ = true
 
-[node name="Settings" type="Button" parent="ColorRect/VBoxContainer" unique_id=1475172236]
+[node name="Settings" type="Button" parent="CanvasLayer2/VBoxContainer" unique_id=1475172236]
 texture_filter = 1
-custom_minimum_size = Vector2(50, 40)
+custom_minimum_size = Vector2(200, 40)
 custom_maximum_size = Vector2(150, -1)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 theme_override_fonts/font = ExtResource("1_06t4h")
