@@ -1,7 +1,28 @@
 [gd_scene format=3 uid="uid://daid2lb4calt8"]
 
+[ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sdnvj"]
 
 [node name="Root" type="Node2D" unique_id=1485086795]
 
+[node name="Player" parent="." unique_id=1916415869 instance=ExtResource("1_8pvmw")]
+position = Vector2(5, 199)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1734593210]
+
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
+visible = false
+
+[node name="test floor" type="StaticBody2D" parent="." unique_id=1563830]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="test floor" unique_id=1949286076]
+position = Vector2(4, 239)
+shape = SubResource("WorldBoundaryShape2D_sdnvj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1901603392]
+offset_left = 76.0
+offset_top = 129.0
+offset_right = 116.0
+offset_bottom = 169.0
