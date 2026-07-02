@@ -14,6 +14,10 @@ config/name="Congressional App Challenge | Superposition Sprint"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://1dmv3gl2ay1q"
+
 [display]
 
 window/size/viewport_width=640

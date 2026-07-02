@@ -2,6 +2,23 @@
 
 [ext_resource type="Script" uid="uid://bpk07ta3pi3ew" path="res://Scenes/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://pxhtcq8sqrr0" path="res://Robot Walk Beta.png" id="1_v0iea"]
+[ext_resource type="Texture2D" uid="uid://tvifdl4y0qub" path="res://Robot Character idle.png" id="2_6t5aa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx1dd"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gymyn"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2lt"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukyrk"]
+atlas = ExtResource("2_6t5aa")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_v0iea")
@@ -39,6 +56,23 @@ region = Rect2(224, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tx1dd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gymyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukyrk")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cvnsp")
 }, {
 "duration": 1.0,
@@ -63,7 +97,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_f1ek2")
 }],
 "loop": 1,
-"name": &"new_animation",
+"name": &"walking",
 "speed": 10.0
 }]
 
@@ -77,10 +111,9 @@ script = ExtResource("1_cvnsp")
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"new_animation"
-autoplay = "new_animation"
-frame = 4
-frame_progress = 0.6903749
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.71919054
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=421305196]
 position = Vector2(0, 2)
