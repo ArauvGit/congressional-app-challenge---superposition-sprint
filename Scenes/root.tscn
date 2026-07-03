@@ -30,10 +30,39 @@ limit_right = 2294
 limit_bottom = 10000225
 
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
-visible = false
 
 [node name="test floor" type="StaticBody2D" parent="." unique_id=1563830]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="test floor" unique_id=1949286076]
 position = Vector2(-150, 253)
 shape = SubResource("WorldBoundaryShape2D_sdnvj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1663898701]
+offset_left = 409.0
+offset_top = 399.0
+offset_right = 561.0
+offset_bottom = 486.0
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1586779049]
+offset_left = 762.0
+offset_top = 396.0
+offset_right = 914.0
+offset_bottom = 483.0
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=918406824]
+offset_left = 1192.0
+offset_top = 395.0
+offset_right = 1344.0
+offset_bottom = 482.0
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=981111894]
+offset_left = 1584.0
+offset_top = 388.0
+offset_right = 1736.0
+offset_bottom = 475.0
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=1772394590]
+offset_left = 2017.0
+offset_top = 396.0
+offset_right = 2169.0
+offset_bottom = 483.0

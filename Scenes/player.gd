@@ -2,13 +2,13 @@ extends CharacterBody2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 
-var SPEED = 0
+var SPEED = 300
 const JUMP_VELOCITY = -400.0
 const default_speed_value: int = 300
 
 func _ready() -> void:
 	Global.state = Global.States.IDLE
-
+	state_machine()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
