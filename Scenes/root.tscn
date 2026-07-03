@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
 [ext_resource type="Texture2D" uid="uid://c78hvf607gtc2" path="res://Assets/test lane.png" id="1_vnucn"]
+[ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
+[ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Robot Color Palette/red robot palette.png" id="4_ckhy6"]
+[ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Robot Color Palette/blue robot palette.png" id="5_dun2r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86vg6"]
+shader = ExtResource("3_c3mwy")
+shader_parameter/original_palette = ExtResource("5_dun2r")
+shader_parameter/new_palette = ExtResource("4_ckhy6")
+shader_parameter/color_count = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4hbtj"]
+shader = ExtResource("3_c3mwy")
+shader_parameter/original_palette = ExtResource("5_dun2r")
+shader_parameter/new_palette = ExtResource("4_ckhy6")
+shader_parameter/color_count = 12
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sdnvj"]
 distance = -36.0
@@ -19,6 +34,7 @@ region_enabled = true
 region_rect = Rect2(1000, 360, 763.5, 125.75)
 
 [node name="Player" parent="." unique_id=1916415869 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(-176, 254)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1734593210]
@@ -28,6 +44,10 @@ limit_left = -256
 limit_top = -9999775
 limit_right = 2294
 limit_bottom = 10000225
+
+[node name="Player2" parent="." unique_id=2091144046 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_4hbtj")
+position = Vector2(-176, 358)
 
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
 visible = false
