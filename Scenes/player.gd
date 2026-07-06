@@ -1,10 +1,11 @@
+class_name test
 extends CharacterBody2D
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var SPEED = 0
+@export var JUMP_VELOCITY = -400.0
+@export var default_speed_value: int = 300
 
 
-var SPEED = 0
-const JUMP_VELOCITY = -400.0
-const default_speed_value: int = 300
+
 
 func _ready() -> void:
 	Global.state = Global.States.IDLE
@@ -38,6 +39,5 @@ func state_machine():
 			SPEED = 0 
 		Global.States.MOVING:
 			SPEED = default_speed_value
-			animated_sprite.play("walking")
-	
+
 	

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://daid2lb4calt8"]
+[gd_scene format=4 uid="uid://daid2lb4calt8"]
 
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
@@ -6,6 +6,22 @@
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Robot Color Palette/red robot palette.png" id="4_ckhy6"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Robot Color Palette/blue robot palette.png" id="5_dun2r"]
+[ext_resource type="Texture2D" uid="uid://blbgc75kvj065" path="res://graybox.png" id="7_dun2r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3lo5"]
+texture = ExtResource("7_dun2r")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_b68tq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_r3lo5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86vg6"]
 shader = ExtResource("3_c3mwy")
@@ -19,12 +35,15 @@ shader_parameter/original_palette = ExtResource("5_dun2r")
 shader_parameter/new_palette = ExtResource("4_ckhy6")
 shader_parameter/color_count = 12
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sdnvj"]
-distance = -36.0
-
 [node name="Root" type="Node2D" unique_id=1485086795]
 
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
+position = Vector2(-128, 345)
+tile_map_data = PackedByteArray("AAD5/wMAAAAAAAEAAAD6/wMAAAAAAAEAAAD7/wMAAAAAAAEAAAD8/wMAAAAAAAEAAAD9/wMAAAAAAAEAAAD+/wMAAAAAAAEAAAD//wMAAAAAAAEAAAAAAAMAAAAAAAEAAAABAAMAAAAAAAEAAAACAAMAAAAAAAEAAAADAAMAAAAAAAEAAAAEAAMAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAMAAAAAAAEAAAAIAAMAAAAAAAEAAAAJAAMAAAAAAAEAAAAKAAMAAAAAAAEAAAALAAMAAAAAAAEAAAAMAAMAAAAAAAEAAAANAAMAAAAAAAEAAAAOAAMAAAAAAAEAAAAPAAMAAAAAAAEAAAAQAAMAAAAAAAEAAAARAAMAAAAAAAEAAAASAAMAAAAAAAEAAAATAAMAAAAAAAEAAAAUAAMAAAAAAAEAAAAVAAMAAAAAAAEAAAAWAAMAAAAAAAEAAAAXAAMAAAAAAAEAAAAYAAMAAAAAAAEAAAAZAAMAAAAAAAEAAAAaAAMAAAAAAAEAAAAbAAMAAAAAAAEAAAAcAAMAAAAAAAEAAAAdAAMAAAAAAAEAAAADAP//AAABAAEAAAACAP//AAABAAEAAAABAP//AAABAAEAAAAAAP//AAABAAEAAAD/////AAABAAEAAAD+////AAABAAEAAAD9////AAABAAEAAAD8////AAABAAEAAAD7////AAABAAEAAAD6////AAABAAEAAAAEAP//AAABAAEAAAAFAP//AAABAAEAAAAGAP//AAABAAEAAAAHAP//AAABAAEAAAAIAP//AAABAAEAAAAJAP//AAABAAEAAAAKAP//AAABAAEAAAALAP//AAABAAEAAAAMAP//AAABAAEAAAANAP//AAABAAEAAAAOAP//AAABAAEAAAAPAP//AAABAAEAAAAQAP//AAABAAEAAAARAP//AAABAAEAAAASAP//AAABAAEAAAATAP//AAABAAEAAAAUAP//AAABAAEAAAAVAP//AAABAAEAAAAWAP//AAABAAEAAAAXAP//AAABAAEAAAAYAP//AAABAAEAAAAZAP//AAABAAEAAAAaAP//AAABAAEAAAAbAP//AAABAAEAAAAcAP//AAABAAEAAAAdAP//AAABAAEAAAAeAP//AAABAAEAAAAfAP//AAABAAEAAAAgAP//AAABAAEAAAAhAP//AAABAAEAAAAiAP//AAABAAEAAAAjAP//AAABAAEAAAAkAP//AAABAAEAAAAlAP//AAABAAEAAAAeAAMAAAABAAEAAAAfAAMAAAABAAEAAAAgAAMAAAABAAEAAAAhAAMAAAABAAEAAAAiAAMAAAABAAEAAAAjAAMAAAABAAEAAAD5////AAABAAEAAAD5//v/AAABAAEAAAD6//v/AAABAAEAAAD7//v/AAABAAEAAAD8//v/AAABAAEAAAD9//v/AAABAAEAAAD+//v/AAABAAEAAAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPv/AAABAAEAAAACAPv/AAABAAEAAAADAPv/AAABAAEAAAAEAPv/AAABAAEAAAAFAPv/AAABAAEAAAAGAPv/AAABAAEAAAAHAPv/AAABAAEAAAAIAPv/AAABAAEAAAAkAPv/AAABAAEAAAAjAPv/AAABAAEAAAAiAPv/AAABAAEAAAAhAPv/AAABAAEAAAAgAPv/AAABAAEAAAAfAPv/AAABAAEAAAAeAPv/AAABAAEAAAAdAPv/AAABAAEAAAAcAPv/AAABAAEAAAAbAPv/AAABAAEAAAAaAPv/AAABAAEAAAAZAPv/AAABAAEAAAAYAPv/AAABAAEAAAAXAPv/AAABAAEAAAAWAPv/AAABAAEAAAAVAPv/AAABAAEAAAAUAPv/AAABAAEAAAATAPv/AAABAAEAAAASAPv/AAABAAEAAAARAPv/AAABAAEAAAAQAPv/AAABAAEAAAAPAPv/AAABAAEAAAAOAPv/AAABAAEAAAANAPv/AAABAAEAAAAMAPv/AAABAAEAAAALAPv/AAABAAEAAAAKAPv/AAABAAEAAAAJAPv/AAABAAEAAAD5//f/AAABAAEAAAD6//f/AAABAAEAAAD7//f/AAABAAEAAAD8//f/AAABAAEAAAD9//f/AAABAAEAAAD+//f/AAABAAEAAAD///f/AAABAAEAAAAAAPf/AAABAAEAAAABAPf/AAABAAEAAAACAPf/AAABAAEAAAADAPf/AAABAAEAAAAEAPf/AAABAAEAAAAFAPf/AAABAAEAAAAGAPf/AAABAAEAAAAHAPf/AAABAAEAAAAIAPf/AAABAAEAAAAJAPf/AAABAAEAAAAKAPf/AAABAAEAAAALAPf/AAABAAEAAAAMAPf/AAABAAEAAAANAPf/AAABAAEAAAAOAPf/AAABAAEAAAAPAPf/AAABAAEAAAAQAPf/AAABAAEAAAARAPf/AAABAAEAAAASAPf/AAABAAEAAAATAPf/AAABAAEAAAAUAPf/AAABAAEAAAAVAPf/AAABAAEAAAAWAPf/AAABAAEAAAAXAPf/AAABAAEAAAAYAPf/AAABAAEAAAAZAPf/AAABAAEAAAAaAPf/AAABAAEAAAAbAPf/AAABAAEAAAAcAPf/AAABAAEAAAAdAPf/AAABAAEAAAAeAPf/AAABAAEAAAAfAPf/AAABAAEAAAAgAPf/AAABAAEAAAAhAPf/AAABAAEAAAAiAPf/AAABAAEAAAAjAPf/AAABAAEAAAA=")
+tile_set = SubResource("TileSet_b68tq")
+
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
+visible = false
 texture_filter = 1
 texture_repeat = 2
 position = Vector2(1021.99994, 335.53125)
@@ -33,27 +52,35 @@ texture = ExtResource("1_vnucn")
 region_enabled = true
 region_rect = Rect2(1000, 360, 763.5, 125.75)
 
-[node name="Player" parent="." unique_id=1916415869 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(-176, 254)
+[node name="Node2D" type="Node2D" parent="." unique_id=276196963]
+position = Vector2(-288, 0)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1734593210]
-position = Vector2(-74, -113)
+[node name="Player4" parent="Node2D" unique_id=538173699 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(75, 305)
+
+[node name="Player3" parent="Node2D" unique_id=54896673 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(73, 177)
+default_speed_value = 100
+
+[node name="Player2" parent="Node2D" unique_id=2091144046 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_4hbtj")
+position = Vector2(73, 240)
+default_speed_value = 200
+
+[node name="Player" parent="Node2D" unique_id=1916415869 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(77, 368)
+default_speed_value = 400
+
+[node name="Camera2D" type="Camera2D" parent="Node2D/Player" unique_id=1734593210]
+position = Vector2(-34, -224)
 anchor_mode = 0
 limit_left = -256
 limit_top = -9999775
 limit_right = 2294
 limit_bottom = 10000225
 
-[node name="Player2" parent="." unique_id=2091144046 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_4hbtj")
-position = Vector2(-176, 358)
-
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
 visible = false
-
-[node name="test floor" type="StaticBody2D" parent="." unique_id=1563830]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="test floor" unique_id=1949286076]
-position = Vector2(-150, 253)
-shape = SubResource("WorldBoundaryShape2D_sdnvj")
