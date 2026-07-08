@@ -3,10 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
 [ext_resource type="Texture2D" uid="uid://c78hvf607gtc2" path="res://Assets/test lane.png" id="1_vnucn"]
+[ext_resource type="Texture2D" uid="uid://b2fca2ssjh87m" path="res://track.png" id="2_qtxxq"]
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Robot Color Palette/red robot palette.png" id="4_ckhy6"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Robot Color Palette/blue robot palette.png" id="5_dun2r"]
 [ext_resource type="Texture2D" uid="uid://blbgc75kvj065" path="res://graybox.png" id="7_dun2r"]
+[ext_resource type="Texture2D" uid="uid://tvifdl4y0qub" path="res://Robot Character idle.png" id="8_8fnbn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3lo5"]
 texture = ExtResource("7_dun2r")
@@ -19,15 +21,101 @@ texture = ExtResource("7_dun2r")
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]
+texture = ExtResource("2_qtxxq")
+texture_region_size = Vector2i(32, 32)
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+16:1/0 = 0
+17:1/0 = 0
+18:1/0 = 0
+19:1/0 = 0
+20:1/0 = 0
+21:1/0 = 0
+22:1/0 = 0
+23:1/0 = 0
+1:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_b68tq"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_r3lo5")
+sources/1 = SubResource("TileSetAtlasSource_a6f85")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86vg6"]
 shader = ExtResource("3_c3mwy")
 shader_parameter/original_palette = ExtResource("5_dun2r")
 shader_parameter/new_palette = ExtResource("4_ckhy6")
 shader_parameter/color_count = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu36u"]
+atlas = ExtResource("8_8fnbn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwnbm"]
+atlas = ExtResource("8_8fnbn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20eh2"]
+atlas = ExtResource("8_8fnbn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imcog"]
+atlas = ExtResource("8_8fnbn")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu36u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwnbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20eh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imcog")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4hbtj"]
 shader = ExtResource("3_c3mwy")
@@ -38,8 +126,10 @@ shader_parameter/color_count = 12
 [node name="Root" type="Node2D" unique_id=1485086795]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
+texture_filter = 1
 position = Vector2(-128, 345)
-tile_map_data = PackedByteArray("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")
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAD8/wEAAQABAAAAAAD9/wEAAQABAAAAAAD+/wEAAQABAAAAAAD//wEAAQABAAAAAAAAAAEAAQABAAAAAAABAAEAAQABAAAAAAACAAEAAQABAAAAAAADAAEAAQABAAAAAAAEAAEAAQABAAAAAAAFAAEAAQABAAAAAAD7/wEAAQABAAAAAAD6/wEAAQABAAAAAAD5/wEAAQABAAAAAAD4/wEAAQABAAAAAAD3/wEAAQABAAAAAAD2/wEAAQABAAAAAAD1/wEAAQABAAAAAAAGAAEAAQABAAAAAAAHAAEAAQABAAAAAAAIAAEAAQABAAAAAAAJAAEAAQABAAAAAAAKAAEAAQABAAAAAAALAAEAAQABAAAAAAAMAAEAAQABAAAAAAD1////AQABAAAAAAD2////AQABAAAAAAD3////AQABAAAAAAD4////AQABAAAAAAD5////AQABAAAAAAD6////AQABAAAAAAD7////AQABAAAAAAD8////AQABAAAAAAD9////AQABAAAAAAD+////AQABAAAAAAD/////AQABAAAAAAAAAP//AQABAAAAAAABAP//AQABAAAAAAACAP//AQABAAAAAAADAP//AQABAAAAAAAEAP//AQABAAAAAAAFAP//AQABAAAAAAAGAP//AQABAAAAAAAHAP//AQABAAAAAAAIAP//AQABAAAAAAAJAP//AQABAAAAAAAKAP//AQABAAAAAAALAP//AQABAAAAAAAMAP//AQABAAAAAAD1//3/AQABAAAAAAD2//3/AQABAAAAAAD3//3/AQABAAAAAAD4//3/AQABAAAAAAD5//3/AQABAAAAAAD6//3/AQABAAAAAAD7//3/AQABAAAAAAD8//3/AQABAAAAAAD9//3/AQABAAAAAAD+//3/AQABAAAAAAD///3/AQABAAAAAAAAAP3/AQABAAAAAAABAP3/AQABAAAAAAACAP3/AQABAAAAAAADAP3/AQABAAAAAAAEAP3/AQABAAAAAAAFAP3/AQABAAAAAAAGAP3/AQABAAAAAAAHAP3/AQABAAAAAAAIAP3/AQABAAAAAAAJAP3/AQABAAAAAAAKAP3/AQABAAAAAAALAP3/AQABAAAAAAAMAP3/AQABAAAAAAD1//v/AQABAAAAAAD2//v/AQABAAAAAAD3//v/AQABAAAAAAD4//v/AQABAAAAAAD5//v/AQABAAAAAAD6//v/AQABAAAAAAD7//v/AQABAAAAAAD8//v/AQABAAAAAAD9//v/AQABAAAAAAD+//v/AQABAAAAAAD///v/AQABAAAAAAAAAPv/AQABAAAAAAABAPv/AQABAAAAAAACAPv/AQABAAAAAAADAPv/AQABAAAAAAAEAPv/AQABAAAAAAAFAPv/AQABAAAAAAAGAPv/AQABAAAAAAAHAPv/AQABAAAAAAAIAPv/AQABAAAAAAAJAPv/AQABAAAAAAAKAPv/AQABAAAAAAALAPv/AQABAAAAAAAMAPv/AQABAAAAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -53,34 +143,62 @@ region_enabled = true
 region_rect = Rect2(1000, 360, 763.5, 125.75)
 
 [node name="Node2D" type="Node2D" parent="." unique_id=276196963]
-position = Vector2(-288, 0)
+position = Vector2(-288, 8)
 
-[node name="Player4" parent="Node2D" unique_id=538173699 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(75, 305)
-
-[node name="Player3" parent="Node2D" unique_id=54896673 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(73, 177)
-default_speed_value = 100
-
-[node name="Player2" parent="Node2D" unique_id=2091144046 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_4hbtj")
-position = Vector2(73, 240)
-default_speed_value = 200
-
-[node name="Player" parent="Node2D" unique_id=1916415869 instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(77, 368)
-default_speed_value = 400
-
-[node name="Camera2D" type="Camera2D" parent="Node2D/Player" unique_id=1734593210]
-position = Vector2(-34, -224)
+[node name="Camera2D" type="Camera2D" parent="Node2D" unique_id=1734593210]
+position = Vector2(43, 88)
 anchor_mode = 0
 limit_left = -256
 limit_top = -9999775
 limit_right = 2294
 limit_bottom = 10000225
+
+[node name="Player4" parent="Node2D" unique_id=538173699 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(83, 374)
+scale = Vector2(1.5, 1.5)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Node2D/Player4" unique_id=2109672104]
+texture_filter = 1
+position = Vector2(1, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+
+[node name="Player3" parent="Node2D" unique_id=54896673 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(82, 170)
+scale = Vector2(1.5, 1.5)
+default_speed_value = 100
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Node2D/Player3" unique_id=81889352]
+texture_filter = 1
+position = Vector2(-1, -2)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+
+[node name="Player2" parent="Node2D" unique_id=2091144046 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_4hbtj")
+position = Vector2(81, 236.00002)
+scale = Vector2(1.5, 1.5)
+default_speed_value = 200
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Node2D/Player2" unique_id=409283385]
+texture_filter = 1
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+
+[node name="Player" parent="Node2D" unique_id=1916415869 instance=ExtResource("1_8pvmw")]
+material = SubResource("ShaderMaterial_86vg6")
+position = Vector2(83, 305)
+scale = Vector2(1.5, 1.5)
+default_speed_value = 400
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Node2D/Player" unique_id=264852051]
+texture_filter = 1
+position = Vector2(1, -1)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
 
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
 visible = false
