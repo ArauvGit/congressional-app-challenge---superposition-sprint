@@ -6,15 +6,8 @@ class_name Contestant
 @export var animated_sprite: AnimatedSprite2D
 
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _ready():
+	_physics_process(false)
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():
@@ -29,5 +22,12 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var direction = Input.get_action_strength("ui_right")
 	velocity.x = SPEED
-\
 	move_and_slide()
+
+func state_machine():
+	match Global.state:
+		Global.States.IDLE:
+			SPEED = 0 
+		Global.States.MOVING:
+			animated_sprite.play("run")
+			SPEED = default_speed_value
