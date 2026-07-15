@@ -1,6 +1,5 @@
 extends Button
 var button_names: Array = ["yellow", "green", "red", "blue"]
-signal button_press
 func _ready() -> void:
 	pass # Replace with function body.
 # Called when the node enters the scene tree for the first time.

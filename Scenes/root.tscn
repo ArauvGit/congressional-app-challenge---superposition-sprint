@@ -401,3 +401,5 @@ layout_mode = 2
 text = "Blue
 "
 script = ExtResource("14_20eh2")
+
+[connection signal="button_press" from="HBoxContainer/yellow" to="Node2D/green" method="_on_yellow_button_press"]
