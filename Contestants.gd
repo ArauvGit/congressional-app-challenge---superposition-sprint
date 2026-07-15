@@ -10,13 +10,14 @@ func _ready():
 	_physics_process(false)
 	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
+	print("physics process is true")
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("ui_right"):
 		Global.state = Global.States.MOVING
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -32,3 +33,7 @@ func state_machine():
 		Global.States.MOVING:
 			animated_sprite.play("run")
 			SPEED = default_speed_value
+
+
+func _on_player_button_press():	
+	_physics_process(true)

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
 [ext_resource type="Texture2D" uid="uid://c78hvf607gtc2" path="res://Assets/test lane.png" id="1_vnucn"]
-[ext_resource type="Texture2D" path="res://tileset.png" id="2_qtxxq"]
+[ext_resource type="Texture2D" uid="uid://su5lmbam5sf5" path="res://tileset.png" id="2_qtxxq"]
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Robot Color Palette/red robot palette.png" id="4_ckhy6"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Robot Color Palette/blue robot palette.png" id="5_dun2r"]
@@ -13,11 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://pxhtcq8sqrr0" path="res://Robot Walk Beta.png" id="9_8fnbn"]
 [ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Robot Color Palette/yellow robot color palette.png" id="10_fu36u"]
 [ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Robot Color Palette/green robot color palette.png" id="11_lwnbm"]
-<<<<<<< HEAD
 [ext_resource type="Script" uid="uid://n8wna8cmko3x" path="res://Scenes/button.gd" id="13_lwnbm"]
-=======
-[ext_resource type="Script" uid="uid://n8wna8cmko3x" path="res://Scenes/button.gd" id="14_20eh2"]
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3lo5"]
 texture = ExtResource("7_dun2r")
@@ -289,7 +285,6 @@ shader_parameter/new_palette = ExtResource("4_ckhy6")
 shader_parameter/color_count = 12
 
 [node name="Root" type="Node2D" unique_id=1485086795]
-position = Vector2(0, -11)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
@@ -319,11 +314,7 @@ limit_top = -9999775
 limit_right = 2294
 limit_bottom = 10000225
 
-<<<<<<< HEAD
-[node name="yellow" parent="Node2D" unique_id=54896673 node_paths=PackedStringArray("animated_sprite") groups=["yellow"] instance=ExtResource("1_8pvmw")]
-=======
 [node name="yellow" parent="Node2D" unique_id=54896673 groups=["yellow"] instance=ExtResource("1_8pvmw")]
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(82, 189)
 scale = Vector2(1.5, 1.5)
@@ -338,11 +329,7 @@ sprite_frames = SubResource("SpriteFrames_sdnvj")
 animation = &"run"
 autoplay = "default"
 
-<<<<<<< HEAD
-[node name="green" parent="Node2D" unique_id=2091144046 node_paths=PackedStringArray("animated_sprite") groups=["green"] instance=ExtResource("1_8pvmw")]
-=======
 [node name="green" parent="Node2D" unique_id=2091144046 groups=["green"] instance=ExtResource("1_8pvmw")]
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 material = SubResource("ShaderMaterial_4hbtj")
 position = Vector2(81, 252.00002)
 scale = Vector2(1.5, 1.5)
@@ -356,11 +343,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 
-<<<<<<< HEAD
-[node name="red" parent="Node2D" unique_id=1916415869 node_paths=PackedStringArray("animated_sprite") groups=["red"] instance=ExtResource("1_8pvmw")]
-=======
 [node name="red" parent="Node2D" unique_id=1916415869 groups=["red"] instance=ExtResource("1_8pvmw")]
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(83, 321.99997)
 scale = Vector2(1.5, 1.5)
@@ -374,19 +357,11 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 
-<<<<<<< HEAD
-[node name="blue" parent="Node2D" unique_id=538173699 node_paths=PackedStringArray("animated_sprite") groups=["blue"] instance=ExtResource("1_8pvmw")]
-material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(83, 382.99997)
-scale = Vector2(1.5, 1.5)
-animated_sprite = NodePath("sprite")
-=======
 [node name="blue" parent="Node2D" unique_id=538173699 groups=["blue"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(83, 382.99997)
 scale = Vector2(1.5, 1.5)
 script = ExtResource("8_lwnbm")
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 
 [node name="sprite" type="AnimatedSprite2D" parent="Node2D/blue" unique_id=2109672104]
 texture_filter = 1
@@ -407,40 +382,22 @@ offset_bottom = 148.0
 [node name="yellow" type="Button" parent="HBoxContainer" unique_id=1668234909 groups=["yellow"]]
 layout_mode = 2
 text = "Yellow"
-<<<<<<< HEAD
 script = ExtResource("13_lwnbm")
-=======
-script = ExtResource("14_20eh2")
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 
 [node name="green" type="Button" parent="HBoxContainer" unique_id=1144025427 groups=["green"]]
 layout_mode = 2
 text = "Green
 "
-<<<<<<< HEAD
 script = ExtResource("13_lwnbm")
-=======
-script = ExtResource("14_20eh2")
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 
 [node name="red" type="Button" parent="HBoxContainer" unique_id=570978373 groups=["red"]]
 layout_mode = 2
 text = "Red
 "
-<<<<<<< HEAD
 script = ExtResource("13_lwnbm")
-=======
-script = ExtResource("14_20eh2")
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7
 
 [node name="blue" type="Button" parent="HBoxContainer" unique_id=1049710355 groups=["blue"]]
 layout_mode = 2
 text = "Blue
 "
-<<<<<<< HEAD
 script = ExtResource("13_lwnbm")
-=======
-script = ExtResource("14_20eh2")
-
-[connection signal="button_press" from="HBoxContainer/yellow" to="Node2D/green" method="_on_yellow_button_press"]
->>>>>>> a5c849d0860896e1b15f3aadffaf10107aa0bbd7

@@ -27,5 +27,5 @@ func _pressed() -> void:
 	for node in all_inside_group:
 		if node is CharacterBody2D:
 			node.set_script(load("res://Scenes/player.gd"))	
-			
+
 			
