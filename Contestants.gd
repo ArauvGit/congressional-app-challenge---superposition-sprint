@@ -8,6 +8,7 @@ class_name Contestant
 
 func _ready():
 	_physics_process(false)
+	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():

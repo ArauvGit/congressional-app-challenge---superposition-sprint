@@ -2,7 +2,7 @@ extends Contestant
 class_name Player
 
 func _ready() -> void:
-	Global.state = Global.States.IDLE
+	super._ready()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
