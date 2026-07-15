@@ -8,6 +8,7 @@ class_name Contestant
 
 func _ready():
 	_physics_process(false)
+	Global.button_press.connect(_on_player_button_press())
 	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
 	print("physics process is true")
@@ -37,3 +38,4 @@ func state_machine():
 
 func _on_player_button_press():	
 	_physics_process(true)
+	print("The player is now " + get_tree().get_nodes_in_group() )
