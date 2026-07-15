@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
-
+	print("hi")
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_right"):
 		Global.state = Global.States.MOVING
