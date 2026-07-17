@@ -1,6 +1,8 @@
 extends Button
 
-var groups: Array = ["blue", "green", "red", "yellow"]
+
+
+var groups: Array = ["blue","green","red","yellow"]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,8 +16,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _pressed() -> void:
-	Global.button_press.emit() 
+func _pressed() -> void: 
+	if Global.is_pressed:
+		return
+	Global.button_press.emit()
+	_enemy_execution()
 	var group_array = get_groups()
 	#code logic:
 		#1. get the group that the button is in
@@ -26,6 +31,14 @@ func _pressed() -> void:
 	var all_inside_group: = get_tree().get_nodes_in_group(group)
 	for node in all_inside_group:
 		if node is CharacterBody2D:
-			node.set_script(load("res://Scenes/player.gd"))	
-
-			
+			node.add_to_group("player")
+			print(node.get_groups())
+	Global.is_pressed = true
+func _enemy_execution():
+	print("the function should hav")
+	for node in get_tree().root.get_children():
+		if node is CharacterBody2D and not node.is_in_group("player"):
+			print("executed")
+			node.add_to_group("enemy")
+	
+	

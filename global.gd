@@ -6,3 +6,4 @@ enum States {
 }
 
 var state = States.IDLE
+var is_pressed: bool = false
