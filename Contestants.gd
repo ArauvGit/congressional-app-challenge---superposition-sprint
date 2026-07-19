@@ -7,8 +7,7 @@ class_name Contestant
 
 
 func _ready():
-	_physics_process(false)
-	Global.button_press.connect(_on_button_press)
+	set_physics_process(false)
 	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
@@ -16,6 +15,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("ui_right"):
 		Global.state = Global.States.MOVING
+		state_machine()
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_up") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -33,11 +33,3 @@ func state_machine():
 		Global.States.MOVING:
 			animated_sprite.play("run")
 			SPEED = default_speed_value
-
-func _on_button_press():	
-	match self:
-		var x when x.is_in_group("player"):
-			self.set_script("res://Scenes/player.gd")
-		var x when x.is_in_group("enemy"):
-			self.set_script("res://Scripts/enemy.gd")
-			

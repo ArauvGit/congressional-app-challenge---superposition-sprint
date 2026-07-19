@@ -1,5 +1,5 @@
 extends Button
-
+@export var players: Node2D
 
 
 var groups: Array = ["blue","green","red","yellow"]
@@ -19,8 +19,6 @@ func _process(delta: float) -> void:
 func _pressed() -> void: 
 	if Global.is_pressed:
 		return
-	Global.button_press.emit()
-	_enemy_execution()
 	var group_array = get_groups()
 	#code logic:
 		#1. get the group that the button is in
@@ -33,12 +31,22 @@ func _pressed() -> void:
 		if node is CharacterBody2D:
 			node.add_to_group("player")
 			print(node.get_groups())
+			_choose_type()
 	Global.is_pressed = true
-func _enemy_execution():
-	print("the function should hav")
-	for node in get_tree().root.get_children():
-		if node is CharacterBody2D and not node.is_in_group("player"):
-			print("executed")
-			node.add_to_group("enemy")
-	
-	
+
+func _choose_type():
+	for node in players.get_children():
+		match node:
+			var x when x is CharacterBody2D and not x.is_in_group("player"):
+				node.add_to_group("enemy")
+				print(node.get_groups())
+	choose_script()
+				
+func choose_script():
+	for node in players.get_children():
+		if node.is_in_group("player"):
+			node.set_script(load("res://Scenes/player.gd"))
+			print(node.get_script())
+		elif node.is_in_group("enemy"):
+			node.set_script(load("res://Scripts/enemy.gd"))
+			print(node.get_script())

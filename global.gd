@@ -1,5 +1,4 @@
 extends Node
-signal button_press
 enum States {
 	IDLE,
 	MOVING
