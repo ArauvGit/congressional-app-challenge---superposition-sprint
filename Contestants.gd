@@ -1,11 +1,9 @@
 extends CharacterBody2D
 class_name Contestant
-@export var SPEED = 0
 @export var JUMP_VELOCITY = -400.0
-@export var default_speed_value: int = 300
-@export var animated_sprite: AnimatedSprite2D
 
-
+var SPEED = 0:
+	set = set_speed
 func _ready():
 	set_physics_process(false)
 	Global.state = Global.States.IDLE
@@ -26,10 +24,24 @@ func _physics_process(delta: float) -> void:
 	velocity.x = SPEED
 	move_and_slide()
 
+
 func state_machine():
+	for sprite in get_children():
+		if sprite.has_method("animation_state"):
+			sprite.animation_state()
 	match Global.state:
 		Global.States.IDLE:
 			SPEED = 0 
 		Global.States.MOVING:
-			animated_sprite.play("run")
-			SPEED = default_speed_value
+			match self.get_index():
+				var x when x == 1:
+					set_speed(200)
+				var x when x == 2:
+					set_speed(400)
+				var x when x == 3:
+					set_speed(300)
+				var x when x == 4:
+					set_speed(500)
+func set_speed(speed_change: int) -> void:
+	if Global.state == Global.States.MOVING:
+		SPEED = speed_change
