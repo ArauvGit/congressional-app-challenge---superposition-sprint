@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://tvifdl4y0qub" path="res://Robot Character idle.png" id="8_8fnbn"]
 [ext_resource type="Texture2D" uid="uid://pxhtcq8sqrr0" path="res://Robot Walk Beta.png" id="9_8fnbn"]
 [ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Robot Color Palette/yellow robot color palette.png" id="10_fu36u"]
+[ext_resource type="Script" uid="uid://dfj04puh7ler0" path="res://Scenes/sprite.gd" id="10_lwnbm"]
 [ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Robot Color Palette/green robot color palette.png" id="11_lwnbm"]
 [ext_resource type="Script" uid="uid://n8wna8cmko3x" path="res://Scenes/button.gd" id="13_lwnbm"]
 
@@ -329,6 +330,7 @@ scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 animation = &"run"
 autoplay = "default"
+script = ExtResource("10_lwnbm")
 
 [node name="green" parent="players" unique_id=2091144046 node_paths=PackedStringArray("animated_sprite") groups=["green"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_4hbtj")
@@ -343,6 +345,7 @@ position = Vector2(1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
+script = ExtResource("10_lwnbm")
 
 [node name="red" parent="players" unique_id=1916415869 node_paths=PackedStringArray("animated_sprite") groups=["red"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
@@ -358,6 +361,7 @@ position = Vector2(1, -1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
+script = ExtResource("10_lwnbm")
 
 [node name="blue" parent="players" unique_id=538173699 node_paths=PackedStringArray("animated_sprite") groups=["blue"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
@@ -372,6 +376,7 @@ position = Vector2(1, -1)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
+script = ExtResource("10_lwnbm")
 
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
 visible = false
