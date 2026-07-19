@@ -31,5 +31,5 @@ func state_machine():
 		Global.States.IDLE:
 			SPEED = 0 
 		Global.States.MOVING:
-			animated_sprite.play("run")
 			SPEED = default_speed_value
+			print(SPEED)

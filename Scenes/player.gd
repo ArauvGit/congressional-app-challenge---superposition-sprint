@@ -16,6 +16,5 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Click"):
-		print(self.get_groups())
 		Global.state = Global.States.MOVING
 		super.state_machine()
