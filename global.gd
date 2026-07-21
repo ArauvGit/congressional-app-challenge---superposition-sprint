@@ -1,7 +1,8 @@
 extends Node
 enum States {
 	IDLE,
-	MOVING
+	MOVING,
+	JUMPING
 }
 
 var state = States.IDLE

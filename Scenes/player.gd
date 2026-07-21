@@ -4,7 +4,9 @@ class_name Player
 func _init() -> void:
 	super.set_physics_process(true)
 	print("the player script has been activated")
-
+	for node in get_parent().get_children():
+		if node is Camera2D: 
+			node.reparent(self)
 func _ready():
 	pass
 
@@ -14,7 +16,8 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
+
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Click"):
-		Global.state = Global.States.MOVING
+	if event.is_action_pressed("jump"):
+		Global.state = Global.States.JUMPING
 		super.state_machine()
