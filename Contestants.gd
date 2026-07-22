@@ -1,37 +1,32 @@
 extends CharacterBody2D
 class_name Contestant
-
+var checker: bool = false
 
 var Contestant_information : Dictionary = {
 	"Yellow": {
-		"SPEED": 160,
-		"JUMP": 300,
+		"SPEED": 180,
+		"JUMP": -300,
+		"STAMINA": 5
 	},
 	
 	"Green": {
-		"SPEED": 175,
-		"JUMP": 350
+		"SPEED": 185,
+		"JUMP": -350,
+		"STAMINA": 4
 	},
 	
 	"Red": {
 		"SPEED": 195,
-		"JUMP": 500
+		"JUMP": -500,
+		"STAMINA": 6
 	},
 	
 	"Blue": {
-		"SPEED": 185,
-		"JUMP": 250
+		"SPEED": 190,
+		"JUMP": -250,
+		"STAMINA": 8
 	}
-	
-	
 }
-
-
-var yellow_information := {
-	"speed": 200,
-	"jump power": 400
-}
-
 
 var JUMP_VELOCITY = 0:
 	set = set_jump
@@ -44,11 +39,11 @@ func _physics_process(delta: float) -> void:
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("ui_right"):
+	if Input.is_action_just_pressed("ui_right") and checker == false:
 		Global.state = Global.States.MOVING
 		state_machine()
+		checker == true
 	# Handle jump.
-
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var direction = Input.get_action_strength("ui_right")
@@ -62,7 +57,7 @@ func state_machine():
 			sprite.animation_state()
 	match Global.state:
 		Global.States.IDLE:
-			SPEED = 0 
+			SPEED = 0 			
 			JUMP_VELOCITY = 0
 		Global.States.MOVING:
 			match self:
@@ -75,19 +70,31 @@ func state_machine():
 				var x when x.is_in_group("blue"):
 					set_speed(Contestant_information.Blue["SPEED"])
 		Global.States.JUMPING:
-			velocity.y = JUMP_VELOCITY
-			match self.get_index():
-				var x when x == 0:
+			match self:
+				var x when x.is_in_group("yellow"):
 					set_jump(Contestant_information.Yellow["JUMP"])
-				var x when x == 1:
+				var x when x.is_in_group("green"):
 					set_jump(Contestant_information.Green["JUMP"])
-				var x when x == 2:
+				var x when x.is_in_group("red"):
 					set_jump(Contestant_information.Red["JUMP"])
-				var x when x == 3:
+				var x when x.is_in_group("blue"):
 					set_jump(Contestant_information.Blue["JUMP"])
-func set_speed(speed_change: int) -> void:
+		Global.States.SPRINTING:
+			match self:
+				var x when x.is_in_group("yellow"):
+					set_speed(Contestant_information.Yellow["SPEED"] * 1.5)
+				var x when x.is_in_group("green"):
+					set_speed(Contestant_information.Green["SPEED"] * 1.5)
+				var x when x.is_in_group("red"):
+					set_speed(Contestant_information.Red["SPEED"] * 1.5)
+				var x when x.is_in_group("blue"):
+					set_speed(Contestant_information.Blue["SPEED"] * 1.5)
+func set_speed(speed_change: int) -> int:
 	if Global.state != Global.States.IDLE:
 		SPEED = speed_change
-func set_jump(jump_change: int) -> void:
+	return SPEED
+func set_jump(jump_change: int) -> int:
 	if Global.state != Global.States.IDLE:
 		JUMP_VELOCITY = jump_change
+		velocity.y = JUMP_VELOCITY
+	return JUMP_VELOCITY

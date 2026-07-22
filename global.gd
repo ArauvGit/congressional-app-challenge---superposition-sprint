@@ -2,6 +2,7 @@ extends Node
 enum States {
 	IDLE,
 	MOVING,
+	SPRINTING,
 	JUMPING
 }
 

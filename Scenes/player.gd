@@ -1,12 +1,15 @@
 extends Contestant
 class_name Player
 
+
+
 func _init() -> void:
 	super.set_physics_process(true)
 	print("the player script has been activated")
 	for node in get_parent().get_children():
 		if node is Camera2D: 
 			node.reparent(self)
+		self.move_to_front()
 func _ready():
 	pass
 
@@ -16,8 +19,16 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
+	jump()
+	sprint()
+func jump() -> void:
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		Global.state = Global.States.JUMPING
-		super.state_machine()
+		state_machine()
+func sprint() -> void:
+	if Input.is_action_pressed("ui_right"):
+		Global.state = Global.States.SPRINTING
+		state_machine()	
+	elif not Input.is_action_just_released("ui_right") and checker == true:
+		Global.state = Global.States.MOVING
+		state_machine()
