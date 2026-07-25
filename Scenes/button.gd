@@ -20,6 +20,11 @@ func _pressed() -> void:
 	if Global.is_pressed:
 		return
 	var group_array = get_groups()
+	#code logic:
+		#1. get the group that the button is in
+		#2 get every other nodes in that group
+		#3 get the node that is the player
+		#4 run the command on that player 
 	var group = group_array[0]
 	var all_inside_group: = get_tree().get_nodes_in_group(group)
 	for node in all_inside_group:
@@ -27,7 +32,7 @@ func _pressed() -> void:
 			node.add_to_group("player")
 			_choose_type()
 	Global.is_pressed = true
-	get_parent().queue_free()
+
 func _choose_type():
 	for node in players.get_children():
 		match node:
