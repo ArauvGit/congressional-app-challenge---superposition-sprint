@@ -1,8 +1,10 @@
 extends Node
-
 enum States {
 	IDLE,
-	MOVING
+	MOVING,
+	SPRINTING,
+	JUMPING
 }
 
 var state = States.IDLE
+var is_pressed: bool = false

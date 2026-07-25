@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c78hvf607gtc2"
-path="res://.godot/imported/test lane.png-c9fb1dfabb1da5c84d51fcda33faaa5c.ctex"
+uid="uid://cd55uyjye5vr7"
+path="res://.godot/imported/blue robot palette.png-1cfe67bee1afd6fdc6271381dff379fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/test lane.png"
-dest_files=["res://.godot/imported/test lane.png-c9fb1dfabb1da5c84d51fcda33faaa5c.ctex"]
+source_file="res://Robot Color Palette/blue robot palette.png"
+dest_files=["res://.godot/imported/blue robot palette.png-1cfe67bee1afd6fdc6271381dff379fa.ctex"]
 
 [params]
 
