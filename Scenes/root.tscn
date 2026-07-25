@@ -365,7 +365,6 @@ autoplay = "default"
 script = ExtResource("10_lwnbm")
 
 [node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("1_i04dx")]
-visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2003233647]
 offset_left = -162.0
