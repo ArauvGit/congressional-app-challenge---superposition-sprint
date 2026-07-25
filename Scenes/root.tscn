@@ -289,24 +289,28 @@ shader_parameter/color_count = 12
 texture_filter = 1
 position = Vector2(-135, 365)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD+//7/AwAEAAIAAAD///7/AwAEAAIAAAAAAP7/AwAEAAIAAAABAP7/AwAEAAIAAAACAP7/AwAEAAIAAAADAP7/AwAEAAIAAAAEAP7/AwAEAAIAAAAFAP7/AwAEAAIAAAAGAP7/AwAEAAIAAAAHAP7/AwAEAAIAAAAIAP7/AwAGAAIAAAAJAP7/AwAGAAIAAAAKAP7/AwAGAAIAAAALAP7/AwAGAAIAAAAMAP7/AwAGAAIAAAANAP7/AwAFAAIAAAAOAP7/AwAFAAIAAAAPAP7/AwAFAAIAAAAQAP7/AwAFAAIAAAARAP7/AwAFAAIAAAASAP7/AwAFAAIAAAATAP7/AwAFAAIAAAAUAP7/AwAFAAIAAAAVAP7/AwAFAAIAAAAWAP7/AwAFAAIAAAAXAP7/AwAFAAIAAAAYAP7/AwAFAAIAAAAZAP7/AwAFAAIAAAAaAP7/AwAFAAIAAAAbAP7/AwAFAAIAAAAcAP7/AwAFAAIAAAAdAP7/AwAFAAIAAAAeAP7/AwAFAAIAAAAfAP7/AwAFAAIAAAA=")
+tile_map_data = PackedByteArray("AAD+//7/AwAEAAIAAAD///7/AwAEAAIAAAAAAP7/AwAEAAIAAAABAP7/AwAEAAIAAAACAP7/AwAEAAIAAAADAP7/AwAEAAIAAAAEAP7/AwAEAAIAAAAFAP7/AwAEAAIAAAAGAP7/AwAEAAIAAAAHAP7/AwAEAAIAAAAIAP7/AwAGAAIAAAAJAP7/AwAGAAIAAAAKAP7/AwAGAAIAAAALAP7/AwAGAAIAAAAMAP7/AwAGAAIAAAANAP7/AwAFAAIAAAAOAP7/AwAFAAIAAAAPAP7/AwAFAAIAAAAQAP7/AwAFAAIAAAARAP7/AwAFAAIAAAASAP7/AwAFAAIAAAATAP7/AwAFAAIAAAAUAP7/AwAFAAIAAAAVAP7/AwAFAAIAAAAWAP7/AwAFAAIAAAAXAP7/AwAFAAIAAAAYAP7/AwAFAAIAAAAZAP7/AwAFAAIAAAAaAP7/AwAFAAIAAAAbAP7/AwAFAAIAAAAcAP7/AwAFAAIAAAAdAP7/AwAFAAIAAAAeAP7/AwAFAAIAAAAfAP7/AwAFAAIAAAAAAAMAAwAEAAIAAAABAAMAAwAEAAIAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="players" type="Node2D" parent="." unique_id=276196963]
 position = Vector2(-288, 8)
 
 [node name="Camera2D" type="Camera2D" parent="players" unique_id=1734593210]
-position = Vector2(345, 287)
-limit_left = -567
-limit_top = -9999607
-limit_right = 1983
-limit_bottom = 10000393
+position = Vector2(68, 90.99997)
+ignore_rotation = false
+process_callback = 0
+limit_left = -563
+limit_top = -9999522
+limit_right = 1987
+limit_bottom = 10000478
+limit_smoothed = true
 position_smoothing_speed = 100.0
-drag_horizontal_enabled = true
+drag_left_margin = 0.0
+drag_right_margin = 0.5
 
 [node name="yellow" parent="players" unique_id=54896673 groups=["yellow"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(211.99998, 245)
+position = Vector2(211.99998, 477.99997)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 
@@ -368,14 +372,21 @@ script = ExtResource("10_lwnbm")
 visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2003233647]
-offset_left = -162.0
-offset_top = 108.0
-offset_right = -104.0
-offset_bottom = 148.0
+offset_left = -90.0
+offset_top = 157.0
+offset_right = 114.0
+offset_bottom = 197.0
 
 [node name="yellow" type="Button" parent="HBoxContainer" unique_id=1668234909 node_paths=PackedStringArray("players") groups=["yellow"]]
 layout_mode = 2
 text = "Yellow"
+script = ExtResource("13_lwnbm")
+players = NodePath("../../players")
+
+[node name="blue" type="Button" parent="HBoxContainer" unique_id=1049710355 node_paths=PackedStringArray("players") groups=["blue"]]
+layout_mode = 2
+text = "Blue
+"
 script = ExtResource("13_lwnbm")
 players = NodePath("../../players")
 
@@ -389,13 +400,6 @@ players = NodePath("../../players")
 [node name="red" type="Button" parent="HBoxContainer" unique_id=570978373 node_paths=PackedStringArray("players") groups=["red"]]
 layout_mode = 2
 text = "Red
-"
-script = ExtResource("13_lwnbm")
-players = NodePath("../../players")
-
-[node name="blue" type="Button" parent="HBoxContainer" unique_id=1049710355 node_paths=PackedStringArray("players") groups=["blue"]]
-layout_mode = 2
-text = "Blue
 "
 script = ExtResource("13_lwnbm")
 players = NodePath("../../players")
