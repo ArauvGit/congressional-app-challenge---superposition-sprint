@@ -10,6 +10,7 @@ func _init() -> void:
 		if node is Camera2D: 
 			node.reparent(self)
 		self.move_to_front()
+
 func _ready():
 	pass
 
@@ -21,9 +22,6 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	jump()
 	sprint()
-	if Input.is_anything_pressed() == false:
-		Global.state = Global.States.MOVING
-		state_machine()
 func jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		Global.state = Global.States.JUMPING
@@ -32,3 +30,7 @@ func sprint() -> void:
 	if Input.is_action_pressed("ui_left"):
 		Global.state = Global.States.SPRINTING
 		state_machine()	
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Click"):
+		Global.state = Global.States.MOVING
+		super.state_machine()

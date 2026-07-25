@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name Contestant
+
 var checker: bool = false
 
 var Contestant_information : Dictionary = {
@@ -30,6 +31,10 @@ var Contestant_information : Dictionary = {
 
 var JUMP_VELOCITY = 0:
 	set = set_jump
+
+
+
+
 var SPEED = 0:
 	set = set_speed
 func _ready():
@@ -44,6 +49,9 @@ func _physics_process(delta: float) -> void:
 		state_machine()
 		checker == true
 	# Handle jump.
+	if Input.is_action_just_pressed("ui_up") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	#var direction = Input.get_action_strength("ui_right")
@@ -89,12 +97,12 @@ func state_machine():
 					set_speed(Contestant_information.Red["SPEED"] * 1.5)
 				var x when x.is_in_group("blue"):
 					set_speed(Contestant_information.Blue["SPEED"] * 1.5)
-func set_speed(speed_change: int) -> int:
-	if Global.state != Global.States.IDLE:
-		SPEED = speed_change
-	return SPEED
 func set_jump(jump_change: int) -> int:
 	if Global.state != Global.States.IDLE:
 		JUMP_VELOCITY = jump_change
 		velocity.y = JUMP_VELOCITY
 	return JUMP_VELOCITY
+func set_speed(speed_change: int) -> int:
+	if Global.state == Global.States.MOVING:
+		SPEED = speed_change
+	return SPEED
