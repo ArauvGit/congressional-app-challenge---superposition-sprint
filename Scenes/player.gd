@@ -21,14 +21,14 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	jump()
 	sprint()
+	if Input.is_anything_pressed() == false:
+		Global.state = Global.States.MOVING
+		state_machine()
 func jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		Global.state = Global.States.JUMPING
 		state_machine()
 func sprint() -> void:
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("ui_left"):
 		Global.state = Global.States.SPRINTING
 		state_machine()	
-	elif not Input.is_action_just_released("ui_right") and checker == true:
-		Global.state = Global.States.MOVING
-		state_machine()
