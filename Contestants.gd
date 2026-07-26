@@ -1,8 +1,9 @@
 extends CharacterBody2D
 class_name Contestant
-
+@onready var healthbar: HBoxContainer = $"../../health container/Control/healthbar"
 var checker: bool = false
-
+#var hearts = healthbar.get_child_count()
+#var health = 2
 var Contestant_information : Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
@@ -106,3 +107,20 @@ func set_speed(speed_change: int) -> int:
 	if Global.state == Global.States.MOVING:
 		SPEED = speed_change
 	return SPEED
+
+func set_health():
+	#if hearts != health:
+	#	healthbar.get_children().append(health)
+	#return hearts
+	pass
+	
+func jump() -> void:
+	if is_in_group("player"):
+		if Input.is_action_just_pressed("jump") and is_on_floor():
+			Global.state = Global.States.JUMPING
+			state_machine()
+func sprint() -> void:
+	if is_in_group("player"):
+		if Input.is_action_pressed("ui_left"):
+			Global.state = Global.States.SPRINTING
+			state_machine()	

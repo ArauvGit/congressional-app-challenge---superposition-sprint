@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dfj04puh7ler0" path="res://Scenes/sprite.gd" id="10_lwnbm"]
 [ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Robot Color Palette/green robot color palette.png" id="11_lwnbm"]
 [ext_resource type="Script" uid="uid://n8wna8cmko3x" path="res://Scenes/button.gd" id="13_lwnbm"]
+[ext_resource type="Texture2D" uid="uid://jrac8n04hfbg" path="res://Assets/Sprites/hurt.png" id="15_imcog"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r3lo5"]
 texture = ExtResource("7_dun2r")
@@ -286,6 +287,12 @@ shader_parameter/original_palette = ExtResource("5_dun2r")
 shader_parameter/new_palette = ExtResource("4_ckhy6")
 shader_parameter/color_count = 12
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_b68tq"]
+radius = 7.845734
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s5iia"]
+radius = 12.369317
+
 [node name="Root" type="Node2D" unique_id=1485086795]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
@@ -322,11 +329,12 @@ position_smoothing_speed = 100.0
 drag_left_margin = 0.0
 drag_right_margin = 0.5
 
-[node name="yellow" parent="players" unique_id=54896673 groups=["yellow"] instance=ExtResource("1_8pvmw")]
+[node name="yellow" parent="players" unique_id=54896673 node_paths=PackedStringArray("healthbar") groups=["yellow"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(82, 189)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
+healthbar = NodePath("../../health container/Control/healthbar")
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/yellow" unique_id=81889352]
 texture_filter = 1
@@ -338,10 +346,11 @@ animation = &"run"
 autoplay = "default"
 script = ExtResource("10_lwnbm")
 
-[node name="green" parent="players" unique_id=2091144046 groups=["green"] instance=ExtResource("1_8pvmw")]
+[node name="green" parent="players" unique_id=2091144046 node_paths=PackedStringArray("healthbar") groups=["green"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_4hbtj")
 position = Vector2(81, 252.00002)
 scale = Vector2(1.5, 1.5)
+healthbar = NodePath("../../health container/Control/healthbar")
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/green" unique_id=409283385]
 texture_filter = 1
@@ -352,11 +361,12 @@ sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 script = ExtResource("10_lwnbm")
 
-[node name="red" parent="players" unique_id=1916415869 groups=["red"] instance=ExtResource("1_8pvmw")]
+[node name="red" parent="players" unique_id=1916415869 node_paths=PackedStringArray("healthbar") groups=["red"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(83, 321.99997)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
+healthbar = NodePath("../../health container/Control/healthbar")
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/red" unique_id=264852051]
 texture_filter = 1
@@ -367,11 +377,12 @@ sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 script = ExtResource("10_lwnbm")
 
-[node name="blue" parent="players" unique_id=538173699 groups=["blue"] instance=ExtResource("1_8pvmw")]
+[node name="blue" parent="players" unique_id=538173699 node_paths=PackedStringArray("healthbar") groups=["blue"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(83, 382.99997)
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
+healthbar = NodePath("../../health container/Control/healthbar")
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/blue" unique_id=2109672104]
 texture_filter = 1
@@ -417,35 +428,54 @@ text = "Red
 script = ExtResource("13_lwnbm")
 players = NodePath("../../players")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=565122289]
+[node name="health container" type="CanvasLayer" parent="." unique_id=565122289]
 
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=594232558]
+[node name="Control" type="Control" parent="health container" unique_id=594232558]
 layout_mode = 3
 anchors_preset = 0
 offset_left = 8.0
 offset_right = 48.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=864444577]
+[node name="healthbar" type="HBoxContainer" parent="health container/Control" unique_id=864444577]
 layout_mode = 1
 offset_right = 104.0
 offset_bottom = 40.0
 scale = Vector2(2, 2)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=1918105350]
+[node name="heart" type="TextureRect" parent="health container/Control/healthbar" unique_id=1918105350]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_20eh2")
 stretch_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=1276197841]
+[node name="heart2" type="TextureRect" parent="health container/Control/healthbar" unique_id=1276197841]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_20eh2")
 stretch_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=7497846]
+[node name="heart3" type="TextureRect" parent="health container/Control/healthbar" unique_id=7497846]
 texture_filter = 1
 layout_mode = 2
 texture = ExtResource("3_20eh2")
 stretch_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1492652851]
+
+[node name="obstacle" type="Sprite2D" parent="StaticBody2D" unique_id=2122381855]
+texture_filter = 1
+position = Vector2(-21, 265)
+scale = Vector2(3, 3)
+texture = ExtResource("15_imcog")
+
+[node name="obstacle hitbox" type="Area2D" parent="StaticBody2D/obstacle" unique_id=1806464824]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/obstacle/obstacle hitbox" unique_id=1635339701]
+shape = SubResource("CircleShape2D_b68tq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=795338496]
+position = Vector2(-21, 265)
+shape = SubResource("CircleShape2D_s5iia")
+
+[connection signal="body_entered" from="StaticBody2D/obstacle/obstacle hitbox" to="players/yellow" method="_on_obstacle_hitbox_body_entered"]
