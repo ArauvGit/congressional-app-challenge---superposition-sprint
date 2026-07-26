@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
 [ext_resource type="Texture2D" uid="uid://su5lmbam5sf5" path="res://tileset.png" id="2_qtxxq"]
+[ext_resource type="Texture2D" uid="uid://cr7p2obh2wtah" path="res://UI/Heart UI.png" id="3_20eh2"]
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Robot Color Palette/red robot palette.png" id="4_ckhy6"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Robot Color Palette/blue robot palette.png" id="5_dun2r"]
@@ -415,3 +416,36 @@ text = "Red
 "
 script = ExtResource("13_lwnbm")
 players = NodePath("../../players")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=565122289]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=594232558]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control" unique_id=864444577]
+layout_mode = 1
+offset_right = 104.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=1918105350]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_20eh2")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=1276197841]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_20eh2")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/Control/HBoxContainer" unique_id=7497846]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_20eh2")
+stretch_mode = 2
