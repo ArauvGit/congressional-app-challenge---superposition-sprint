@@ -2,6 +2,7 @@ extends Contestant
 class_name enemy
 
 func _init():
+	set_health(1)
 	super.set_physics_process(true)
 	print("the enemy script has been activated")
 	super.set_physics_process(true)

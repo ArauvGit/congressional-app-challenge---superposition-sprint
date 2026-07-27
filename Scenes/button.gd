@@ -38,19 +38,14 @@ func _choose_type():
 		match node:
 			var x when x is CharacterBody2D and not x.is_in_group("player"):
 				node.add_to_group("enemy")
-	#choose_script()
-	reparent_camera()
-func reparent_camera():
-	var Player = get_tree().get_first_node_in_group("player")
-	for node in players.get_children():
-		if node is Camera2D: 
-			node.reparent(Player)
-		Player.move_to_front()
+	choose_script()
+
+
 
 				
-#func choose_script():
-#	for node in players.get_children():
-#		if node.is_in_group("player"):
-#			node.set_script(load("res://Scenes/player.gd"))
-#		elif node.is_in_group("enemy"):
-#			node.set_script(load("res://Scripts/enemy.gd"))
+func choose_script():
+	for node in players.get_children():
+		if node.is_in_group("player"):
+			node.set_script(load("res://Scenes/player.gd"))
+		elif node.is_in_group("enemy"):
+			node.set_script(load("res://Scripts/enemy.gd"))

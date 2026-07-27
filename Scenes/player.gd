@@ -1,6 +1,7 @@
 extends Contestant
 class_name Player
 func _init() -> void:
+	set_health(-2)
 	super.set_physics_process(true)
 	print("the player script has been activated")
 	for node in get_parent().get_children():
@@ -10,17 +11,18 @@ func _init() -> void:
  
 func _physics_process(delta: float) -> void:
 	super(delta)
-	#jump()
-	#sprint()
-#func jump() -> void:
-#	if Input.is_action_just_pressed("jump") and is_on_floor():
-#		Global.state = Global.States.JUMPING
-#		state_machine()
-#func sprint() -> void:
-#	if Input.is_action_pressed("ui_left"):
-#		Global.state = Global.States.SPRINTING
-#		state_machine()	
+	jump()
+	sprint()
+func jump() -> void:
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		Global.state = Global.States.JUMPING
+		state_machine()
+func sprint() -> void:
+	if Input.is_action_pressed("ui_left"):
+		Global.state = Global.States.SPRINTING
+		state_machine()	
 
+	
 
 
 		
