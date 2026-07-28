@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qnudu3xkmuv1"
-path="res://.godot/imported/Robot walk-Sheet.png-0bf260265b68d7b5a4ec7b52cf541d1a.ctex"
+uid="uid://cd55uyjye5vr7"
+path="res://.godot/imported/blue robot palette.png-66ac8515e64e30384b6befa6b2061fdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Robot/Robot walk-Sheet.png"
-dest_files=["res://.godot/imported/Robot walk-Sheet.png-0bf260265b68d7b5a4ec7b52cf541d1a.ctex"]
+source_file="res://Assets/Robot Color Palette/blue robot palette.png"
+dest_files=["res://.godot/imported/blue robot palette.png-66ac8515e64e30384b6befa6b2061fdd.ctex"]
 
 [params]
 

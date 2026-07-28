@@ -1,0 +1,4 @@
+res://Scenes/root.tscn
+res://Scripts/colorswap.tres
+res://Scenes/button.gd
+res://Scripts/player.gd

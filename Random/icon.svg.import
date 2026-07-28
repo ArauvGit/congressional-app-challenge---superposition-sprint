@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qnudu3xkmuv1"
-path="res://.godot/imported/Robot walk-Sheet.png-0bf260265b68d7b5a4ec7b52cf541d1a.ctex"
+uid="uid://ikssgcypcf28"
+path="res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Robot/Robot walk-Sheet.png"
-dest_files=["res://.godot/imported/Robot walk-Sheet.png-0bf260265b68d7b5a4ec7b52cf541d1a.ctex"]
+source_file="res://Random/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false
