@@ -1,7 +1,12 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1785348760
-::res://Assets/::1785348647
+::res://::1785525920
+Movement.gd::GDScript::9124268047467105899::1785446173::0::1::::Movement<>Contestant<><>0<>0<><>::
+powerup.tscn::PackedScene::1459303196839080950::1785447723::0::1::::<><><>0<>0<><>::uid://b2kmq0gatinpu::::res://Powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
+powerups.gd::GDScript::4302921738454549558::1785447797::0::1::::<>Area2D<><>0<>0<><>::
+::res://Assets/::1785443329
 Heart UI.png::CompressedTexture2D::7265347659011437044::1785097422::1785348647::1::::<><><>0<>0<>08324419294afa0974d996071a665631<>res://.godot/imported/Heart UI.png-639b7cfe49f13d0691544a95104ff29f.ctex::
+New heart ui.png::CompressedTexture2D::8170713606821533563::1785442462::1785442464::1::::<><><>0<>0<>da7cab4338a8457067af5aa5d60d93e7<>res://.godot/imported/New heart ui.png-134e43cb338fca9860e27856660a7baa.ctex::
+test powerup.png::CompressedTexture2D::792150685155740053::1785442983::1785443329::1::::<><><>0<>0<>d710aaa635f2e1078bb316f53923a660<>res://.godot/imported/test powerup.png-cc7d28980f8bfe3e998c0a1178da794a.ctex::
 tileset.png::CompressedTexture2D::1990977215676293262::1783723541::1785348647::1::::<><><>0<>0<>3ad680695eef0ee7ca9d229cf7082478<>res://.godot/imported/tileset.png-06023f60f54ec986b75003a8d422612f.ctex::
 ::res://Assets/Robot Color Palette/::1785348647
 blue robot palette.png::CompressedTexture2D::5047197732143827110::1783723541::1785348647::1::::<><><>0<>0<>28121d84a9c595a7e6f4a204c8506ec9<>res://.godot/imported/blue robot palette.png-66ac8515e64e30384b6befa6b2061fdd.ctex::
@@ -16,19 +21,20 @@ Robot walk-Sheet.png::CompressedTexture2D::1151079201028739348::1783723513::1785
 ::res://Random/::1785348647
 icon.svg::CompressedTexture2D::583279896145231563::1783723513::1785348647::1::::<><><>0<>0<>8e492b6f60c8bb6ceeda4266385a5ba5<>res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex::
 ::res://Random/UID scripts/::1785348229
-::res://Scenes/::1785348747
+::res://Scenes/::1785454273
 main_menu.tscn::PackedScene::5381477989013858767::1785097422::0::1::::<><><>0<>0<><>::uid://c8xiw3x7i7fmd::::res://UI/PixelifySans-SemiBold.ttf
-player.tscn::PackedScene::7655236424971410601::1784423065::0::1::::<><><>0<>0<><>::uid://tpjup8fausgh::::res://Contestants.gd
-root.tscn::PackedScene::7176008021147482323::1785348747::0::1::::<><><>0<>0<><>::uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://cr7p2obh2wtah::::res://UI/Heart UI.png<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://jrac8n04hfbg::::res://Assets/Sprites/hurt.png
-::res://Scripts/::1785348665
-button.gd::GDScript::1923740238512833459::1785292863::0::1::::<>Button<><>0<>0<><>::
-colorswap.tres::VisualShader::1041964115692452680::1785348665::0::1::::<><><>0<>0<><>::
-Contestants.gd::GDScript::8198900568984204899::1785293077::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
+player.tscn::PackedScene::7655236424971410601::1785447083::0::1::::<><><>0<>0<><>::uid://do2uxu3rc204n::::res://Scripts/Contestants.gd
+root.tscn::PackedScene::7176008021147482323::1785454273::0::1::::<><><>0<>0<><>::uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://6p24i5fnfr2p::::res://Scripts/sprite.gd<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://jelf2po42uic::::res://Scripts/button.gd<>uid://cgphuq80pbqj0::::res://Scripts/health.gd<>uid://u15rmcsem62e::::res://powerup.tscn<>uid://don7pvahqc8pj::::res://Assets/New heart ui.png
+::res://Scripts/::1785454273
+button.gd::GDScript::640635361626940554::1785354769::0::1::::<>Button<><>0<>0<><>::
+colorswap.tres::VisualShader::1041964115692452680::1785447083::0::1::::<><><>0<>0<><>::
+Contestants.gd::GDScript::8198900568984204899::1785454273::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
 enemy.gd::GDScript::6254215696233811398::1785184771::0::1::::enemy<>Contestant<><>0<>0<><>::
 global.gd::GDScript::153802784520079775::1785266494::0::1::::<>Node<><>0<>0<><>::
-health.gd::GDScript::5225401722860893027::1785292304::0::1::::<>HBoxContainer<><>0<>0<><>::
-player.gd::GDScript::8953751700503022861::1785291530::0::1::::Player<>Contestant<><>0<>0<><>::
-sprite.gd::GDScript::2208511432693537281::1784496777::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
+health.gd::GDScript::5225401722860893027::1785355247::0::1::::<>HBoxContainer<><>0<>0<><>::
+Movement.gd::GDScript::4843233040716547612::1785445738::0::1::::Movement<>Contestant<><>0<>0<><>::
+player.gd::GDScript::8953751700503022861::1785355190::0::1::::Player<>Contestant<><>0<>0<><>::
+sprite.gd::GDScript::2208511432693537281::1785354480::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
 test.gd::GDScript::8221636530221980587::1784750003::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://UI/::1785348647
 Heart UI.png::CompressedTexture2D::6033071505916316755::1785097699::1785348647::1::::<><><>0<>0<>f4a1ef70e16b60d3fa324cfe56f6158e<>res://.godot/imported/Heart UI.png-5a8df2d5f70a48046354f13767af9657.ctex::

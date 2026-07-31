@@ -20,11 +20,6 @@ func _pressed() -> void:
 	if Global.is_pressed:
 		return
 	var group_array = get_groups()
-	#code logic:
-		#1. get the group that the button is in
-		#2 get every other nodes in that group
-		#3 get the node that is the player
-		#4 run the command on that player 
 	var group = group_array[0]
 	var all_inside_group: = get_tree().get_nodes_in_group(group)
 	for node in all_inside_group:
@@ -32,20 +27,21 @@ func _pressed() -> void:
 			node.add_to_group("player")
 			_choose_type()
 	Global.is_pressed = true
-
+	get_parent().queue_free()
 func _choose_type():
 	for node in players.get_children():
 		match node:
 			var x when x is CharacterBody2D and not x.is_in_group("player"):
 				node.add_to_group("enemy")
 	choose_script()
-
-
-
 				
 func choose_script():
 	for node in players.get_children():
 		if node.is_in_group("player"):
-			node.set_script(load("res://Scenes/player.gd"))
+			node.set_script(load("res://Scripts/player.gd"))
 		elif node.is_in_group("enemy"):
 			node.set_script(load("res://Scripts/enemy.gd"))
+
+
+func _on_update_health() -> void:
+	pass # Replace with function body.

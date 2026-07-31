@@ -3,6 +3,10 @@ class_name Contestant
 
 signal update_health
 var checker: bool = false
+var JUMP_VELOCITY = 0:
+	set = set_jump
+var SPEED = 0:
+	set = set_speed
 var Contestant_information : Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
@@ -33,14 +37,6 @@ var Contestant_information : Dictionary = {
 	}
 }
 
-var JUMP_VELOCITY = 0:
-	set = set_jump
-
-
-
-
-var SPEED = 0:
-	set = set_speed
 func _ready():
 	set_physics_process(false)
 	Global.state = Global.States.IDLE
@@ -51,14 +47,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_right") and checker == false:
 		Global.state = Global.States.MOVING
 		state_machine()
-		checker == true
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_up") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction = Input.get_action_strength("ui_right")
+		checker = true
 	velocity.x = SPEED
 	move_and_slide()
 
@@ -110,3 +99,5 @@ func set_speed(speed_change: int) -> int:
 	if Global.state == Global.States.MOVING:
 		SPEED = speed_change
 	return SPEED
+func speed_powerup():
+	set_speed(SPEED * 1.25)

@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*uid://1dmv3gl2ay1q"
+Global="*uid://cgrdypqbdshb"
 
 [display]
 
@@ -31,6 +31,9 @@ window/stretch/aspect="expand"
 
 player=""
 enemy=""
+Speed=""
+Jump=""
+Health=""
 
 [gui]
 

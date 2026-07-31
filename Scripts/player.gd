@@ -1,6 +1,15 @@
 extends Contestant
 class_name Player
 func _init() -> void:
+	match self:
+		var x when x.is_in_group("yellow"):
+			set_health(Contestant_information.Yellow["HEALTH"])
+		var x when x.is_in_group("green"):
+			set_health(Contestant_information.Green["HEALTH"])
+		var x when x.is_in_group("blue"):
+			set_health(Contestant_information.Blue["HEALTH"])
+		var x when x.is_in_group("red"):
+			set_health(Contestant_information.Red["HEALTH"])
 	super.set_physics_process(true)
 	print("the player script has been activated")
 	for node in get_parent().get_children():
@@ -21,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	jump()
 	sprint()
 func jump() -> void:
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump"):
 		Global.state = Global.States.JUMPING
 		state_machine()
 func sprint() -> void:
@@ -30,6 +39,7 @@ func sprint() -> void:
 		state_machine()	
 
 func set_health(new_health: int) -> int:
+	update_health.emit()
 	if Global.health != new_health:
 		Global.health = new_health
 	if new_health < Global.health:
@@ -37,5 +47,6 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 
-
+func health_powerup():
+	set_health(Global.health + 1)
 		
