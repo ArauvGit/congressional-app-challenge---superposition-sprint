@@ -1,6 +1,5 @@
 extends CharacterBody2D
 class_name Contestant
-
 signal update_health
 var checker: bool = false
 var JUMP_VELOCITY = 0:

@@ -1,5 +1,6 @@
 extends Contestant
 class_name Player
+
 func _init() -> void:
 	for name in Contestant_information.keys():
 		if get_groups()[0] == name:
@@ -9,6 +10,7 @@ func _init() -> void:
 	for node in get_parent().get_children():
 		if node is Camera2D: 
 			node.reparent(self)
+			node.move_local_x(position.x)
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
 	super(delta)

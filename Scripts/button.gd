@@ -41,7 +41,3 @@ func choose_script():
 			node.set_script(load("res://Scripts/player.gd"))
 		elif node.is_in_group("enemy"):
 			node.set_script(load("res://Scripts/enemy.gd"))
-
-
-func _on_update_health() -> void:
-	pass # Replace with function body.

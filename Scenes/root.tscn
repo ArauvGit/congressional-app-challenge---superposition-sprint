@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="1_8pvmw"]
 [ext_resource type="Texture2D" uid="uid://3mpdsb8sxulq" path="res://Assets/tileset.png" id="1_fu36u"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="1_i04dx"]
+[ext_resource type="Script" uid="uid://divhuqek7dqoa" path="res://Scenes/camera_2d.gd" id="2_hv1ua"]
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_c3mwy"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Assets/Robot Color Palette/red robot palette.png" id="4_ckhy6"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="5_dun2r"]
@@ -318,9 +319,9 @@ shader_parameter/color_count = 12
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
-position = Vector2(-135, 365)
+position = Vector2(-423, 121)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD+//7/AQAEAAIAAAD+////AQAFAAMAAAD+/wAAAQAFAAQAAAD///3/AQAEAAEAAAD///7/AQAEAAIAAAD/////AQAFAAMAAAD//wAAAQAFAAQAAAAAAP3/AQAEAAEAAAAAAP7/AQAEAAIAAAAAAP//AQAFAAMAAAAAAAAAAQAFAAQAAAABAP3/AQAEAAEAAAABAP7/AQAEAAIAAAABAP//AQAFAAMAAAABAAAAAQAFAAQAAAACAP3/AQAEAAEAAAACAP7/AQAEAAIAAAACAP//AQAFAAMAAAACAAAAAQAFAAQAAAADAP3/AQAEAAEAAAADAP7/AQAEAAIAAAADAP//AQAFAAMAAAADAAAAAQAFAAQAAAAEAP3/AQAEAAEAAAAEAP7/AQAEAAIAAAAEAP//AQAFAAMAAAAEAAAAAQAFAAQAAAAFAP3/AQAEAAEAAAAFAP7/AQAEAAIAAAAFAP//AQAFAAMAAAAFAAAAAQAFAAQAAAAGAP3/AQAEAAEAAAAGAP7/AQAEAAIAAAAGAP//AQAFAAMAAAAGAAAAAQAFAAQAAAAHAP3/AQAEAAEAAAAHAP7/AQAEAAIAAAAHAP//AQAFAAMAAAAHAAAAAQAFAAQAAAAIAP3/AQAEAAEAAAAIAP7/AQAEAAIAAAAIAP//AQAFAAMAAAAIAAAAAQAFAAQAAAAJAP3/AQAEAAEAAAAJAP7/AQAEAAIAAAAJAP//AQAFAAMAAAAJAAAAAQAFAAQAAAAKAP3/AQAEAAEAAAAKAP7/AQAEAAIAAAAKAP//AQAFAAMAAAAKAAAAAQAFAAQAAAALAP3/AQAEAAEAAAALAP7/AQAEAAIAAAALAP//AQAFAAMAAAALAAAAAQAFAAQAAAAMAP3/AQAEAAEAAAAMAP7/AQAEAAIAAAAMAP//AQAFAAMAAAAMAAAAAQAFAAQAAAANAP3/AQAEAAEAAAANAP7/AQAEAAIAAAANAP//AQAFAAMAAAANAAAAAQAFAAQAAAAOAP3/AQAEAAEAAAAOAP7/AQAEAAIAAAAOAP//AQAFAAMAAAAOAAAAAQAFAAQAAAAPAP3/AQAEAAEAAAAPAP7/AQAEAAIAAAAPAP//AQAFAAMAAAAPAAAAAQAFAAQAAAD+//3/AQAEAAEAAAA=")
+tile_map_data = PackedByteArray("AAD+/wAAAQAFAAQAAAD//wAAAQAFAAQAAAAAAAAAAQAFAAQAAAABAAAAAQAFAAQAAAACAAAAAQAFAAQAAAADAAAAAQAFAAQAAAAEAAAAAQAFAAQAAAAFAAAAAQAFAAQAAAAGAAAAAQAFAAQAAAAHAAAAAQAFAAQAAAAIAAAAAQAFAAQAAAAJAAAAAQAFAAQAAAAKAAAAAQAFAAQAAAALAAAAAQAFAAQAAAAMAAAAAQAEAAQAAAANAAAAAQAEAAQAAAAOAAAAAQAEAAQAAAAPAAAAAQAEAAQAAAAVAAAAAQAEAAQAAAAUAAAAAQAEAAQAAAATAAAAAQAEAAQAAAASAAAAAQAEAAQAAAARAAAAAQAEAAQAAAAQAAAAAQAEAAQAAAD3/wAAAQAEAAQAAAD4/wAAAQAEAAQAAAD5/wAAAQAEAAQAAAD6/wAAAQAEAAQAAAD7/wAAAQAEAAQAAAD8/wAAAQAEAAQAAAD9/wAAAQAEAAQAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -334,25 +335,21 @@ region_enabled = true
 region_rect = Rect2(1000, 360, 763.5, 125.75)
 
 [node name="players" type="Node2D" parent="." unique_id=276196963]
-position = Vector2(-288, 8)
+position = Vector2(-267, 144)
 
 [node name="Camera2D" type="Camera2D" parent="players" unique_id=1734593210]
-position = Vector2(-227, 102)
-anchor_mode = 0
+position = Vector2(8, -3)
 ignore_rotation = false
-process_callback = 0
-limit_left = -256
-limit_top = -9999775
-limit_right = 2294
-limit_bottom = 10000225
+limit_top = -9999666
+limit_bottom = 10000334
 limit_smoothed = true
-position_smoothing_speed = 100.0
 drag_left_margin = 0.0
-drag_right_margin = 0.5
+drag_right_margin = 0.0
+script = ExtResource("2_hv1ua")
 
 [node name="yellow" parent="players" unique_id=54896673 groups=["Yellow"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(82, 189)
+position = Vector2(-152, 3)
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/yellow" unique_id=81889352]
 texture_filter = 1
@@ -365,7 +362,7 @@ script = ExtResource("10_hv1ua")
 
 [node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_4hbtj")
-position = Vector2(81, 252.00002)
+position = Vector2(-71, 0)
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/green" unique_id=409283385]
 texture_filter = 1
@@ -378,7 +375,7 @@ script = ExtResource("10_hv1ua")
 
 [node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(83, 321.99997)
+position = Vector2(6, 1)
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/red" unique_id=264852051]
 texture_filter = 1
@@ -391,11 +388,11 @@ script = ExtResource("10_hv1ua")
 
 [node name="blue" parent="players" unique_id=538173699 groups=["Blue"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(83, 382.99997)
+position = Vector2(89, 0)
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/blue" unique_id=2109672104]
 texture_filter = 1
-position = Vector2(1, -1)
+position = Vector2(2.0000153, -5.9604645e-08)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
@@ -405,10 +402,10 @@ script = ExtResource("10_hv1ua")
 visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2003233647]
-offset_left = -52.0
-offset_top = 407.0
-offset_right = 152.0
-offset_bottom = 444.0
+offset_left = -404.0
+offset_top = 15.0
+offset_right = -200.0
+offset_bottom = 52.0
 
 [node name="yellow" type="Button" parent="HBoxContainer" unique_id=1668234909 node_paths=PackedStringArray("players") groups=["Yellow"]]
 layout_mode = 2
@@ -481,9 +478,11 @@ texture = ExtResource("15_imcog")
 stretch_mode = 2
 
 [node name="Area2D" parent="." unique_id=1003261113 groups=["Speed"] instance=ExtResource("15_hv1ua")]
+visible = false
 position = Vector2(-107, 194)
 
 [node name="Area2D3" parent="." unique_id=1566335700 groups=["Health"] instance=ExtResource("15_hv1ua")]
+visible = false
 position = Vector2(-89, 268)
 
 [connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]

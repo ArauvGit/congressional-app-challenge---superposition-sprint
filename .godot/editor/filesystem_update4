@@ -1,4 +1,7 @@
 res://Scenes/root.tscn
 res://Scripts/colorswap.tres
+res://Scenes/camera_2d.gd
+res://Scripts/button.gd
+res://Scripts/health.gd
 res://Scripts/Contestants.gd
 res://Scripts/player.gd
