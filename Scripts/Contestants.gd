@@ -7,7 +7,7 @@ var JUMP_VELOCITY = 0:
 	set = set_jump
 var SPEED = 0:
 	set = set_speed
-var Contestant_information : Dictionary = {
+var Contestant_information: Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
 		"JUMP": -300,
@@ -36,6 +36,11 @@ var Contestant_information : Dictionary = {
 		"HEALTH": 6
 	}
 }
+var Powerup_information: Dictionary = {
+	"SPEED_BOOST": 1.25,
+	"RESTORATION": 1,
+}
+
 
 func _ready():
 	set_physics_process(false)
@@ -61,35 +66,17 @@ func state_machine():
 			SPEED = 0 			
 			JUMP_VELOCITY = 0
 		Global.States.MOVING:
-			match self:
-				var x when x.is_in_group("yellow"):
-					set_speed(Contestant_information.Yellow["SPEED"])
-				var x when x.is_in_group("green"):
-					set_speed(Contestant_information.Green["SPEED"])
-				var x when x.is_in_group("red"):
-					set_speed(Contestant_information.Red["SPEED"])
-				var x when x.is_in_group("blue"):
-					set_speed(Contestant_information.Blue["SPEED"])
+			for name in Contestant_information.keys():
+				if get_groups()[0] == name:
+					set_speed(Contestant_information.get(name)["SPEED"])
 		Global.States.JUMPING:
-			match self:
-				var x when x.is_in_group("yellow"):
-					set_jump(Contestant_information.Yellow["JUMP"])
-				var x when x.is_in_group("green"):
-					set_jump(Contestant_information.Green["JUMP"])
-				var x when x.is_in_group("red"):
-					set_jump(Contestant_information.Red["JUMP"])
-				var x when x.is_in_group("blue"):
-					set_jump(Contestant_information.Blue["JUMP"])
+			for name in Contestant_information.keys():
+				if get_groups()[0] == name:
+					set_jump(Contestant_information.get(name)["JUMP"])
 		Global.States.SPRINTING:
-			match self:
-				var x when x.is_in_group("yellow"):
-					set_speed(Contestant_information.Yellow["SPEED"] * 1.5)
-				var x when x.is_in_group("green"):
-					set_speed(Contestant_information.Green["SPEED"] * 1.5)
-				var x when x.is_in_group("red"):
-					set_speed(Contestant_information.Red["SPEED"] * 1.5)
-				var x when x.is_in_group("blue"):
-					set_speed(Contestant_information.Blue["SPEED"] * 1.5)
+			for name in Contestant_information.keys():
+				if get_groups()[0] == name:
+					set_speed(Contestant_information.get(name)["SPEED"] * 1.2)
 func set_jump(jump_change: int) -> int:
 	if Global.state != Global.States.IDLE:
 		JUMP_VELOCITY = jump_change
@@ -100,4 +87,8 @@ func set_speed(speed_change: int) -> int:
 		SPEED = speed_change
 	return SPEED
 func speed_powerup():
-	set_speed(SPEED * 1.25)
+	set_speed(SPEED * Powerup_information["SPEED_BOOST"])
+	await get_tree().create_timer(1).timeout
+	for name in Contestant_information.keys():
+		if get_groups()[0] == name:
+			set_speed(Contestant_information.get(name)["SPEED"])
