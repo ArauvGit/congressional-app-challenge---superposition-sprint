@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	jump()
 	sprint()
 func jump() -> void:
-	if Input.is_action_just_pressed("jump"):
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		Global.state = Global.States.JUMPING
 		state_machine()
 func sprint() -> void:
