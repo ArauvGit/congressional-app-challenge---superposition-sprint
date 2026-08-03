@@ -1,4 +1,5 @@
 extends Area2D
+var groups: Array = ["Speed", "Health", "Jump"]
 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,8 +12,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-
 func _on_body_entered(body: CharacterBody2D) -> void:
+	pass
 	match self:
 		var x when x.is_in_group("Speed"):
 			if body.has_method("speed_powerup"):
@@ -22,3 +23,9 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 			if body.has_method("health_powerup"):
 				body.health_powerup()
 				queue_free()
+		var x when x.is_in_group("Jump"):
+			if body.has_method("jump_powerup"):
+				body.jump_powerup()
+				queue_free()
+	
+	

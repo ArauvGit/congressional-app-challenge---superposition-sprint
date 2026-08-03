@@ -180,10 +180,12 @@ texture_region_size = Vector2i(32, 32)
 8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 12.937923, 16, 13.02313, 16, 16, -16, 16)
 9:8/0 = 0
 9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 11.789337, 16, 11.630024, 16, 16, -16, 16)
+1:9/0 = 0
+1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_b68tq"]
 tile_size = Vector2i(32, 32)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
 sources/1 = SubResource("TileSetAtlasSource_imcog")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fu36u"]
@@ -320,8 +322,7 @@ shader_parameter/color_count = 12
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
 position = Vector2(-423, 121)
-scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD+/wAAAQAFAAQAAAD//wAAAQAFAAQAAAAAAAAAAQAFAAQAAAABAAAAAQAFAAQAAAACAAAAAQAFAAQAAAADAAAAAQAFAAQAAAAEAAAAAQAFAAQAAAAFAAAAAQAFAAQAAAAGAAAAAQAFAAQAAAAHAAAAAQAFAAQAAAAIAAAAAQAFAAQAAAAJAAAAAQAFAAQAAAAKAAAAAQAFAAQAAAALAAAAAQAFAAQAAAAMAAAAAQAEAAQAAAANAAAAAQAEAAQAAAAOAAAAAQAEAAQAAAAPAAAAAQAEAAQAAAAVAAAAAQAEAAQAAAAUAAAAAQAEAAQAAAATAAAAAQAEAAQAAAASAAAAAQAEAAQAAAARAAAAAQAEAAQAAAAQAAAAAQAEAAQAAAD3/wAAAQAEAAQAAAD4/wAAAQAEAAQAAAD5/wAAAQAEAAQAAAD6/wAAAQAEAAQAAAD7/wAAAQAEAAQAAAD8/wAAAQAEAAQAAAD9/wAAAQAEAAQAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAALAAEAAQABAAkAAAALAAAAAQABAAkAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -350,6 +351,7 @@ script = ExtResource("2_hv1ua")
 [node name="yellow" parent="players" unique_id=54896673 groups=["Yellow"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(-152, 3)
+collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/yellow" unique_id=81889352]
 texture_filter = 1
@@ -363,6 +365,7 @@ script = ExtResource("10_hv1ua")
 [node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_4hbtj")
 position = Vector2(-71, 0)
+collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/green" unique_id=409283385]
 texture_filter = 1
@@ -376,6 +379,7 @@ script = ExtResource("10_hv1ua")
 [node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(6, 1)
+collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/red" unique_id=264852051]
 texture_filter = 1
@@ -389,6 +393,7 @@ script = ExtResource("10_hv1ua")
 [node name="blue" parent="players" unique_id=538173699 groups=["Blue"] instance=ExtResource("1_8pvmw")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(89, 0)
+collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/blue" unique_id=2109672104]
 texture_filter = 1
@@ -481,11 +486,10 @@ stretch_mode = 2
 visible = false
 position = Vector2(-107, 194)
 
-[node name="Area2D3" parent="." unique_id=1566335700 groups=["Health"] instance=ExtResource("15_hv1ua")]
-visible = false
-position = Vector2(-89, 268)
+[node name="Area2D3" parent="." unique_id=1566335700 groups=["Jump"] instance=ExtResource("15_hv1ua")]
+position = Vector2(-73, 149)
 
 [connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/green" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/red" to="health container/Control/healthbar" method="_on_update_health"]
-[connection signal="update_health" from="players/blue" to="HBoxContainer/blue" method="_on_update_health"]
+[connection signal="update_health" from="players/blue" to="health container/Control/healthbar" method="_on_update_health"]

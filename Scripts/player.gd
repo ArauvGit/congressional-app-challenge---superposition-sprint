@@ -1,10 +1,12 @@
 extends Contestant
 class_name Player
+var jump_count: int = 0
+
 
 func _init() -> void:
-	for name in Contestant_information.keys():
-		if get_groups()[0] == name:
-			set_health(Contestant_information.get(name)["HEALTH"])
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name:
+			set_health(Contestant_information.get(Name)["HEALTH"])
 	super.set_physics_process(true)
 	print("the player script has been activated")
 	for node in get_parent().get_children():
@@ -17,9 +19,14 @@ func _physics_process(delta: float) -> void:
 	jump()
 	sprint()
 func jump() -> void:
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if is_on_floor():
+		jump_count = 0
+	if Input.is_action_just_pressed("jump") and jump_count < 2:
+		velocity.y = JUMP_VELOCITY
 		Global.state = Global.States.JUMPING
 		state_machine()
+		jump_count += 1
+		print(jump_count)
 func sprint() -> void:
 	if Input.is_action_pressed("ui_left"):
 		Global.state = Global.States.SPRINTING

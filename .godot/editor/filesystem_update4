@@ -1,4 +1,11 @@
+res://powerups.gd
 res://Scenes/root.tscn
 res://Scripts/colorswap.tres
-res://Scripts/player.gd
 res://Scripts/Contestants.gd
+res://Scripts/health.gd
+res://Scripts/player.gd
+res://Scripts/enemy.gd
+res://powerup.tscn
+res://Scenes/player.tscn
+res://enemy_raycast.gd
+res://Scripts/enemy_raycast.gd

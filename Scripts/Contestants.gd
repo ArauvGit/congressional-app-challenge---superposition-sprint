@@ -1,7 +1,9 @@
 extends CharacterBody2D
 class_name Contestant
+@warning_ignore("unused_signal")
 signal update_health
 var checker: bool = false
+var jump_powerup_active: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
 var SPEED = 0:
@@ -25,7 +27,7 @@ var Contestant_information: Dictionary = {
 		"SPEED": 195,
 		"JUMP": -400,
 		"STAMINA": 6,
-		"HEALTH": 3,
+		"HEALTH": 4,
 	},
 	
 	"Blue": {
@@ -37,6 +39,7 @@ var Contestant_information: Dictionary = {
 }
 var Powerup_information: Dictionary = {
 	"SPEED_BOOST": 1.25,
+	"JUMP_BOOST": 1.5,
 	"RESTORATION": 1,
 }
 
@@ -65,21 +68,20 @@ func state_machine():
 			SPEED = 0 			
 			JUMP_VELOCITY = 0
 		Global.States.MOVING:
-			for name in Contestant_information.keys():
-				if get_groups()[0] == name:
-					set_speed(Contestant_information.get(name)["SPEED"])
+			for Name in Contestant_information.keys():
+				if get_groups()[0] == Name:
+					set_speed(Contestant_information.get(Name)["SPEED"])
 		Global.States.JUMPING:
-			for name in Contestant_information.keys():
-				if get_groups()[0] == name:
-					set_jump(Contestant_information.get(name)["JUMP"])
+			for Name in Contestant_information.keys():
+				if get_groups()[0] == Name and jump_powerup_active == false:
+					set_jump(Contestant_information.get(Name)["JUMP"])
 		Global.States.SPRINTING:
-			for name in Contestant_information.keys():
-				if get_groups()[0] == name:
-					set_speed(Contestant_information.get(name)["SPEED"] * 1.2)
+			for Name in Contestant_information.keys():
+				if get_groups()[0] == Name:
+					set_speed(Contestant_information.get(Name)["SPEED"] * 1.2)
 func set_jump(jump_change: int) -> int:
 	if Global.state != Global.States.IDLE:
 		JUMP_VELOCITY = jump_change
-		velocity.y = JUMP_VELOCITY
 	return JUMP_VELOCITY
 func set_speed(speed_change: int) -> int:
 	if Global.state == Global.States.MOVING:
@@ -88,6 +90,14 @@ func set_speed(speed_change: int) -> int:
 func speed_powerup():
 	set_speed(SPEED * Powerup_information["SPEED_BOOST"])
 	await get_tree().create_timer(1).timeout
-	for name in Contestant_information.keys():
-		if get_groups()[0] == name:
-			set_speed(Contestant_information.get(name)["SPEED"])
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name:
+			set_speed(Contestant_information.get(Name)["SPEED"])
+func jump_powerup():
+	set_jump(JUMP_VELOCITY * Powerup_information["JUMP_BOOST"])
+	jump_powerup_active = true
+	await get_tree().create_timer(3).timeout
+	jump_powerup_active = false
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name:
+			set_jump(Contestant_information.get(Name)["JUMP"])
