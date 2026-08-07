@@ -1,6 +1,6 @@
 extends Contestant
 class_name enemy
-var raycast = RayCast2D.new()
+var horizontal_raycast = RayCast2D.new()
 var jump_count = 0
 
 func _init():
@@ -15,19 +15,20 @@ func _physics_process(delta: float) -> void:
 func jump() -> void:
 	if is_on_floor():
 		jump_count = 0
-	velocity.y = JUMP_VELOCITY
-	Global.state = Global.States.JUMPING
-	state_machine()
-	jump_count += 1
-	print(jump_count)
+	if jump_count < 2:
+		velocity.y = JUMP_VELOCITY
+		Global.state = Global.States.JUMPING
+		state_machine()
+		jump_count += 1
+
 
 func raycast_init():
-	add_child(raycast)
-	raycast.rotation_degrees = -90
-	raycast.scale *= 2
-	raycast.target_position.y  = 45
+	add_child(horizontal_raycast)
+	horizontal_raycast.rotation_degrees = -90
+	horizontal_raycast.scale *= 2
+	horizontal_raycast.target_position.y = 45
+	horizontal_raycast.collision_mask = 2
 func raycast_detection():
-	if raycast.is_colliding():
-		if raycast.get_collider() is TileMapLayer:
+	if horizontal_raycast.is_colliding():
+		if horizontal_raycast.get_collider() is TileMapLayer:
 			jump()
-			

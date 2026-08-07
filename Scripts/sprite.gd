@@ -7,12 +7,12 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func animation_state():
 	match Global.state:
 		Global.States.IDLE:
 			play('default')
-		Global.States.MOVING:
+		Global.States.MOVING_RIGHT:
 			play("run")
