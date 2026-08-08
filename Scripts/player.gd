@@ -25,22 +25,22 @@ func _physics_process(delta: float) -> void:
 	sprint()
 #endregion
 #region movement 
-func change_direction():
-	if SPEED > 0:
-		Global.state = Global.States.MOVING_RIGHT
-	elif SPEED < 0:
-		Global.state = Global.States.MOVING_LEFT
-	match Global.state:
-		Global.States.MOVING_RIGHT:
-			animated_sprite.flip_h = false
-			if Input.is_action_just_pressed("move_left"):
-				Global.state = Global.States.MOVING_LEFT
-				state_machine()
-		Global.States.MOVING_LEFT:
-			animated_sprite.flip_h = true
-			if Input.is_action_just_pressed("move_right"):
-				Global.state = Global.States.MOVING_RIGHT
-				state_machine()
+# func change_direction():
+# 	if SPEED > 0:
+# 		Global.state = Global.States.MOVING_RIGHT
+# 	elif SPEED < 0:
+# 		Global.state = Global.States.MOVING_LEFT
+# 	match Global.state:
+# 		Global.States.MOVING_RIGHT:
+# 			animated_sprite.flip_h = false
+# 			if Input.is_action_just_pressed("move_left"):
+# 				Global.state = Global.States.MOVING_LEFT
+# 				state_machine()
+# 		Global.States.MOVING_LEFT:
+# 			animated_sprite.flip_h = true
+# 			if Input.is_action_just_pressed("move_right"):
+# 				Global.state = Global.States.MOVING_RIGHT
+# 				state_machine()
 func jump() -> void:
 	if is_on_floor():
 		jump_count = 0

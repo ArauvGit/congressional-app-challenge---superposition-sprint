@@ -65,8 +65,6 @@ func _physics_process(delta: float) -> void:
 	velocity.x = SPEED
 	move_and_slide()
 func state_machine():
-	if not is_in_group("Green"):
-		return #debugging purposes remove later
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.IDLE:
@@ -126,6 +124,22 @@ func state_machine():
 			#animated_sprite.flip_h = true	
 			if SPEED > 0:
 				set_speed(SPEED * -1)
+func change_direction():
+	if SPEED > 0:
+		Global.state = Global.States.MOVING_RIGHT
+	elif SPEED < 0:
+		Global.state = Global.States.MOVING_LEFT
+	match Global.state:
+		Global.States.MOVING_RIGHT:
+			animated_sprite.flip_h = false
+			if Input.is_action_just_pressed("move_left"):
+				Global.state = Global.States.MOVING_LEFT
+				state_machine()
+		Global.States.MOVING_LEFT:
+			animated_sprite.flip_h = true
+			if Input.is_action_just_pressed("move_right"):
+				Global.state = Global.States.MOVING_RIGHT
+				state_machine()
 #endregion
 #region setters
 func set_jump(jump_change: int) -> int:
