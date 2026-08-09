@@ -1,6 +1,5 @@
 res://Scenes/root.tscn
 res://Scripts/colorswap.tres
-res://Scripts/Contestants.gd
+res://Scenes/level1.tscn
 res://Scripts/enemy.gd
-res://Scripts/player.gd
-res://Scripts/powerups.gd
+res://Scripts/Contestants.gd

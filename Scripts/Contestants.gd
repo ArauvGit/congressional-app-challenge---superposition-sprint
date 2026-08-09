@@ -68,11 +68,9 @@ func state_machine():
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.IDLE:
-			print("idle")
 			set_speed(0)
 			set_jump(0)
 		Global.States.JUMPING:
-			print("jumping")
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name and jump_powerup_active == false:
 					set_jump(Contestant_information.get(Name)["JUMP"])
@@ -81,7 +79,6 @@ func state_machine():
 				if get_groups()[0] == Name:
 					set_speed(Contestant_information.get(Name)["SPEED"] * 1.2)
 		Global.States.MOVING_RIGHT:
-			print("moving right")
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name:
 					match SPEED:
@@ -91,7 +88,6 @@ func state_machine():
 							set_speed(SPEED)
 			animated_sprite.flip_h = false
 		Global.States.MOVING_LEFT:
-			print("moving left")
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name:
 					match SPEED:
@@ -101,7 +97,6 @@ func state_machine():
 							set_speed(SPEED)
 			animated_sprite.flip_h = true
 		Global.States.JUMPING_RIGHT:
-			print("jumping right")
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name and jump_powerup_active == false:
 					set_jump(Contestant_information.get(Name)["JUMP"])
@@ -112,7 +107,6 @@ func state_machine():
 							set_speed(SPEED)
 			#animated_sprite.flip_h = false
 		Global.States.JUMPING_LEFT:
-			print("jumping left")
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name and jump_powerup_active == false:
 					set_jump(Contestant_information.get(Name)["JUMP"])

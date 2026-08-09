@@ -3,6 +3,7 @@ class_name enemy
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
 var jump_count = 0
+var jump_checker: bool = false
 
 func _init():
 	super.set_physics_process(true)
@@ -10,21 +11,25 @@ func _init():
 	print("the enemy script has been activated")
 	super.set_physics_process(true)
 func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		jump_count = 0
 	raycast_detection()
 	super(delta)
 
 func jump() -> void:
-	if is_on_floor():
-		jump_count = 0
+	if jump_count == 2:
+		return
 	if jump_count == 0:
 		velocity.y = JUMP_VELOCITY
 		Global.state = Global.States.JUMPING
 		state_machine()
 		jump_count += 1
-	elif not is_on_floor() and jump_count == 1: 
-		Global.state = Global.States.JUMPING
-		state_machine()
+		jump_checker = true 
+		await get_tree().create_timer(0.5).timeout
+		jump_checker = false
+	elif not is_on_floor() and jump_checker == false:
 		double_jump()
+		
 	
 func double_jump():
 	velocity.y = JUMP_VELOCITY

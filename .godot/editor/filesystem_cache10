@@ -1,0 +1,43 @@
+78098b89c88a74ebe8c20117b8754620
+::res://::1786229001
+powerup.tscn::PackedScene::5407061199522181680::1786226330::0::1::::<><><>0<>0<><>::uid://b2kmq0gatinpu::::res://powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
+powerups.gd::GDScript::5775169377590710475::1786226330::0::1::::<>Area2D<><>0<>0<><>::
+::res://Assets/::1786226330
+Heart UI.png::CompressedTexture2D::7265347659011437044::1786226330::1786226330::1::::<><><>0<>0<>08324419294afa0974d996071a665631<>res://.godot/imported/Heart UI.png-639b7cfe49f13d0691544a95104ff29f.ctex::
+New heart ui.png::CompressedTexture2D::8170713606821533563::1786226330::1786226330::1::::<><><>0<>0<>da7cab4338a8457067af5aa5d60d93e7<>res://.godot/imported/New heart ui.png-134e43cb338fca9860e27856660a7baa.ctex::
+test powerup.png::CompressedTexture2D::792150685155740053::1786226330::1786226330::1::::<><><>0<>0<>d710aaa635f2e1078bb316f53923a660<>res://.godot/imported/test powerup.png-cc7d28980f8bfe3e998c0a1178da794a.ctex::
+tileset.png::CompressedTexture2D::1990977215676293262::1786226330::1786226330::1::::<><><>0<>0<>3ad680695eef0ee7ca9d229cf7082478<>res://.godot/imported/tileset.png-06023f60f54ec986b75003a8d422612f.ctex::
+::res://Assets/Robot Color Palette/::1786226330
+blue robot palette.png::CompressedTexture2D::5047197732143827110::1786226330::1786226330::1::::<><><>0<>0<>28121d84a9c595a7e6f4a204c8506ec9<>res://.godot/imported/blue robot palette.png-66ac8515e64e30384b6befa6b2061fdd.ctex::
+green robot color palette.png::CompressedTexture2D::2612294935995781756::1786226330::1786226330::1::::<><><>0<>0<>b9d7d18b832577a19642da21d6177cd2<>res://.godot/imported/green robot color palette.png-4a4e936e4b9880e371a633d59627798a.ctex::
+red robot palette.png::CompressedTexture2D::6069572362683071766::1786226330::1786226330::1::::<><><>0<>0<>ef0ae8a2f5a67305c98775324371c50d<>res://.godot/imported/red robot palette.png-3e53ea5b1414108c2ca710e5ccc71826.ctex::
+yellow robot color palette.png::CompressedTexture2D::2382975463463634604::1786226330::1786226330::1::::<><><>0<>0<>2f32c74b9fc7722db07527e35ba4c33f<>res://.godot/imported/yellow robot color palette.png-ec08de9f338a8d3c0bf9ed4087bac7d9.ctex::
+::res://Assets/Sprites/::1786226330
+hurt.png::CompressedTexture2D::666799340677049892::1786226330::1786226330::1::::<><><>0<>0<>f52ddcfb4c53f5cabb4a082325d72535<>res://.godot/imported/hurt.png-beb6357826c1f62bc39f723f6a05109b.ctex::
+::res://Assets/Sprites/Robot/::1786226330
+Robot Character idle.png::CompressedTexture2D::5685415688551990932::1786226330::1786226330::1::::<><><>0<>0<>e9167c959607820d4d751acef36b14ab<>res://.godot/imported/Robot Character idle.png-7b1ddac824d99ba47f09b7ecf33e9066.ctex::
+Robot walk-Sheet.png::CompressedTexture2D::1151079201028739348::1783723513::1786226330::1::::<><><>0<>0<>d2d8667b1cf9f6226728c2dbc8d1b136<>res://.godot/imported/Robot walk-Sheet.png-0bf260265b68d7b5a4ec7b52cf541d1a.ctex::
+::res://Random/::1786226330
+icon.svg::CompressedTexture2D::583279896145231563::1786226330::1786226330::1::::<><><>0<>0<>8e492b6f60c8bb6ceeda4266385a5ba5<>res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex::
+::res://Random/More UID Scripts/::1786226330
+::res://Random/UID scripts/::1786226330
+::res://Scenes/::1786230626
+main_menu.tscn::PackedScene::5381477989013858767::1786226330::0::1::::<><><>0<>0<><>::uid://c8xiw3x7i7fmd::::res://UI/PixelifySans-SemiBold.ttf
+player.tscn::PackedScene::7655236424971410601::1786226330::0::1::::<><><>0<>0<><>::uid://do2uxu3rc204n::::res://Scripts/Contestants.gd
+powerup.tscn::PackedScene::1459303196839080950::1786226330::0::1::::<><><>0<>0<><>::uid://b2kmq0gatinpu::::res://Scripts/powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
+level1.tscn::PackedScene::2959626695014355023::1786230626::0::1::::<><><>0<>0<><>::uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn<>uid://don7pvahqc8pj::::res://Assets/New heart ui.png
+::res://Scripts/::1786229599
+button.gd::GDScript::3399876531381982647::1786226330::0::1::::<>Button<><>0<>0<><>::
+colorswap.tres::VisualShader::1041964115692452680::1786229599::0::1::::<><><>0<>0<><>::
+Contestants.gd::GDScript::887084814954766303::1786226330::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
+enemy.gd::GDScript::4635814279672078000::1786226330::0::1::::enemy<>Contestant<><>0<>0<><>::
+global.gd::GDScript::2904525417413303067::1786226330::0::1::::<>Node<><>0<>0<><>::
+health.gd::GDScript::2956852357346277118::1786226330::0::1::::<>HBoxContainer<><>0<>0<><>::
+Movement.gd::GDScript::694816399921429311::1786226330::0::1::::Movement<>Contestant<><>0<>0<><>::
+player.gd::GDScript::3768574309311254635::1786227684::0::1::::Player<>Contestant<><>0<>0<><>::
+powerups.gd::GDScript::1920164455412807863::1786226330::0::1::::<>Area2D<><>0<>0<><>::
+sprite.gd::GDScript::5480306534184858250::1786226330::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
+test.gd::GDScript::8221636530221980587::1786226330::0::1::::<>CharacterBody2D<><>0<>0<><>::
+::res://UI/::1786226330
+Heart UI.png::CompressedTexture2D::6033071505916316755::1786226330::1786226330::1::::<><><>0<>0<>f4a1ef70e16b60d3fa324cfe56f6158e<>res://.godot/imported/Heart UI.png-5a8df2d5f70a48046354f13767af9657.ctex::
+PixelifySans-SemiBold.ttf::FontFile::7137080426842878831::1783723513::1785348647::1::::<><><>0<>0<>2b2f019319afaa4e2c81be1350a5dcfd<>res://.godot/imported/PixelifySans-SemiBold.ttf-769fb588559687a508694e3a54f02b72.fontdata::
