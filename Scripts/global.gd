@@ -3,11 +3,12 @@ enum States {
 	IDLE,
 	MOVING_RIGHT,
 	MOVING_LEFT,
-	SPRINTING,
-	JUMPING,
+	SPRINTING_RIGHT,
+	SPRINTING_LEFT,
 	JUMPING_RIGHT,
 	JUMPING_LEFT,
-	ON_WALL
+	DASHING_RIGHT,
+	DASHING_LEFT,
 	}
 
 
@@ -15,3 +16,4 @@ enum States {
 var state = States.IDLE
 var is_pressed: bool = false
 var health: int = 5
+

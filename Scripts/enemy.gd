@@ -2,6 +2,7 @@ extends Contestant
 class_name enemy
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
+var raycast_under = RayCast2D.new()
 var jump_count = 0
 var jump_checker: bool = false
 
@@ -21,7 +22,11 @@ func jump() -> void:
 		return
 	if jump_count == 0:
 		velocity.y = JUMP_VELOCITY
-		Global.state = Global.States.JUMPING
+		match SPEED:
+			var x when x < 0:
+				Global.state = Global.States.JUMPING_LEFT
+			var x when x > 0:
+				Global.state = Global.States.JUMPING_RIGHT
 		state_machine()
 		jump_count += 1
 		jump_checker = true 
@@ -44,6 +49,11 @@ func wall_jump():
 			double_jump()
 
 
+func Formula(multiplier: float) -> float:
+	var formula = multiplier * -0.014
+	print(formula)
+	return formula
+
 func raycast_init():
 	add_child(raycast_right)
 	raycast_right.rotation_degrees = -90
@@ -55,9 +65,23 @@ func raycast_init():
 	raycast_left.scale *= 5
 	raycast_left.target_position.y = 20
 	raycast_left.collision_mask = 2
+	add_child(raycast_under)
+	raycast_under.rotation_degrees = 0
+	raycast_under.scale *= 5
+	raycast_under.target_position.y = 20
+	raycast_under.collision_mask = 2
 func raycast_detection():
-	if raycast_right.is_colliding() or raycast_left.is_colliding():
+	if raycast_right.is_colliding():
 		if raycast_right.get_collider() is TileMapLayer:
+			if SPEED < 0:
+				set_speed(SPEED * -1)
+			change_direction()
+			jump()
+	elif raycast_left.is_colliding():
+		if raycast_left.get_collider() is TileMapLayer:
+			if SPEED > 0:
+				set_speed(SPEED * -1)
+			change_direction()
 			jump()
 	if raycast_right.is_colliding() and raycast_left.is_colliding():
 		wall_jump()

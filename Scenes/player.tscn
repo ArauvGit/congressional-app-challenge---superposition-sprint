@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dhcivjbxc0a2l"]
 
-[ext_resource type="Script" uid="uid://do2uxu3rc204n" path="res://Scripts/Contestants.gd" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://mvyfl3oo1a4v" path="res://Scripts/Contestants.gd" id="1_v0iea"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(16, 18)
@@ -12,3 +12,5 @@ script = ExtResource("1_v0iea")
 position = Vector2(0, 2)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_sdnvj")
+
+[node name="raydetector" type="RayCast2D" parent="." unique_id=1476175590]

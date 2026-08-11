@@ -1,23 +1,23 @@
 [gd_scene format=4 uid="uid://bifwvb4nplm44"]
 
-[ext_resource type="Texture2D" uid="uid://3mpdsb8sxulq" path="res://Assets/tileset.png" id="1_bdr3p"]
-[ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="2_wwu6c"]
-[ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_yymuf"]
-[ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Assets/Robot Color Palette/red robot palette.png" id="4_esggg"]
-[ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="5_nolpu"]
-[ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Assets/Robot Color Palette/yellow robot color palette.png" id="6_mcj63"]
-[ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="7_af2a1"]
-[ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_ocmlb"]
-[ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="9_tlxhh"]
-[ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Assets/Robot Color Palette/green robot color palette.png" id="10_rxhxl"]
-[ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="11_h54da"]
-[ext_resource type="Script" uid="uid://boo6p8a2nourf" path="res://Scripts/button.gd" id="12_fg80b"]
-[ext_resource type="Script" uid="uid://biek6q3ib03yg" path="res://Scripts/health.gd" id="13_icduq"]
-[ext_resource type="Texture2D" uid="uid://don7pvahqc8pj" path="res://Assets/New heart ui.png" id="14_pmaet"]
-[ext_resource type="PackedScene" uid="uid://u15rmcsem62e" path="res://Scenes/powerup.tscn" id="15_x7ktg"]
+[ext_resource type="Texture2D" uid="uid://3mpdsb8sxulq" path="res://Assets/tileset.png" id="1_imcog"]
+[ext_resource type="PackedScene" uid="uid://dhcivjbxc0a2l" path="res://Scenes/player.tscn" id="2_hv1ua"]
+[ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="3_epnj5"]
+[ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Assets/Robot Color Palette/red robot palette.png" id="4_ogk07"]
+[ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="5_j8vvb"]
+[ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Assets/Robot Color Palette/yellow robot color palette.png" id="6_2mc6k"]
+[ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="7_qoxdu"]
+[ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_teq3f"]
+[ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="9_capts"]
+[ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Assets/Robot Color Palette/green robot color palette.png" id="10_s4qac"]
+[ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="11_dw4fd"]
+[ext_resource type="Script" uid="uid://boo6p8a2nourf" path="res://Scripts/button.gd" id="12_642p6"]
+[ext_resource type="Script" uid="uid://biek6q3ib03yg" path="res://Scripts/health.gd" id="13_18fmr"]
+[ext_resource type="Texture2D" uid="uid://ykq2tubnd4dk" path="res://Assets/verynewheart.png" id="14_lb85r"]
+[ext_resource type="PackedScene" uid="uid://u15rmcsem62e" path="res://Scenes/powerup.tscn" id="15_k8rbf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_imcog"]
-texture = ExtResource("1_bdr3p")
+texture = ExtResource("1_imcog")
 texture_region_size = Vector2i(32, 32)
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 11.789337, 16, 11.630024, 16, 16, -16, 16)
@@ -181,72 +181,77 @@ texture_region_size = Vector2i(32, 32)
 9:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 11.789337, 16, 11.630024, 16, 16, -16, 16)
 1:9/0 = 0
 1:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:9/0 = 0
+2:9/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+2:9/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_b68tq"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 3
+custom_data_layer_0/name = "Damageable"
+custom_data_layer_0/type = 1
 sources/1 = SubResource("TileSetAtlasSource_imcog")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fu36u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86vg6"]
-shader = ExtResource("3_yymuf")
-shader_parameter/original_palette = ExtResource("5_nolpu")
-shader_parameter/new_palette = ExtResource("4_esggg")
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("4_ogk07")
 shader_parameter/color_count = 0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smepp"]
-shader = ExtResource("3_yymuf")
-shader_parameter/original_palette = ExtResource("5_nolpu")
-shader_parameter/new_palette = ExtResource("6_mcj63")
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("6_2mc6k")
 shader_parameter/color_count = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv1ua"]
-atlas = ExtResource("7_af2a1")
+atlas = ExtResource("7_qoxdu")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_epnj5"]
-atlas = ExtResource("7_af2a1")
+atlas = ExtResource("7_qoxdu")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ogk07"]
-atlas = ExtResource("7_af2a1")
+atlas = ExtResource("7_qoxdu")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j8vvb"]
-atlas = ExtResource("7_af2a1")
+atlas = ExtResource("7_qoxdu")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mc6k"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qoxdu"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_teq3f"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_capts"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s4qac"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw4fd"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_642p6"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18fmr"]
-atlas = ExtResource("8_ocmlb")
+atlas = ExtResource("8_teq3f")
 region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
@@ -299,29 +304,29 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4hbtj"]
-shader = ExtResource("3_yymuf")
-shader_parameter/original_palette = ExtResource("5_nolpu")
-shader_parameter/new_palette = ExtResource("4_esggg")
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("4_ogk07")
 shader_parameter/color_count = 12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_so2ip"]
-shader = ExtResource("3_yymuf")
-shader_parameter/original_palette = ExtResource("5_nolpu")
-shader_parameter/new_palette = ExtResource("10_rxhxl")
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("10_s4qac")
 shader_parameter/color_count = 12
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8b75n"]
-shader = ExtResource("3_yymuf")
-shader_parameter/original_palette = ExtResource("5_nolpu")
-shader_parameter/new_palette = ExtResource("4_esggg")
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("4_ogk07")
 shader_parameter/color_count = 12
 
-[node name="level 1" type="Node2D" unique_id=1485086795]
+[node name="root" type="Node2D" unique_id=1485086795]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
 position = Vector2(-423, 121)
-tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAALAAEAAQABAAkAAAALAAAAAQABAAkAAAALAP//AQABAAkAAAALAP7/AQABAAkAAAALAP3/AQABAAkAAAALAPz/AQABAAkAAAALAPv/AQABAAkAAAALAPr/AQABAAkAAAALAPn/AQABAAkAAAALAPj/AQABAAkAAAALAPf/AQABAAkAAAALAPb/AQABAAkAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAAQAAEAAQACAAkAAAANAAEAAQACAAkAAAAPAAEAAQACAAkAAAARAAEAAQACAAkAAAASAAEAAQACAAkAAAATAAEAAQACAAkAAAAUAAEAAQACAAkAAAAVAAEAAQACAAkAAAAWAAEAAQACAAkAAAAXAAEAAQACAAkAAAAYAAEAAQACAAkAAAAZAAEAAQACAAkAAAAQAAAAAQABAAkAAAARAAAAAQABAAkAAAASAAAAAQABAAkAAAATAAAAAQABAAkAAAAUAAAAAQABAAkAAAAOAAEAAQACAAkAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -346,10 +351,10 @@ limit_smoothed = true
 drag_left_margin = 0.0
 drag_right_margin = 0.0
 
-[node name="yellow" parent="players" unique_id=54896673 groups=["Yellow"] instance=ExtResource("2_wwu6c")]
+[node name="yellow" parent="players" unique_id=54896673 groups=["Yellow"] instance=ExtResource("2_hv1ua")]
 visible = false
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(-152, 3)
+position = Vector2(328, -18)
 collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/yellow" unique_id=81889352]
@@ -359,9 +364,9 @@ position = Vector2(-1, -2)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
-script = ExtResource("9_tlxhh")
+script = ExtResource("9_capts")
 
-[node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("2_wwu6c")]
+[node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("2_hv1ua")]
 visible = false
 material = SubResource("ShaderMaterial_4hbtj")
 position = Vector2(-71, 0)
@@ -374,9 +379,10 @@ position = Vector2(1, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
-script = ExtResource("9_tlxhh")
+script = ExtResource("9_capts")
 
-[node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("2_wwu6c")]
+[node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("2_hv1ua")]
+visible = false
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(6, 1)
 collision_mask = 2
@@ -388,9 +394,9 @@ position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
-script = ExtResource("9_tlxhh")
+script = ExtResource("9_capts")
 
-[node name="blue" parent="players" unique_id=538173699 groups=["Blue"] instance=ExtResource("2_wwu6c")]
+[node name="blue" parent="players" unique_id=538173699 groups=["Blue"] instance=ExtResource("2_hv1ua")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(147, -1)
 collision_mask = 2
@@ -401,9 +407,9 @@ position = Vector2(2.0000153, -5.9604645e-08)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
-script = ExtResource("9_tlxhh")
+script = ExtResource("9_capts")
 
-[node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("11_h54da")]
+[node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("11_dw4fd")]
 visible = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2003233647]
@@ -415,28 +421,28 @@ offset_bottom = 52.0
 [node name="yellow" type="Button" parent="HBoxContainer" unique_id=1668234909 node_paths=PackedStringArray("players") groups=["Yellow"]]
 layout_mode = 2
 text = "Yellow"
-script = ExtResource("12_fg80b")
+script = ExtResource("12_642p6")
 players = NodePath("../../players")
 
 [node name="green" type="Button" parent="HBoxContainer" unique_id=1144025427 node_paths=PackedStringArray("players") groups=["Green"]]
 layout_mode = 2
 text = "Green
 "
-script = ExtResource("12_fg80b")
+script = ExtResource("12_642p6")
 players = NodePath("../../players")
 
 [node name="red" type="Button" parent="HBoxContainer" unique_id=570978373 node_paths=PackedStringArray("players") groups=["Red"]]
 layout_mode = 2
 text = "Red
 "
-script = ExtResource("12_fg80b")
+script = ExtResource("12_642p6")
 players = NodePath("../../players")
 
 [node name="blue" type="Button" parent="HBoxContainer" unique_id=1049710355 node_paths=PackedStringArray("players") groups=["Blue"]]
 layout_mode = 2
 text = "Blue
 "
-script = ExtResource("12_fg80b")
+script = ExtResource("12_642p6")
 players = NodePath("../../players")
 
 [node name="health container" type="CanvasLayer" parent="." unique_id=565122289]
@@ -456,14 +462,14 @@ offset_right = 94.0
 offset_bottom = 33.0
 scale = Vector2(2.5, 2.5)
 theme_override_constants/separation = 2
-script = ExtResource("13_icduq")
+script = ExtResource("13_18fmr")
 
 [node name="heart" type="TextureRect" parent="health container/Control/healthbar" unique_id=1918105350]
 texture_filter = 1
 custom_minimum_size = Vector2(30, 0)
 custom_maximum_size = Vector2(30, -1)
 layout_mode = 2
-texture = ExtResource("14_pmaet")
+texture = ExtResource("14_lb85r")
 stretch_mode = 2
 
 [node name="heart2" type="TextureRect" parent="health container/Control/healthbar" unique_id=1276197841]
@@ -471,7 +477,7 @@ texture_filter = 1
 custom_minimum_size = Vector2(30, 0)
 custom_maximum_size = Vector2(30, -1)
 layout_mode = 2
-texture = ExtResource("14_pmaet")
+texture = ExtResource("14_lb85r")
 stretch_mode = 2
 
 [node name="heart3" type="TextureRect" parent="health container/Control/healthbar" unique_id=7497846]
@@ -479,15 +485,14 @@ texture_filter = 1
 custom_minimum_size = Vector2(30, 0)
 custom_maximum_size = Vector2(30, -1)
 layout_mode = 2
-texture = ExtResource("14_pmaet")
+texture = ExtResource("14_lb85r")
 stretch_mode = 2
 
-[node name="Area2D" parent="." unique_id=1003261113 groups=["Speed"] instance=ExtResource("15_x7ktg")]
-visible = false
-position = Vector2(-107, 194)
+[node name="Area2D" parent="." unique_id=1003261113 groups=["Speed"] instance=ExtResource("15_k8rbf")]
+position = Vector2(-138, 286)
 
-[node name="Area2D3" parent="." unique_id=1566335700 groups=["Jump"] instance=ExtResource("15_x7ktg")]
-position = Vector2(-76, 414)
+[node name="Area2D3" parent="." unique_id=1566335700 groups=["Jump"] instance=ExtResource("15_k8rbf")]
+position = Vector2(-38, 287)
 
 [connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/green" to="health container/Control/healthbar" method="_on_update_health"]
