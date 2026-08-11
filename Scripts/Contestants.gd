@@ -5,6 +5,7 @@ signal update_health
 var animated_sprite = get_child(2)
 var checker: bool = false
 var dash_checker: bool = false
+var dash_cooldown: bool = false
 var jump_powerup_active: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
@@ -140,10 +141,12 @@ func state_machine():
 		#endregion
 		#region dashing
 		Global.States.DASHING_RIGHT:
-			set_speed(SPEED * 5)
+			for Name in Contestant_information.keys():
+				if get_groups()[0] == Name:
+					set_speed(Contestant_information.get(Name)["SPEED"] * 5)
 			print('rightdash')
 		Global.States.DASHING_LEFT:
-			set_speed(SPEED - 1000)
+			set_speed(SPEED * 0.2)
 			print('leftdash')
 		#endregion
 func change_direction():

@@ -1,8 +1,2 @@
-res://Scenes/root.tscn
-res://Scripts/colorswap.tres
-res://Scripts/Contestants.gd
 res://Scripts/player.gd
-res://Scripts/enemy.gd
-res://Scripts/health.gd
-res://Scenes/player.tscn
-res://Scripts/global.gd
+res://Scripts/Contestants.gd
