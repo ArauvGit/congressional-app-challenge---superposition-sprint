@@ -52,6 +52,7 @@ func _ready():
 	set_physics_process(false)
 	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
+	#test
 		# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
