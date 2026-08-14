@@ -1,2 +1,5 @@
-res://Scripts/player.gd
 res://Scripts/Contestants.gd
+res://Scenes/player.tscn
+res://Scripts/colorswap.tres
+res://Scripts/player.gd
+res://Scenes/root.tscn

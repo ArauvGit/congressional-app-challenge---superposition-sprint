@@ -65,6 +65,7 @@ func _physics_process(delta: float) -> void:
 		checker = true
 	velocity.x = SPEED
 	move_and_slide()
+	_on_detector_body_entered(tile_map())
 func state_machine():
 	if not is_in_group("Blue"):
 		return
@@ -101,7 +102,6 @@ func state_machine():
 						var x when x > 0:
 							set_speed(SPEED)
 			animated_sprite.flip_h = false
-			print('rightmove')
 		Global.States.MOVING_LEFT:
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name and dash_checker == false:
@@ -111,7 +111,6 @@ func state_machine():
 						var x when x < 0:
 							set_speed(SPEED)
 			animated_sprite.flip_h = true
-			print('leftmove')
 		#endregion
 		#region jumping
 		Global.States.JUMPING_RIGHT:
@@ -124,7 +123,6 @@ func state_machine():
 						var x when x > 0:
 							set_speed(SPEED)
 			#animated_sprite.flip_h = false
-			print('rightjump')
 		Global.States.JUMPING_LEFT:
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name and jump_powerup_active == false:
@@ -137,17 +135,14 @@ func state_machine():
 			#animated_sprite.flip_h = true	
 			if SPEED > 0:
 				set_speed(SPEED * -1)
-			print('leftjump')
 		#endregion
 		#region dashing
 		Global.States.DASHING_RIGHT:
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name:
 					set_speed(Contestant_information.get(Name)["SPEED"] * 5)
-			print('rightdash')
 		Global.States.DASHING_LEFT:
 			set_speed(SPEED * 0.2)
-			print('leftdash')
 		#endregion
 func change_direction():
 	var move_right = Input.is_action_just_pressed("move_right")
@@ -169,8 +164,9 @@ func change_direction():
 				Global.state = Global.States.MOVING_RIGHT
 				state_machine()
 func decohere():
-	set_jump(JUMP_VELOCITY * 0.8)
-	set_speed(SPEED * 0.8)
+	print('decohere!')
+	set_jump(JUMP_VELOCITY * 0.1)
+	set_speed(SPEED * 0.1)
 func tile_map() -> TileMapLayer:
 	var tile_map_layer = get_node($"../../TileMapLayer".get_path())
 	return tile_map_layer
@@ -203,3 +199,18 @@ func jump_powerup():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 #endregion
+
+
+func _on_detector_body_entered(body: TileMapLayer) -> void:
+	if is_on_wall():
+		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
+		var cell_data = body.get_cell_tile_data(cell)
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Damageable"):
+				Global.health -= 1
+	elif is_on_floor_only():
+		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32) * get_floor_normal()))
+		var cell_data = body.get_cell_tile_data(cell)
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Damageable"):
+				Global.health -= 1

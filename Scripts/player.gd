@@ -1,9 +1,10 @@
 extends Contestant
 class_name Player
 var jump_count: int = 0
-var detector: RayCast2D = get_child(1)
+var detector: Area2D = get_child(1)
 #region important functions
 func _init() -> void:
+	detector.connect("_on_detector_body_entered", detector_body_entered)
 	print(detector)
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
@@ -99,9 +100,7 @@ func player_dash():
 		await get_tree().create_timer(3).timeout
 		dash_cooldown = false
 func wall_jump():
-	if is_on_floor():
-		return
-	if is_on_wall() and not is_on_floor():
+	if is_on_wall_only():
 		match Global.state:
 			Global.States.MOVING_RIGHT:
 				if not is_on_floor():
@@ -110,7 +109,7 @@ func wall_jump():
 				if not is_on_floor():
 					animated_sprite.flip_h = false
 		velocity.y = 50
-		if Input.is_action_just_pressed("jump") and not is_on_floor():
+		if Input.is_action_just_pressed("jump"):
 			move_local_x(10 * get_wall_normal().x)
 			set_speed(SPEED * -1)
 			change_direction()
@@ -127,3 +126,16 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 #endregion		
+func detector_body_entered(body: TileMapLayer) -> void:
+	if is_on_wall():
+		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
+		var cell_data = body.get_cell_tile_data(cell)
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Damageable"):
+				set_health(Global.health - 1)
+	elif is_on_floor_only():
+		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32) * get_floor_normal()))
+		var cell_data = body.get_cell_tile_data(cell)
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Damageable"):
+				set_health(Global.health - 1)
