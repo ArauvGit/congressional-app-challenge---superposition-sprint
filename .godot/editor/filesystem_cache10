@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1786724784
+::res://::1786757538
 powerup.tscn::PackedScene::5407061199522181680::1786478047::0::1::::<><><>0<>0<><>::uid://b2kmq0gatinpu::::res://powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
 powerups.gd::GDScript::5775169377590710475::1786478047::0::1::::<>Area2D<><>0<>0<><>::
 ::res://Assets/::1786478041
@@ -22,21 +22,21 @@ Robot walk-Sheet.png::CompressedTexture2D::1151079201028739348::1786478047::1786
 icon.svg::CompressedTexture2D::583279896145231563::1786478047::1786478047::1::::<><><>0<>0<>8e492b6f60c8bb6ceeda4266385a5ba5<>res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex::
 ::res://Random/More UID Scripts/::1786478041
 ::res://Random/UID scripts/::1786478041
-::res://Scenes/::1786481827
+::res://Scenes/::1786742787
 main_menu.tscn::PackedScene::5381477989013858767::1786478047::0::1::::<><><>0<>0<><>::uid://c8xiw3x7i7fmd::::res://UI/PixelifySans-SemiBold.ttf
-player.tscn::PackedScene::7655236424971410601::1786478047::0::1::::<><><>0<>0<><>::uid://mvyfl3oo1a4v::::res://Scripts/Contestants.gd
+player.tscn::PackedScene::7655236424971410601::1786729238::0::1::::<><><>0<>0<><>::uid://mvyfl3oo1a4v::::res://Scripts/Contestants.gd
 powerup.tscn::PackedScene::1459303196839080950::1786478047::0::1::::<><><>0<>0<><>::uid://2me3fhle78vj::::res://Scripts/powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
-root.tscn::PackedScene::2959626695014355023::1786478047::0::1::::<><><>0<>0<><>::uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn
-::res://Scripts/::1786486745
+root.tscn::PackedScene::2959626695014355023::1786742787::0::1::::<><><>0<>0<><>::uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn
+::res://Scripts/::1786742801
 button.gd::GDScript::3399876531381982647::1786478047::0::1::::<>Button<><>0<>0<><>::
-colorswap.tres::VisualShader::1041964115692452680::1786478047::0::1::::<><><>0<>0<><>::
-Contestants.gd::GDScript::887084814954766303::1786486745::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
+colorswap.tres::VisualShader::1041964115692452680::1786725387::0::1::::<><><>0<>0<><>::
+Contestants.gd::GDScript::887084814954766303::1786741183::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
 detector.gd::GDScript::7270826567967333916::1786478047::0::1::::<>RefCounted<><>0<>0<><>::
 enemy.gd::GDScript::4635814279672078000::1786478047::0::1::::enemy<>Contestant<><>0<>0<><>::
 global.gd::GDScript::2904525417413303067::1786478047::0::1::::<>Node<><>0<>0<><>::
 health.gd::GDScript::2956852357346277118::1786478047::0::1::::<>HBoxContainer<><>0<>0<><>::
 Movement.gd::GDScript::694816399921429311::1786478047::0::1::::Movement<>Contestant<><>0<>0<><>::
-player.gd::GDScript::3768574309311254635::1786486451::0::1::::Player<>Contestant<><>0<>0<><>::
+player.gd::GDScript::3768574309311254635::1786742801::0::1::::Player<>Contestant<><>0<>0<><>::
 powerups.gd::GDScript::1920164455412807863::1786478725::0::1::::<>Area2D<><>0<>0<><>::
 sprite.gd::GDScript::5480306534184858250::1786478047::0::1::::<>AnimatedSprite2D<><>0<>0<><>::
 test.gd::GDScript::8221636530221980587::1786478047::0::1::::<>CharacterBody2D<><>0<>0<><>::

@@ -8,6 +8,7 @@ var checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
 var jump_powerup_active: bool = false
+var damage_checker: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
 var SPEED = 0:
@@ -68,8 +69,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	_on_detector_body_entered(tile_map())
 func state_machine():
-	if not is_in_group("Blue"):
-		return
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.IDLE:
@@ -146,8 +145,8 @@ func state_machine():
 			set_speed(SPEED * 0.2)
 		#endregion
 func change_direction():
-	var move_right = Input.is_action_just_pressed("move_right")
-	var move_left = Input.is_action_just_pressed("move_left")
+	var _move_right = Input.is_action_just_pressed("move_right")
+	var _move_left = Input.is_action_just_pressed("move_left")
 	match SPEED:
 		var x when x > 0:
 			Global.state = Global.States.MOVING_RIGHT
@@ -156,14 +155,16 @@ func change_direction():
 	match Global.state:
 		Global.States.MOVING_RIGHT:
 			animated_sprite.flip_h = false
-			if Input.is_action_just_pressed("move_left"):
-				Global.state = Global.States.MOVING_LEFT
-				state_machine()
+			if is_in_group("player"):
+				if Input.is_action_just_pressed("move_left"):
+					Global.state = Global.States.MOVING_LEFT
+					state_machine()
 		Global.States.MOVING_LEFT:
 			animated_sprite.flip_h = true
-			if Input.is_action_just_pressed("move_right"):
-				Global.state = Global.States.MOVING_RIGHT
-				state_machine()
+			if is_in_group("player"):
+				if Input.is_action_just_pressed("move_right"):
+					Global.state = Global.States.MOVING_RIGHT
+					state_machine()
 func _decohere():
 	print('decohere!')
 	set_jump(JUMP_VELOCITY * 0.1)

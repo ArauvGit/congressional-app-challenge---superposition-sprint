@@ -352,7 +352,6 @@ drag_left_margin = 0.0
 drag_right_margin = 0.0
 
 [node name="yellow" parent="players" unique_id=54896673 groups=["Yellow"] instance=ExtResource("2_hv1ua")]
-visible = false
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(328, -18)
 collision_mask = 2
@@ -367,7 +366,6 @@ autoplay = "default"
 script = ExtResource("9_capts")
 
 [node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("2_hv1ua")]
-visible = false
 material = SubResource("ShaderMaterial_4hbtj")
 position = Vector2(-71, 0)
 collision_mask = 2
@@ -382,7 +380,6 @@ autoplay = "default"
 script = ExtResource("9_capts")
 
 [node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("2_hv1ua")]
-visible = false
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(6, 1)
 collision_mask = 2

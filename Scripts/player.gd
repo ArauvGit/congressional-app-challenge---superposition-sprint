@@ -2,7 +2,6 @@ extends Contestant
 class_name Player
 var jump_count: int = 0
 var detector: Area2D = get_child(1)
-var damage_checker: bool = false
 #region important functions
 func _init() -> void:
 	self.connect("take_damage", decohere)
