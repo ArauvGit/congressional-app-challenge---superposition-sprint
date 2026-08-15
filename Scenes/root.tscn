@@ -321,6 +321,12 @@ shader_parameter/original_palette = ExtResource("5_j8vvb")
 shader_parameter/new_palette = ExtResource("4_ogk07")
 shader_parameter/color_count = 12
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdgd8"]
+shader = ExtResource("3_epnj5")
+shader_parameter/original_palette = ExtResource("5_j8vvb")
+shader_parameter/new_palette = ExtResource("5_j8vvb")
+shader_parameter/color_count = 12
+
 [node name="root" type="Node2D" unique_id=1485086795]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
@@ -400,6 +406,7 @@ collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/blue" unique_id=2109672104]
 texture_filter = 1
+material = SubResource("ShaderMaterial_gdgd8")
 position = Vector2(2.0000153, -5.9604645e-08)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")

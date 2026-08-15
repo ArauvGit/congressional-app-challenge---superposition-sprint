@@ -1,5 +1,6 @@
 res://Scenes/root.tscn
 res://Scripts/colorswap.tres
-res://Scripts/Contestants.gd
-res://Scripts/enemy.gd
 res://Scripts/player.gd
+res://Scenes/damage_flash.gdshader
+res://Scripts/Contestants.gd
+res://Scripts/damage_flash.gdshader

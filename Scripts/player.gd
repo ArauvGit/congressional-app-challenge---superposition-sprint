@@ -124,6 +124,9 @@ func set_health(new_health: int) -> int:
 	return Global.health
 func decohere():
 	if damage_checker == false:
+		animated_sprite.material = damage_shader
+		damage_shader.set("shader_parameter/flash_color", Color(1, 1, 1))
+		damage_shader.set("shader_parameter/flash_value", 1.0)
 		set_health(Global.health - 1)
 		set_speed(SPEED * -0.9)
 		if is_on_floor():

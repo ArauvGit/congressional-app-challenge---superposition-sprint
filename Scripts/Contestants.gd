@@ -9,6 +9,7 @@ var dash_checker: bool = false
 var dash_cooldown: bool = false
 var jump_powerup_active: bool = false
 var damage_checker: bool = false
+var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
 var JUMP_VELOCITY = 0:
 	set = set_jump
 var SPEED = 0:
