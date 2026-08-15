@@ -2,9 +2,10 @@ extends Contestant
 class_name Player
 var jump_count: int = 0
 var detector: Area2D = get_child(1)
+var damage_checker: bool = false
 #region important functions
 func _init() -> void:
-	detector.connect("_on_detector_body_entered", detector_body_entered)
+	self.connect("take_damage", decohere)
 	print(detector)
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
@@ -112,7 +113,6 @@ func wall_jump():
 		if Input.is_action_just_pressed("jump"):
 			move_local_x(10 * get_wall_normal().x)
 			set_speed(SPEED * -1)
-			change_direction()
 			double_jump()
 #endregion
 #region health
@@ -121,21 +121,18 @@ func health_powerup():
 func set_health(new_health: int) -> int:
 	if Global.health != new_health:
 		Global.health = new_health
-	if new_health < Global.health:
-		SPEED *= 0.8
 	update_health.emit()
 	return Global.health
+func decohere():
+	if damage_checker == false:
+		set_health(Global.health - 1)
+		set_speed(SPEED * -0.9)
+		if is_on_floor():
+			velocity.y = -500
+		elif is_on_wall():
+			move_local_x(10 * get_wall_normal().x)
+			double_jump()
+		damage_checker = true
+		await get_tree().create_timer(1).timeout
+		damage_checker = false # create dedicated invincibility function later with damage flash
 #endregion		
-func detector_body_entered(body: TileMapLayer) -> void:
-	if is_on_wall():
-		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
-		var cell_data = body.get_cell_tile_data(cell)
-		if is_instance_valid(cell_data):
-			if cell_data.get_custom_data("Damageable"):
-				set_health(Global.health - 1)
-	elif is_on_floor_only():
-		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32) * get_floor_normal()))
-		var cell_data = body.get_cell_tile_data(cell)
-		if is_instance_valid(cell_data):
-			if cell_data.get_custom_data("Damageable"):
-				set_health(Global.health - 1)

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name Contestant
 signal update_health
+signal take_damage
 #region variables
 var animated_sprite = get_child(2)
 var checker: bool = false
@@ -148,9 +149,9 @@ func change_direction():
 	var move_right = Input.is_action_just_pressed("move_right")
 	var move_left = Input.is_action_just_pressed("move_left")
 	match SPEED:
-		var x when x > 0 and not move_right:
+		var x when x > 0:
 			Global.state = Global.States.MOVING_RIGHT
-		var x when x < 0 and not move_left:
+		var x when x < 0:
 			Global.state = Global.States.MOVING_LEFT
 	match Global.state:
 		Global.States.MOVING_RIGHT:
@@ -163,7 +164,7 @@ func change_direction():
 			if Input.is_action_just_pressed("move_right"):
 				Global.state = Global.States.MOVING_RIGHT
 				state_machine()
-func decohere():
+func _decohere():
 	print('decohere!')
 	set_jump(JUMP_VELOCITY * 0.1)
 	set_speed(SPEED * 0.1)
@@ -177,9 +178,7 @@ func set_jump(jump_change: int) -> int:
 		JUMP_VELOCITY = jump_change
 	return JUMP_VELOCITY
 func set_speed(speed_change: int) -> int:
-	if Global.state == Global.States.MOVING_RIGHT \
-	or Global.state == Global.States.MOVING_LEFT:
-		SPEED = speed_change
+	SPEED = speed_change
 	return SPEED
 
 #endregion
@@ -202,15 +201,17 @@ func jump_powerup():
 
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:
+	var deal_damage := func(cell: Vector2):
+		var cell_data = body.get_cell_tile_data(cell)
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Damageable"):
+				take_damage.emit()
 	if is_on_wall():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
-		var cell_data = body.get_cell_tile_data(cell)
-		if is_instance_valid(cell_data):
-			if cell_data.get_custom_data("Damageable"):
-				Global.health -= 1
+		deal_damage.call(cell)
 	elif is_on_floor_only():
-		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32) * get_floor_normal()))
-		var cell_data = body.get_cell_tile_data(cell)
-		if is_instance_valid(cell_data):
-			if cell_data.get_custom_data("Damageable"):
-				Global.health -= 1
+		var cell = body.local_to_map(body.to_local(self.global_position + Vector2(0, 32)))
+		deal_damage.call(cell)
+	elif is_on_ceiling():
+		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32)))
+		deal_damage.call(cell)
