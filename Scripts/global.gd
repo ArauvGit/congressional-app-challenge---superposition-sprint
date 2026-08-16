@@ -9,11 +9,11 @@ enum States {
 	JUMPING_LEFT,
 	DASHING_RIGHT,
 	DASHING_LEFT,
+	WALL_HANGING_RIGHT,
+	WALL_HANGING_LEFT
 	}
-
 
 
 var state = States.IDLE
 var is_pressed: bool = false
 var health: int = 5
-

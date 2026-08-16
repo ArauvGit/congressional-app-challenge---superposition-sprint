@@ -16,3 +16,9 @@ func animation_state():
 			play('default')
 		Global.States.MOVING_RIGHT:
 			play("run")
+		Global.States.MOVING_LEFT:
+			play("run")
+		Global.States.WALL_HANGING_RIGHT:
+			play("wall_hang")
+		Global.States.WALL_HANGING_LEFT:
+			play("wall_hang")

@@ -9,8 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="7_qoxdu"]
 [ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_teq3f"]
 [ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="9_capts"]
+[ext_resource type="Texture2D" uid="uid://2solqm871klx" path="res://Assets/Sprites/Robot/Wall Hang.png" id="9_epnj5"]
 [ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Assets/Robot Color Palette/green robot color palette.png" id="10_s4qac"]
 [ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="11_dw4fd"]
+[ext_resource type="Shader" uid="uid://d04puorwo6jeu" path="res://Scripts/damage_flash.gdshader" id="11_hv1ua"]
 [ext_resource type="Script" uid="uid://boo6p8a2nourf" path="res://Scripts/button.gd" id="12_642p6"]
 [ext_resource type="Script" uid="uid://biek6q3ib03yg" path="res://Scripts/health.gd" id="13_18fmr"]
 [ext_resource type="Texture2D" uid="uid://ykq2tubnd4dk" path="res://Assets/verynewheart.png" id="14_lb85r"]
@@ -195,10 +197,9 @@ sources/1 = SubResource("TileSetAtlasSource_imcog")
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fu36u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_86vg6"]
-shader = ExtResource("3_epnj5")
-shader_parameter/original_palette = ExtResource("5_j8vvb")
-shader_parameter/new_palette = ExtResource("4_ogk07")
-shader_parameter/color_count = 0
+shader = ExtResource("11_hv1ua")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smepp"]
 shader = ExtResource("3_epnj5")
@@ -254,6 +255,22 @@ region = Rect2(192, 0, 32, 32)
 atlas = ExtResource("8_teq3f")
 region = Rect2(224, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb85r"]
+atlas = ExtResource("9_epnj5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8rbf"]
+atlas = ExtResource("9_epnj5")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p807"]
+atlas = ExtResource("9_epnj5")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdqvo"]
+atlas = ExtResource("9_epnj5")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
 animations = [{
 "frames": [{
@@ -301,6 +318,23 @@ animations = [{
 "loop": 1,
 "name": &"run",
 "speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb85r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k8rbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p807")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdqvo")
+}],
+"loop": 1,
+"name": &"wall_hang",
+"speed": 10.0
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4hbtj"]
@@ -332,7 +366,7 @@ shader_parameter/color_count = 12
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
 position = Vector2(-423, 121)
-tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQACAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAANAAEAAQABAAkAAAANAAAAAQABAAkAAAANAP//AQACAAkAAAANAP7/AQACAAkAAAANAP3/AQABAAkAAAANAPz/AQABAAkAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQACAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAANAAEAAQABAAkAAAANAAAAAQABAAkAAAANAP//AQABAAkAAAANAP7/AQABAAkAAAANAP3/AQABAAkAAAANAPz/AQABAAkAAAANAPv/AQABAAkAAAANAPr/AQABAAkAAAANAPn/AQABAAkAAAANAPj/AQABAAkAAAANAPf/AQABAAkAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -368,7 +402,9 @@ material = SubResource("ShaderMaterial_smepp")
 position = Vector2(-1, -2)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"wall_hang"
 autoplay = "default"
+frame_progress = 0.20836237
 script = ExtResource("9_capts")
 
 [node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("2_hv1ua")]
@@ -407,7 +443,7 @@ collision_mask = 2
 [node name="sprite" type="AnimatedSprite2D" parent="players/blue" unique_id=2109672104]
 texture_filter = 1
 material = SubResource("ShaderMaterial_gdgd8")
-position = Vector2(2.0000153, -5.9604645e-08)
+position = Vector2(2.0000153, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"

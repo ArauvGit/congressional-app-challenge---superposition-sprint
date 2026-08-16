@@ -9,11 +9,12 @@ size = Vector2(16, 18)
 script = ExtResource("1_v0iea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=421305196]
-position = Vector2(0, 2)
+position = Vector2(1, 2)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_sdnvj")
 
 [node name="detector" type="Area2D" parent="." unique_id=828571996]
+position = Vector2(1, 0)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="detector" unique_id=1024185952]
 position = Vector2(0, 2)

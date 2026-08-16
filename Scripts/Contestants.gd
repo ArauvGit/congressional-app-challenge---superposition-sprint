@@ -75,24 +75,6 @@ func state_machine():
 		Global.States.IDLE:
 			set_speed(0)
 			set_jump(0)
-		#region sprinting
-		Global.States.SPRINTING_RIGHT:
-			for Name in Contestant_information.keys():
-				if get_groups()[0] == Name:
-					match SPEED:
-						var x when x < 0:
-							set_speed(SPEED * -1.2)
-						var x when x > 0:
-							set_speed(SPEED * 1.2)
-		Global.States.SPRINTING_LEFT:
-			for Name in Contestant_information.keys():
-				if get_groups()[0] == Name:
-					match SPEED:
-						var x when x > 0:
-							set_speed(SPEED * -100.2)
-						var x when x < 0:
-							set_speed(SPEED * 100.2)
-		#endregion
 		#region moving
 		Global.States.MOVING_RIGHT:
 			for Name in Contestant_information.keys():
@@ -144,6 +126,16 @@ func state_machine():
 					set_speed(Contestant_information.get(Name)["SPEED"] * 5)
 		Global.States.DASHING_LEFT:
 			set_speed(SPEED * 0.2)
+		#endregion
+		#region wall hanging
+		Global.States.WALL_HANGING_RIGHT:
+			if not is_on_floor():
+				animated_sprite.flip_h = true
+			velocity.y = 50
+		Global.States.WALL_HANGING_LEFT:
+			if not is_on_floor():
+				animated_sprite.flip_h = false
+			velocity.y = 50
 		#endregion
 func change_direction():
 	var _move_right = Input.is_action_just_pressed("move_right")
@@ -201,6 +193,15 @@ func jump_powerup():
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 #endregion
 
+func wall_hang():
+	if is_on_wall_only():
+		match Global.state:
+			Global.States.MOVING_RIGHT:
+				Global.state = Global.States.WALL_HANGING_RIGHT
+				state_machine()
+			Global.States.MOVING_LEFT:
+				Global.state = Global.States.WALL_HANGING_LEFT
+				state_machine()
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):

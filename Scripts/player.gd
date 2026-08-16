@@ -100,15 +100,17 @@ func player_dash():
 		await get_tree().create_timer(3).timeout
 		dash_cooldown = false
 func wall_jump():
+	# if is_on_wall_only():
+	# 	match Global.state:
+	# 		Global.States.MOVING_RIGHT:
+	# 			if not is_on_floor():
+	# 				animated_sprite.flip_h = true
+	# 		Global.States.MOVING_LEFT:
+	# 			if not is_on_floor():
+	# 				animated_sprite.flip_h = false
+	# 	velocity.y = 50
+	wall_hang()
 	if is_on_wall_only():
-		match Global.state:
-			Global.States.MOVING_RIGHT:
-				if not is_on_floor():
-					animated_sprite.flip_h = true
-			Global.States.MOVING_LEFT:
-				if not is_on_floor():
-					animated_sprite.flip_h = false
-		velocity.y = 50
 		if Input.is_action_just_pressed("jump"):
 			move_local_x(10 * get_wall_normal().x)
 			set_speed(SPEED * -1)
@@ -123,10 +125,17 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 func decohere():
+	var damage_animation := func():
+		animated_sprite.set("shader", damage_shader)
+		animated_sprite.set("shader_parameter/flash_color", Color(1, 1, 1))
+		animated_sprite.set("shader_parameter/flash_value", 1.0)
+		await get_tree().create_timer(2).timeout
+		var tween = create_tween()
+		for i in range(5):
+			tween.tween_property(animated_sprite, "modulate", Color("ffffff38"), 0.4)
+			tween.tween_property(animated_sprite, "modulate", Color("ffffffff"), 0.4)
 	if damage_checker == false:
-		animated_sprite.material = damage_shader
-		damage_shader.set("shader_parameter/flash_color", Color(1, 1, 1))
-		damage_shader.set("shader_parameter/flash_value", 1.0)
+		damage_animation.call()
 		set_health(Global.health - 1)
 		set_speed(SPEED * -0.9)
 		if is_on_floor():
