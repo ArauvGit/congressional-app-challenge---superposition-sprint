@@ -38,6 +38,6 @@ func _choose_type():
 func choose_script():
 	for node in players.get_children():
 		if node.is_in_group("player"):
-			node.set_script(load("res://Scripts/player.gd"))
+			node.set_script(preload("res://Scripts/player.gd"))
 		elif node.is_in_group("enemy"):
-			node.set_script(load("res://Scripts/enemy.gd"))
+			node.set_script(preload("res://Scripts/enemy.gd"))

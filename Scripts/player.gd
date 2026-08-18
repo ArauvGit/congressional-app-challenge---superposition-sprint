@@ -1,7 +1,7 @@
 extends Contestant
 class_name Player
-var jump_count: int = 0
 var detector: Area2D = get_child(1)
+
 #region important functions
 func _init() -> void:
 	self.connect("take_damage", decohere)
@@ -18,39 +18,24 @@ func _init() -> void:
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if is_on_floor() and get_child(2).flip_h == false:
-		Global.state = Global.States.MOVING_RIGHT
-	elif is_on_floor() and get_child(2).flip_h == true:
-		Global.state = Global.States.MOVING_LEFT
-	change_direction()
-	jump()
+	player_jump()
 	wall_jump()
 	player_dash()
 	sprint()
 
 #endregion
 #region movement 
-func jump() -> void:
+func player_jump() -> void:
+	speed_sprite_flip()
+	if jump_count == 1:
+		return
 	if is_on_floor():
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
-			velocity.y = JUMP_VELOCITY
-			match animated_sprite:
-				var x when x.flip_h == true:
-					Global.state = Global.States.JUMPING_LEFT
-				var x when x.flip_h == false:
-					Global.state = Global.States.JUMPING_RIGHT
-			state_machine()
-			jump_count += 1
+		jump()
 	elif Input.is_action_just_pressed("jump") and jump_count == 1:
 		double_jump()
 func double_jump() -> void:
-	if Input.is_action_pressed("move_right"):
-		Global.state = Global.States.JUMPING_RIGHT
-		state_machine()
-	elif Input.is_action_pressed("move_left"):
-		Global.state = Global.States.JUMPING_LEFT
-		state_machine()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 func sprint() -> void:
@@ -70,48 +55,26 @@ func sprint() -> void:
 func player_dash():
 	if Input.is_action_just_pressed("dash") and dash_checker == false and dash_cooldown == false:
 		match Global.state:
-			Global.States.MOVING_RIGHT:
-				# Global.state = Global.States.DASHING_RIGHT
-				# state_machine()
-				for Name in Contestant_information.keys():
-					if get_groups()[0] == Name:
-						set_speed(Contestant_information.get(Name)["SPEED"] * 5)
-				dash_checker = true
-				await get_tree().create_timer(0.3).timeout
-				for Name in Contestant_information.keys():
-					if get_groups()[0] == Name:
-						set_speed(Contestant_information.get(Name)["SPEED"])
-				dash_checker = false
-			Global.States.MOVING_LEFT:
-				for Name in Contestant_information.keys():
-					if get_groups()[0] == Name:
-						set_speed(Contestant_information.get(Name)["SPEED"] * -5)
-				# Global.state = Global.States.DASHING_LEFT
-				# state_machine()
-				dash_checker = true
-				await get_tree().create_timer(0.3).timeout
-				dash_checker = false
-				for Name in Contestant_information.keys():
-					if get_groups()[0] == Name:
-						set_speed(Contestant_information.get(Name)["SPEED"] * -1)
-				Global.state = Global.States.MOVING_LEFT
+			Global.States.MOVING:
+				Global.state = Global.States.DASHING
 				state_machine()
+				dash_checker = true
+				await get_tree().create_timer(0.3).timeout
+				for Name in Contestant_information.keys():
+					if get_groups()[0] == Name:
+						set_speed(Contestant_information.get(Name)["SPEED"]) #accomodate for decoherence later
+						Global.state = Global.States.MOVING
+						state_machine()
+				dash_checker = false
 		dash_cooldown = true
 		await get_tree().create_timer(3).timeout
 		dash_cooldown = false
 func wall_jump():
-	# if is_on_wall_only():
-	# 	match Global.state:
-	# 		Global.States.MOVING_RIGHT:
-	# 			if not is_on_floor():
-	# 				animated_sprite.flip_h = true
-	# 		Global.States.MOVING_LEFT:
-	# 			if not is_on_floor():
-	# 				animated_sprite.flip_h = false
-	# 	velocity.y = 50
 	wall_hang()
 	if is_on_wall_only():
 		if Input.is_action_just_pressed("jump"):
+			Global.state = Global.States.JUMPING
+			state_machine()
 			move_local_x(10 * get_wall_normal().x)
 			set_speed(SPEED * -1)
 			double_jump()

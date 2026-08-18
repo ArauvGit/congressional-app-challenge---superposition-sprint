@@ -1,9 +1,10 @@
-res://Scenes/root.tscn
-res://Scripts/damage_flash.tres
-res://Scripts/colorswap.tres
-res://Scripts/damage_flash.gdshader
-res://Scripts/sprite.gd
 res://Scripts/Contestants.gd
 res://Scripts/global.gd
+res://Scripts/sprite.gd
 res://Scripts/player.gd
-res://Scenes/player.tscn
+res://Scripts/player_movement.gd
+res://Scenes/root.tscn
+res://Scripts/colorswap.tres
+res://Scripts/damage_flash.gdshader
+res://Scripts/damage_flash.tres
+res://Scripts/enemy.gd

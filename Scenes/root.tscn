@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="5_j8vvb"]
 [ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Assets/Robot Color Palette/yellow robot color palette.png" id="6_2mc6k"]
 [ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="7_qoxdu"]
+[ext_resource type="Texture2D" uid="uid://e6byip5j1lft" path="res://Assets/Sprites/Robot/robot jump beta.png" id="8_ogk07"]
 [ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_teq3f"]
 [ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="9_capts"]
 [ext_resource type="Texture2D" uid="uid://2solqm871klx" path="res://Assets/Sprites/Robot/Wall Hang.png" id="9_epnj5"]
@@ -223,6 +224,30 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("7_qoxdu")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7unf"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64fwa"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51qfo"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k7ik"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_207an"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rx7ou"]
+atlas = ExtResource("8_ogk07")
+region = Rect2(160, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mc6k"]
 atlas = ExtResource("8_teq3f")
 region = Rect2(0, 0, 32, 32)
@@ -289,6 +314,34 @@ animations = [{
 "loop": 1,
 "name": &"default",
 "speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7unf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64fwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51qfo")
+}],
+"loop": 1,
+"name": &"fall_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k7ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_207an")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rx7ou")
+}],
+"loop": 1,
+"name": &"jump_up",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -366,7 +419,7 @@ shader_parameter/color_count = 12
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=2101346697]
 texture_filter = 1
 position = Vector2(-423, 121)
-tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQACAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAANAAEAAQABAAkAAAANAAAAAQABAAkAAAANAP//AQABAAkAAAANAP7/AQABAAkAAAANAP3/AQABAAkAAAANAPz/AQABAAkAAAANAPv/AQABAAkAAAANAPr/AQABAAkAAAANAPn/AQABAAkAAAANAPj/AQABAAkAAAANAPf/AQABAAkAAAA=")
+tile_map_data = PackedByteArray("AAD9/wIAAQABAAkAAAD+/wIAAQABAAkAAAD//wIAAQABAAkAAAAAAAIAAQABAAkAAAABAAIAAQABAAkAAAACAAIAAQABAAkAAAADAAIAAQABAAkAAAAEAAIAAQABAAkAAAAFAAIAAQABAAkAAAAGAAIAAQABAAkAAAAMAAIAAQABAAkAAAANAAIAAQABAAkAAAAOAAIAAQABAAkAAAAPAAIAAQABAAkAAAAQAAIAAQABAAkAAAARAAIAAQABAAkAAAASAAIAAQABAAkAAAATAAIAAQABAAkAAAAUAAIAAQABAAkAAAAVAAIAAQABAAkAAAAWAAIAAQABAAkAAAAXAAIAAQABAAkAAAAYAAIAAQABAAkAAAAZAAIAAQABAAkAAAAaAAIAAQABAAkAAAAbAAIAAQABAAkAAAAcAAIAAQABAAkAAAAdAAIAAQABAAkAAAAeAAIAAQABAAkAAAAfAAIAAQABAAkAAAAgAAIAAQABAAkAAAAhAAIAAQABAAkAAAAiAAIAAQABAAkAAAAjAAIAAQABAAkAAAAkAAIAAQABAAkAAAAlAAIAAQABAAkAAAAmAAIAAQABAAkAAAAnAAIAAQABAAkAAAAoAAIAAQABAAkAAAApAAIAAQABAAkAAAAqAAIAAQABAAkAAAArAAIAAQABAAkAAAAsAAIAAQABAAkAAAAtAAIAAQABAAkAAAAuAAIAAQABAAkAAAAvAAIAAQABAAkAAAAwAAIAAQABAAkAAAAxAAIAAQABAAkAAAAyAAIAAQABAAkAAAAHAAIAAQABAAkAAAAIAAIAAQABAAkAAAAJAAIAAQABAAkAAAAKAAIAAQABAAkAAAALAAIAAQABAAkAAAANAAEAAQABAAkAAAANAAAAAQABAAkAAAANAP//AQABAAkAAAANAP7/AQABAAkAAAANAP3/AQABAAkAAAANAPz/AQABAAkAAAANAPv/AQABAAkAAAANAPr/AQABAAkAAAANAPn/AQABAAkAAAANAPj/AQABAAkAAAANAPf/AQABAAkAAAAIAP//AQABAAkAAAAIAP7/AQABAAkAAAAIAP3/AQABAAkAAAAIAPz/AQABAAkAAAAIAPv/AQABAAkAAAAIAPr/AQABAAkAAAAIAPn/AQABAAkAAAAIAPj/AQABAAkAAAAIAPf/AQABAAkAAAA=")
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="test lanes" type="Sprite2D" parent="." unique_id=1059107388]
@@ -404,7 +457,7 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 animation = &"wall_hang"
 autoplay = "default"
-frame_progress = 0.20836237
+frame_progress = 0.9547748
 script = ExtResource("9_capts")
 
 [node name="green" parent="players" unique_id=2091144046 groups=["Green"] instance=ExtResource("2_hv1ua")]
@@ -418,12 +471,13 @@ material = SubResource("ShaderMaterial_so2ip")
 position = Vector2(1, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"wall_hang"
 autoplay = "default"
 script = ExtResource("9_capts")
 
 [node name="red" parent="players" unique_id=1916415869 groups=["Red"] instance=ExtResource("2_hv1ua")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(6, 1)
+position = Vector2(96, 4)
 collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="players/red" unique_id=264852051]

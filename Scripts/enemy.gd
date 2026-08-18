@@ -3,7 +3,6 @@ class_name enemy
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
 var raycast_under = RayCast2D.new()
-var jump_count = 0
 var jump_checker: bool = false
 
 func _init():
@@ -20,18 +19,20 @@ func _physics_process(delta: float) -> void:
 	change_direction()
 
 func jump() -> void:
+	Global.state = Global.States.JUMPING
+	state_machine()
+	if is_on_floor():
+		jump_count = 0
 	if jump_count == 2:
 		return
 	if jump_count == 0:
 		velocity.y = JUMP_VELOCITY
-		match SPEED:
-			var x when x < 0:
-				Global.state = Global.States.JUMPING_LEFT
-			var x when x > 0:
-				Global.state = Global.States.JUMPING_RIGHT
 		state_machine()
 		jump_count += 1
-		jump_checker = true
+	elif not is_on_floor() and jump_count == 1: 
+		Global.state = Global.States.JUMPING
+		state_machine()
+		jump_checker = true 
 		await get_tree().create_timer(0.5).timeout
 		jump_checker = false
 	elif not is_on_floor() and jump_checker == false:
@@ -40,15 +41,11 @@ func jump() -> void:
 	
 func double_jump():
 	velocity.y = JUMP_VELOCITY
-	jump_count += 1
 func wall_jump():
 	if is_on_wall() and not is_on_floor():
-		velocity.y = 50
-		if not is_on_floor() and is_on_wall():
-			move_local_x(10 * get_wall_normal().x)
-			set_speed(SPEED * -1)
-			change_direction()
-			double_jump()
+		move_local_x(10 * get_wall_normal().x)
+		set_speed(SPEED * -1)
+		double_jump()
 
 func get_contestant_jump():
 	for key in Contestant_information.keys():

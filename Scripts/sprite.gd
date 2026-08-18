@@ -14,11 +14,7 @@ func animation_state():
 	match Global.state:
 		Global.States.IDLE:
 			play('default')
-		Global.States.MOVING_RIGHT:
+		Global.States.MOVING:
 			play("run")
-		Global.States.MOVING_LEFT:
-			play("run")
-		Global.States.WALL_HANGING_RIGHT:
-			play("wall_hang")
-		Global.States.WALL_HANGING_LEFT:
+		Global.States.WALL_HANGING:
 			play("wall_hang")
