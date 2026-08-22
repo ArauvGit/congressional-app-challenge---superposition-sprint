@@ -8,3 +8,4 @@ res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
 res://Scripts/enemy.gd
+res://Scripts/button.gd

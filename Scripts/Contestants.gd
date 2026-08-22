@@ -3,8 +3,8 @@ class_name Contestant
 signal update_health
 signal take_damage
 #region variables
-var jump_count: int = 0
 var animated_sprite = get_child(2)
+var jump_count: int = 0
 var checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
@@ -20,14 +20,14 @@ var SPEED = 0:
 var Contestant_information: Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
-		"JUMP": - 300,
+		"JUMP": - 350,
 		"STAMINA": 5,
 		"HEALTH": 5,
 	},
 	
 	"Green": {
 		"SPEED": 185,
-		"JUMP": - 350,
+		"JUMP": - 375,
 		"STAMINA": 4,
 		"HEALTH": 4,
 	},
@@ -41,7 +41,7 @@ var Contestant_information: Dictionary = {
 	
 	"Blue": {
 		"SPEED": 190,
-		"JUMP": - 275,
+		"JUMP": - 325,
 		"STAMINA": 8,
 		"HEALTH": 6
 	}
@@ -55,17 +55,27 @@ var Powerup_information: Dictionary = {
 #region important functions
 func _ready():
 	set_physics_process(false)
-	Global.state = Global.States.IDLE
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
+	
 	if is_on_floor(): # THIS CODE MIGHT CAUSE BUGS LATER. BE CAREFUL
 		jump_count = 0
-		if Global.state != Global.States.DASHING:
+		if SPEED == 0: 
+			Global.state = Global.States.IDLE
+			state_machine()
+		if Global.state != Global.States.DASHING and SPEED != 0:
 			Global.state = Global.States.MOVING
 			state_machine()
-	elif not is_on_floor() and not is_on_wall():
-		Global.state != Global.States.MOVING
-		Global.state = Global.States.JUMPING
+	elif not is_on_floor(): #as of when i made this, the enemy should not be able to wall hang/jump. 
+		#if adding, MODIFY THIS CODE
+		match self:
+			var x when x.is_in_group("player"):
+				if not is_on_wall(): 
+					Global.state = Global.States.JUMPING
+					state_machine()
+			var x when x.is_in_group("enemy"):
+				Global.state = Global.States.JUMPING
+				state_machine()
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("move_right") and checker == false:
 		for Name in Contestant_information.keys():
@@ -88,13 +98,10 @@ func state_machine():
 			set_jump(0)
 		#region moving
 		Global.States.MOVING:
-			print('moving')
 			speed_sprite_flip()
 		#endregion
 		#region jumping
 		Global.States.JUMPING:
-			if is_in_group("player"):
-				print(velocity.y)
 			speed_sprite_flip()
 			match velocity.y:
 				var x when x > 0:
@@ -115,8 +122,6 @@ func state_machine():
 		#endregion
 		#region wall hanging
 		Global.States.WALL_HANGING:
-			if not is_on_floor():
-				speed_sprite_flip()
 			velocity.y = 50
 		#endregion
 func change_direction():
@@ -166,13 +171,10 @@ func jump_powerup():
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 #endregion
 func jump():
-	speed_sprite_flip()
+	#speed_sprite_flip()
 	velocity.y = JUMP_VELOCITY
-	Global.state = Global.States.JUMPING
-	state_machine()
 	jump_count += 1
 func wall_hang():
-	speed_sprite_flip()
 	if is_on_wall_only():
 		Global.state = Global.States.WALL_HANGING
 		state_machine()
