@@ -5,6 +5,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(16, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b68tq"]
+size = Vector2(36, 40)
+
 [node name="Player" type="CharacterBody2D" unique_id=1916415869]
 script = ExtResource("1_v0iea")
 
@@ -16,9 +19,8 @@ shape = SubResource("RectangleShape2D_sdnvj")
 [node name="detector" type="Area2D" parent="." unique_id=828571996]
 position = Vector2(1, 0)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="detector" unique_id=1024185952]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="detector" unique_id=1737108002]
 position = Vector2(0, 2)
-scale = Vector2(2.1, 2.1)
-shape = SubResource("RectangleShape2D_sdnvj")
+shape = SubResource("RectangleShape2D_b68tq")
 
 [connection signal="body_entered" from="detector" to="." method="_on_detector_body_entered"]

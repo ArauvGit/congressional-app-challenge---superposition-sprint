@@ -21,7 +21,6 @@ func _physics_process(delta: float) -> void:
 		jump_count = 0
 	player_jump()
 	wall_jump()
-	player_dash()
 
 #endregion
 #region movement 
@@ -41,31 +40,7 @@ func double_jump() -> void:
 	jump_count += 1
 func player_dash():
 	if Input.is_action_just_pressed("dash") and dash_checker == false and dash_cooldown == false:
-			Global.state = Global.States.DASHING
-			state_machine()
-			dash_checker = true
-			await get_tree().create_timer(0.3).timeout
-			for Name in Contestant_information.keys():
-				if get_groups()[0] == Name:
-					match animated_sprite:
-						var x when x.flip_h == false:
-							set_speed(Contestant_information.get(Name)["SPEED"]) # accomodate for decoherence later
-						var x when x.flip_h == true:
-							set_speed(Contestant_information.get(Name)["SPEED"] * -1) # accomodate for decoherence later
-			match self:
-				var x when x.is_on_floor_only():
-					Global.state = Global.States.MOVING
-					state_machine()
-				var x when x.is_on_wall_only():
-					Global.state = Global.States.WALL_HANGING
-					state_machine()
-				var x when not x.is_on_floor() or x.is_on_wall():
-					Global.state = Global.States.JUMPING
-					state_machine()
-			dash_checker = false
-			dash_cooldown = true
-			await get_tree().create_timer(3).timeout
-			dash_cooldown = false
+		dash()
 func wall_jump():
 	if is_on_wall_only():
 		wall_hang()

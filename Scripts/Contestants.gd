@@ -57,20 +57,19 @@ func _ready():
 	set_physics_process(false)
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
-
 	if is_on_floor(): # THIS CODE MIGHT CAUSE BUGS LATER. BE CAREFUL
 		jump_count = 0
-		if SPEED == 0: 
+		if SPEED == 0:
 			Global.state = Global.States.IDLE
 			state_machine()
 		if Global.state != Global.States.DASHING and SPEED != 0:
 			Global.state = Global.States.MOVING
 			state_machine()
-	elif not is_on_floor(): #as of when i made this, the enemy should not be able to wall hang/jump. 
+	elif not is_on_floor(): # as of when i made this, the enemy should not be able to wall hang/jump.
 		#if adding, MODIFY THIS CODE
 		match self:
 			var x when x.is_in_group("player"):
-				if not is_on_wall(): 
+				if not is_on_wall():
 					Global.state = Global.States.JUMPING
 					state_machine()
 			var x when x.is_in_group("enemy"):
@@ -178,6 +177,32 @@ func wall_hang():
 	if is_on_wall_only():
 		Global.state = Global.States.WALL_HANGING
 		state_machine()
+func dash():
+	Global.state = Global.States.DASHING
+	self.state_machine()
+	self.dash_checker = true
+	await get_tree().create_timer(0.3).timeout
+	for Name in self.Contestant_information.keys():
+		if self.get_groups()[0] == Name:
+			match self.animated_sprite:
+				var x when x.flip_h == false:
+					set_speed(Contestant_information.get(Name)["SPEED"]) # accomodate for decoherence later
+				var x when x.flip_h == true:
+					set_speed(Contestant_information.get(Name)["SPEED"] * -1) # accomodate for decoherence later
+	match self:
+		var x when x.is_on_floor_only():
+			Global.state = Global.States.MOVING
+			state_machine()
+		var x when x.is_on_wall_only():
+			Global.state = Global.States.WALL_HANGING
+			state_machine()
+		var x when not x.is_on_floor() or x.is_on_wall():
+			Global.state = Global.States.JUMPING
+			state_machine()
+	self.dash_checker = false
+	self.dash_cooldown = true
+	await get_tree().create_timer(1.5).timeout
+	self.dash_cooldown = false
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
