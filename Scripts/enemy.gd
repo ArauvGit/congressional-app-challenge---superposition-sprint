@@ -4,6 +4,7 @@ var raycast_parent = Node2D.new()
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
 var raycast_under = RayCast2D.new()
+var raycast_top = RayCast2D.new()
 var enemy_jump_count: int = 0
 var jump_checker: bool = false
 var can_jump: bool = true 
@@ -71,32 +72,45 @@ func raycast_init():
 	var target_pos_y: int = 20
 	var col_mask: int = 2
 	var raycast_attributes := \
+
 	func(raycast: RayCast2D, rotate_degrees: int, raycast_scale: float, target_position_y: int, raycast_col_mask: int):
 		raycast.rotation_degrees = rotate_degrees
 		raycast.scale *= raycast_scale
 		raycast.target_position.y = target_position_y
 		raycast.collision_mask = raycast_col_mask
+	
 	add_child(raycast_right)
 	raycast_attributes.call(raycast_right, -90, scale_formula, target_pos_y, col_mask)
+	
 	add_child(raycast_left)
 	raycast_attributes.call(raycast_left, 90, scale_formula, target_pos_y, col_mask)
+	
 	add_child(raycast_under)
 	raycast_attributes.call(raycast_under, 0, scale_formula, target_pos_y, col_mask)
+	
+	add_child(raycast_top)
+	raycast_attributes.call(raycast_top, 180, scale_formula, target_pos_y, col_mask)
 func raycast_detection():
-	if raycast_right.is_colliding() and not raycast_left.is_colliding():
-		if raycast_right.get_collider() is TileMapLayer:
+	if self.raycast_right.is_colliding() and not self.raycast_left.is_colliding():
+		if self.raycast_top.is_colliding(): 
+			return
+		elif raycast_right.get_collider() is TileMapLayer:
 			if SPEED < 0:
 				set_speed(SPEED * -1)
 				speed_sprite_flip()
 			enemy_jump()
-	elif raycast_left.is_colliding() and not raycast_left.is_colliding():
-		if raycast_left.get_collider() is TileMapLayer:
+	elif self.raycast_left.is_colliding() and not self.raycast_right.is_colliding():
+		if self.raycast_top.is_colliding(): 
+			return
+		elif raycast_left.get_collider() is TileMapLayer:
 			if SPEED > 0:
 				set_speed(SPEED * -1)
 				speed_sprite_flip()
 			enemy_jump()
-	elif raycast_right.is_colliding() and raycast_left.is_colliding(): 
-		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
+	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
+		if self.raycast_top.is_colliding(): 
+			return
+		elif raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 func jump_cooldown() -> bool: 
 	if can_jump == true: 

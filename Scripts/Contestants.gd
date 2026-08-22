@@ -57,7 +57,7 @@ func _ready():
 	set_physics_process(false)
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
-	
+
 	if is_on_floor(): # THIS CODE MIGHT CAUSE BUGS LATER. BE CAREFUL
 		jump_count = 0
 		if SPEED == 0: 
