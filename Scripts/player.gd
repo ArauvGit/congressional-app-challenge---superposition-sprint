@@ -22,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	player_jump()
 	wall_jump()
 	player_dash()
-	sprint()
 
 #endregion
 #region movement 
@@ -40,20 +39,6 @@ func player_jump() -> void:
 func double_jump() -> void:
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
-func sprint() -> void:
-	pass
-	#var x: String
-	#match Input.is_action_pressed(x):
-	#	"move_left":
-	#		Global.state = Global.States.SPRINTING_LEFT
-	#	"move_right":
-	#		Global.state = Global.States.SPRINTING_RIGHT
-	# if Input.is_action_pressed("move_left"):
-	# 	Global.state = Global.States.SPRINTING_LEFT
-	# 	state_machine()
-	# elif Input.is_action_pressed("move_right"):
-	# 	Global.state = Global.States.SPRINTING_RIGHT
-	# 	state_machine()
 func player_dash():
 	if Input.is_action_just_pressed("dash") and dash_checker == false and dash_cooldown == false:
 			Global.state = Global.States.DASHING
@@ -65,7 +50,7 @@ func player_dash():
 					match animated_sprite:
 						var x when x.flip_h == false:
 							set_speed(Contestant_information.get(Name)["SPEED"]) # accomodate for decoherence later
-						var x when x.flip_h == true: 
+						var x when x.flip_h == true:
 							set_speed(Contestant_information.get(Name)["SPEED"] * -1) # accomodate for decoherence later
 			match self:
 				var x when x.is_on_floor_only():
