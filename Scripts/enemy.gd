@@ -5,16 +5,19 @@ class_name enemy
 var raycast_parent = Node2D.new()
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
+var raycast_under = RayCast2D.new()
 var raycast_under_right = RayCast2D.new()
 var raycast_under_left = RayCast2D.new()
-var raycast_under = RayCast2D.new()
 var raycast_top = RayCast2D.new()
+var raycast_top_left = RayCast2D.new()
+var raycast_top_right = RayCast2D.new()
 #endregion
 #region jump variables
 var enemy_jump_count: int = 0
 var jump_checker: bool = false
 var can_jump: bool = true
 var jump_toggle_time: int = 3
+var timer_duration: float = jump_cooldown_formula(get_contestant_jump())
 #endregion
 #endregion
 #region important functions
@@ -28,9 +31,14 @@ func _init():
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		enemy_jump_count = 0
+		can_jump = true
+	if jump_count != 2:
+		can_jump = true
 	raycast_detection()
 	super(delta)
 	change_direction()
+	if is_in_group("Blue"):
+		print(can_jump)
 	# raycast_speed_modification()
 #endregion
 #region movement
@@ -51,24 +59,22 @@ func enemy_jump():
 		can_jump = false
 		return
 	if is_on_floor() and enemy_jump_count == 0 and jump_checker == false:
-		print(jump_count)
 		velocity.y = JUMP_VELOCITY
 		if not is_on_floor():
 			Global.state = Global.States.JUMPING
 			state_machine()
 		enemy_jump_count += 1
 		jump_checker = true
-		await get_tree().create_timer(jump_cooldown_formula(get_contestant_jump())).timeout
+		await get_tree().create_timer(timer_duration).timeout
 		jump_checker = false
 	if not is_on_floor() and jump_checker == false:
 		double_jump()
 		enemy_jump_count = 2
 	
 func double_jump():
-	print(jump_count)
+	velocity.y = JUMP_VELOCITY
 	Global.state = Global.States.JUMPING
 	state_machine()
-	velocity.y = JUMP_VELOCITY
 
 func wall_jump():
 	if is_on_wall_only():
@@ -86,7 +92,6 @@ func jump_cooldown_formula(jump: float) -> float:
 #region raycast specific functions
 func raycast_multiplier(multiplier: float) -> float:
 	var formula = multiplier * -0.014
-	print(formula)
 	return formula
 
 func raycast_init():
@@ -108,19 +113,24 @@ func raycast_init():
 	add_child(raycast_left)
 	raycast_attributes.call(raycast_left, 90, scale_formula, default_target_pos_y, col_mask)
 	
-	add_child(raycast_under_right)
-	raycast_attributes.call(raycast_under_right, 0, scale_formula / 1.4, 16, col_mask)
-	raycast_under_right.target_position.x = default_target_pos_y # Vector2(20, 20). Makes downward facing right raycast
-
-	add_child(raycast_under_left)
-	raycast_attributes.call(raycast_under_left, 0, scale_formula / 1.4, 16, col_mask)
-	raycast_under_left.target_position.x = - default_target_pos_y # Vector2(-20, 20) Makes downward facing left raycast
 
 	add_child(raycast_under)
-	raycast_attributes.call(raycast_under, 0, scale_formula, default_target_pos_y, col_mask)
+	raycast_attributes.call(raycast_under, 0, scale_formula, default_target_pos_y + 10, col_mask)
 
+	add_child(raycast_under_right)
+	raycast_attributes.call(raycast_under_right, 45, scale_formula / 1.3, 16, col_mask)
+
+	add_child(raycast_under_left)
+	raycast_attributes.call(raycast_under_left, -45, scale_formula / 1.3, 16, col_mask)
+	
 	add_child(raycast_top)
 	raycast_attributes.call(raycast_top, 180, scale_formula, default_target_pos_y, col_mask)
+
+	add_child(raycast_top_right)
+	raycast_attributes.call(raycast_top_right, 135, scale_formula, default_target_pos_y, col_mask)
+
+	add_child(raycast_top_left)
+	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask)
 
 # func raycast_speed_modification(): # fix later; could be the key to jump paradox
 # 	match self.SPEED:
@@ -145,6 +155,7 @@ func raycast_detection():
 				set_speed(SPEED * -1)
 				speed_sprite_flip()
 			enemy_jump()
+	
 	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
@@ -153,24 +164,42 @@ func raycast_detection():
 
 	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
 		damage_detection(tile_map(), raycast_under_right)
+		#if is_on_wall_only() and can_jump == false: 
+			#move_local_x(10 * get_wall_normal().x)
+			#set_speed(SPEED * -1)
+			#jump()
 	elif self.raycast_under_left.is_colliding():
 		damage_detection(tile_map(), raycast_under_left)
-	if self.raycast_under.is_colliding(): 
+	
+	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
+		if not is_on_floor() or abs(get_floor_normal().x) != 1:
+			return
+		set_speed(SPEED * -1)
+	if self.raycast_under.is_colliding():
 		damage_detection(tile_map(), raycast_under)
+	if self.raycast_top_right.is_colliding():
+		damage_detection(tile_map(), raycast_top_right)
+	elif self.raycast_top_left.is_colliding():
+		damage_detection(tile_map(), raycast_top_left)
 #endregion
 #region damage
-func damage_detection(tileMap: TileMapLayer, diagonal_raycast: RayCast2D):
-	if diagonal_raycast.get_collider() is TileMapLayer:
-		var cell = tileMap.local_to_map(tileMap.to_local(diagonal_raycast.get_collision_point()))
+func damage_detection(tileMap: TileMapLayer, raycast: RayCast2D):
+	if raycast.get_collider() is TileMapLayer:
+		var cell = tileMap.local_to_map(tileMap.to_local(raycast.get_collision_point()))
 		var cell_data = tileMap.get_cell_tile_data(cell)
 		if cell_data:
 			if cell_data.get_custom_data("Damageable"):
-				match can_jump:
-					var x when x == true:
-						enemy_jump()
-					var x when x == false:
-						await get_tree().create_timer(0.2).timeout
-						enemy_dash()
+				#if is_on_wall_only():
+					#wall_jump()
+					#await get_tree().create_timer(0.6).timeout
+					#set_speed(SPEED * -1)
+				if is_on_floor() or not is_on_floor():
+					match can_jump:
+						var x when x == true:
+							enemy_jump()
+						var x when x == false:
+							await get_tree().create_timer(0.2).timeout
+							enemy_dash()
 func decohere():
 	print("decohere")
 	if damage_checker == false:

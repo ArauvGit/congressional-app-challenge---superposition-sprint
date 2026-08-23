@@ -1,3 +1,6 @@
+TileMapLayer
+Parallax2D
+TileMap
 CollisionShape2D
 ShapeCast2D
 NavigationRegion2D
@@ -9,5 +12,3 @@ RayCast2D
 HBoxContainer
 Marker2D
 Sprite2D
-Node
-StaticBody2D

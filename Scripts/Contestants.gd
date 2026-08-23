@@ -110,6 +110,8 @@ func state_machine():
 		#endregion
 		#region dashing
 		Global.States.DASHING:
+			if not is_on_floor():
+				velocity.y = -150
 			for Name in Contestant_information.keys():
 				if get_groups()[0] == Name:
 					speed_sprite_flip()
@@ -140,7 +142,7 @@ func _decohere():
 	set_jump(JUMP_VELOCITY * 0.1)
 	set_speed(SPEED * 0.1)
 func tile_map() -> TileMapLayer:
-	var tile_map_layer = get_node($"../../TileMapLayer".get_path())
+	var tile_map_layer = get_node($"../../course".get_path())
 	return tile_map_layer
 #endregion
 #region setters

@@ -21,6 +21,7 @@ func _physics_process(delta: float) -> void:
 		jump_count = 0
 	player_jump()
 	wall_jump()
+	player_dash()
 
 #endregion
 #region movement 
