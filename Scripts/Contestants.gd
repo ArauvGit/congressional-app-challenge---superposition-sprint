@@ -17,32 +17,28 @@ var SPEED = 0:
 	set = set_speed
 #endregion
 #region dictionaries
-var Contestant_information: Dictionary = {
+@export var Contestant_information: Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
 		"JUMP": - 350,
-		"STAMINA": 5,
 		"HEALTH": 5,
 	},
 	
 	"Green": {
 		"SPEED": 185,
 		"JUMP": - 375,
-		"STAMINA": 4,
 		"HEALTH": 4,
 	},
 	
 	"Red": {
 		"SPEED": 195,
 		"JUMP": - 400,
-		"STAMINA": 6,
 		"HEALTH": 4,
 	},
 	
 	"Blue": {
 		"SPEED": 190,
 		"JUMP": - 325,
-		"STAMINA": 8,
 		"HEALTH": 6
 	}
 }

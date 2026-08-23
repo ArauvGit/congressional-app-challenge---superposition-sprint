@@ -30,16 +30,13 @@ func _init():
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
-		enemy_jump_count = 0
-		can_jump = true
-	if jump_count != 2:
-		can_jump = true
+		self.enemy_jump_count = 0
+		self.can_jump = true
+	if self.enemy_jump_count != 2:
+		self.can_jump = true
 	raycast_detection()
 	super(delta)
 	change_direction()
-	if is_in_group("Blue"):
-		print(can_jump)
-	# raycast_speed_modification()
 #endregion
 #region movement
 func enemy_dash():
@@ -53,30 +50,38 @@ func get_contestant_jump():
 			return Jump
 
 func enemy_jump():
+	if is_in_group("Red"):
+		print(enemy_jump_count)
+		print(can_jump)
 	Global.state = Global.States.JUMPING
 	state_machine()
 	if enemy_jump_count == 2:
 		can_jump = false
 		return
+	if can_jump == false: 
+		return
 	if is_on_floor() and enemy_jump_count == 0 and jump_checker == false:
+		enemy_jump_count += 1
 		velocity.y = JUMP_VELOCITY
 		if not is_on_floor():
 			Global.state = Global.States.JUMPING
 			state_machine()
-		enemy_jump_count += 1
 		jump_checker = true
 		await get_tree().create_timer(timer_duration).timeout
 		jump_checker = false
-	if not is_on_floor() and jump_checker == false:
+	if not is_on_floor() and jump_checker == false and can_jump:
 		double_jump()
 		enemy_jump_count = 2
 	
 func double_jump():
 	velocity.y = JUMP_VELOCITY
 	Global.state = Global.States.JUMPING
+	enemy_jump_count += 1 
 	state_machine()
 
 func wall_jump():
+	if abs(get_wall_normal().x) != 1 or abs(get_floor_normal().x) != 1: 
+		return
 	if is_on_wall_only():
 		set_speed(SPEED * -1)
 		move_local_x(10 * get_wall_normal().x)
@@ -142,24 +147,18 @@ func raycast_detection():
 	if self.raycast_right.is_colliding() and not self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
-		elif raycast_right.get_collider() is TileMapLayer:
-			if SPEED < 0:
-				set_speed(SPEED * -1)
-				speed_sprite_flip()
+		else:
 			enemy_jump()
 	elif self.raycast_left.is_colliding() and not self.raycast_right.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
-		elif raycast_left.get_collider() is TileMapLayer:
-			if SPEED > 0:
-				set_speed(SPEED * -1)
-				speed_sprite_flip()
+		else:
 			enemy_jump()
 	
 	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
-		elif raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
+		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 
 	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
@@ -172,7 +171,7 @@ func raycast_detection():
 		damage_detection(tile_map(), raycast_under_left)
 	
 	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
-		if not is_on_floor() or abs(get_floor_normal().x) != 1:
+		if abs(get_floor_normal().x) != 1:
 			return
 		set_speed(SPEED * -1)
 	if self.raycast_under.is_colliding():
@@ -194,11 +193,9 @@ func damage_detection(tileMap: TileMapLayer, raycast: RayCast2D):
 					#await get_tree().create_timer(0.6).timeout
 					#set_speed(SPEED * -1)
 				if is_on_floor() or not is_on_floor():
-					match can_jump:
-						var x when x == true:
+						if can_jump == true or enemy_jump_count < 2:
 							enemy_jump()
-						var x when x == false:
-							await get_tree().create_timer(0.2).timeout
+						elif can_jump == false or enemy_jump_count >= 2:
 							enemy_dash()
 func decohere():
 	print("decohere")
