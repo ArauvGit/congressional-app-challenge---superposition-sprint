@@ -22,19 +22,16 @@ func _physics_process(delta: float) -> void:
 	player_jump()
 	wall_jump()
 	player_dash()
-	for node in self.get_children():
-		print(node.position.x)
-		var abs_camera_pos = abs(node.position.x)
-		if node is Camera2D: 
-			if abs_camera_pos < self.position.x and abs_camera_pos > self.position.x - 50: 
-				node.position.x += 1.2 * velocity.normalized().x 
-				node.force_update_scroll()
-			
-			else: 
-				node.position.x += 0.5 * velocity.normalized().x  
-				node.force_update_scroll()
+	player_camera_pos_config()
 #endregion
+
 #region movement 
+func player_camera_pos_config(): 
+	for node in self.get_children():
+		if node is Camera2D: 
+			if abs(velocity.x): 
+				node.global_position.x = self.global_position.x + 115 * velocity.normalized().x
+	
 func player_jump() -> void:
 	speed_sprite_flip()
 	if jump_count == 1:

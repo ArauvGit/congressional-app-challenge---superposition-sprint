@@ -171,7 +171,7 @@ func raycast_detection():
 		damage_detection(tile_map(), raycast_under_left)
 	
 	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
-		if abs(get_floor_normal().x) != 1:
+		if not is_on_floor():
 			return
 		set_speed(SPEED * -1)
 	if self.raycast_under.is_colliding():
