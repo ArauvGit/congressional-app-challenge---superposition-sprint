@@ -34,6 +34,7 @@ enemy=""
 Speed=""
 Jump=""
 Health=""
+Interference="interference powerup"
 
 [gui]
 

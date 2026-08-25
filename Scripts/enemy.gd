@@ -80,8 +80,8 @@ func double_jump():
 	state_machine()
 
 func wall_jump():
-	if abs(get_wall_normal().x) != 1 or abs(get_floor_normal().x) != 1: 
-		return
+	#if abs(get_wall_normal().x) != 1 or abs(get_floor_normal().x) != 1: 
+		#return
 	if is_on_wall_only():
 		set_speed(SPEED * -1)
 		move_local_x(10 * get_wall_normal().x)
@@ -144,34 +144,33 @@ func raycast_init():
 # 		var x when x < 0:
 # 			raycast_right.target_position.y = 10
 func raycast_detection():
-	if self.raycast_right.is_colliding() and not self.raycast_left.is_colliding():
+	if self.raycast_right.is_colliding() or self.raycast_top_right.is_colliding() and not self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
 		else:
 			enemy_jump()
-	elif self.raycast_left.is_colliding() and not self.raycast_right.is_colliding():
+	elif self.raycast_left.is_colliding() or self.raycast_top_left.is_colliding() and not self.raycast_right.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
 		else:
 			enemy_jump()
 	
-	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
+	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding() \
+	or self.raycast_top_right.is_colliding() and self.raycast_top_left.is_colliding():
+		print('hi')
 		if self.raycast_top.is_colliding():
 			return
-		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
+		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer or \
+		self.raycast_top_right and self.raycast_top_left is TileMapLayer:	
 			wall_jump()
 
 	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
 		damage_detection(tile_map(), raycast_under_right)
-		#if is_on_wall_only() and can_jump == false: 
-			#move_local_x(10 * get_wall_normal().x)
-			#set_speed(SPEED * -1)
-			#jump()
 	elif self.raycast_under_left.is_colliding():
 		damage_detection(tile_map(), raycast_under_left)
 	
 	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
-		if not is_on_floor():
+		if not is_on_floor() or abs(get_floor_normal().x) != 1:
 			return
 		set_speed(SPEED * -1)
 	if self.raycast_under.is_colliding():

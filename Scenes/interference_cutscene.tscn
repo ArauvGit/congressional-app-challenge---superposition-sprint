@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cjyganyfs86ct"]
+
+[ext_resource type="Script" uid="uid://uuhx4aku1gbc" path="res://Scripts/sinwave.gd" id="1_14bg0"]
+
+[node name="Interference Cutscene" type="Node2D" unique_id=1923831156]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1394783105]
+position = Vector2(320, 147)
+limit_enabled = false
+limit_left = 0
+limit_top = 0
+limit_right = 640
+limit_bottom = 360
+
+[node name="cutscene picture" type="Node2D" parent="." unique_id=1069622776]
+position = Vector2(0, -33)
+
+[node name="ColorRect" type="ColorRect" parent="cutscene picture" unique_id=131014604]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0.49303454, 0.63289577, 1)
+
+[node name="Node2D" type="Node2D" parent="cutscene picture" unique_id=1920308111]
+script = ExtResource("1_14bg0")

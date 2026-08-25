@@ -27,5 +27,9 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 			if body.has_method("jump_powerup"):
 				body.jump_powerup()
 				queue_free()
+		var x when x.is_in_group("Interference"):
+			if body.has_method("interference_powerup"):
+				body.interference_powerup()
+				queue_free()
 	
 	

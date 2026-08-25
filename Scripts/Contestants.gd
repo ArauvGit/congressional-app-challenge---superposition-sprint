@@ -43,7 +43,7 @@ var SPEED = 0:
 	}
 }
 var Powerup_information: Dictionary = {
-	"SPEED_BOOST": 1.25,
+	"SPEED_BOOST": 1.3,
 	"JUMP_BOOST": 1.5,
 	"RESTORATION": 1,
 }
@@ -154,18 +154,22 @@ func set_speed(speed_change: int) -> int:
 #region powerups
 func speed_powerup():
 	set_speed(SPEED * Powerup_information["SPEED_BOOST"])
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(5).timeout
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			set_speed(Contestant_information.get(Name)["SPEED"])
 func jump_powerup():
 	set_jump(JUMP_VELOCITY * Powerup_information["JUMP_BOOST"])
 	jump_powerup_active = true
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(5).timeout
 	jump_powerup_active = false
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
+func interference_powerup(): 
+	var interference_minigame_scene = load("res://Scenes/powerup.tscn")
+	var interference_minigame = interference_minigame_scene.instantiate() 
+	get_tree().root.add_child(interference_minigame)
 #endregion
 func jump():
 	#speed_sprite_flip()
