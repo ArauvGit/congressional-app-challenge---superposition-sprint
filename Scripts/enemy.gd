@@ -58,7 +58,7 @@ func enemy_jump():
 	if enemy_jump_count == 2:
 		can_jump = false
 		return
-	if can_jump == false: 
+	if can_jump == false:
 		return
 	if is_on_floor() and enemy_jump_count == 0 and jump_checker == false:
 		enemy_jump_count += 1
@@ -76,7 +76,7 @@ func enemy_jump():
 func double_jump():
 	velocity.y = JUMP_VELOCITY
 	Global.state = Global.States.JUMPING
-	enemy_jump_count += 1 
+	enemy_jump_count += 1
 	state_machine()
 
 func wall_jump():
@@ -118,7 +118,6 @@ func raycast_init():
 	add_child(raycast_left)
 	raycast_attributes.call(raycast_left, 90, scale_formula, default_target_pos_y, col_mask)
 	
-
 	add_child(raycast_under)
 	raycast_attributes.call(raycast_under, 0, scale_formula, default_target_pos_y + 10, col_mask)
 
@@ -161,7 +160,7 @@ func raycast_detection():
 		if self.raycast_top.is_colliding():
 			return
 		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer or \
-		self.raycast_top_right and self.raycast_top_left is TileMapLayer:	
+		self.raycast_top_right and self.raycast_top_left is TileMapLayer:
 			wall_jump()
 
 	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left

@@ -29,7 +29,7 @@ func player_camera_pos_config():
 	for node in self.get_children():
 		if node is Camera2D: 
 			if abs(velocity.x): 
-				node.global_position.x = self.global_position.x + 175 * velocity.normalized().x
+				node.global_position.x = self.global_position.x + 150 * velocity.normalized().x
 	
 func player_jump() -> void:
 	speed_sprite_flip()
