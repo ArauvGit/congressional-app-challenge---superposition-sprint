@@ -5,7 +5,7 @@
 [node name="Interference Cutscene" type="Node2D" unique_id=1923831156]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1394783105]
-position = Vector2(320, 147)
+anchor_mode = 0
 limit_enabled = false
 limit_left = 0
 limit_top = 0
@@ -16,9 +16,35 @@ limit_bottom = 360
 position = Vector2(0, -33)
 
 [node name="ColorRect" type="ColorRect" parent="cutscene picture" unique_id=131014604]
+offset_top = 33.0
 offset_right = 640.0
-offset_bottom = 360.0
+offset_bottom = 393.0
 color = Color(0, 0.49303454, 0.63289577, 1)
 
-[node name="Node2D" type="Node2D" parent="cutscene picture" unique_id=1920308111]
+[node name="Line Container" type="Node2D" parent="cutscene picture" unique_id=1654212341]
+position = Vector2(0, 33)
+
+[node name="Line2D" type="Line2D" parent="cutscene picture/Line Container" unique_id=2071971942]
+texture_filter = 2
+position = Vector2(0, 60)
+points = PackedVector2Array(-166, 139)
+width = 1.0
+script = ExtResource("1_14bg0")
+
+[node name="Line2D2" type="Line2D" parent="cutscene picture/Line Container" unique_id=538680078]
+texture_filter = 2
+position = Vector2(0, 140)
+width = 1.0
+script = ExtResource("1_14bg0")
+
+[node name="Line2D3" type="Line2D" parent="cutscene picture/Line Container" unique_id=1449840766]
+texture_filter = 2
+position = Vector2(0, 220)
+width = 1.0
+script = ExtResource("1_14bg0")
+
+[node name="Line2D4" type="Line2D" parent="cutscene picture/Line Container" unique_id=194262446]
+texture_filter = 2
+position = Vector2(0, 300)
+width = 1.0
 script = ExtResource("1_14bg0")

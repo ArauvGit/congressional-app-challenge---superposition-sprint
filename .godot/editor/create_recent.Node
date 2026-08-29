@@ -1,8 +1,8 @@
+Line2D
 Node2D
 ColorRect
 CanvasModulate
 Camera2D
-Line2D
 AnimationPlayer
 TileMapLayer
 Parallax2D
