@@ -299,7 +299,7 @@ sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 script = ExtResource("10_3d5ho")
 
-[node name="red" parent="." unique_id=206440627 groups=["Red"] instance=ExtResource("1_h4gei")]
+[node name="red" parent="." unique_id=206440627 groups=["Red", "player"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(22, -1)
 collision_mask = 2

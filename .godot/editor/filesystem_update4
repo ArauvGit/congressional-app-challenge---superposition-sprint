@@ -1,7 +1,9 @@
-res://Scenes/players.tscn
-res://Scripts/damage_flash.gdshader
-res://Scripts/colorswap.tres
-res://Scripts/damage_flash.tres
-res://Scenes/player.tscn
-res://Scenes/interference_cutscene.tscn
+res://sinwave.gd
 res://Scripts/sinwave.gd
+res://Scenes/interference_cutscene.tscn
+res://Scripts/colorswap.tres
+res://Scripts/damage_flash.gdshader
+res://Scripts/damage_flash.tres
+res://Scripts/enemy.gd
+res://Scripts/player.gd
+res://Scenes/players.tscn

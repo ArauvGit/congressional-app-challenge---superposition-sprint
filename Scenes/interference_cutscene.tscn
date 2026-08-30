@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://uuhx4aku1gbc" path="res://Scripts/sinwave.gd" id="1_14bg0"]
 [ext_resource type="PackedScene" uid="uid://d01ladgcelxov" path="res://Scenes/players.tscn" id="1_kj2vx"]
-[ext_resource type="Texture2D" uid="uid://3egqnyodgeso" path="res://Assets/Dots/Yellow Dot.png" id="2_gajs8"]
-[ext_resource type="Texture2D" uid="uid://rteqoxd0arw0" path="res://Assets/Dots/Green Dot.png" id="3_seors"]
-[ext_resource type="Texture2D" uid="uid://rmsdt1r0s02b" path="res://Assets/Dots/Red Dot.png" id="4_x15xa"]
-[ext_resource type="Texture2D" uid="uid://bsqjnuds5n11t" path="res://Assets/Dots/Blue Dot.png" id="5_h10ap"]
 
 [node name="Interference Cutscene" type="Node2D" unique_id=1923831156]
 
@@ -35,49 +31,40 @@ texture_filter = 2
 position = Vector2(0, 60)
 points = PackedVector2Array(-166, 139)
 width = 2.0
+default_color = Color(1, 0.85, 0, 1)
 script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
-
-[node name="yellow" type="Sprite2D" parent="cutscene picture/Line Container/Line1" unique_id=1868447368]
-texture = ExtResource("2_gajs8")
 
 [node name="Line2" type="Line2D" parent="cutscene picture/Line Container" unique_id=538680078 node_paths=PackedStringArray("line_container", "players")]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 140)
 width = 2.0
+default_color = Color(0, 1, 0.4333334, 1)
 script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
-
-[node name="green" type="Sprite2D" parent="cutscene picture/Line Container/Line2" unique_id=498675200]
-texture = ExtResource("3_seors")
 
 [node name="Line3" type="Line2D" parent="cutscene picture/Line Container" unique_id=1449840766 node_paths=PackedStringArray("line_container", "players")]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 220)
 width = 2.0
+default_color = Color(1, 0, 0, 1)
 script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
-
-[node name="red" type="Sprite2D" parent="cutscene picture/Line Container/Line3" unique_id=1783728070]
-texture = ExtResource("4_x15xa")
 
 [node name="Line4" type="Line2D" parent="cutscene picture/Line Container" unique_id=194262446 node_paths=PackedStringArray("line_container", "players")]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 300)
 width = 2.0
+default_color = Color(0.016666412, 0, 1, 1)
 script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="blue" type="Sprite2D" parent="cutscene picture/Line Container/Line4" unique_id=1053600833]
-texture = ExtResource("5_h10ap")
-
 [node name="players" parent="cutscene picture" unique_id=264091493 instance=ExtResource("1_kj2vx")]
-visible = false
 position = Vector2(201, 98)
