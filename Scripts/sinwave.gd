@@ -5,8 +5,9 @@ var y: float = 0
 var x: float = 0
 var position_adder: float = 0
 var wave_speed_multiplier: int = 1
-
-
+var vertical_movement: int = 1
+var enemy_movement_timer: float = 0
+var enemy_movement_multiplier = 1
 # # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match self.get_index():
@@ -36,28 +37,49 @@ func _physics_process(delta: float) -> void:
 			set_y(15 * sin(0.15 * x))
 			self.remove_point(0)
 			self.translate(Vector2(-1, 0))
-	update_player_position()
+	update_player_position(delta)
 
 func set_y(new_value: float):
 	if y != new_value:
 		y = new_value
 	return y
 
-func update_player_position():
+func update_player_position(delta):
+	enemy_movement_timer -= delta
 	for child in players.get_children():
 		var horizontal_direction: float = Input.get_axis("move_left", "move_right")
 		var vertical_direction: float = Input.get_axis("move_up", "move_down")
 		if child.is_in_group("player"):
 			child.position.x += 1 * horizontal_direction
+			if %Line3.position.y < 300 or %Line3.position.y > 60:
+				vertical_movement = 1
+				child.get_child(2).offset.y += 0.375 * vertical_direction
+				%Line3.position.y += vertical_movement * vertical_direction
+			if %Line3.position.y >= 300 and vertical_direction == 1:
+				vertical_movement = 0
+		#else:
+			#match child:
+				#var player_node when player_node.is_in_group("Yellow"):
+					#position_adder = 0.8
+				#var player_node when player_node.is_in_group("Green"):
+					#position_adder = 0.7
+				#var player_node when player_node.is_in_group("Red"):
+					#position_adder = 1
+				#var player_node when player_node.is_in_group("Blue"):
+					#position_adder = 0.5
+			#child.position.x += position_adder
 		match child:
 			var player_node when player_node.is_in_group("Yellow"):
+				child.add_to_group("Line One")
 				child.position.y = 15 * sin(0.15 * abs(x) * 1.1)
 			var player_node when player_node.is_in_group("Green"):
+				child.add_to_group("Line Two")
 				child.position.y = 15 * sin(0.15 * abs(x) * 1.25) + 60
 			var player_node when player_node.is_in_group("Red"):
+				child.add_to_group("Line Three")
 				child.position.y = 15 * sin(0.15 * abs(position.x) * 1.5) + 140
-				#child.position.y += 1 * vertical_direction
 			var player_node when player_node.is_in_group("Blue"):
+				child.add_to_group("Line Four")
 				child.position.y = 15 * sin(0.15 * abs(x)) + 220
 
 
@@ -83,3 +105,19 @@ func set_player_position():
 			#%Line4.queue_free()
 	else:
 		push_error("players is null!")
+
+
+func _on_area_entered(area: Area2D) -> void:
+	var area_parent = area.get_parent()
+	var started_cancelling: bool = true
+	if area_parent is Line2D:
+		if started_cancelling == true: 
+			area_parent.default_color = Color("FFFF")
+		for node in get_tree().get_nodes_in_group(area_parent.get_groups()[0]): 
+			if node is CharacterBody2D: 
+				if not node.is_in_group("player"): 
+					started_cancelling = true
+				else: 
+					started_cancelling = false
+			
+		

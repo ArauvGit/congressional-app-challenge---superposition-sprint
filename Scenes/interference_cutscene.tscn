@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://uuhx4aku1gbc" path="res://Scripts/sinwave.gd" id="1_14bg0"]
 [ext_resource type="PackedScene" uid="uid://d01ladgcelxov" path="res://Scenes/players.tscn" id="1_kj2vx"]
+[ext_resource type="PackedScene" uid="uid://bbctnk70cdued" path="res://Scenes/interference_area.tscn" id="2_2uvc0"]
 
 [node name="Interference Cutscene" type="Node2D" unique_id=1923831156]
 
@@ -25,7 +26,7 @@ color = Color(0.08, 0.08, 0.08, 1)
 [node name="Line Container" type="Node2D" parent="cutscene picture" unique_id=1654212341]
 position = Vector2(0, 33)
 
-[node name="Line1" type="Line2D" parent="cutscene picture/Line Container" unique_id=2071971942 node_paths=PackedStringArray("line_container", "players")]
+[node name="Line1" type="Line2D" parent="cutscene picture/Line Container" unique_id=2071971942 node_paths=PackedStringArray("line_container", "players") groups=["Line One"]]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 60)
@@ -36,7 +37,10 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="Line2" type="Line2D" parent="cutscene picture/Line Container" unique_id=538680078 node_paths=PackedStringArray("line_container", "players")]
+[node name="line1area" parent="cutscene picture/Line Container/Line1" unique_id=960253787 instance=ExtResource("2_2uvc0")]
+translate_speed = 4.0
+
+[node name="Line2" type="Line2D" parent="cutscene picture/Line Container" unique_id=538680078 node_paths=PackedStringArray("line_container", "players") groups=["Line Two"]]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 140)
@@ -46,7 +50,10 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="Line3" type="Line2D" parent="cutscene picture/Line Container" unique_id=1449840766 node_paths=PackedStringArray("line_container", "players")]
+[node name="line2area" parent="cutscene picture/Line Container/Line2" unique_id=536969978 instance=ExtResource("2_2uvc0")]
+translate_speed = 3.0
+
+[node name="Line3" type="Line2D" parent="cutscene picture/Line Container" unique_id=1449840766 node_paths=PackedStringArray("line_container", "players") groups=["Line Three"]]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 220)
@@ -56,7 +63,10 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="Line4" type="Line2D" parent="cutscene picture/Line Container" unique_id=194262446 node_paths=PackedStringArray("line_container", "players")]
+[node name="line3area" parent="cutscene picture/Line Container/Line3" unique_id=1283226186 instance=ExtResource("2_2uvc0")]
+translate_speed = 5.0
+
+[node name="Line4" type="Line2D" parent="cutscene picture/Line Container" unique_id=194262446 node_paths=PackedStringArray("line_container", "players") groups=["Line Four"]]
 unique_name_in_owner = true
 texture_filter = 2
 position = Vector2(0, 300)
@@ -66,5 +76,13 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
+[node name="line4area" parent="cutscene picture/Line Container/Line4" unique_id=57536418 instance=ExtResource("2_2uvc0")]
+translate_speed = 2.0
+
 [node name="players" parent="cutscene picture" unique_id=264091493 instance=ExtResource("1_kj2vx")]
 position = Vector2(201, 98)
+
+[connection signal="area_entered" from="cutscene picture/Line Container/Line1/line1area" to="cutscene picture/Line Container/Line1" method="_on_area_entered"]
+[connection signal="area_entered" from="cutscene picture/Line Container/Line2/line2area" to="cutscene picture/Line Container/Line2" method="_on_area_entered"]
+[connection signal="area_entered" from="cutscene picture/Line Container/Line3/line3area" to="cutscene picture/Line Container/Line3" method="_on_area_entered"]
+[connection signal="area_entered" from="cutscene picture/Line Container/Line4/line4area" to="cutscene picture/Line Container/Line4" method="_on_area_entered"]
