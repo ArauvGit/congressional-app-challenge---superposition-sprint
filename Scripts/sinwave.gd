@@ -4,10 +4,11 @@ extends Line2D
 var y: float = 0
 var x: float = 0
 var position_adder: float = 0
+var enemy_movement_timer: float = 0
 var wave_speed_multiplier: int = 1
 var vertical_movement: int = 1
-var enemy_movement_timer: float = 0
-var enemy_movement_multiplier = 1
+var enemy_movement_multiplier: int = 1
+var started_cancelling: bool = true
 # # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	match self.get_index():
@@ -109,15 +110,32 @@ func set_player_position():
 
 func _on_area_entered(area: Area2D) -> void:
 	var area_parent = area.get_parent()
-	var started_cancelling: bool = true
 	if area_parent is Line2D:
-		if started_cancelling == true: 
-			area_parent.default_color = Color("FFFF")
 		for node in get_tree().get_nodes_in_group(area_parent.get_groups()[0]): 
 			if node is CharacterBody2D: 
 				if not node.is_in_group("player"): 
 					started_cancelling = true
 				else: 
 					started_cancelling = false
-			
-		
+				if started_cancelling == true: 
+					flash_white(area_parent) 
+					await get_tree().create_timer(0.04).timeout
+					fluctuate(area_parent, 0.5)
+
+func flash_white(line: Line2D): 
+	var checker: bool = false 
+	var previous_default_color: Color = line.default_color
+	var timer_duration: float = 0.04
+	var tween = create_tween()
+	if checker == false: 
+		tween.tween_property(line, "default_color", Color("FFFF"), timer_duration)
+		tween.tween_property(line, "width", 5, timer_duration)
+		tween.tween_property(line, "default_color", previous_default_color, timer_duration)
+		tween.tween_property(line, "width", 2, timer_duration)
+		checker = true
+
+func fluctuate(line: Line2D, duration: float):
+	var color_tween: Tween = get_tree().create_tween()
+	while true:
+		color_tween.tween_property(line, "modulate", Color(1.0, 1.0, 1.0, 0.518), duration)
+		color_tween.tween_property(line, "modulate", Color("FFFF"), duration)	
