@@ -234,6 +234,7 @@ shader_parameter/color_count = 12
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1398605686]
 position = Vector2(8, -3)
+offset = Vector2(0, -20)
 ignore_rotation = false
 process_callback = 0
 limit_top = -9999666
@@ -243,7 +244,6 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 3.0
 drag_horizontal_enabled = true
-drag_vertical_enabled = true
 drag_left_margin = 0.25
 drag_top_margin = 0.25
 drag_right_margin = 0.25

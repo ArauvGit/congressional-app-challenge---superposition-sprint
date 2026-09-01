@@ -37,7 +37,7 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="line1area" parent="cutscene picture/Line Container/Line1" unique_id=960253787 instance=ExtResource("2_2uvc0")]
+[node name="line1area" parent="cutscene picture/Line Container/Line1" unique_id=960253787 groups=["Line Area"] instance=ExtResource("2_2uvc0")]
 translate_speed = 4.0
 
 [node name="Line2" type="Line2D" parent="cutscene picture/Line Container" unique_id=538680078 node_paths=PackedStringArray("line_container", "players") groups=["Line Two"]]
@@ -50,7 +50,7 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="line2area" parent="cutscene picture/Line Container/Line2" unique_id=536969978 instance=ExtResource("2_2uvc0")]
+[node name="line2area" parent="cutscene picture/Line Container/Line2" unique_id=536969978 groups=["Line Area"] instance=ExtResource("2_2uvc0")]
 translate_speed = 3.0
 
 [node name="Line3" type="Line2D" parent="cutscene picture/Line Container" unique_id=1449840766 node_paths=PackedStringArray("line_container", "players") groups=["Line Three"]]
@@ -63,7 +63,7 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="line3area" parent="cutscene picture/Line Container/Line3" unique_id=1283226186 instance=ExtResource("2_2uvc0")]
+[node name="line3area" parent="cutscene picture/Line Container/Line3" unique_id=1283226186 groups=["Line Area"] instance=ExtResource("2_2uvc0")]
 translate_speed = 5.0
 
 [node name="Line4" type="Line2D" parent="cutscene picture/Line Container" unique_id=194262446 node_paths=PackedStringArray("line_container", "players") groups=["Line Four"]]
@@ -76,7 +76,7 @@ script = ExtResource("1_14bg0")
 line_container = NodePath("..")
 players = NodePath("../../players")
 
-[node name="line4area" parent="cutscene picture/Line Container/Line4" unique_id=57536418 instance=ExtResource("2_2uvc0")]
+[node name="line4area" parent="cutscene picture/Line Container/Line4" unique_id=57536418 groups=["Line Area"] instance=ExtResource("2_2uvc0")]
 translate_speed = 2.0
 
 [node name="players" parent="cutscene picture" unique_id=264091493 instance=ExtResource("1_kj2vx")]

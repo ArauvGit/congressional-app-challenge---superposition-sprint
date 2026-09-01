@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://hfq3d12a3kqu" path="res://Scenes/interference_area.gd" id="1_oivv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
-size = Vector2(640, 2)
+size = Vector2(640, 10)
 
 [node name="Area2D" type="Area2D" unique_id=960253787]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_oivv3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1573503377]
