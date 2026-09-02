@@ -1,9 +1,8 @@
-res://Scripts/sinwave.gd
-res://Scenes/interference_cutscene.tscn
-res://Scripts/damage_flash.gdshader
+res://complete_decoherence.tscn
 res://Scripts/colorswap.tres
+res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
-res://Scenes/interference_area.tscn
-res://Scenes/interference_area.gd
-res://Scenes/players.tscn
+res://death_screen.gd
+res://Scenes/root.tscn
+res://Scripts/Contestants.gd
 res://Scripts/player.gd

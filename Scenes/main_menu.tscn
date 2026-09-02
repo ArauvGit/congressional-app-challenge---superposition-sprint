@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ciw3fkuw3m8v8"]
 
-[ext_resource type="FontFile" uid="uid://c8xiw3x7i7fmd" path="res://UI/PixelifySans-SemiBold.ttf" id="1_06t4h"]
+[ext_resource type="FontFile" uid="uid://c8xiw3x7i7fmd" path="res://Assets/UI/PixelifySans-SemiBold.ttf" id="1_06t4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdnvj"]
 bg_color = Color(0.76862746, 0.0627451, 0, 1)

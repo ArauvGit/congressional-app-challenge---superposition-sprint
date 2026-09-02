@@ -148,6 +148,7 @@ func raycast_detection():
 			return
 		else:
 			enemy_jump()
+	
 	elif self.raycast_left.is_colliding() or self.raycast_top_left.is_colliding() and not self.raycast_right.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
@@ -159,7 +160,7 @@ func raycast_detection():
 		print('hi')
 		if self.raycast_top.is_colliding():
 			return
-		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer or \
+		elif raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer or \
 		self.raycast_top_right and self.raycast_top_left is TileMapLayer:
 			wall_jump()
 
@@ -174,9 +175,9 @@ func raycast_detection():
 		set_speed(SPEED * -1)
 	if self.raycast_under.is_colliding():
 		damage_detection(tile_map(), raycast_under)
-	if self.raycast_top_right.is_colliding():
-		damage_detection(tile_map(), raycast_top_right)
-	elif self.raycast_top_left.is_colliding():
+	# if self.raycast_top_right.is_colliding():
+	# 	damage_detection(tile_map(), raycast_top_right)
+	# elif self.raycast_top_left.is_colliding():
 		damage_detection(tile_map(), raycast_top_left)
 #endregion
 #region damage

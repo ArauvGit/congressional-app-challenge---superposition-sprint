@@ -16,7 +16,11 @@ var enemy_movement_multiplier: int = 1
 var started_cancelling: bool = false
 var cancelled: bool = false
 # # Called when the node enters the scene tree for the first time.
+func is_player(node: Node2D) -> bool:
+	return node.is_in_group("player")
+
 func _ready() -> void:
+	print("hi")
 	match self.get_index():
 		0:
 			wave_speed_multiplier = 4
@@ -45,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			set_y(15 * sin(0.15 * x))
 			self.remove_point(0)
 			self.translate(Vector2(-1, 0))
-	update_player_position(delta) 
+	update_player_position(delta)
 	area_collisions(get_child(0))
 func set_y(new_value: float):
 	if y != new_value:
@@ -58,24 +62,41 @@ func update_player_position(delta):
 		var horizontal_direction: float = Input.get_axis("move_left", "move_right")
 		var vertical_direction: float = Input.get_axis("move_up", "move_down")
 		if child.is_in_group("player"):
+			print(child.get_groups())
 			child.position.x += 1 * horizontal_direction
-			if %Line3.position.y < 300 or %Line3.position.y > 60:
-				vertical_movement = 1
-				child.get_child(2).offset.y += 0.375 * vertical_direction
-				%Line3.position.y += vertical_movement * vertical_direction
-			if %Line3.position.y >= 300 and vertical_direction == 1:
-				vertical_movement = 0
-		#else:
-			#match child:
-				#var player_node when player_node.is_in_group("Yellow"):
-					#position_adder = 0.8
-				#var player_node when player_node.is_in_group("Green"):
-					#position_adder = 0.7
-				#var player_node when player_node.is_in_group("Red"):
-					#position_adder = 1
-				#var player_node when player_node.is_in_group("Blue"):
-					#position_adder = 0.5
-			#child.position.x += position_adder
+			#if %Line3.position.y < 300 or %Line3.position.y > 60:
+				#vertical_movement = 1
+				#child.get_child(2).offset.y += 0.375 * vertical_direction
+				#%Line3.position.y += vertical_movement * vertical_direction
+			#if %Line3.position.y >= 300 and vertical_direction == 1:
+				#vertical_movement -= 1
+			for line in line_container.get_children(): 
+				if get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
+					if line.position.y < 300 or line.position.y > 60:
+						vertical_movement = 1
+						child.get_child(2).offset.y += 0.375 * vertical_direction
+						line.position.y += vertical_movement * vertical_direction
+		else:
+			match child:
+				var player_node when player_node.is_in_group("Yellow"):
+					print(player_node.get_groups())
+					position_adder = 0.8
+				var player_node when player_node.is_in_group("Green"):
+					print(player_node.get_groups())
+					position_adder = 0.7
+				var player_node when player_node.is_in_group("Red"):
+					print(player_node.get_groups())
+					position_adder = 1
+				var player_node when player_node.is_in_group("Blue"):
+					print(player_node.get_groups())
+					position_adder = 0.5
+			var formula = position_adder / 2.67
+			for line in line_container.get_children(): 
+				if not get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
+					line.position.y += 0.1
+					for node in child.get_children(): 
+						if node is AnimatedSprite2D:	
+							node.offset.y += 0.1 / 2
 		match child:
 			var player_node when player_node.is_in_group("Yellow"):
 				child.add_to_group("Line One")
@@ -114,34 +135,34 @@ func set_player_position():
 	else:
 		push_error("players is null!")
 
-func area_collisions(area: Area2D) -> void: 
+func area_collisions(area: Area2D) -> void:
 	var area_parent = area.get_parent()
-	if wave_count == 0: 
+	if wave_count == 0:
 		area_parent.default_color = Color("FFF")
-		cancelled = true
+		area_parent.add_to_group("Cancelled")
 	if area.get_overlapping_areas():
 		if area_parent is Line2D:
-			for node in get_tree().get_nodes_in_group(area_parent.get_groups()[0]): 
-				if node is CharacterBody2D: 
-					if not node.is_in_group("player"): 
+			for node in get_tree().get_nodes_in_group(area_parent.get_groups()[0]):
+				if node is CharacterBody2D:
+					if not is_player(node):
 						started_cancelling = true
-					else: 
+					else:
 						started_cancelling = false
-					if started_cancelling == true: 
+					if started_cancelling == true:
 						if Input.is_action_just_pressed("Interference"):
-							flash_white(area_parent) 
+							flash_white(area_parent)
 							await get_tree().create_timer(0.04).timeout
 							fluctuate(area_parent, wave_count * 0.167)
 							wave_count -= 1
-					
-func flash_white(line: Line2D): 
-	var checker: bool = false 
+	end_minigame()
+func flash_white(line: Line2D):
+	var checker: bool = false
 	var previous_default_color: Color = line.default_color
 	var timer_duration: float = 0.04
 	var tween = create_tween()
-	if previous_default_color == Color("FFF"): 
+	if previous_default_color == Color("FFF"):
 		return
-	if checker == false: 
+	if checker == false:
 		tween.tween_property(line, "default_color", Color("FFFF"), timer_duration)
 		tween.tween_property(line, "width", 5, timer_duration)
 		tween.tween_property(line, "default_color", previous_default_color, timer_duration)
@@ -153,4 +174,11 @@ func fluctuate(line: Line2D, duration: float):
 
 	for i in range(100):
 		color_tween.tween_property(line, "modulate", Color(1.0, 1.0, 1.0, 0.318), duration)
-		color_tween.tween_property(line, "modulate", Color("FFFF"), duration)	
+		color_tween.tween_property(line, "modulate", Color("FFFF"), duration)
+
+
+func end_minigame():
+	if get_tree().get_node_count_in_group("Cancelled") == 2:
+		for line in get_tree().get_nodes_in_group("Cancelled"):
+			for node in get_tree().get_nodes_in_group(line.get_groups()[0]):
+				node.queue_free()

@@ -1,12 +1,13 @@
 extends Contestant
 class_name Player
 var detector: Area2D = get_child(1)
+var can_play: bool = true
 #region important functions
 func _init() -> void:
 	self.connect("take_damage", decohere)
 	print(detector)
 	for Name in Contestant_information.keys():
-		if get_groups()[0] == Name:
+		if self.get_groups()[0] == Name:
 			set_health(Contestant_information.get(Name)["HEALTH"])
 	super.set_physics_process(true)
 	print("the player script has been activated")
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 	player_jump()
 	wall_jump()
 	player_dash()
+	die()
 	player_camera_pos_config()
 #endregion
 #region movement 
@@ -88,4 +90,12 @@ func decohere():
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		damage_checker = false # create dedicated invincibility function later with damage flash
+func die(): 
+	if Global.health <= 0: 
+		for child in get_parent().get_parent().get_children(): 
+			if child is CanvasLayer and child.name.contains("Decoherence"): 
+				child.show()
+				if can_play == true: 
+					child.get_child(2).play("RESET")
+					can_play = false
 #endregion		

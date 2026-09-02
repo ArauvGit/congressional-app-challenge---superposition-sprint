@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://c5ioeanfqeso0"]
+
+[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://death_screen.gd" id="1_eyhs5"]
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts/editundo.ttf" id="1_qwoht"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="3_0ynjc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68tq"]
+bg_color = Color(0.7089437, 0.17783621, 0.1804738, 1)
+border_width_bottom = 7
+border_color = Color(0.48010463, 0.099321716, 0.0994933, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_qwoht"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.25000003, 4.594788, 6.4980106),
+"update": 0,
+"values": [Vector2(0, -200), Vector2(0, 30), Vector2(0, 11)]
+}
+
+[sub_resource type="Animation" id="Animation_eyhs5"]
+resource_name = "test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.20306301, 2.4622865),
+"update": 0,
+"values": [Vector2(0, -75), Vector2(0, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ynjc"]
+_data = {
+&"RESET": SubResource("Animation_qwoht"),
+&"test": SubResource("Animation_eyhs5")
+}
+
+[node name="Complete Decoherence" type="CanvasLayer" unique_id=1610174719]
+script = ExtResource("1_eyhs5")
+
+[node name="background" type="ColorRect" parent="." unique_id=1204151230]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 0.62352943)
+metadata/_edit_use_anchors_ = true
+
+[node name="UI Container" type="VBoxContainer" parent="." unique_id=2107030563]
+custom_minimum_size = Vector2(640, 360)
+offset_top = -200.0
+offset_right = 640.0
+offset_bottom = 160.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Complete" type="Label" parent="UI Container" unique_id=922232157]
+layout_mode = 2
+offset_transform_position_ratio = Vector2(0, 100)
+theme_override_fonts/font = ExtResource("1_qwoht")
+theme_override_font_sizes/font_size = 90
+text = "Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Decoherence!" type="Label" parent="UI Container" unique_id=1249203999]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_qwoht")
+theme_override_font_sizes/font_size = 105
+text = "Decoherence!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button container" type="HBoxContainer" parent="UI Container" unique_id=1782390326]
+custom_minimum_size = Vector2(640, 75)
+layout_mode = 2
+
+[node name="button1container" type="Control" parent="UI Container/button container" unique_id=2131391348]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="UI Container/button container/button1container" unique_id=1657875906]
+custom_minimum_size = Vector2(200, 45)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -7.5
+offset_right = 400.0
+offset_bottom = 42.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_0ynjc")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_b68tq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_b68tq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b68tq")
+text = "Restart
+"
+
+[node name="button2container" type="Control" parent="UI Container/button container" unique_id=1377098328]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2136937442]
+root_node = NodePath("../UI Container")
+libraries/ = SubResource("AnimationLibrary_0ynjc")
+
+[connection signal="pressed" from="UI Container/button container/button1container/Button" to="." method="_on_restart_pressed"]
