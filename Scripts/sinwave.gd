@@ -22,7 +22,7 @@ var started_cancelling: bool = false
 var cancelled: bool = false
 # # Called when the node enters the scene tree for the first time.
 func is_player(node: Node2D) -> bool:
-	return node.get_script() == preload("res://Scenes/player.tscn")
+	return Global.player_testers[node.get_index() - 1] == true
 
 func _ready() -> void:
 	match self.get_index():
@@ -39,8 +39,6 @@ func _ready() -> void:
 		x += 1
 		set_y(15 * sin(0.15 * x))
 	set_player_position()
-	for child in players.get_children(): 
-		print(child.get_script())
 
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta: float) -> void:
@@ -69,12 +67,13 @@ func update_player_position(delta):
 	enemy_movement_timer -= delta
 	for child in players.get_children():
 		var vertical_direction: float = Input.get_axis("move_up", "move_down")
-		if child.get_script() == preload("res://Scenes/player.tscn"):
+		if is_player(child): 
 			for line in line_container.get_children(): 
 				if get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
+					for node in get_tree().get_nodes_in_group(line.get_groups()[0]): 
+						print(node)
 					if line.position.y < 300 or line.position.y > 60:
 						vertical_movement = 1
-						child.get_child(2).offset.y += 0.375 * vertical_direction
 						line.position.y += vertical_movement * vertical_direction
 		else:
 			for line in line_container.get_children(): 

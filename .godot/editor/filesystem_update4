@@ -1,13 +1,7 @@
+res://Scripts/global.gd
+res://Scripts/Contestants.gd
 res://Scripts/sinwave.gd
-res://Scenes/interference_cutscene.tscn
+res://Scenes/players.tscn
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
-res://Scenes/players.tscn
-res://Scripts/Contestants.gd
-res://Scenes/root.tscn
-res://powerup.tscn
-res://Scripts/powerups.gd
-res://Scripts/player.gd
-res://Scripts/button.gd
-res://Scenes/interference_area.tscn

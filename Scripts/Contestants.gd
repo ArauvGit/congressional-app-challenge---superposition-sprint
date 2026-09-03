@@ -225,5 +225,7 @@ func speed_sprite_flip():
 
 func set_player():
 	self.add_to_group("player")
+	Global.player_testers[self.get_index() - 1] = true
+	print(Global.player_testers)
 func set_enemy():
 	self.add_to_group("enemy")
