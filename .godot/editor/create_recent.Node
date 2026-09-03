@@ -1,3 +1,6 @@
+CollisionShape2D
+Area2D
+Node2D
 Button
 Control
 HBoxContainer
@@ -7,9 +10,5 @@ TextEdit
 VBoxContainer
 ColorRect
 CanvasLayer
-Node2D
-CollisionShape2D
-Area2D
 StaticBody2D
 Sprite2D
-Polygon2D

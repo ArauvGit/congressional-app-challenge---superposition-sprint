@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	pass
 
 
@@ -27,5 +27,10 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 			if body.has_method("jump_powerup"):
 				body.jump_powerup()
 				queue_free()
+		var x when x.is_in_group("Interference"):
+			if body.has_method("interference_powerup"):
+				if body.is_in_group("player"):
+					body.interference_powerup()
+					queue_free()
 	
 	

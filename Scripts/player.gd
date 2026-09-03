@@ -5,12 +5,12 @@ var can_play: bool = true
 #region important functions
 func _init() -> void:
 	self.connect("take_damage", decohere)
-	print(detector)
 	for Name in Contestant_information.keys():
 		if self.get_groups()[0] == Name:
 			set_health(Contestant_information.get(Name)["HEALTH"])
 	super.set_physics_process(true)
 	print("the player script has been activated")
+	print(self.get_groups())
 	for node in get_parent().get_children():
 		if node is Camera2D:
 			node.reparent(self)

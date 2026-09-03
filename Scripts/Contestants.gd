@@ -91,11 +91,8 @@ func state_machine():
 		Global.States.IDLE:
 			set_speed(0)
 			set_jump(0)
-		#region moving
 		Global.States.MOVING:
 			speed_sprite_flip()
-		#endregion
-		#region jumping
 		Global.States.JUMPING:
 			speed_sprite_flip()
 			match velocity.y:
@@ -103,8 +100,6 @@ func state_machine():
 					animated_sprite.play("fall_down")
 				var x when x < 0:
 					animated_sprite.play("jump_up")
-		#endregion
-		#region dashing
 		Global.States.DASHING:
 			if not is_on_floor():
 				velocity.y = -150
@@ -116,11 +111,8 @@ func state_machine():
 							set_speed(Contestant_information.get(Name)["SPEED"] * 4)
 						var x when x < 0:
 							set_speed(Contestant_information.get(Name)["SPEED"] * -4)
-		#endregion
-		#region wall hanging
 		Global.States.WALL_HANGING:
 			velocity.y = 50
-		#endregion
 func change_direction():
 	var _move_right = Input.is_action_just_pressed("move_right")
 	var _move_left = Input.is_action_just_pressed("move_left")
@@ -166,10 +158,12 @@ func jump_powerup():
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
-func interference_powerup(): 
-	var interference_minigame_scene = load("res://Scenes/powerup.tscn")
-	var interference_minigame = interference_minigame_scene.instantiate() 
-	get_tree().root.add_child(interference_minigame)
+func interference_powerup():
+	var normal_scene = "res://Scenes/root.tscn"
+	var interference_minigame_scene = "res://Scenes/interference_cutscene.tscn"
+	get_tree().change_scene_to_file(interference_minigame_scene)
+	if $"..".get_child_count() < 4:
+		get_tree().change_scene_to_file(normal_scene)
 #endregion
 func jump():
 	#speed_sprite_flip()
@@ -228,3 +222,8 @@ func speed_sprite_flip():
 		var x when x < 0:
 			animated_sprite.flip_h = true
 			change_direction()
+
+func set_player():
+	self.add_to_group("player")
+func set_enemy():
+	self.add_to_group("enemy")

@@ -1,14 +1,19 @@
 extends Line2D
 @export var line_container: Node2D
 @export var players: Node2D
-
+@export var detector_top: Area2D
+@export var detector_bottom: Area2D
 var y: float = 0
 var x: float = 0
 
-var position_adder: float = 0
+var yellow_position_adder: float = 0.1
+var green_position_adder: float = 0.1
+var red_position_adder: float = 0.1
+var blue_position_adder: float = 0.1
+var position_container: Array = [yellow_position_adder, green_position_adder, red_position_adder, blue_position_adder]
 var enemy_movement_timer: float = 0
-var wave_count: float = 3
 
+var wave_count: int = 3
 var wave_speed_multiplier: int = 1
 var vertical_movement: int = 1
 var enemy_movement_multiplier: int = 1
@@ -17,10 +22,9 @@ var started_cancelling: bool = false
 var cancelled: bool = false
 # # Called when the node enters the scene tree for the first time.
 func is_player(node: Node2D) -> bool:
-	return node.is_in_group("player")
+	return node.get_script() == preload("res://Scenes/player.tscn")
 
 func _ready() -> void:
-	print("hi")
 	match self.get_index():
 		0:
 			wave_speed_multiplier = 4
@@ -35,6 +39,8 @@ func _ready() -> void:
 		x += 1
 		set_y(15 * sin(0.15 * x))
 	set_player_position()
+	for child in players.get_children(): 
+		print(child.get_script())
 
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta: float) -> void:
@@ -51,6 +57,9 @@ func _physics_process(delta: float) -> void:
 			self.translate(Vector2(-1, 0))
 	update_player_position(delta)
 	area_collisions(get_child(0))
+	change_direction(detector_bottom)
+	change_direction(detector_top)
+	randomized_enemy_movement(delta)
 func set_y(new_value: float):
 	if y != new_value:
 		y = new_value
@@ -59,17 +68,8 @@ func set_y(new_value: float):
 func update_player_position(delta):
 	enemy_movement_timer -= delta
 	for child in players.get_children():
-		var horizontal_direction: float = Input.get_axis("move_left", "move_right")
 		var vertical_direction: float = Input.get_axis("move_up", "move_down")
-		if child.is_in_group("player"):
-			print(child.get_groups())
-			child.position.x += 1 * horizontal_direction
-			#if %Line3.position.y < 300 or %Line3.position.y > 60:
-				#vertical_movement = 1
-				#child.get_child(2).offset.y += 0.375 * vertical_direction
-				#%Line3.position.y += vertical_movement * vertical_direction
-			#if %Line3.position.y >= 300 and vertical_direction == 1:
-				#vertical_movement -= 1
+		if child.get_script() == preload("res://Scenes/player.tscn"):
 			for line in line_container.get_children(): 
 				if get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
 					if line.position.y < 300 or line.position.y > 60:
@@ -77,26 +77,12 @@ func update_player_position(delta):
 						child.get_child(2).offset.y += 0.375 * vertical_direction
 						line.position.y += vertical_movement * vertical_direction
 		else:
-			match child:
-				var player_node when player_node.is_in_group("Yellow"):
-					print(player_node.get_groups())
-					position_adder = 0.8
-				var player_node when player_node.is_in_group("Green"):
-					print(player_node.get_groups())
-					position_adder = 0.7
-				var player_node when player_node.is_in_group("Red"):
-					print(player_node.get_groups())
-					position_adder = 1
-				var player_node when player_node.is_in_group("Blue"):
-					print(player_node.get_groups())
-					position_adder = 0.5
-			var formula = position_adder / 2.67
 			for line in line_container.get_children(): 
 				if not get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
-					line.position.y += 0.1
+					line.position.y += position_container[line.get_index()]
 					for node in child.get_children(): 
 						if node is AnimatedSprite2D:	
-							node.offset.y += 0.1 / 2
+							node.position.y += position_container[line.get_index()]
 		match child:
 			var player_node when player_node.is_in_group("Yellow"):
 				child.add_to_group("Line One")
@@ -110,8 +96,15 @@ func update_player_position(delta):
 			var player_node when player_node.is_in_group("Blue"):
 				child.add_to_group("Line Four")
 				child.position.y = 15 * sin(0.15 * abs(x)) + 220
-
-
+func randomized_enemy_movement(delta):
+	enemy_movement_timer -= delta
+		
+	if enemy_movement_timer <= 0: 
+		for element in position_container: 
+			element = randf_range(-0.2, 0.2)
+			enemy_movement_timer = 1
+		
+	
 func set_player_position():
 	if is_instance_valid(players):
 		for child in players.get_children():
@@ -155,6 +148,16 @@ func area_collisions(area: Area2D) -> void:
 							fluctuate(area_parent, wave_count * 0.167)
 							wave_count -= 1
 	end_minigame()
+
+func change_direction(detector: Area2D): 
+	if detector.has_overlapping_areas():
+		var area = detector.get_overlapping_areas()[0]
+		if detector.name.contains("top"):
+			position_container[area.get_parent().get_index()] = 0.2
+			enemy_movement_timer = 0.1
+		elif detector.name.contains("bottom"):
+			position_container[area.get_parent().get_index()] = -0.2
+			enemy_movement_timer = 0.1
 func flash_white(line: Line2D):
 	var checker: bool = false
 	var previous_default_color: Color = line.default_color
@@ -171,7 +174,6 @@ func flash_white(line: Line2D):
 
 func fluctuate(line: Line2D, duration: float):
 	var color_tween: Tween = get_tree().create_tween()
-
 	for i in range(100):
 		color_tween.tween_property(line, "modulate", Color(1.0, 1.0, 1.0, 0.318), duration)
 		color_tween.tween_property(line, "modulate", Color("FFFF"), duration)
@@ -182,3 +184,4 @@ func end_minigame():
 		for line in get_tree().get_nodes_in_group("Cancelled"):
 			for node in get_tree().get_nodes_in_group(line.get_groups()[0]):
 				node.queue_free()
+				
