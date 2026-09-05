@@ -1,5 +1,6 @@
 extends AnimatedSprite2D
 var is_dashing: bool = false
+var is_on_wall: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,18 +18,18 @@ func animation_state():
 			if not is_dashing: 
 				play("run")
 		Global.States.JUMPING:
-			if get_parent().is_in_group("Red"):
-				print('jumping')
-			match get_parent().velocity.y:
-				var x when x > 0:
-					play("fall_down")
-				var x when x < 0:
-					play("jump_up")
+			if not is_dashing:
+				match get_parent().velocity.y: 
+					var x when x < 0:
+						play("jump_up")
+					var x when x > 0: 
+						play("fall_down")
 		Global.States.WALL_HANGING:
 			play("wall_hang")
+			is_on_wall = true
 		Global.States.DASHING: 
-			print("dashing")
-			play("dash")
-			is_dashing = true
-			await animation_finished
-			is_dashing = false
+			if not is_on_wall:
+				play("dash")
+				is_dashing = true
+				await animation_finished
+				is_dashing = false

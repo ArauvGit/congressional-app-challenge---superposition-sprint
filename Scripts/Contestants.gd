@@ -93,14 +93,13 @@ func state_machine():
 			set_speed(0)
 			set_jump(0)
 		Global.States.MOVING:
+			if is_in_group("player"):
+				print("moving")
 			speed_sprite_flip()
 		Global.States.JUMPING:
 			speed_sprite_flip()
-			match velocity.y:
-				var x when x > 0:
-					animated_sprite.play("fall_down")
-				var x when x < 0:
-					animated_sprite.play("jump_up")
+			if is_in_group("player"):
+				print("jumping")
 		Global.States.DASHING:
 			print("dashing")
 			if not is_on_floor():
