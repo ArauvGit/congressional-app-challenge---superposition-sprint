@@ -1,8 +1,10 @@
 extends Line2D
+class_name Sinwave
 @export var line_container: Node2D
 @export var players: Node2D
 @export var detector_top: Area2D
 @export var detector_bottom: Area2D
+
 var y: float = 0
 var x: float = 0
 
@@ -67,20 +69,18 @@ func update_player_position(delta):
 	enemy_movement_timer -= delta
 	for child in players.get_children():
 		var vertical_direction: float = Input.get_axis("move_up", "move_down")
-		if is_player(child): 
-			for line in line_container.get_children(): 
+		if is_player(child):
+			for line in line_container.get_children():
 				if get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
-					for node in get_tree().get_nodes_in_group(line.get_groups()[0]): 
-						print(node)
 					if line.position.y < 300 or line.position.y > 60:
 						vertical_movement = 1
 						line.position.y += vertical_movement * vertical_direction
 		else:
-			for line in line_container.get_children(): 
+			for line in line_container.get_children():
 				if not get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
 					line.position.y += position_container[line.get_index()]
-					for node in child.get_children(): 
-						if node is AnimatedSprite2D:	
+					for node in child.get_children():
+						if node is AnimatedSprite2D:
 							node.position.y += position_container[line.get_index()]
 		match child:
 			var player_node when player_node.is_in_group("Yellow"):
@@ -95,15 +95,15 @@ func update_player_position(delta):
 			var player_node when player_node.is_in_group("Blue"):
 				child.add_to_group("Line Four")
 				child.position.y = 15 * sin(0.15 * abs(x)) + 220
+
 func randomized_enemy_movement(delta):
 	enemy_movement_timer -= delta
 		
-	if enemy_movement_timer <= 0: 
-		for element in position_container: 
+	if enemy_movement_timer <= 0:
+		for element in position_container:
 			element = randf_range(-0.2, 0.2)
 			enemy_movement_timer = 1
-		
-	
+			
 func set_player_position():
 	if is_instance_valid(players):
 		for child in players.get_children():
@@ -148,15 +148,28 @@ func area_collisions(area: Area2D) -> void:
 							wave_count -= 1
 	end_minigame()
 
-func change_direction(detector: Area2D): 
+func change_direction(detector: Area2D):
 	if detector.has_overlapping_areas():
 		var area = detector.get_overlapping_areas()[0]
-		if detector.name.contains("top"):
-			position_container[area.get_parent().get_index()] = 0.2
-			enemy_movement_timer = 0.1
-		elif detector.name.contains("bottom"):
-			position_container[area.get_parent().get_index()] = -0.2
-			enemy_movement_timer = 0.1
+		var player_wave = area.get_parent()
+		print(area.get_parent())
+		if get_tree().get_nodes_in_group(player_wave.get_groups()[0]).any(is_player):
+			if detector.name.contains("top"):
+				for i in range(10):
+					player_wave.move_local_y(0.5)
+					await get_tree().process_frame
+			elif detector.name.contains("bottom"):
+				for i in range(10):
+					player_wave.move_local_y(-0.5)
+					await get_tree().process_frame
+		else:
+			if detector.name.contains("top"):
+				position_container[area.get_parent().get_index()] = 0.2
+				enemy_movement_timer = 0.1
+			elif detector.name.contains("bottom"):
+				position_container[area.get_parent().get_index()] = -0.2
+				enemy_movement_timer = 0.1
+
 func flash_white(line: Line2D):
 	var checker: bool = false
 	var previous_default_color: Color = line.default_color
@@ -183,4 +196,4 @@ func end_minigame():
 		for line in get_tree().get_nodes_in_group("Cancelled"):
 			for node in get_tree().get_nodes_in_group(line.get_groups()[0]):
 				node.queue_free()
-				
+		get_tree().change_scene_to_file("res://Scenes/root.tscn")

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 class_name Contestant
+@warning_ignore("unused_signal")
 signal update_health
 signal take_damage
 #region variables
@@ -58,16 +59,16 @@ func _physics_process(delta: float) -> void:
 		if SPEED == 0:
 			Global.state = Global.States.IDLE
 			state_machine()
-		if Global.state != Global.States.DASHING and SPEED != 0:
+		if dash_checker == false and SPEED != 0:
 			Global.state = Global.States.MOVING
 			state_machine()
 	elif not is_on_floor(): # as of when i made this, the enemy should not be able to wall hang/jump.
 		#if adding, MODIFY THIS CODE
 		match self:
 			var x when x.is_in_group("player"):
-				if not is_on_wall():
+				if not is_on_wall() and dash_checker == false:
 					Global.state = Global.States.JUMPING
-					state_machine()
+					state_machine() 
 			var x when x.is_in_group("enemy"):
 				Global.state = Global.States.JUMPING
 				state_machine()
@@ -101,6 +102,7 @@ func state_machine():
 				var x when x < 0:
 					animated_sprite.play("jump_up")
 		Global.States.DASHING:
+			print("dashing")
 			if not is_on_floor():
 				velocity.y = -150
 			for Name in Contestant_information.keys():
@@ -159,11 +161,9 @@ func jump_powerup():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 func interference_powerup():
-	var normal_scene = "res://Scenes/root.tscn"
-	var interference_minigame_scene = "res://Scenes/interference_cutscene.tscn"
-	get_tree().change_scene_to_file(interference_minigame_scene)
-	if $"..".get_child_count() < 4:
-		get_tree().change_scene_to_file(normal_scene)
+	var get_current_scene = get_tree().current_scene
+	if get_current_scene:
+		get_tree().change_scene_to_packed(Global.interference_minigame_scene)
 #endregion
 func jump():
 	#speed_sprite_flip()
@@ -197,7 +197,7 @@ func dash():
 			state_machine()
 	self.dash_checker = false
 	self.dash_cooldown = true
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(0.7).timeout
 	self.dash_cooldown = false
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):

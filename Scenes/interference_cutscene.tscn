@@ -94,13 +94,13 @@ translate_speed = 2.0
 visible = false
 position = Vector2(201, 98)
 
-[node name="yellow" parent="cutscene picture/players" index="1" unique_id=1916415869 groups=["Line One"]]
+[node name="yellow" parent="cutscene picture/players" index="0" unique_id=1916415869 groups=["Line One"]]
 
-[node name="green" parent="cutscene picture/players" index="2" unique_id=1041134616 groups=["Line Two"]]
+[node name="green" parent="cutscene picture/players" index="1" unique_id=1041134616 groups=["Line Two"]]
 
-[node name="red" parent="cutscene picture/players" index="3" unique_id=206440627 groups=["Line Three"]]
+[node name="red" parent="cutscene picture/players" index="2" unique_id=206440627 groups=["Line Three"]]
 
-[node name="blue" parent="cutscene picture/players" index="4" unique_id=86018735 groups=["Line Four"]]
+[node name="blue" parent="cutscene picture/players" index="3" unique_id=86018735 groups=["Line Four"]]
 
 [node name="detector containers" type="Node2D" parent="." unique_id=1535746859]
 

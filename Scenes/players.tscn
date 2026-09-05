@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://87li06w08gsy" path="res://Assets/Robot Color Palette/yellow robot color palette.png" id="4_my7he"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="5_r2acv"]
 [ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="6_edx70"]
+[ext_resource type="Texture2D" uid="uid://mpq8fhe7fblg" path="res://Assets/Sprites/Robot/dash.png" id="6_gvnuo"]
 [ext_resource type="Texture2D" uid="uid://e6byip5j1lft" path="res://Assets/Sprites/Robot/robot jump beta.png" id="7_ekrhb"]
 [ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_pd04j"]
 [ext_resource type="Texture2D" uid="uid://2solqm871klx" path="res://Assets/Sprites/Robot/Wall Hang.png" id="9_4dnj7"]
@@ -23,6 +24,26 @@ shader = ExtResource("3_2vq0w")
 shader_parameter/original_palette = ExtResource("5_r2acv")
 shader_parameter/new_palette = ExtResource("4_my7he")
 shader_parameter/color_count = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vq0w"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my7he"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2acv"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edx70"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekrhb"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv1ua"]
 atlas = ExtResource("6_edx70")
@@ -114,6 +135,26 @@ region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vq0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my7he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2acv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edx70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekrhb")
+}],
+"loop": 0,
+"name": &"dash",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hv1ua")
@@ -232,23 +273,6 @@ shader_parameter/color_count = 12
 
 [node name="players" type="Node2D" unique_id=264091493]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1398605686]
-position = Vector2(8, -3)
-offset = Vector2(0, -20)
-ignore_rotation = false
-process_callback = 0
-limit_top = -9999666
-limit_right = 100000
-limit_bottom = 10000334
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 3.0
-drag_horizontal_enabled = true
-drag_left_margin = 0.25
-drag_top_margin = 0.25
-drag_right_margin = 0.25
-drag_bottom_margin = 0.0
-
 [node name="yellow" parent="." unique_id=1916415869 groups=["Yellow"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_86vg6")
 position = Vector2(-160, 1)
@@ -282,6 +306,7 @@ material = SubResource("ShaderMaterial_smepp")
 position = Vector2(-1, -2)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"dash"
 autoplay = "default"
 script = ExtResource("10_3d5ho")
 
@@ -326,3 +351,20 @@ scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 script = ExtResource("10_3d5ho")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1398605686]
+position = Vector2(8, -3)
+offset = Vector2(0, -20)
+ignore_rotation = false
+process_callback = 0
+limit_top = -9999666
+limit_right = 100000
+limit_bottom = 10000334
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 3.0
+drag_horizontal_enabled = true
+drag_left_margin = 0.3
+drag_top_margin = 0.25
+drag_right_margin = 0.3
+drag_bottom_margin = 0.0

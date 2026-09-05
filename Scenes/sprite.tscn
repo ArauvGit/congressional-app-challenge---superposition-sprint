@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="1_xlnop"]
 [ext_resource type="Texture2D" uid="uid://cd55uyjye5vr7" path="res://Assets/Robot Color Palette/blue robot palette.png" id="2_sf0xd"]
 [ext_resource type="Texture2D" uid="uid://cnab73nqh2a1y" path="res://Assets/Sprites/Robot/Robot Character idle.png" id="3_8114p"]
+[ext_resource type="Texture2D" uid="uid://mpq8fhe7fblg" path="res://Assets/Sprites/Robot/dash.png" id="3_sf0xd"]
 [ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="4_h35hj"]
 [ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="5_ndmrp"]
 
@@ -11,6 +12,26 @@ shader = ExtResource("1_xlnop")
 shader_parameter/original_palette = ExtResource("2_sf0xd")
 shader_parameter/new_palette = ExtResource("2_sf0xd")
 shader_parameter/color_count = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8114p"]
+atlas = ExtResource("3_sf0xd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h35hj"]
+atlas = ExtResource("3_sf0xd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndmrp"]
+atlas = ExtResource("3_sf0xd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w74f7"]
+atlas = ExtResource("3_sf0xd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aq5wj"]
+atlas = ExtResource("3_sf0xd")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv1ua"]
 atlas = ExtResource("3_8114p")
@@ -62,6 +83,26 @@ region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8114p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h35hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndmrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w74f7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aq5wj")
+}],
+"loop": 1,
+"name": &"dash",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hv1ua")
@@ -122,9 +163,11 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_gdgd8")
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"dash"
 autoplay = "default"
+frame = 2
+frame_progress = 0.6067746
 script = ExtResource("5_ndmrp")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1636852834]
-root_node = NodePath("../../../yellow/sprite")
 libraries/ = SubResource("AnimationLibrary_aq5wj")

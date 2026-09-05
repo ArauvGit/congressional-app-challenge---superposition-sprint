@@ -1,7 +1,8 @@
-res://Scripts/global.gd
-res://Scripts/Contestants.gd
-res://Scripts/sinwave.gd
-res://Scenes/players.tscn
+res://Scenes/sprite.tscn
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
+res://Scripts/sprite.gd
+res://Scripts/Contestants.gd
+res://Scenes/players.tscn
+res://Scenes/root.tscn
