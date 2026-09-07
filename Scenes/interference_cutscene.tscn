@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(640, 14)
 
-[node name="Interference Cutscene" type="Node2D" unique_id=1923831156]
+[node name="Interference Cutscene" type="CanvasLayer" unique_id=746433824]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1394783105]
 anchor_mode = 0

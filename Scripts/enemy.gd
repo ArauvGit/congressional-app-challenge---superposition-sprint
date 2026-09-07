@@ -80,15 +80,14 @@ func double_jump():
 	state_machine()
 
 func wall_jump():
+	if is_in_group("Green"):
+		print("wall jump")
 	#if abs(get_wall_normal().x) != 1 or abs(get_floor_normal().x) != 1: 
 		#return
 	if is_on_wall_only():
 		set_speed(SPEED * -1)
 		move_local_x(10 * get_wall_normal().x)
 		double_jump()
-	else:
-		return
-
 func jump_cooldown_formula(jump: float) -> float:
 	var timer = jump / -650
 	return timer
@@ -155,13 +154,11 @@ func raycast_detection():
 		else:
 			enemy_jump()
 	
-	elif self.raycast_right.is_colliding() and self.raycast_left.is_colliding() \
-	or self.raycast_top_right.is_colliding() and self.raycast_top_left.is_colliding():
+	if self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
 		print('hi')
 		if self.raycast_top.is_colliding():
 			return
-		elif raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer or \
-		self.raycast_top_right and self.raycast_top_left is TileMapLayer:
+		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 
 	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left

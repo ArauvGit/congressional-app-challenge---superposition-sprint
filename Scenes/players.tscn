@@ -29,21 +29,25 @@ shader_parameter/color_count = 12
 atlas = ExtResource("6_gvnuo")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_my7he"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvnuo"]
 atlas = ExtResource("6_gvnuo")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2acv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_my7he"]
 atlas = ExtResource("6_gvnuo")
 region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_edx70"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2acv"]
 atlas = ExtResource("6_gvnuo")
 region = Rect2(96, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ekrhb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_edx70"]
 atlas = ExtResource("6_gvnuo")
 region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekrhb"]
+atlas = ExtResource("6_gvnuo")
+region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hv1ua"]
 atlas = ExtResource("6_edx70")
@@ -138,6 +142,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2vq0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvnuo")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_my7he")
@@ -321,7 +328,10 @@ material = SubResource("ShaderMaterial_so2ip")
 position = Vector2(1, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"dash"
 autoplay = "default"
+frame = 5
+frame_progress = 1.0
 script = ExtResource("10_3d5ho")
 
 [node name="red" parent="." unique_id=206440627 groups=["Red"] instance=ExtResource("1_h4gei")]

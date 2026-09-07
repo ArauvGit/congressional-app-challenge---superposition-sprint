@@ -13,11 +13,14 @@ func _process(_delta: float) -> void:
 func animation_state():
 	match Global.state:
 		Global.States.IDLE:
+			is_on_wall = false
 			play('default')
 		Global.States.MOVING:
+			is_on_wall = false
 			if not is_dashing: 
 				play("run")
 		Global.States.JUMPING:
+			is_on_wall = false
 			if not is_dashing:
 				match get_parent().velocity.y: 
 					var x when x < 0:

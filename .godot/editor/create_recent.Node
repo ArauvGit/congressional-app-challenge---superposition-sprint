@@ -1,3 +1,4 @@
+CanvasLayer
 AnimationPlayer
 CollisionShape2D
 Area2D
@@ -9,6 +10,5 @@ Label
 TextEdit
 VBoxContainer
 ColorRect
-CanvasLayer
 StaticBody2D
 Sprite2D

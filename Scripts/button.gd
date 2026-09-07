@@ -42,3 +42,5 @@ func choose_script():
 			node.set_script(preload("res://Scripts/player.gd"))
 		elif node.is_in_group("enemy"):
 			node.set_script(preload("res://Scripts/enemy.gd"))
+		if node is CharacterBody2D:
+			node.jump()

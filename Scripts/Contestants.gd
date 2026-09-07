@@ -26,7 +26,7 @@ var SPEED = 0:
 	},
 	
 	"Green": {
-		"SPEED": 185,
+		"SPEED": 200,
 		"JUMP": - 375,
 		"HEALTH": 4,
 	},
@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 				state_machine()
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("move_right") and checker == false:
+		jump()
 		for Name in Contestant_information.keys():
 			if get_groups()[0] == Name:
 				set_speed(Contestant_information.get(Name)["SPEED"])
@@ -93,15 +94,10 @@ func state_machine():
 			set_speed(0)
 			set_jump(0)
 		Global.States.MOVING:
-			if is_in_group("player"):
-				print("moving")
 			speed_sprite_flip()
 		Global.States.JUMPING:
 			speed_sprite_flip()
-			if is_in_group("player"):
-				print("jumping")
 		Global.States.DASHING:
-			print("dashing")
 			if not is_on_floor():
 				velocity.y = -150
 			for Name in Contestant_information.keys():
