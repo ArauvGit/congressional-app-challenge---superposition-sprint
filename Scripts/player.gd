@@ -34,7 +34,6 @@ func player_camera_pos_config():
 			if abs(velocity.x): 
 				node.global_position.x = self.global_position.x + 185 * velocity.normalized().x
 func movement_freeze(): 
-	print(velocity.x)
 	if get_platform_velocity() != Vector2.ZERO:
 		movement(0)
 	else: 

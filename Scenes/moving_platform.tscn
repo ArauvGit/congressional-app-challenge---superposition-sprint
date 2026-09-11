@@ -5,8 +5,8 @@
 
 [node name="Moving platform" type="AnimatableBody2D" unique_id=261293963]
 collision_layer = 3
+constant_linear_velocity = Vector2(0, 200)
 script = ExtResource("1_hrpga")
-position_transform = 100
 
 [node name="AnimatedSprite2D" type="Sprite2D" parent="." unique_id=1224412756]
 scale = Vector2(0.5625, 0.09375)
