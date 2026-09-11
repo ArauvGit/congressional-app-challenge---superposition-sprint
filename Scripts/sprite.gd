@@ -14,23 +14,23 @@ func animation_state():
 	match Global.state:
 		Global.States.IDLE:
 			is_on_wall = false
-			play('default')
+			play("default")
 		Global.States.MOVING:
 			is_on_wall = false
-			if not is_dashing: 
+			if not is_dashing:
 				play("run")
 		Global.States.JUMPING:
 			is_on_wall = false
 			if not is_dashing:
-				match get_parent().velocity.y: 
+				match get_parent().velocity.y:
 					var x when x < 0:
 						play("jump_up")
-					var x when x > 0: 
+					var x when x > 0:
 						play("fall_down")
 		Global.States.WALL_HANGING:
 			play("wall_hang")
 			is_on_wall = true
-		Global.States.DASHING: 
+		Global.States.DASHING:
 			if not is_on_wall:
 				play("dash")
 				is_dashing = true

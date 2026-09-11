@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 	player_dash()
 	die()
 	player_camera_pos_config()
+	movement_freeze()
 #endregion
 #region movement 
 func player_camera_pos_config(): 
@@ -32,6 +33,12 @@ func player_camera_pos_config():
 		if node is Camera2D: 
 			if abs(velocity.x): 
 				node.global_position.x = self.global_position.x + 185 * velocity.normalized().x
+func movement_freeze(): 
+	print(velocity.x)
+	if get_platform_velocity() != Vector2.ZERO:
+		movement(0)
+	else: 
+		movement(SPEED)
 	
 func player_jump() -> void:
 	speed_sprite_flip()

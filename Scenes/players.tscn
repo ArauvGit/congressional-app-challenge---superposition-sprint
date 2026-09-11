@@ -328,10 +328,7 @@ material = SubResource("ShaderMaterial_so2ip")
 position = Vector2(1, 0)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"dash"
 autoplay = "default"
-frame = 5
-frame_progress = 1.0
 script = ExtResource("10_3d5ho")
 
 [node name="red" parent="." unique_id=206440627 groups=["Red"] instance=ExtResource("1_h4gei")]
@@ -346,6 +343,8 @@ position = Vector2(1, -1)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
+frame = 3
+frame_progress = 0.67386746
 script = ExtResource("10_3d5ho")
 
 [node name="blue" parent="." unique_id=86018735 groups=["Blue"] instance=ExtResource("1_h4gei")]

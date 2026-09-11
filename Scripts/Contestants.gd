@@ -7,6 +7,7 @@ signal take_damage
 var animated_sprite = get_child(2)
 var jump_count: int = 0
 var checker: bool = false
+var idle_checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
 var jump_powerup_active: bool = false
@@ -68,7 +69,7 @@ func _physics_process(delta: float) -> void:
 			var x when x.is_in_group("player"):
 				if not is_on_wall() and dash_checker == false:
 					Global.state = Global.States.JUMPING
-					state_machine() 
+					state_machine()
 			var x when x.is_in_group("enemy"):
 				Global.state = Global.States.JUMPING
 				state_machine()
@@ -84,15 +85,19 @@ func _physics_process(delta: float) -> void:
 		Global.state = Global.States.MOVING
 		state_machine()
 		checker = true
-	velocity.x = SPEED
+	if is_in_group("player"):
+		if get_platform_velocity() != Vector2.ZERO:
+			movement(0)
+			Global.state = Global.States.IDLE
+			state_machine()
+				
+	else:
+		movement(SPEED)
 	move_and_slide()
 	_on_detector_body_entered(tile_map())
 func state_machine():
 	animated_sprite.animation_state()
 	match Global.state:
-		Global.States.IDLE:
-			set_speed(0)
-			set_jump(0)
 		Global.States.MOVING:
 			speed_sprite_flip()
 		Global.States.JUMPING:
@@ -160,6 +165,9 @@ func interference_powerup():
 	if get_current_scene:
 		get_tree().change_scene_to_packed(Global.interference_minigame_scene)
 #endregion
+func movement(move_speed):
+	velocity.x = move_speed
+	return velocity.x
 func jump():
 	#speed_sprite_flip()
 	velocity.y = JUMP_VELOCITY

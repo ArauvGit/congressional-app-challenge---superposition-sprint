@@ -1,6 +1,11 @@
-CanvasLayer
-AnimationPlayer
+Parallax2D
 CollisionShape2D
+Sprite2D
+AnimatedSprite2D
+Camera2D
+AnimationPlayer
+AnimatableBody2D
+CanvasLayer
 Area2D
 Node2D
 Button
@@ -8,7 +13,3 @@ Control
 HBoxContainer
 Label
 TextEdit
-VBoxContainer
-ColorRect
-StaticBody2D
-Sprite2D
