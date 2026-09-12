@@ -1,12 +1,4 @@
+res://Scenes/root.tscn
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
-res://moving_platform_animation.gd
-res://moving_platform.tscn
-res://Scenes/root.tscn
-res://Scenes/moving_platform.tscn
-res://Scripts/player.gd
-res://Scripts/Contestants.gd
-res://Scenes/players.tscn
-res://Scenes/player.tscn
-res://Scripts/sprite.gd

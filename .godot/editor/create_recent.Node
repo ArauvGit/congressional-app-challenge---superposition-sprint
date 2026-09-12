@@ -1,7 +1,7 @@
+Sprite2D
 RayCast2D
 Parallax2D
 CollisionShape2D
-Sprite2D
 AnimatedSprite2D
 Camera2D
 AnimationPlayer
@@ -12,4 +12,3 @@ Node2D
 Button
 Control
 HBoxContainer
-Label
