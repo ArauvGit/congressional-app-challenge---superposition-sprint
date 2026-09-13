@@ -50,9 +50,6 @@ func get_contestant_jump():
 			return Jump
 
 func enemy_jump():
-	if is_in_group("Red"):
-		print(enemy_jump_count)
-		print(can_jump)
 	Global.state = Global.States.JUMPING
 	state_machine()
 	if enemy_jump_count == 2:
@@ -88,8 +85,8 @@ func wall_jump():
 		set_speed(SPEED * -1)
 		move_local_x(10 * get_wall_normal().x)
 		double_jump()
-func jump_cooldown_formula(jump: float) -> float:
-	var timer = jump / -650
+func jump_cooldown_formula(jump_cooldown: float) -> float:
+	var timer = jump_cooldown / -650
 	return timer
 #endregion
 #endregion
@@ -101,7 +98,7 @@ func raycast_multiplier(multiplier: float) -> float:
 func raycast_init():
 	var scale_formula: float = raycast_multiplier(get_contestant_jump())
 	var default_target_pos_y: int = 20
-	var under_target_pos_y: int = 16 # raycast_under_right handles tilemap stuff so this is better
+	var _under_target_pos_y: int = 16 # raycast_under_right handles tilemap stuff so this is better
 	var col_mask: int = 2
 
 	var raycast_attributes := \

@@ -20,10 +20,7 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(_delta: float) -> void: 
-	if self.is_in_group("straight moving platform"):
-		self.modify_straight_position()
-	elif self.is_in_group("circular moving platform"):
-		self.modify_circular_position()
+	self.modify_straight_position()
 	for child in self.get_children(): 
 		child.position = pos
 func modify_straight_position(): 

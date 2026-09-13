@@ -1,6 +1,6 @@
 extends Button
 @export var players: Node2D
-signal assign_roles
+
 
 var groups: Array = ["blue", "green", "red", "yellow"]
 
@@ -26,11 +26,14 @@ func _pressed() -> void:
 		if node is CharacterBody2D:
 			node.set_player()
 			_choose_type()
+			node.jump()
 	Global.is_pressed = true
 	get_parent().queue_free()
 
 func _choose_type():
 	for node in players.get_children():
+		if node is CharacterBody2D: 
+			node.jump()
 		match node:
 			var x when x is CharacterBody2D and not x.is_in_group("player"):
 				node.set_enemy()

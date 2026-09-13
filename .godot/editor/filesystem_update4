@@ -5,3 +5,10 @@ res://Scripts/damage_flash.tres
 res://moving_platform_animation.gd
 res://Scenes/moving_platform.tscn
 res://Scenes/player.tscn
+res://Scripts/button.gd
+res://death_screen.gd
+res://Scripts/enemy.gd
+res://Scripts/interference_area.gd
+res://Scripts/powerups.gd
+res://enemy_jumpzone.tscn
+res://Scripts/Contestants.gd

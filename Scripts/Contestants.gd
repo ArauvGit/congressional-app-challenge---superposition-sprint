@@ -75,7 +75,6 @@ func _physics_process(delta: float) -> void:
 				state_machine()
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("move_right") and checker == false:
-		jump()
 		for Name in Contestant_information.keys():
 			if get_groups()[0] == Name:
 				set_speed(Contestant_information.get(Name)["SPEED"])
@@ -85,11 +84,10 @@ func _physics_process(delta: float) -> void:
 		Global.state = Global.States.MOVING
 		state_machine()
 		checker = true
-	if is_in_group("player"):
-		if get_platform_velocity() != Vector2.ZERO:
-			movement(0)
-			Global.state = Global.States.IDLE
-			state_machine()
+	if get_platform_velocity() != Vector2.ZERO:
+		movement(0)
+		Global.state = Global.States.IDLE
+		state_machine()
 				
 	else:
 		movement(SPEED)
@@ -176,6 +174,9 @@ func wall_hang():
 	if is_on_wall_only():
 		Global.state = Global.States.WALL_HANGING
 		state_machine()
+		if Input.is_action_just_pressed("dash"): 
+			set_speed(SPEED * -1)
+			dash()
 func dash():
 	Global.state = Global.States.DASHING
 	self.state_machine()
@@ -232,3 +233,8 @@ func set_player():
 	print(Global.player_testers)
 func set_enemy():
 	self.add_to_group("enemy")
+
+
+func _on_enemy_jump_zone_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemy"):
+		body.enemy_jump()

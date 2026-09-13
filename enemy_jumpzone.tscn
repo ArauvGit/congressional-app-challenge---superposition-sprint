@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ca4v3s4note5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
+size = Vector2(58, 50)
+
+[node name="Enemy Jump Zone" type="Area2D" unique_id=197600304]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615133950]
+shape = SubResource("RectangleShape2D_sdnvj")
