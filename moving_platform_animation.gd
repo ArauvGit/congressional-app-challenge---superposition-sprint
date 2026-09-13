@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 
 @export var position_transform: float
@@ -20,7 +20,6 @@ func _process(_delta: float) -> void:
 	pass
 
 func _physics_process(_delta: float) -> void: 
-	self.position.x += 0.001
 	if self.is_in_group("straight moving platform"):
 		self.modify_straight_position()
 	elif self.is_in_group("circular moving platform"):

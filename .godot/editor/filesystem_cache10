@@ -1,5 +1,5 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1789171796
+::res://::1789309686
 background1.png::CompressedTexture2D::4204367390296807842::1789170137::1789170321::1::::<><><>0<>0<>767690f4a09a99b83714901a80b697a6<>res://.godot/imported/background1.png-1bda85794aa425f689dbcd5c83f6a789.ctex::
 background2.png::CompressedTexture2D::6462410742386678852::1789171832::1789171835::1::::<><><>0<>0<>a4e16a6dc406903edc2026d9ecb70c2c<>res://.godot/imported/background2.png-f31d5d1d201be48ff8d6f3f822c6d3f0.ctex::
 complete_decoherence.tscn::PackedScene::6895878899965196349::1788365351::0::1::::<><><>0<>0<><>::uid://dk0xv32d6o2me::::res://death_screen.gd<>uid://bh44rfewlrght::::res://Assets/UI/Fonts/editundo.ttf<>uid://yl5xfnuk4rpw::::res://Assets/UI/Fonts/PixelifySans-Medium.ttf
@@ -7,7 +7,8 @@ death_screen.gd::GDScript::7914195436358590728::1788365351::0::1::::<>CanvasLaye
 moving_platform_animation.gd::GDScript::6656585817149181903::1789166430::0::1::::<>StaticBody2D<><>0<>0<><>::
 powerup.tscn::PackedScene::5407061199522181680::1788388069::0::1::::<><><>0<>0<><>::uid://2me3fhle78vj::::res://Scripts/powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
 scene_loader.gd::GDScript::101742429826656149::1788534128::0::1::::<>Node<><>0<>0<><>::
-::res://Assets/::1788304913
+::res://Assets/::1789310832
+background3.png::CompressedTexture2D::8620842877725634605::1789310855::1789310857::1::::<><><>0<>0<>6ddabc20172835c816f1e8c352025ff8<>res://.godot/imported/background3.png-59fc09e15261d6e4c25d18685c415a26.ctex::
 test powerup.png::CompressedTexture2D::792150685155740053::1786478047::1786478047::1::::<><><>0<>0<>d710aaa635f2e1078bb316f53923a660<>res://.godot/imported/test powerup.png-cc7d28980f8bfe3e998c0a1178da794a.ctex::
 test_background.png::CompressedTexture2D::5556867007092331081::1787449445::1787449449::1::::<><><>0<>0<>6845826cabedb72cf3113fb73765bfaf<>res://.godot/imported/test_background.png-14feeee807ac5bcc60e22cc6130dd0df.ctex::
 tileset.png::CompressedTexture2D::1990977215676293262::1786478047::1786478047::1::::<><><>0<>0<>3ad680695eef0ee7ca9d229cf7082478<>res://.godot/imported/tileset.png-06023f60f54ec986b75003a8d422612f.ctex::
@@ -39,7 +40,7 @@ PixelifySans-Medium.ttf::FontFile::1709103269272681248::1788304874::1788304898::
 icon.svg::CompressedTexture2D::583279896145231563::1786478047::1786478047::1::::<><><>0<>0<>8e492b6f60c8bb6ceeda4266385a5ba5<>res://.godot/imported/icon.svg-f6b473fa365f4edb4f443f01536ecdeb.ctex::
 ::res://Random/More UID Scripts/::1786478041
 ::res://Random/UID scripts/::1786478041
-::res://Scenes/::1789171686
+::res://Scenes/::1789171874
 interference_area.tscn::PackedScene::2461915696828521651::1788477031::0::1::::<><><>0<>0<><>::uid://bu8x2wuusxhdp::::res://Scripts/interference_area.gd
 interference_cutscene.tscn::PackedScene::5454451048313948955::1788716016::0::1::::<><><>0<>0<><>::uid://uuhx4aku1gbc::::res://Scripts/sinwave.gd<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://bbctnk70cdued::::res://Scenes/interference_area.tscn
 main_menu.tscn::PackedScene::5381477989013858767::1788304898::0::1::::<><><>0<>0<><>::uid://c8xiw3x7i7fmd::::res://Assets/UI/PixelifySans-SemiBold.ttf
@@ -47,7 +48,7 @@ moving_platform.tscn::PackedScene::2137891577578711084::1789169519::0::1::::<><>
 player.tscn::PackedScene::7655236424971410601::1789169290::0::1::::<><><>0<>0<><>::uid://mvyfl3oo1a4v::::res://Scripts/Contestants.gd
 players.tscn::PackedScene::8968325017491650597::1789079904::0::1::::<><><>0<>0<><>::uid://dhcivjbxc0a2l::::res://Scenes/player.tscn<>uid://d04puorwo6jeu::::res://Scripts/damage_flash.gdshader<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://mpq8fhe7fblg::::res://Assets/Sprites/Robot/dash.png<>uid://e6byip5j1lft::::res://Assets/Sprites/Robot/robot jump beta.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://2solqm871klx::::res://Assets/Sprites/Robot/Wall Hang.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png
 powerup.tscn::PackedScene::1459303196839080950::1786478047::0::1::::<><><>0<>0<><>::uid://2me3fhle78vj::::res://Scripts/powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
-root.tscn::PackedScene::2959626695014355023::1789171686::0::1::::<><><>0<>0<><>::uid://b05vk1bybgy3k::::res://background1.png<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://buvo1cdt82r7n::::res://Assets/Sprites/CACTileset.png<>uid://cyco7wvujojvw::::res://background2.png<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://5pu052akh0i7::::res://Scenes/moving_platform.tscn<>uid://c5ioeanfqeso0::::res://complete_decoherence.tscn<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn
+root.tscn::PackedScene::2959626695014355023::1789171874::0::1::::<><><>0<>0<><>::uid://b05vk1bybgy3k::::res://background1.png<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://buvo1cdt82r7n::::res://Assets/Sprites/CACTileset.png<>uid://cyco7wvujojvw::::res://background2.png<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://5pu052akh0i7::::res://Scenes/moving_platform.tscn<>uid://c5ioeanfqeso0::::res://complete_decoherence.tscn<>uid://ciw3fkuw3m8v8::::res://Scenes/main_menu.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn
 sprite.tscn::PackedScene::9037129395772497535::1788574121::0::1::::<><><>0<>0<><>::uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://mpq8fhe7fblg::::res://Assets/Sprites/Robot/dash.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd
 ::res://Scripts/::1789170423
 button.gd::GDScript::3399876531381982647::1788717340::0::1::::<>Button<><>0<>0<><>::

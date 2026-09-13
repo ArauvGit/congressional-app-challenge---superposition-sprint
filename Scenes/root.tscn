@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://3mpdsb8sxulq" path="res://Assets/tileset.png" id="1_imcog"]
 [ext_resource type="Texture2D" uid="uid://buvo1cdt82r7n" path="res://Assets/Sprites/CACTileset.png" id="2_8fnbn"]
 [ext_resource type="Texture2D" uid="uid://cyco7wvujojvw" path="res://background2.png" id="2_lwnbm"]
+[ext_resource type="Texture2D" uid="uid://du3aa1hhy4nov" path="res://Assets/background3.png" id="3_fu36u"]
 [ext_resource type="PackedScene" uid="uid://d01ladgcelxov" path="res://Scenes/players.tscn" id="3_r3lo5"]
 [ext_resource type="PackedScene" uid="uid://5pu052akh0i7" path="res://Scenes/moving_platform.tscn" id="4_a6f85"]
 [ext_resource type="PackedScene" uid="uid://c5ioeanfqeso0" path="res://complete_decoherence.tscn" id="9_qtxxq"]
-[ext_resource type="PackedScene" uid="uid://ciw3fkuw3m8v8" path="res://Scenes/main_menu.tscn" id="11_dw4fd"]
 [ext_resource type="Script" uid="uid://boo6p8a2nourf" path="res://Scripts/button.gd" id="12_642p6"]
 [ext_resource type="Script" uid="uid://biek6q3ib03yg" path="res://Scripts/health.gd" id="13_18fmr"]
 [ext_resource type="Texture2D" uid="uid://ykq2tubnd4dk" path="res://Assets/verynewheart.png" id="14_lb85r"]
@@ -361,7 +361,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 3044.28, 360)
 
 [node name="background2" type="Parallax2D" parent="." unique_id=484891922]
-scroll_scale = Vector2(0.7, 0.7)
+scroll_scale = Vector2(0.4, 0.4)
 scroll_offset = Vector2(-126, 0)
 
 [node name="background1layer2" type="Sprite2D" parent="background2" unique_id=956175323]
@@ -369,6 +369,18 @@ texture_filter = 1
 texture_repeat = 2
 position = Vector2(269, 121)
 texture = ExtResource("2_lwnbm")
+region_enabled = true
+region_rect = Rect2(838.08, -85.384, 4281.92, 2880)
+
+[node name="background3" type="Parallax2D" parent="." unique_id=1425345857]
+scroll_scale = Vector2(0.6, 0.6)
+scroll_offset = Vector2(-126, 0)
+
+[node name="background1layer2" type="Sprite2D" parent="background3" unique_id=1561365219]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(269, 121)
+texture = ExtResource("3_fu36u")
 region_enabled = true
 region_rect = Rect2(838.08, -85.384, 4281.92, 2880)
 
@@ -386,23 +398,19 @@ position = Vector2(-176, 116)
 [node name="Camera2D" parent="players" index="4" unique_id=1398605686]
 limit_left = -589
 
-[node name="Main Menu" parent="." unique_id=338399537 instance=ExtResource("11_dw4fd")]
-visible = false
-
 [node name="Moving platform" parent="." unique_id=261293963 groups=["straight moving platform"] instance=ExtResource("4_a6f85")]
-visible = false
-position = Vector2(96, 39)
-position_transform = 0.1
-position_adder = 0.04
+position = Vector2(398.82495, 23)
+position_transform = 62.80000000000062
+position_adder = 0.1
 position_y = 50
-radius_multiplier = 2
 
-[node name="AnimatedSprite2D" parent="Moving platform" index="0" unique_id=1224412756]
-position = Vector2(0, -22)
+[node name="AnimatableBody2D" parent="Moving platform" index="0" unique_id=688504268]
+position = Vector2(-6.573568, 0)
+
+[node name="AnimatedSprite2D" parent="Moving platform/AnimatableBody2D" index="0" unique_id=1224412756]
 scale = Vector2(0.5625, 0.4375)
 
-[node name="CollisionShape2D" parent="Moving platform" index="1" unique_id=1110748938]
-position = Vector2(0, -29)
+[node name="CollisionShape2D" parent="Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 shape = SubResource("RectangleShape2D_a6f85")
 one_way_collision = false
 
