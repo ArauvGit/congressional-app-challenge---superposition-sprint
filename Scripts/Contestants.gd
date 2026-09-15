@@ -159,9 +159,10 @@ func jump_powerup():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 func interference_powerup():
-	var get_current_scene = get_tree().current_scene
-	if get_current_scene:
-		get_tree().change_scene_to_packed(Global.interference_minigame_scene)
+	var interference_scene = load("res://Scenes/interference_cutscene.tscn")
+	var interference_node = interference_scene.instantiate()
+	$"../..".add_child(interference_node)
+	$"../..".move_child(interference_node, 0)
 #endregion
 func movement(move_speed):
 	velocity.x = move_speed
@@ -177,6 +178,7 @@ func wall_hang():
 		if Input.is_action_just_pressed("dash"): 
 			set_speed(SPEED * -1)
 			dash()
+			animated_sprite.play("dash")
 func dash():
 	Global.state = Global.States.DASHING
 	self.state_machine()

@@ -152,7 +152,7 @@ func change_direction(detector: Area2D):
 	if detector.has_overlapping_areas():
 		var area = detector.get_overlapping_areas()[0]
 		var player_wave = area.get_parent()
-		print(area.get_parent())
+		print(player_wave)
 		if get_tree().get_nodes_in_group(player_wave.get_groups()[0]).any(is_player):
 			if detector.name.contains("top"):
 				for i in range(10):
@@ -196,4 +196,4 @@ func end_minigame():
 		for line in get_tree().get_nodes_in_group("Cancelled"):
 			for node in get_tree().get_nodes_in_group(line.get_groups()[0]):
 				node.queue_free()
-		get_tree().change_scene_to_file("res://Scenes/root.tscn")
+		self.queue_free()

@@ -92,7 +92,10 @@ func decohere():
 			velocity.y = -500
 		elif is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
-			double_jump()
+			for i in range(10): 
+				move_local_y(-1)
+				await get_tree().process_frame 
+			jump()
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		damage_checker = false # create dedicated invincibility function later with damage flash

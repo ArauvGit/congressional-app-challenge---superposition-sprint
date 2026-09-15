@@ -2,13 +2,6 @@ res://Scenes/root.tscn
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
-res://moving_platform_animation.gd
-res://Scenes/moving_platform.tscn
-res://Scenes/player.tscn
-res://Scripts/button.gd
-res://death_screen.gd
-res://Scripts/enemy.gd
-res://Scripts/interference_area.gd
-res://Scripts/powerups.gd
-res://enemy_jumpzone.tscn
-res://Scripts/Contestants.gd
+res://level_choose.gd
+res://Scenes/Level2.tscn
+res://level_assign.tscn
