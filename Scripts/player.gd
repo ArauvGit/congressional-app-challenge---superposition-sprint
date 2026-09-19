@@ -1,9 +1,10 @@
 extends Contestant
 class_name Player
 var detector: Area2D = get_child(1)
-var can_play: bool = true
+var can_play_animation: bool = true
 #region important functions
 func _init() -> void:
+	RaceSong.play()
 	self.connect("take_damage", decohere)
 	for Name in Contestant_information.keys():
 		if self.get_groups()[0] == Name:
@@ -20,6 +21,8 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	if is_on_floor():
 		jump_count = 0
+	else:
+		can_squish = true
 	player_jump()
 	wall_jump()
 	player_dash()
@@ -37,17 +40,23 @@ func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
 		movement(0)
 	else: 
-		movement(SPEED)
-	
+		movement(SPEED)	
+
+
 func player_jump() -> void:
 	speed_sprite_flip()
 	if jump_count == 1:
 		return
 	if is_on_floor():
+		self.scale.x = 1
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
 		jump()
 		jump_count += 1
+		if is_on_floor():
+			squash(1.2, 0.7, 0.05)
+		else: 
+			squash(1.1, 1.1, 0.05)
 	elif Input.is_action_just_pressed("jump") and jump_count == 1:
 		double_jump()
 func double_jump() -> void:
@@ -99,12 +108,18 @@ func decohere():
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		damage_checker = false # create dedicated invincibility function later with damage flash
+func interference_powerup():
+	for child in get_parent().get_parent().get_children(): 
+		if child is CanvasLayer and child.name.contains("Interference"): 
+			if Global.interference_works == true: 
+				child.show()
+				Global.interference_works = false	
 func die(): 
 	if Global.health <= 0: 
 		for child in get_parent().get_parent().get_children(): 
 			if child is CanvasLayer and child.name.contains("Decoherence"): 
 				child.show()
-				if can_play == true: 
+				if can_play_animation == true: 
 					child.get_child(2).play("RESET")
-					can_play = false
+					can_play_animation = false
 #endregion		

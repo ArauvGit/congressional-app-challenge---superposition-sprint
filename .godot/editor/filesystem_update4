@@ -1,7 +1,14 @@
-res://Scenes/root.tscn
+res://Scripts/button.gd
+res://Scripts/Contestants.gd
+res://Scripts/sinwave.gd
+res://Scenes/interference_cutscene.tscn
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.gdshader
 res://Scripts/damage_flash.tres
-res://level_choose.gd
+res://Scenes/set_script.gd
+res://Scripts/player.gd
 res://Scenes/Level2.tscn
-res://level_assign.tscn
+res://Scripts/global.gd
+res://Scenes/level1.tscn
+res://Scenes/race_song.tscn
+res://Scripts/enemy.gd

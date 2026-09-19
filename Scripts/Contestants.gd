@@ -10,6 +10,7 @@ var checker: bool = false
 var idle_checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
+var can_squish: bool = false
 var jump_powerup_active: bool = false
 var damage_checker: bool = false
 var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
@@ -84,6 +85,7 @@ func _physics_process(delta: float) -> void:
 		Global.state = Global.States.MOVING
 		state_machine()
 		checker = true
+	land()
 	if get_platform_velocity() != Vector2.ZERO:
 		movement(0)
 		Global.state = Global.States.IDLE
@@ -113,6 +115,10 @@ func state_machine():
 							set_speed(Contestant_information.get(Name)["SPEED"] * -4)
 		Global.States.WALL_HANGING:
 			velocity.y = 50
+func land(): 
+	if can_squish == true and is_on_floor():
+		squash(1.3, 0.9, 0.05)
+		can_squish = false
 func change_direction():
 	var _move_right = Input.is_action_just_pressed("move_right")
 	var _move_left = Input.is_action_just_pressed("move_left")
@@ -158,12 +164,15 @@ func jump_powerup():
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
-func interference_powerup():
-	var interference_scene = load("res://Scenes/interference_cutscene.tscn")
-	var interference_node = interference_scene.instantiate()
-	$"../..".add_child(interference_node)
-	$"../..".move_child(interference_node, 0)
+
+				
 #endregion
+func squash(x: float, y: float, time: float): 
+	create_tween().tween_property(self, "scale", Vector2(x, y), time)
+	await get_tree().create_timer(time).timeout
+	create_tween().tween_property(self, "scale", Vector2(1, 1), 0.05)
+
+
 func movement(move_speed):
 	velocity.x = move_speed
 	return velocity.x
@@ -175,7 +184,7 @@ func wall_hang():
 	if is_on_wall_only():
 		Global.state = Global.States.WALL_HANGING
 		state_machine()
-		if Input.is_action_just_pressed("dash"): 
+		if Input.is_action_just_pressed("dash"):
 			set_speed(SPEED * -1)
 			dash()
 			animated_sprite.play("dash")

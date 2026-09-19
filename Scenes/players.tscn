@@ -282,7 +282,7 @@ shader_parameter/color_count = 12
 
 [node name="yellow" parent="." unique_id=1916415869 groups=["Yellow"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(-160, 1)
+position = Vector2(0, -175)
 collision_mask = 2
 Contestant_information = {
 "Blue": {
@@ -313,19 +313,18 @@ material = SubResource("ShaderMaterial_smepp")
 position = Vector2(-1, -2)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"dash"
 autoplay = "default"
 script = ExtResource("10_3d5ho")
 
 [node name="green" parent="." unique_id=1041134616 groups=["Green"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_4hbtj")
-position = Vector2(-71, 0)
+position = Vector2(0, -100)
 collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="green" unique_id=1978129541]
 texture_filter = 1
 material = SubResource("ShaderMaterial_so2ip")
-position = Vector2(1, 0)
+position = Vector2(2, 0.9999995)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
@@ -333,7 +332,7 @@ script = ExtResource("10_3d5ho")
 
 [node name="red" parent="." unique_id=206440627 groups=["Red"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(22, -1)
+position = Vector2(0, -25)
 collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="red" unique_id=1361858006]
@@ -349,7 +348,7 @@ script = ExtResource("10_3d5ho")
 
 [node name="blue" parent="." unique_id=86018735 groups=["Blue"] instance=ExtResource("1_h4gei")]
 material = SubResource("ShaderMaterial_86vg6")
-position = Vector2(114, -3)
+position = Vector2(0, 50)
 collision_mask = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="blue" unique_id=667662941]

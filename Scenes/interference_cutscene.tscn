@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cjyganyfs86ct"]
 
 [ext_resource type="Script" uid="uid://uuhx4aku1gbc" path="res://Scripts/sinwave.gd" id="1_14bg0"]
+[ext_resource type="Script" path="res://Scripts/sinwave_set_script.gd" id="1_dgr71"]
 [ext_resource type="PackedScene" uid="uid://d01ladgcelxov" path="res://Scenes/players.tscn" id="1_kj2vx"]
 [ext_resource type="PackedScene" uid="uid://bbctnk70cdued" path="res://Scenes/interference_area.tscn" id="2_2uvc0"]
 
@@ -8,6 +9,7 @@
 size = Vector2(640, 14)
 
 [node name="Interference Cutscene" type="CanvasLayer" unique_id=746433824]
+script = ExtResource("1_dgr71")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1394783105]
 anchor_mode = 0
@@ -95,12 +97,16 @@ visible = false
 position = Vector2(201, 98)
 
 [node name="yellow" parent="cutscene picture/players" index="0" unique_id=1916415869 groups=["Line One"]]
+collision_mask = 4
 
 [node name="green" parent="cutscene picture/players" index="1" unique_id=1041134616 groups=["Line Two"]]
+collision_mask = 4
 
 [node name="red" parent="cutscene picture/players" index="2" unique_id=206440627 groups=["Line Three"]]
+collision_mask = 4
 
 [node name="blue" parent="cutscene picture/players" index="3" unique_id=86018735 groups=["Line Four"]]
+collision_mask = 4
 
 [node name="detector containers" type="Node2D" parent="." unique_id=1535746859]
 

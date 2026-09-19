@@ -58,6 +58,7 @@ func enemy_jump():
 	if can_jump == false:
 		return
 	if is_on_floor() and enemy_jump_count == 0 and jump_checker == false:
+		squash(1.2, 0.7, 0.05)
 		enemy_jump_count += 1
 		velocity.y = JUMP_VELOCITY
 		if not is_on_floor():
