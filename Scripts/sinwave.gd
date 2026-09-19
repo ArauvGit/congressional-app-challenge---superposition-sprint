@@ -8,8 +8,8 @@ class_name Sinwave
 var y: float = 0
 var x: float = 0
 
-var yellow_position_adder: float = 0.1
-var green_position_adder: float = 0.1
+var yellow_position_adder: float = 0.2
+var green_position_adder: float = 0.3
 var red_position_adder: float = 0.1
 var blue_position_adder: float = 0.1
 var position_container: Array = [yellow_position_adder, green_position_adder, red_position_adder, blue_position_adder]
@@ -50,16 +50,12 @@ func _ready() -> void:
 	match self.get_index():
 		0:
 			wave_speed_multiplier = 4
-			self.add_to_group("Line One")
 		1:
 			wave_speed_multiplier = 3
-			self.add_to_group("Line Two")
 		2:
 			wave_speed_multiplier = 5
-			self.add_to_group("Line Three")
 		3:
 			wave_speed_multiplier = 2
-			self.add_to_group("Line Four")
 	while x != 641:
 		self.add_point(Vector2(x, y))
 		x += 1
@@ -69,22 +65,11 @@ func _ready() -> void:
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta: float) -> void:
 # 	pass
-func assign_groups(): 
-	match self.name:
-		var line when line == "Line1":
-			self.add_to_group("Line One")
-		var line when line == "Line2":
-			self.add_to_group("Line Two")
-		var line when line == "Line3":
-			self.add_to_group("Line Three")
-		var line when line == "Line4":
-			self.add_to_group("Line Four")
+
 
 func _physics_process(delta: float) -> void:
 	if Global.interference_works == false: 
 		return
-	if self.get_groups().size() == 0: 
-		assign_groups()
 	if x >= 641:
 		for i in range(wave_speed_multiplier):
 			self.add_point(Vector2(x, y))
@@ -94,11 +79,8 @@ func _physics_process(delta: float) -> void:
 			self.translate(Vector2(-1, 0))
 	update_player_position(delta)
 	area_collisions(get_child(0))
-	if detector_bottom.has_overlapping_areas():
-		change_direction(detector_bottom)
-	if detector_top.has_overlapping_areas():
-		change_direction(detector_top)
-	randomized_enemy_movement(delta)
+	change_direction(detector_bottom)
+	change_direction(detector_top)
 func set_y(new_value: float):
 	if y != new_value:
 		y = new_value
@@ -190,16 +172,16 @@ func area_collisions(area: Area2D) -> void:
 func change_direction(detector: Area2D):
 	if detector.has_overlapping_areas():
 		var area = detector.get_overlapping_areas()[0]
-		var player_wave = area.get_parent()
-		print(player_wave.get_groups())
-		if get_tree().get_nodes_in_group(player_wave.get_groups()[0]).any(is_player):
+		var contestant_wave = area.get_parent()
+		print(contestant_wave.get_groups())
+		if get_tree().get_nodes_in_group(contestant_wave.get_groups()[0]).any(is_player):
 			if detector.name.contains("top"):
 				for i in range(10):
-					player_wave.move_local_y(0.5)
+					contestant_wave.move_local_y(0.5)
 					await get_tree().process_frame
 			elif detector.name.contains("bottom"):
 				for i in range(10):
-					player_wave.move_local_y(-0.5)
+					contestant_wave.move_local_y(-0.5)
 					await get_tree().process_frame
 		else:
 			if detector.name.contains("top"):

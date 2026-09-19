@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://u15rmcsem62e"]
 
-[ext_resource type="Script" uid="uid://2me3fhle78vj" path="res://Scripts/powerups.gd" id="1_wh0le"]
-[ext_resource type="Texture2D" uid="uid://ljyuuugh768h" path="res://Assets/test powerup.png" id="2_6cuax"]
+[ext_resource type="Script" uid="uid://cojsgwpdwu1b8" path="res://Scripts/powerups.gd" id="1_wh0le"]
+[ext_resource type="Texture2D" uid="uid://deu3apvjahbsw" path="res://Assets/Sprites/powerups/base_powerup.png" id="2_dkaad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(30, 28)
@@ -11,7 +11,8 @@ script = ExtResource("1_wh0le")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1253056423]
 texture_filter = 1
-texture = ExtResource("2_6cuax")
+scale = Vector2(1.875, 1.75)
+texture = ExtResource("2_dkaad")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1913306377]
 shape = SubResource("RectangleShape2D_sdnvj")

@@ -41,8 +41,15 @@ func movement_freeze():
 		movement(0)
 	else: 
 		movement(SPEED)	
-
-
+func get_dict_health(): 
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name:
+			return Contestant_information.get(Name)["HEALTH"]
+func health_damage_checker(): 
+	if Global.health < get_dict_health(): 
+		Global.damaged = true 
+	else: 
+		Global.damaged = false
 func player_jump() -> void:
 	speed_sprite_flip()
 	if jump_count == 1:
@@ -81,7 +88,8 @@ func health_powerup():
 func set_health(new_health: int) -> int:
 	if Global.health != new_health:
 		Global.health = new_health
-	update_health.emit()
+	health_damage_checker()
+	update_health.emit() 
 	return Global.health
 func decohere():
 	var damage_animation := func():

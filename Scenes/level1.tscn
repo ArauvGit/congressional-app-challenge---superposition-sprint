@@ -398,11 +398,15 @@ tile_set = SubResource("TileSet_b68tq")
 unique_name_in_owner = true
 position = Vector2(-176, 116)
 
-[node name="yellow" parent="players" index="0" unique_id=1916415869]
+[node name="yellow" parent="players" index="0" unique_id=1916415869 groups=["Line One"]]
 visible = false
 
-[node name="green" parent="players" index="1" unique_id=1041134616]
+[node name="green" parent="players" index="1" unique_id=1041134616 groups=["Line Two"]]
 visible = false
+
+[node name="red" parent="players" index="2" unique_id=206440627 groups=["Line Three"]]
+
+[node name="blue" parent="players" index="3" unique_id=86018735 groups=["Line Four"]]
 
 [node name="Camera2D" parent="players" index="4" unique_id=1398605686]
 limit_left = -589

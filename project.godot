@@ -40,6 +40,10 @@ Interference="interference powerup"
 "Line One"=""
 "Line Three"=""
 "Line Two"=""
+Green=""
+Red=""
+Blue=""
+Yellow=""
 
 [gui]
 

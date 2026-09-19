@@ -14,6 +14,7 @@ var can_squish: bool = false
 var jump_powerup_active: bool = false
 var damage_checker: bool = false
 var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
+var has_decohered: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
 var SPEED = 0:
@@ -132,7 +133,7 @@ func change_direction():
 				if Input.is_action_just_pressed("move_right"):
 					set_speed(SPEED * -1)
 func _decohere():
-	print('decohere!')
+	has_decohered = true
 	set_jump(JUMP_VELOCITY * 0.1)
 	set_speed(SPEED * 0.1)
 func tile_map() -> TileMapLayer:
