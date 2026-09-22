@@ -42,7 +42,7 @@ var SPEED = 0:
 	
 	"Blue": {
 		"SPEED": 190,
-		"JUMP": - 325,
+		"JUMP": - 335,
 		"HEALTH": 6
 	}
 }
@@ -116,7 +116,9 @@ func state_machine():
 							set_speed(Contestant_information.get(Name)["SPEED"] * -4)
 		Global.States.WALL_HANGING:
 			velocity.y = 50
-func land(): 
+		Global.States.DAMAGING:
+			print("damaging")
+func land():
 	if can_squish == true and is_on_floor():
 		squash(1.3, 0.9, 0.05)
 		can_squish = false
@@ -168,7 +170,7 @@ func jump_powerup():
 
 				
 #endregion
-func squash(x: float, y: float, time: float): 
+func squash(x: float, y: float, time: float):
 	create_tween().tween_property(self, "scale", Vector2(x, y), time)
 	await get_tree().create_timer(time).timeout
 	create_tween().tween_property(self, "scale", Vector2(1, 1), 0.05)
@@ -242,7 +244,6 @@ func speed_sprite_flip():
 func set_player():
 	self.add_to_group("player")
 	Global.player_testers[self.get_index() - 1] = true
-	print(Global.player_testers)
 func set_enemy():
 	self.add_to_group("enemy")
 

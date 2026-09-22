@@ -3,6 +3,7 @@ enum States {
 	IDLE,
 	MOVING,
 	JUMPING,
+	DAMAGING,
 	DASHING,
 	WALL_HANGING,
 	}

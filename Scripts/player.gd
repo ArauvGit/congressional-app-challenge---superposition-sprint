@@ -2,6 +2,9 @@ extends Contestant
 class_name Player
 var detector: Area2D = get_child(1)
 var can_play_animation: bool = true
+var camera_nudge: int = 185
+var nudge_multiplier: int = 0
+
 #region important functions
 func _init() -> void:
 	RaceSong.play()
@@ -31,24 +34,32 @@ func _physics_process(delta: float) -> void:
 	movement_freeze()
 #endregion
 #region movement 
-func player_camera_pos_config(): 
+func player_camera_pos_config():
 	for node in self.get_children():
-		if node is Camera2D: 
-			if abs(velocity.x): 
-				node.global_position.x = self.global_position.x + 185 * velocity.normalized().x
-func movement_freeze(): 
+		if node is Camera2D:
+			if get_platform_velocity() == Vector2.ZERO:
+				node.global_position.x = self.global_position.x + camera_nudge * velocity.normalized().x
+			else: 
+				node.global_position.x = self.global_position.x
+func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
-		movement(0)
-	else: 
-		movement(SPEED)	
-func get_dict_health(): 
+		match animated_sprite:
+			var x when x.flip_h:
+				camera_nudge = -300
+			var x when not x.flip_h:
+				camera_nudge = 300
+		
+	else:
+		movement(SPEED)
+		camera_nudge = 185
+func get_dict_health():
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			return Contestant_information.get(Name)["HEALTH"]
-func health_damage_checker(): 
-	if Global.health < get_dict_health(): 
-		Global.damaged = true 
-	else: 
+func health_damage_checker():
+	if Global.health < get_dict_health():
+		Global.damaged = true
+	else:
 		Global.damaged = false
 func player_jump() -> void:
 	speed_sprite_flip()
@@ -62,7 +73,7 @@ func player_jump() -> void:
 		jump_count += 1
 		if is_on_floor():
 			squash(1.2, 0.7, 0.05)
-		else: 
+		else:
 			squash(1.1, 1.1, 0.05)
 	elif Input.is_action_just_pressed("jump") and jump_count == 1:
 		double_jump()
@@ -89,13 +100,10 @@ func set_health(new_health: int) -> int:
 	if Global.health != new_health:
 		Global.health = new_health
 	health_damage_checker()
-	update_health.emit() 
+	update_health.emit()
 	return Global.health
 func decohere():
 	var damage_animation := func():
-		animated_sprite.set("shader", damage_shader)
-		animated_sprite.set("shader_parameter/flash_color", Color(1, 1, 1))
-		animated_sprite.set("shader_parameter/flash_value", 1.0)
 		await get_tree().create_timer(2).timeout
 		var tween = create_tween()
 		for i in range(5):
@@ -107,27 +115,44 @@ func decohere():
 		set_speed(SPEED * -0.9)
 		if is_on_floor():
 			velocity.y = -500
+			Global.state = Global.States.DAMAGING
+			state_machine()
 		elif is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
-			for i in range(10): 
+			for i in range(10):
 				move_local_y(-1)
-				await get_tree().process_frame 
+				await get_tree().process_frame
 			jump()
+		Global.state = Global.States.DAMAGING
+		state_machine()
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
+		match self:
+			var x when not x.is_on_floor() and dash_checker == false:
+				Global.state = Global.States.JUMPING
+				state_machine()
+			var x when x.is_on_floor() and dash_checker == false:
+				Global.state = Global.States.MOVING
+				state_machine()
+			var x when x.is_on_wall():
+				Global.state = Global.States.WALL_HANGING
+				state_machine()
+			var x when dash_checker == true:
+				Global.state = Global.States.DASHING
+				state_machine()
 		damage_checker = false # create dedicated invincibility function later with damage flash
 func interference_powerup():
-	for child in get_parent().get_parent().get_children(): 
-		if child is CanvasLayer and child.name.contains("Interference"): 
-			if Global.interference_works == true: 
+	for child in get_parent().get_parent().get_children():
+		if child is CanvasLayer and child.name.contains("Interference"):
+			if Global.interference_works == true:
 				child.show()
-				Global.interference_works = false	
-func die(): 
-	if Global.health <= 0: 
-		for child in get_parent().get_parent().get_children(): 
-			if child is CanvasLayer and child.name.contains("Decoherence"): 
+				Global.interference_works = false
+func die():
+	if Global.health <= 0:
+		for child in get_parent().get_parent().get_children():
+			if child is CanvasLayer and child.name.contains("Decoherence"):
 				child.show()
-				if can_play_animation == true: 
+				if can_play_animation == true:
 					child.get_child(2).play("RESET")
 					can_play_animation = false
 #endregion		

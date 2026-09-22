@@ -24,7 +24,7 @@ var started_cancelling: bool = false
 var cancelled: bool = false
 # # Called when the node enters the scene tree for the first time.
 func is_player(node: Node2D) -> bool:
-	return Global.player_testers[node.get_index() - 1] == true
+	return Global.player_testers[node.get_index() - 1] == true or node.is_in_group("player")
 
 func _init() -> void: 
 	match self.get_index():

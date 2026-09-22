@@ -18,6 +18,7 @@ var jump_checker: bool = false
 var can_jump: bool = true
 var jump_toggle_time: int = 3
 var timer_duration: float = jump_cooldown_formula(get_contestant_jump())
+var health: int = 0
 #endregion
 #endregion
 #region important functions
@@ -27,6 +28,9 @@ func _init():
 	raycast_init()
 	print("the enemy script has been activated")
 	super.set_physics_process(true)
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name and jump_powerup_active == false:
+			health = Contestant_information.get(Name)["JUMP"]
 
 func _physics_process(delta: float) -> void:
 	if is_on_floor():
@@ -59,7 +63,6 @@ func enemy_jump():
 		return
 	if is_on_floor() and enemy_jump_count == 0 and jump_checker == false:
 		squash(1.2, 0.7, 0.05)
-		enemy_jump_count += 1
 		velocity.y = JUMP_VELOCITY
 		if not is_on_floor():
 			Global.state = Global.States.JUMPING
@@ -67,6 +70,7 @@ func enemy_jump():
 		jump_checker = true
 		await get_tree().create_timer(timer_duration).timeout
 		jump_checker = false
+		enemy_jump_count += 1
 	if not is_on_floor() and jump_checker == false and can_jump:
 		double_jump()
 		enemy_jump_count = 2
@@ -159,10 +163,10 @@ func raycast_detection():
 		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 
-	if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
-		damage_detection(tile_map(), raycast_under_right)
-	elif self.raycast_under_left.is_colliding():
-		damage_detection(tile_map(), raycast_under_left)
+	#if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
+		#damage_detection(tile_map(), raycast_under_right)
+	#elif self.raycast_under_left.is_colliding():
+		#damage_detection(tile_map(), raycast_under_left)
 	
 	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
 		if not is_on_floor() or abs(get_floor_normal().x) != 1:
@@ -192,8 +196,8 @@ func damage_detection(tileMap: TileMapLayer, raycast: RayCast2D):
 						elif can_jump == false or enemy_jump_count >= 2:
 							enemy_dash()
 func decohere():
-	print("decohere")
 	if damage_checker == false:
+		health -= 1
 		if is_on_floor():
 			velocity.y = -300
 			set_speed(SPEED * 0.9)

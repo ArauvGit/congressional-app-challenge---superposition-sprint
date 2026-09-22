@@ -4,9 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://c7d0lo632b80f" path="res://Assets/Sprites/moving_platform.png" id="2_anqd2"]
 
 [node name="Moving platform" type="Node2D" unique_id=1789265333]
+position = Vector2(10, 0)
 script = ExtResource("1_hrpga")
+position_transform = 401.35000000005795
+position_adder = 0.05
+position_x = 50
+position_y = -10
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=688504268]
+position = Vector2(-36.688675, 7.337735)
 collision_layer = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1224412756]

@@ -1,5 +1,6 @@
 extends Area2D
 var groups: Array = ["Health", "Speed", "Jump"]
+@onready var sprite: Sprite2D = $Sprite2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -43,10 +44,20 @@ func weighted_choice(biggest: int, middle: int, smallest: int):
 		return 1 
 	else: 
 		return 0
+func choose_sprite(): 
+	match self.get_groups()[0]:
+		"Speed": 
+			sprite.texture = load("res://Assets/Sprites/powerups/robot jump beta.png") 
+		"Health": 
+			sprite.texture = load("res://Assets/Sprites/powerups/jump_powerup.png")
+		"Jump": 
+			sprite.texture = load("res://Assets/Sprites/powerups/jump_powerup.png")
+		
+
 		
 func random():
 	if Global.damaged == false: 
 		self.add_to_group(groups[randi_range(1, 2)]) 
 	elif Global.damaged == true: 
 		self.add_to_group(groups[weighted_choice(70, 15, 15)])
-	
+		

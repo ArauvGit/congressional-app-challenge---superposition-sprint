@@ -28,11 +28,16 @@ func animation_state():
 					var x when x > 0:
 						play("fall_down")
 		Global.States.WALL_HANGING:
-			play("wall_hang")
 			is_on_wall = true
+			if not is_dashing:
+				play("wall_hang")
 		Global.States.DASHING:
 			if not is_on_wall:
 				play("dash")
 				is_dashing = true
 				await animation_finished
 				is_dashing = false
+			else:
+				Global.state = Global.States.WALL_HANGING
+		Global.States.DAMAGING:
+			play("malfunction")
