@@ -15,3 +15,4 @@ func _process(_delta: float) -> void:
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	Global.is_pressed = false

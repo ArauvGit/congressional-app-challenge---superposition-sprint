@@ -1,22 +1,21 @@
 [gd_scene format=3 uid="uid://5pu052akh0i7"]
 
-[ext_resource type="Script" uid="uid://c13q84hvyiuod" path="res://moving_platform_animation.gd" id="1_hrpga"]
+[ext_resource type="Script" uid="uid://c13q84hvyiuod" path="res://Scripts/moving_platform_animation.gd" id="1_hrpga"]
 [ext_resource type="Texture2D" uid="uid://c7d0lo632b80f" path="res://Assets/Sprites/moving_platform.png" id="2_anqd2"]
 
 [node name="Moving platform" type="Node2D" unique_id=1789265333]
 position = Vector2(10, 0)
 script = ExtResource("1_hrpga")
-position_transform = 401.35000000005795
+position_transform = 483.10000000007653
 position_adder = 0.05
 position_x = 50
 position_y = -10
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=688504268]
-position = Vector2(-36.688675, 7.337735)
+position = Vector2(-34.274216, 6.854843)
 collision_layer = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1224412756]
 texture = ExtResource("2_anqd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1110748938]
-one_way_collision = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://u15rmcsem62e"]
 
 [ext_resource type="Script" uid="uid://cojsgwpdwu1b8" path="res://Scripts/powerups.gd" id="1_wh0le"]
-[ext_resource type="Texture2D" uid="uid://deu3apvjahbsw" path="res://Assets/Sprites/powerups/base_powerup.png" id="2_dkaad"]
+[ext_resource type="Texture2D" uid="uid://cjcu1yans2iq5" path="res://Assets/Sprites/powerups/robot jump beta.png" id="2_dkaad"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(30, 28)

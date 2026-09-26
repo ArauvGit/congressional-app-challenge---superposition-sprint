@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bqlwbjnua47wa"]
+
+[ext_resource type="Texture2D" uid="uid://deu3apvjahbsw" path="res://Assets/Sprites/powerups/base_powerup.png" id="1_wkndv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
+size = Vector2(15.999999, 15.999999)
+
+[node name="Win Area" type="Area2D" unique_id=1838188679]
+scale = Vector2(2.5, 2.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2091912661]
+texture = ExtResource("1_wkndv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1894750458]
+scale = Vector2(0.99999994, 0.99999994)
+shape = SubResource("RectangleShape2D_sdnvj")

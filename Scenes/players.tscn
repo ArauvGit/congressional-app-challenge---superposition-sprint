@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://mpq8fhe7fblg" path="res://Assets/Sprites/Robot/dash.png" id="6_gvnuo"]
 [ext_resource type="Texture2D" uid="uid://e6byip5j1lft" path="res://Assets/Sprites/Robot/robot jump beta.png" id="7_ekrhb"]
 [ext_resource type="Texture2D" uid="uid://qnudu3xkmuv1" path="res://Assets/Sprites/Robot/Robot walk-Sheet.png" id="8_pd04j"]
-[ext_resource type="Texture2D" uid="uid://diw0lhp5ire57" path="res://malfunction sprite sheet.png" id="9_2vq0w"]
+[ext_resource type="Texture2D" uid="uid://c4xd7mwck1wub" path="res://Assets/Sprites/Robot/malfunction sprite sheet.png" id="9_2vq0w"]
 [ext_resource type="Texture2D" uid="uid://2solqm871klx" path="res://Assets/Sprites/Robot/Wall Hang.png" id="9_4dnj7"]
 [ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="10_3d5ho"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Assets/Robot Color Palette/red robot palette.png" id="11_px1kg"]
@@ -91,10 +91,16 @@ atlas = ExtResource("7_ekrhb")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd04j"]
-atlas = ExtResource("9_2vq0w")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dnj7"]
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d5ho"]
+atlas = ExtResource("9_2vq0w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px1kg"]
 atlas = ExtResource("9_2vq0w")
 region = Rect2(32, 0, 32, 32)
 
@@ -222,6 +228,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4dnj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d5ho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px1kg")
 }],
 "loop": 1,
 "name": &"malfunction",
@@ -333,10 +345,7 @@ material = SubResource("ShaderMaterial_smepp")
 position = Vector2(-1, -2)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"malfunction"
 autoplay = "default"
-frame = 1
-frame_progress = 0.42431298
 script = ExtResource("10_3d5ho")
 
 [node name="green" parent="." unique_id=1041134616 groups=["Green"] instance=ExtResource("1_h4gei")]

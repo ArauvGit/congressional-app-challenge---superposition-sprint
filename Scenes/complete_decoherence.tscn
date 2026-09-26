@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c5ioeanfqeso0"]
 
-[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://death_screen.gd" id="1_eyhs5"]
-[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts/editundo.ttf" id="1_qwoht"]
-[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="3_0ynjc"]
+[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://Scripts/death_screen.gd" id="1_eyhs5"]
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="1_qwoht"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="3_0ynjc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68tq"]
 bg_color = Color(0.7089437, 0.17783621, 0.1804738, 1)

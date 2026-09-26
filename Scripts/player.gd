@@ -115,16 +115,17 @@ func decohere():
 		set_speed(SPEED * -0.9)
 		if is_on_floor():
 			velocity.y = -500
-			Global.state = Global.States.DAMAGING
+			Global.damaged = true
 			state_machine()
 		elif is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
 			for i in range(10):
 				move_local_y(-1)
 				await get_tree().process_frame
-			jump()
-		Global.state = Global.States.DAMAGING
-		state_machine()
+			player_jump()
+			Global.damaged = true
+			state_machine()
+	
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		match self:

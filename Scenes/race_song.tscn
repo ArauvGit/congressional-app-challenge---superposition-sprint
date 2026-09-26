@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c1yl14qphbcjl"]
 
-[ext_resource type="AudioStream" uid="uid://cvv5j3cwwg505" path="res://race song.mp3" id="1_8yaum"]
+[ext_resource type="AudioStream" uid="uid://cvv5j3cwwg505" path="res://Random/race song.mp3" id="1_8yaum"]
 
 [node name="race song" type="AudioStreamPlayer" unique_id=338027107]
 stream = ExtResource("1_8yaum")
+volume_db = -80.0

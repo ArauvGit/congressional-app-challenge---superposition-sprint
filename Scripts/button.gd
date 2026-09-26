@@ -29,7 +29,7 @@ func _pressed() -> void:
 			_choose_type()
 			node.jump()
 	Global.is_pressed = true
-	get_parent().queue_free()
+	get_parent().hide()
 
 func _choose_type():
 	for node in players.get_children():
