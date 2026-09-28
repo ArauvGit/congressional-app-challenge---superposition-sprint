@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ykq2tubnd4dk" path="res://Assets/verynewheart.png" id="9_c5gc3"]
 [ext_resource type="PackedScene" uid="uid://5pu052akh0i7" path="res://Scenes/moving_platform.tscn" id="10_6e4cv"]
 [ext_resource type="PackedScene" uid="uid://u15rmcsem62e" path="res://Scenes/powerup.tscn" id="11_uuy0h"]
-[ext_resource type="PackedScene" uid="uid://ca4v3s4note5" path="res://Scenes/enemy_jumpzone.tscn" id="12_52iny"]
+[ext_resource type="PackedScene" uid="uid://ca4v3s4note5" path="res://Scenes/enemy_trigger.tscn" id="12_52iny"]
 [ext_resource type="PackedScene" uid="uid://c5ioeanfqeso0" path="res://Scenes/complete_decoherence.tscn" id="13_nxqqj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]

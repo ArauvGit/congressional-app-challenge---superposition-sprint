@@ -2,6 +2,7 @@ extends Contestant
 class_name enemy
 #region variables
 #region raycast variables
+
 var raycast_parent = Node2D.new()
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
@@ -74,7 +75,10 @@ func enemy_jump():
 	if not is_on_floor() and jump_checker == false and can_jump:
 		double_jump()
 		enemy_jump_count = 2
-	
+
+func on_trigger_area_entered():
+	print("hi")
+
 func double_jump():
 	velocity.y = JUMP_VELOCITY
 	Global.state = Global.States.JUMPING
@@ -82,8 +86,6 @@ func double_jump():
 	state_machine()
 
 func wall_jump():
-	if is_in_group("Green"):
-		print("wall jump")
 	#if abs(get_wall_normal().x) != 1 or abs(get_floor_normal().x) != 1: 
 		#return
 	if is_on_wall_only():
@@ -155,12 +157,17 @@ func raycast_detection():
 			return
 		else:
 			enemy_jump()
-	
-	if self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
-		print('hi')
+			
+	if self.raycast_top_left.is_colliding() and self.raycast_top_right.is_colliding(): 
 		if self.raycast_top.is_colliding():
 			return
-		if raycast_right.get_collider() and raycast_left.get_collider() is TileMapLayer:
+		if raycast_top_right.get_collider() is TileMapLayer and raycast_top_left.get_collider() is TileMapLayer:
+			wall_jump()
+	
+	if self.raycast_right.is_colliding() and self.raycast_left.is_colliding():
+		if self.raycast_top.is_colliding():
+			return
+		if raycast_right.get_collider() is TileMapLayer and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 
 	#if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left

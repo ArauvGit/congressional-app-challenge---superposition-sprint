@@ -4,4 +4,3 @@
 
 [node name="race song" type="AudioStreamPlayer" unique_id=338027107]
 stream = ExtResource("1_8yaum")
-volume_db = -80.0

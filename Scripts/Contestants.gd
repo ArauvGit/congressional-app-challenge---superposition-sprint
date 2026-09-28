@@ -4,7 +4,7 @@ class_name Contestant
 signal update_health
 signal take_damage
 #region variables
-var placement: Array = [1, 2, 3, 4]
+var placement: Array = []
 var animated_sprite = get_child(2)
 var jump_count: int = 0
 var checker: bool = false
@@ -25,7 +25,7 @@ var SPEED = 0:
 @export var Contestant_information: Dictionary = {
 	"Yellow": {
 		"SPEED": 180,
-		"JUMP": - 350,
+		"JUMP": - 360,
 		"HEALTH": 5,
 	},
 	
@@ -38,12 +38,12 @@ var SPEED = 0:
 	"Red": {
 		"SPEED": 195,
 		"JUMP": - 400,
-		"HEALTH": 1,
+		"HEALTH": 100,
 	},
 	
 	"Blue": {
 		"SPEED": 190,
-		"JUMP": - 335,
+		"JUMP": - 350,
 		"HEALTH": 6
 	}
 }
@@ -56,6 +56,7 @@ var Powerup_information: Dictionary = {
 #region important functions
 func _ready():
 	set_physics_process(false)
+	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:
 	if Global.damaged:
 		Global.state = Global.States.DAMAGING
@@ -91,7 +92,7 @@ func _physics_process(delta: float) -> void:
 		state_machine()
 		checker = true
 	land()
-	calculate_placement()
+	print(return_placement())
 	if get_platform_velocity() != Vector2.ZERO:
 		movement(0)
 		Global.state = Global.States.IDLE
@@ -105,16 +106,10 @@ func state_machine():
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.MOVING:
-			if is_in_group("player"):
-				print("moving")
 			speed_sprite_flip()
 		Global.States.JUMPING:
-			if is_in_group("player"):
-				print("damaging")
 			speed_sprite_flip()
 		Global.States.DASHING:
-			if is_in_group("player"):
-				print("dashing")
 			if not is_on_floor():
 				velocity.y = -150
 			for Name in Contestant_information.keys():
@@ -126,21 +121,39 @@ func state_machine():
 						var x when x < 0:
 							set_speed(Contestant_information.get(Name)["SPEED"] * -4)
 		Global.States.WALL_HANGING:
-			if is_in_group("player"):
-				print("wall_hanging")
 			velocity.y = 50
 		Global.States.DAMAGING:
-			if is_in_group("player"):
-				print("damaging")
+			pass
+
 func calculate_placement():
-	var win_area = $"../../Win Area"
-	var win_area_pos = win_area.global_position
-	var contestant_pos = self.global_position
-	var distance_x = contestant_pos.x - win_area_pos.x
-	var distance_y = contestant_pos.y - win_area_pos.y
+	pass
+
+func return_distance(pos1: Vector2, pos2: Vector2):
+	var distance_x = pos1.x - pos2.x
+	var distance_y = pos1.y - pos2.y
 	var added_distance = sqrt(((distance_x) ** 2) + ((distance_y) ** 2))
-	print(self.name + ":" + str(added_distance))
-	
+	return added_distance
+#
+
+
+func return_placement():
+	var win_area = $"../../Win Area"
+	var players = $".."
+	var win_area_pos = win_area.global_position
+	for element in players.get_children():
+		if element is CharacterBody2D:
+			placement.append(return_distance(element.global_position, win_area_pos))	
+	organize_least_to_greatest(placement)
+	return placement
+
+func organize_least_to_greatest(num_list: Array): 
+	num_list.sort()
+	num_list.reverse()
+	return num_list
+			
+func return_anything_but(this_thing: int, array: Array):
+	array.remove_at(this_thing)
+	return array
 
 func land():
 	if can_squish and is_on_floor():
@@ -246,7 +259,7 @@ func dash():
 			state_machine()
 	self.dash_checker = false
 	self.dash_cooldown = true
-	await get_tree().create_timer(0.7).timeout
+	await animated_sprite.animation_finished
 	self.dash_cooldown = false
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:
@@ -280,7 +293,3 @@ func set_player():
 
 func set_enemy():
 	self.add_to_group("enemy")
-
-func _on_enemy_jump_zone_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		body.enemy_jump()

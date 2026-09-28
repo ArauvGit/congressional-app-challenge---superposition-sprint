@@ -44,6 +44,9 @@ Green=""
 Red=""
 Blue=""
 Yellow=""
+"Change Direction Trigger"=""
+"Jump Trigger"=""
+"Dash Trigger"=""
 
 [gui]
 

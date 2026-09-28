@@ -1,12 +1,5 @@
-res://Scenes/Level2.tscn
-res://Scripts/colorswap.tres
-res://Scripts/damage_flash.gdshader
-res://Scripts/damage_flash.tres
-res://Scenes/level1.tscn
-res://Scenes/complete_decoherence.tscn
-res://Scenes/level_assign.tscn
-res://Scenes/moving_platform.tscn
 res://Scenes/race_song.tscn
-res://Scenes/powerup.tscn
+res://Scripts/damage_flash.gdshader
+res://Scripts/colorswap.tres
+res://Scripts/damage_flash.tres
 res://Scripts/Contestants.gd
-res://Scenes/players.tscn

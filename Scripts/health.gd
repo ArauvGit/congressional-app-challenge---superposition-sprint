@@ -12,7 +12,7 @@ func _process(_delta: float) -> void:
 
 func update_health_display():
 	var child_node = get_child(0)
-	for i in range(get_child_count()):
+	while get_child_count() != Global.health:
 		if get_child_count() > Global.health:
 			remove_child(self.get_children().back())
 		elif get_child_count() < Global.health:

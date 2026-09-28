@@ -1,10 +1,15 @@
 [gd_scene format=3 uid="uid://ca4v3s4note5"]
 
+[ext_resource type="Script" uid="uid://bwbfy3i0kktws" path="res://Scenes/enemy_trigger.gd" id="1_2g0io"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdnvj"]
 size = Vector2(58, 50)
 
-[node name="Enemy Jump Zone" type="Area2D" unique_id=197600304]
+[node name="Enemy Trigger" type="Area2D" unique_id=197600304]
 collision_layer = 2
+script = ExtResource("1_2g0io")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=615133950]
 shape = SubResource("RectangleShape2D_sdnvj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
