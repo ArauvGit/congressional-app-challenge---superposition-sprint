@@ -13,6 +13,7 @@ var dash_checker: bool = false
 var dash_cooldown: bool = false
 var can_squish: bool = false
 var jump_powerup_active: bool = false
+var can_break: bool = true 
 var damage_checker: bool = false
 var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
 var has_decohered: bool = false
@@ -92,7 +93,6 @@ func _physics_process(delta: float) -> void:
 		state_machine()
 		checker = true
 	land()
-	print(return_placement())
 	if get_platform_velocity() != Vector2.ZERO:
 		movement(0)
 		Global.state = Global.States.IDLE
@@ -270,17 +270,23 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 				take_damage.emit()
 	var break_tile := func(cell: Vector2): 
 		var cell_data = body.get_cell_tile_data(cell)
-		var can_break: bool = true 
 		if is_instance_valid(cell_data): 
+			print(can_break)
 			if cell_data.get_custom_data("Breakable") and can_break: 
 				can_break = false
 				body.set_cell(cell, 0, Vector2(8, 4), 0)
-				await get_tree().create_timer(1).timeout
+				await get_tree().create_timer(0.4).timeout
 				body.erase_cell(cell)
+				await get_tree().create_timer(1.5).timeout
+				body.set_cell(cell, 0, Vector2(8, 6), 0)
+				await get_tree().create_timer(0.4).timeout
+				body.set_cell(cell, 0, Vector2(9,5), 0)
+			else: 
+				can_break = true
 	if is_on_wall():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
 		deal_damage.call(cell)
-		break_tile.call(cell)
+		break_tile.call(cell) 
 	elif is_on_floor_only():
 		var cell = body.local_to_map(body.to_local(self.global_position + Vector2(0, 32)))
 		deal_damage.call(cell)

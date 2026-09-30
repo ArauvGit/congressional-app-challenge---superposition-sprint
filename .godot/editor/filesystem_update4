@@ -1,6 +1,6 @@
-res://Scenes/Level2.tscn
+res://Scripts/Contestants.gd
+res://Scenes/race_song.tscn
 res://Scripts/damage_flash.gdshader
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
-res://Scripts/moving_platform_animation.gd
-res://Scripts/Contestants.gd
+res://Scenes/Level2.tscn
