@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*uid://bhm8dykxgtt1d"
 RaceSong="*uid://c1yl14qphbcjl"
+SFX="*uid://ceu2nsq4f0u7u"
 
 [display]
 

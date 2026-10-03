@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ceu2nsq4f0u7u"]
+
+[ext_resource type="AudioStream" uid="uid://dh3dhulsvhjmu" path="res://Assets/jump.mp3" id="1_qycp2"]
+[ext_resource type="AudioStream" uid="uid://bso70u4800rbf" path="res://dash.mp3" id="2_n6df4"]
+[ext_resource type="AudioStream" uid="uid://c50cts4etm71h" path="res://Block breaking.mp3" id="3_4owgd"]
+
+[node name="SFX" type="Node" unique_id=140379366]
+
+[node name="jump" type="AudioStreamPlayer" parent="." unique_id=1998161652]
+stream = ExtResource("1_qycp2")
+
+[node name="dash" type="AudioStreamPlayer" parent="." unique_id=58715493]
+stream = ExtResource("2_n6df4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=372245588]
+stream = ExtResource("3_4owgd")

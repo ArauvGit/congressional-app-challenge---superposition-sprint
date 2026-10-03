@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://boahj2llcetfs"
+path="res://.godot/imported/block break.mp3-6129ed8eb2502c314279ea81a8cb52b5.mp3str"
+
+[deps]
+
+source_file="res://block break.mp3"
+dest_files=["res://.godot/imported/block break.mp3-6129ed8eb2502c314279ea81a8cb52b5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

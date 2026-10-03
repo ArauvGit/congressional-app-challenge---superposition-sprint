@@ -69,6 +69,7 @@ func player_jump() -> void:
 		self.scale.x = 1
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
+		SFX.get_child(0).play()
 		jump()
 		jump_count += 1
 		if is_on_floor():
@@ -76,12 +77,14 @@ func player_jump() -> void:
 		else:
 			squash(1.1, 1.1, 0.05)
 	elif Input.is_action_just_pressed("jump") and jump_count == 1:
+		SFX.get_child(0).play()
 		double_jump()
 func double_jump() -> void:
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 func player_dash():
 	if Input.is_action_just_pressed("dash") and dash_checker == false and dash_cooldown == false:
+		SFX.get_child(1).play()
 		dash()
 func wall_jump():
 	if is_on_wall_only():

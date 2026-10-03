@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c50cts4etm71h"
+path="res://.godot/imported/Block breaking.mp3-1d4f7103b953ec247ba6614e09a510a4.mp3str"
+
+[deps]
+
+source_file="res://Block breaking.mp3"
+dest_files=["res://.godot/imported/Block breaking.mp3-1d4f7103b953ec247ba6614e09a510a4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

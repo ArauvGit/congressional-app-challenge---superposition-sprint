@@ -286,10 +286,14 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Breakable") and can_break:
 				can_break = false
+				if not SFX.get_child(2).is_playing():
+					SFX.get_child(2).play()
 				body.set_cell(cell, 0, Vector2(8, 4), 0)
 				await get_tree().create_timer(0.4).timeout
 				body.erase_cell(cell)
 				await get_tree().create_timer(1.5).timeout
+				if not SFX.get_child(2).is_playing():
+					SFX.get_child(2).play()
 				body.set_cell(cell, 0, Vector2(8, 6), 0)
 				await get_tree().create_timer(0.4).timeout
 				body.set_cell(cell, 0, Vector2(9, 5), 0)
