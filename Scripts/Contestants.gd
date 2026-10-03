@@ -4,6 +4,7 @@ class_name Contestant
 signal update_health
 signal take_damage
 #region variables
+var distance_placement: Array = []
 var placement: Array = []
 var animated_sprite = get_child(2)
 var jump_count: int = 0
@@ -13,7 +14,7 @@ var dash_checker: bool = false
 var dash_cooldown: bool = false
 var can_squish: bool = false
 var jump_powerup_active: bool = false
-var can_break: bool = true 
+var can_break: bool = true
 var damage_checker: bool = false
 var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
 var has_decohered: bool = false
@@ -28,24 +29,28 @@ var SPEED = 0:
 		"SPEED": 180,
 		"JUMP": - 360,
 		"HEALTH": 5,
+		"DISTANCE": 0
 	},
 	
 	"Green": {
 		"SPEED": 200,
 		"JUMP": - 375,
 		"HEALTH": 4,
+		"DISTANCE": 0
 	},
 	
 	"Red": {
 		"SPEED": 195,
 		"JUMP": - 400,
 		"HEALTH": 100,
+		"DISTANCE": 0
 	},
 	
 	"Blue": {
 		"SPEED": 190,
 		"JUMP": - 350,
-		"HEALTH": 6
+		"HEALTH": 6,
+		"DISTANCE": 0
 	}
 }
 var Powerup_information: Dictionary = {
@@ -101,6 +106,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		movement(SPEED)
 	move_and_slide()
+	return_distance_dictionary()
 	_on_detector_body_entered(tile_map())
 func state_machine():
 	animated_sprite.animation_state()
@@ -133,27 +139,34 @@ func return_distance(pos1: Vector2, pos2: Vector2):
 	var distance_y = pos1.y - pos2.y
 	var added_distance = sqrt(((distance_x) ** 2) + ((distance_y) ** 2))
 	return added_distance
-#
 
-
-func return_placement():
+func return_distance_dictionary():
 	var win_area = $"../../Win Area"
-	var players = $".."
 	var win_area_pos = win_area.global_position
-	for element in players.get_children():
-		if element is CharacterBody2D:
-			placement.append(return_distance(element.global_position, win_area_pos))	
-	organize_least_to_greatest(placement)
-	return placement
+	for Name in Contestant_information.keys():
+		if get_groups()[0] == Name:
+			var contestant_distance = Contestant_information.get(Name)["DISTANCE"]
+			contestant_distance = return_distance(self.global_position, win_area_pos)
+			distance_placement.append(contestant_distance)
+	organize_least_to_greatest(distance_placement)
+	index_place_matching()
 
-func organize_least_to_greatest(num_list: Array): 
+
+func index_place_matching():
+	for Name in Contestant_information.keys():
+		var contestant = self
+		if not placement.has(contestant):
+			placement.append(contestant)
+		if get_groups()[0] == Name:
+			var contestant_info = Contestant_information.get(Name)
+			placement.set(distance_placement.find(contestant_info["DISTANCE"]), contestant)
+	print(placement.map(func(element): return element.name))
+
+func organize_least_to_greatest(num_list: Array):
 	num_list.sort()
 	num_list.reverse()
 	return num_list
 			
-func return_anything_but(this_thing: int, array: Array):
-	array.remove_at(this_thing)
-	return array
 
 func land():
 	if can_squish and is_on_floor():
@@ -268,11 +281,10 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Damageable"):
 				take_damage.emit()
-	var break_tile := func(cell: Vector2): 
+	var break_tile := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
-		if is_instance_valid(cell_data): 
-			print(can_break)
-			if cell_data.get_custom_data("Breakable") and can_break: 
+		if is_instance_valid(cell_data):
+			if cell_data.get_custom_data("Breakable") and can_break:
 				can_break = false
 				body.set_cell(cell, 0, Vector2(8, 4), 0)
 				await get_tree().create_timer(0.4).timeout
@@ -280,13 +292,12 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 				await get_tree().create_timer(1.5).timeout
 				body.set_cell(cell, 0, Vector2(8, 6), 0)
 				await get_tree().create_timer(0.4).timeout
-				body.set_cell(cell, 0, Vector2(9,5), 0)
-			else: 
+				body.set_cell(cell, 0, Vector2(9, 5), 0)
+			else:
 				can_break = true
 	if is_on_wall():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
 		deal_damage.call(cell)
-		break_tile.call(cell) 
 	elif is_on_floor_only():
 		var cell = body.local_to_map(body.to_local(self.global_position + Vector2(0, 32)))
 		deal_damage.call(cell)
@@ -294,7 +305,6 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 	elif is_on_ceiling():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(0, 32)))
 		deal_damage.call(cell)
-		break_tile.call(cell)
 
 func speed_sprite_flip():
 	match SPEED:

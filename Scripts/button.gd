@@ -16,7 +16,6 @@ func _process(_delta: float) -> void:
 
 	
 
-
 func _pressed() -> void:
 	if Global.is_pressed:
 		return

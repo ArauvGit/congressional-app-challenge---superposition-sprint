@@ -102,6 +102,8 @@ func set_health(new_health: int) -> int:
 	health_damage_checker()
 	update_health.emit()
 	return Global.health
+
+
 func decohere():
 	var damage_animation := func():
 		await get_tree().create_timer(2).timeout

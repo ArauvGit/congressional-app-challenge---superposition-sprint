@@ -12,6 +12,8 @@ var raycast_under_left = RayCast2D.new()
 var raycast_top = RayCast2D.new()
 var raycast_top_left = RayCast2D.new()
 var raycast_top_right = RayCast2D.new()
+var moving_platform_area = Area2D.new()
+var platform_col_shape = CollisionShape2D.new()
 #endregion
 #region jump variables
 var enemy_jump_count: int = 0
@@ -137,7 +139,8 @@ func raycast_init():
 	raycast_attributes.call(raycast_top_right, 135, scale_formula, default_target_pos_y, col_mask)
 
 	add_child(raycast_top_left)
-	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask)
+	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask) 
+	
 
 # func raycast_speed_modification(): # fix later; could be the key to jump paradox
 # 	match self.SPEED:
