@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://5pu052akh0i7" path="res://Scenes/moving_platform.tscn" id="10_s6bta"]
 [ext_resource type="PackedScene" uid="uid://bqlwbjnua47wa" path="res://win_area.tscn" id="13_1je60"]
 [ext_resource type="PackedScene" uid="uid://c5ioeanfqeso0" path="res://Scenes/complete_decoherence.tscn" id="13_6skh4"]
+[ext_resource type="PackedScene" uid="uid://u15rmcsem62e" path="res://Scenes/powerup.tscn" id="14_ycmr1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]
 texture = ExtResource("4_sgc6j")
@@ -470,12 +471,12 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("10_s6bta")]
 position = Vector2(1552, 104)
 scale = Vector2(2, 2)
-position_transform = 69569.15500181168
+position_transform = 72538.35500198451
 position_x = 45
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(44.745113, 0)
+position = Vector2(-39.460392, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2.5)
@@ -484,12 +485,12 @@ shape = SubResource("RectangleShape2D_au75x")
 [node name="Moving platform3" parent="moving platforms" unique_id=783686241 instance=ExtResource("10_s6bta")]
 position = Vector2(1446, -86)
 scale = Vector2(2, 2)
-position_transform = 70609.90500194799
+position_transform = 73579.10500212082
 position_x = 100
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform3" index="0" unique_id=688504268]
-position = Vector2(-54.92614, 0)
+position = Vector2(18.545769, 0)
 
 [node name="Sprite2D" parent="moving platforms/Moving platform3/AnimatableBody2D" index="0" unique_id=1224412756]
 texture_filter = 1
@@ -501,13 +502,13 @@ shape = SubResource("RectangleShape2D_au75x")
 [node name="Moving platform2" parent="moving platforms" unique_id=1176005779 instance=ExtResource("10_s6bta")]
 position = Vector2(2096, 15)
 scale = Vector2(2, 2)
-position_transform = 57697.06000104379
+position_transform = 60072.42000109564
 position_adder = 0.04
 position_x = 0
 position_y = 50
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform2" index="0" unique_id=688504268]
-position = Vector2(0, -49.7496)
+position = Vector2(0, -45.734108)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform2/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2.5)
@@ -619,6 +620,9 @@ position = Vector2(693, -141)
 
 [node name="Enemy Trigger2" parent="." unique_id=1394096460 groups=["Dash Trigger"] instance=ExtResource("8_62f1r")]
 position = Vector2(885, -141)
+
+[node name="Area2D" parent="." unique_id=1003261113 groups=["Speed"] instance=ExtResource("14_ycmr1")]
+position = Vector2(173, 131)
 
 [connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/green" to="health container/Control/healthbar" method="_on_update_health"]

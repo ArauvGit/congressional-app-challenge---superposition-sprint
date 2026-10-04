@@ -13,10 +13,12 @@ var idle_checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
 var can_squish: bool = false
+var speed_powerup_active: bool = false
 var jump_powerup_active: bool = false
 var can_break: bool = true
 var damage_checker: bool = false
 var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
+
 var has_decohered: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
@@ -54,7 +56,7 @@ var SPEED = 0:
 	}
 }
 var Powerup_information: Dictionary = {
-	"SPEED_BOOST": 1.3,
+	"SPEED_BOOST": 1.5,
 	"JUMP_BOOST": 1.5,
 	"RESTORATION": 1,
 }
@@ -64,6 +66,7 @@ func _ready():
 	set_physics_process(false)
 	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:
+
 	if Global.damaged:
 		Global.state = Global.States.DAMAGING
 		state_machine()
@@ -210,6 +213,7 @@ func set_speed(speed_change: int) -> int:
 func speed_powerup():
 	set_speed(SPEED * Powerup_information["SPEED_BOOST"])
 	await get_tree().create_timer(5).timeout
+	speed_powerup_active = false
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			set_speed(Contestant_information.get(Name)["SPEED"])

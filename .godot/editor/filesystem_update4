@@ -2,7 +2,8 @@ res://Scenes/Level2.tscn
 res://Scripts/damage_flash.gdshader
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
-res://Scenes/SFX.tscn
+res://countdown.tscn
+res://Scenes/powerup.tscn
+res://Scripts/powerups.gd
 res://Scripts/Contestants.gd
 res://Scripts/player.gd
-res://Scenes/race_song.tscn

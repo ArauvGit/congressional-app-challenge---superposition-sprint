@@ -14,7 +14,7 @@ func _process(_delta: float) -> void:
 
 
 func _on_body_entered(body: CharacterBody2D) -> void:
-	pass
+	choose_sprite()
 	if self.get_groups():
 		match self:
 			var x when x.is_in_group("Speed"):

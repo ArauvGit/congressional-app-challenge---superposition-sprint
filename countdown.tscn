@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cbap2ahkkr0aq"]
 
 [ext_resource type="AudioStream" uid="uid://dk3o6ibstr1u5" path="res://3...2...1...GO.mp3" id="1_scgq4"]
-[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="2_a2sxx"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_a2sxx"]
 
 [sub_resource type="Animation" id="Animation_xcysy"]
-length = 0.001
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,9 +111,9 @@ stream = ExtResource("1_scgq4")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.05
-anchor_top = 1.65
+anchor_top = 0.025
 anchor_right = 15.95
-anchor_bottom = 10.725
+anchor_bottom = 9.1
 grow_horizontal = 2
 offset_transform_position = Vector2(640, 0)
 theme_override_fonts/font = ExtResource("2_a2sxx")
