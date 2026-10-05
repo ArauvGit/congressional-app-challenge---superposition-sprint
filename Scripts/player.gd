@@ -7,8 +7,9 @@ var nudge_multiplier: int = 0
 
 #region important functions
 func _init() -> void:
+	$"../../health container/Control/healthbar".show()
 	RaceSong.play()
-	self.connect("take_damage", decohere)
+	self.connect("take_damage", player_decohere)
 	for Name in Contestant_information.keys():
 		if self.get_groups()[0] == Name:
 			set_health(Contestant_information.get(Name)["HEALTH"])
@@ -21,6 +22,7 @@ func _init() -> void:
 			node.move_local_x(position.x)
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
+	print(Global.damaged)
 	self_modulate = Color("a23466ff")
 	super(delta)
 	if is_on_floor():
@@ -70,6 +72,7 @@ func player_jump() -> void:
 		self.scale.x = 1
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
+		SFX.get_child(0).pitch_scale = randf_range(0.5, 1.5)
 		SFX.get_child(0).play()
 		jump()
 		jump_count += 1
@@ -85,6 +88,7 @@ func double_jump() -> void:
 	jump_count += 1
 func player_dash():
 	if Input.is_action_just_pressed("dash") and dash_checker == false and dash_cooldown == false:
+		SFX.get_child(1).pitch_scale = randf_range(0.8, 1.3)
 		SFX.get_child(1).play()
 		dash()
 func wall_jump():
@@ -108,34 +112,34 @@ func set_health(new_health: int) -> int:
 	return Global.health
 
 
-func decohere():
+func player_decohere():
 	var damage_animation := func():
-		await get_tree().create_timer(2).timeout
 		var tween = create_tween()
 		for i in range(5):
 			tween.tween_property(animated_sprite, "modulate", Color("ffffff38"), 0.4)
 			tween.tween_property(animated_sprite, "modulate", Color("ffffffff"), 0.4)
 	if damage_checker == false:
+		SFX.get_child(3).play()
 		damage_animation.call()
 		set_health(Global.health - 1)
-		set_speed(SPEED * -0.9)
-		if is_on_floor():
-			velocity.y = -500
-			Global.damaged = true
-			state_machine()
-		elif is_on_wall():
+		set_speed(SPEED * -1 * decoherence_multiplier)
+		velocity.y = -500
+		if is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
 			for i in range(10):
 				move_local_y(-1)
 				await get_tree().process_frame
 			player_jump()
-			Global.damaged = true
 			state_machine()
+		elif not is_on_floor():
+			Global.damaged = true
+			Global.state = Global.States.DAMAGING
+			state_machine() 
 	
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		match self:
-			var x when not x.is_on_floor() and dash_checker == false:
+			var x when not x.is_on_floor() and not dash_checker:
 				Global.state = Global.States.JUMPING
 				state_machine()
 			var x when x.is_on_floor() and dash_checker == false:

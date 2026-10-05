@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cr2w2ec0vpeo"]
+
+[ext_resource type="Texture2D" uid="uid://l77ihysrh7hc" path="res://Assets/Sprites/oracle bounce.png" id="1_6swne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyeob"]
+atlas = ExtResource("1_6swne")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3jto"]
+atlas = ExtResource("1_6swne")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nc7aa"]
+atlas = ExtResource("1_6swne")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfs6l"]
+atlas = ExtResource("1_6swne")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3si1v"]
+atlas = ExtResource("1_6swne")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fisx2"]
+atlas = ExtResource("1_6swne")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyeob")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3jto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nc7aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfs6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3si1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fisx2")
+}],
+"loop": 1,
+"name": &"bounce",
+"speed": 9.0
+}]
+
+[node name="Oracle" type="AnimatedSprite2D" unique_id=978057957]
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"bounce"
+autoplay = "bounce"
+frame_progress = 0.6923615

@@ -140,7 +140,6 @@ func raycast_init():
 
 	add_child(raycast_top_left)
 	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask) 
-	
 
 # func raycast_speed_modification(): # fix later; could be the key to jump paradox
 # 	match self.SPEED:

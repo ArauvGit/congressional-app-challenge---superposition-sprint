@@ -8,6 +8,7 @@ var distance_placement: Array = []
 var placement: Array = []
 var animated_sprite = get_child(2)
 var jump_count: int = 0
+var decoherence_multiplier: float = 1
 var checker: bool = false
 var idle_checker: bool = false
 var dash_checker: bool = false
@@ -44,7 +45,7 @@ var SPEED = 0:
 	"Red": {
 		"SPEED": 195,
 		"JUMP": - 400,
-		"HEALTH": 100,
+		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
@@ -63,6 +64,7 @@ var Powerup_information: Dictionary = {
 #endregion
 #region important functions
 func _ready():
+	$"../../health container/Control/healthbar".hide()
 	set_physics_process(false)
 	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:
@@ -83,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		#if adding, MODIFY THIS CODE
 		match self:
 			var x when x.is_in_group("player"):
-				if not is_on_wall() and dash_checker == false:
+				if not is_on_wall() and not Global.damaged and dash_checker == false:
 					Global.state = Global.States.JUMPING
 					state_machine()
 			var x when x.is_in_group("enemy"):
@@ -163,7 +165,6 @@ func index_place_matching():
 		if get_groups()[0] == Name:
 			var contestant_info = Contestant_information.get(Name)
 			placement.set(distance_placement.find(contestant_info["DISTANCE"]), contestant)
-	print(placement.map(func(element): return element.name))
 
 func organize_least_to_greatest(num_list: Array):
 	num_list.sort()
@@ -193,8 +194,6 @@ func change_direction():
 func _decohere():
 	has_decohered = true
 	Global.damaged = true
-	set_jump(JUMP_VELOCITY * 0.1)
-	set_speed(SPEED * 0.1)
 func tile_map() -> TileMapLayer:
 	var tile_map_layer = get_node($"../../course".get_path())
 	return tile_map_layer
@@ -261,9 +260,9 @@ func dash():
 		if self.get_groups()[0] == Name:
 			match self.animated_sprite:
 				var x when x.flip_h == false:
-					set_speed(Contestant_information.get(Name)["SPEED"]) # accomodate for decoherence later
+					set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
 				var x when x.flip_h == true:
-					set_speed(Contestant_information.get(Name)["SPEED"] * -1) # accomodate for decoherence later
+					set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1) 
 	match self:
 		var x when x.is_on_floor_only():
 			Global.state = Global.States.MOVING
@@ -284,6 +283,7 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 		var cell_data = body.get_cell_tile_data(cell)
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Damageable"):
+				decoherence_multiplier -= 0.1
 				take_damage.emit()
 	var break_tile := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
@@ -291,12 +291,14 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 			if cell_data.get_custom_data("Breakable") and can_break:
 				can_break = false
 				if not SFX.get_child(2).is_playing():
+					SFX.get_child(2).pitch_scale = randf_range(0.5, 1.5)
 					SFX.get_child(2).play()
 				body.set_cell(cell, 0, Vector2(8, 4), 0)
 				await get_tree().create_timer(0.4).timeout
 				body.erase_cell(cell)
 				await get_tree().create_timer(1.5).timeout
 				if not SFX.get_child(2).is_playing():
+					SFX.get_child(2).pitch_scale = randf_range(0.5, 1.5)
 					SFX.get_child(2).play()
 				body.set_cell(cell, 0, Vector2(8, 6), 0)
 				await get_tree().create_timer(0.4).timeout

@@ -1,4 +1,4 @@
-extends Button
+extends TextureButton
 @export var players: Node2D
 
 
@@ -14,9 +14,11 @@ var button_names: Array = ["yellow", "green", "red", "blue"]
 func _process(_delta: float) -> void:
 	pass
 
-	
 
 func _pressed() -> void:
+	$"../../players/Camera2D".zoom = Vector2(1, 1)
+	$"../../background_transparent".hide()
+	$"../../Oracle".hide()
 	if Global.is_pressed:
 		return
 	var group_array = get_groups()
@@ -47,3 +49,7 @@ func choose_script():
 			node.set_script(preload("res://Scripts/enemy.gd"))
 		if node is CharacterBody2D:
 			node.jump()
+
+
+func _on_focus_entered() -> void:
+	pass # Replace with function body.

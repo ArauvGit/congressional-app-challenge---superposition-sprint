@@ -1,9 +1,12 @@
-res://Scenes/Level2.tscn
+res://Scripts/player.gd
+res://Scenes/SFX.tscn
 res://Scripts/damage_flash.gdshader
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
-res://countdown.tscn
-res://Scenes/powerup.tscn
-res://Scripts/powerups.gd
 res://Scripts/Contestants.gd
-res://Scripts/player.gd
+res://Scenes/Level2.tscn
+res://Scripts/enemy.gd
+res://countdown.tscn
+res://Scripts/button.gd
+res://Scripts/health.gd
+res://Scripts/moving_platform_animation.gd
