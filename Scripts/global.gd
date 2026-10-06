@@ -15,3 +15,4 @@ var health: int = 4
 var player_testers: Array = [false, false, false, false]
 var interference_works: bool = true
 var damaged: bool = false
+var can_be_pressed: bool = false

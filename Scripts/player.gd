@@ -18,6 +18,7 @@ func _init() -> void:
 	print(self.get_groups())
 	for node in get_parent().get_children():
 		if node is Camera2D:
+			node.position_smoothing_enabled = true
 			node.reparent(self)
 			node.move_local_x(position.x)
 		self.move_to_front()

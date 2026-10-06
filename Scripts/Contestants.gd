@@ -29,21 +29,21 @@ var SPEED = 0:
 #region dictionaries
 @export var Contestant_information: Dictionary = {
 	"Yellow": {
-		"SPEED": 180,
+		"SPEED": 195,
 		"JUMP": - 360,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Green": {
-		"SPEED": 200,
+		"SPEED": 210,
 		"JUMP": - 375,
 		"HEALTH": 4,
 		"DISTANCE": 0
 	},
 	
 	"Red": {
-		"SPEED": 195,
+		"SPEED": 200,
 		"JUMP": - 400,
 		"HEALTH": 5,
 		"DISTANCE": 0
@@ -65,6 +65,7 @@ var Powerup_information: Dictionary = {
 #region important functions
 func _ready():
 	$"../../health container/Control/healthbar".hide()
+	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
 	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:

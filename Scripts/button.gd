@@ -5,6 +5,7 @@ extends TextureButton
 var groups: Array = ["blue", "green", "red", "yellow"]
 
 
+
 # Called when the node enters the scene tree for the first time.
 var button_names: Array = ["yellow", "green", "red", "blue"]
 # Called when the node enters the scene tree for the first time.
@@ -15,22 +16,24 @@ func _process(_delta: float) -> void:
 	pass
 
 
+
 func _pressed() -> void:
-	$"../../players/Camera2D".zoom = Vector2(1, 1)
-	$"../../background_transparent".hide()
-	$"../../Oracle".hide()
-	if Global.is_pressed:
-		return
-	var group_array = get_groups()
-	var group = group_array[0]
-	var all_inside_group := get_tree().get_nodes_in_group(group)
-	for node in all_inside_group:
-		if node is CharacterBody2D:
-			node.set_player()
-			_choose_type()
-			node.jump()
-	Global.is_pressed = true
-	get_parent().hide()
+	if Global.can_be_pressed:
+		$"../../players/Camera2D".zoom = Vector2(1, 1)
+		$"../../background_transparent".hide()
+		$"../../Oracle".hide()
+		if Global.is_pressed:
+			return
+		var group_array = get_groups()
+		var group = group_array[0]
+		var all_inside_group := get_tree().get_nodes_in_group(group)
+		for node in all_inside_group:
+			if node is CharacterBody2D:
+				node.set_player()
+				_choose_type()
+				node.jump()
+		Global.is_pressed = true
+		get_parent().hide()
 
 func _choose_type():
 	for node in players.get_children():

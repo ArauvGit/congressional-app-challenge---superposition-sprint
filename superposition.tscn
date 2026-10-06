@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://buxncprcsc0ho"]
+
+[ext_resource type="Texture2D" uid="uid://bmy3lo8xmxihq" path="res://Assets/Sprites/superposition.png" id="1_8tnkk"]
+[ext_resource type="Script" uid="uid://b8t4odudn58uu" path="res://superposition.gd" id="2_jp8ok"]
+
+[node name="superposition" type="TextureButton" unique_id=714630486]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(15, 15)
+texture_normal = ExtResource("1_8tnkk")
+script = ExtResource("2_jp8ok")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ykq2tubnd4dk" path="res://Assets/verynewheart.png" id="9_6cjmx"]
 [ext_resource type="Texture2D" uid="uid://duwf4cih8jlqm" path="res://Assets/Sprites/button.png" id="9_uxnm3"]
 [ext_resource type="PackedScene" uid="uid://5pu052akh0i7" path="res://Scenes/moving_platform.tscn" id="10_s6bta"]
-[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts/editundo.ttf" id="11_dgfc6"]
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="11_dgfc6"]
 [ext_resource type="Shader" uid="uid://o3y85immwc7q" path="res://Scripts/colorswap.tres" id="12_5fn7l"]
 [ext_resource type="PackedScene" uid="uid://bqlwbjnua47wa" path="res://win_area.tscn" id="13_1je60"]
 [ext_resource type="PackedScene" uid="uid://c5ioeanfqeso0" path="res://Scenes/complete_decoherence.tscn" id="13_6skh4"]
@@ -29,6 +29,9 @@
 [ext_resource type="Script" uid="uid://ckcx33himhpeo" path="res://Scripts/sprite.gd" id="21_ssebo"]
 [ext_resource type="Texture2D" uid="uid://bdhod7ax3cd7a" path="res://Assets/Robot Color Palette/green robot color palette.png" id="22_1p2nd"]
 [ext_resource type="Texture2D" uid="uid://csqe78mmnm11k" path="res://Assets/Robot Color Palette/red robot palette.png" id="23_fq8my"]
+[ext_resource type="PackedScene" uid="uid://dbfrb42612qe3" path="res://star.tscn" id="24_sj5x0"]
+[ext_resource type="PackedScene" uid="uid://buxncprcsc0ho" path="res://superposition.tscn" id="29_5fn7l"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="30_sj5x0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]
 texture = ExtResource("4_sgc6j")
@@ -691,6 +694,42 @@ shader_parameter/original_palette = ExtResource("14_uelq8")
 shader_parameter/new_palette = ExtResource("14_uelq8")
 shader_parameter/color_count = 12
 
+[sub_resource type="Animation" id="Animation_5fn7l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17.000034, 245)]
+}
+
+[sub_resource type="Animation" id="Animation_sj5x0"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(17.000034, 245), Vector2(185, 220), Vector2(330, 140)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uelq8"]
+_data = {
+&"RESET": SubResource("Animation_5fn7l"),
+&"move": SubResource("Animation_sj5x0")
+}
+
 [node name="level2" type="Node2D" unique_id=1485086795]
 
 [node name="backgrounds" type="Node2D" parent="." unique_id=794147417]
@@ -791,12 +830,12 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("10_s6bta")]
 position = Vector2(1552, 104)
 scale = Vector2(2, 2)
-position_transform = 104255.30500383068
+position_transform = 123279.30500493803
 position_x = 45
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(-44.895996, 0)
+position = Vector2(-0.7958025, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2.5)
@@ -805,12 +844,12 @@ shape = SubResource("RectangleShape2D_au75x")
 [node name="Moving platform3" parent="moving platforms" unique_id=783686241 instance=ExtResource("10_s6bta")]
 position = Vector2(1446, -86)
 scale = Vector2(2, 2)
-position_transform = 105296.05500396699
+position_transform = 124320.05500507435
 position_x = 100
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform3" index="0" unique_id=688504268]
-position = Vector2(68.59921, 0)
+position = Vector2(78.36483, 0)
 
 [node name="Sprite2D" parent="moving platforms/Moving platform3/AnimatableBody2D" index="0" unique_id=1224412756]
 texture_filter = 1
@@ -822,13 +861,13 @@ shape = SubResource("RectangleShape2D_au75x")
 [node name="Moving platform2" parent="moving platforms" unique_id=1176005779 instance=ExtResource("10_s6bta")]
 position = Vector2(2096, 15)
 scale = Vector2(2, 2)
-position_transform = 85445.97999802789
+position_transform = 100665.17999559174
 position_adder = 0.04
 position_x = 0
 position_y = 50
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform2" index="0" unique_id=688504268]
-position = Vector2(0, 39.259586)
+position = Vector2(0, 39.5794)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform2/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2.5)
@@ -849,6 +888,7 @@ position = Vector2(107, -39)
 position = Vector2(405, -115)
 
 [node name="Button Container" type="VBoxContainer" parent="." unique_id=964643674]
+visible = false
 offset_left = -577.0
 offset_top = -329.0
 offset_right = -22.0
@@ -858,6 +898,7 @@ theme_override_constants/separation = 10
 [node name="yellow" type="TextureButton" parent="Button Container" unique_id=1187604259 node_paths=PackedStringArray("players") groups=["Yellow"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
+offset_transform_enabled = true
 texture_normal = ExtResource("9_uxnm3")
 stretch_mode = 0
 script = ExtResource("7_8wk15")
@@ -865,9 +906,9 @@ players = NodePath("../../players")
 
 [node name="label" type="Label" parent="Button Container/yellow" unique_id=1015714170]
 layout_mode = 0
-offset_left = 141.0
+offset_left = 128.0
 offset_top = 37.0
-offset_right = 235.0
+offset_right = 222.0
 offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_dgfc6")
@@ -875,16 +916,122 @@ theme_override_font_sizes/font_size = 30
 text = "SPEED:
 JUMP: 
 HEALTH:"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="Button Container/yellow" unique_id=175290629]
 texture_filter = 1
 material = SubResource("ShaderMaterial_smepp")
 position = Vector2(84.00003, 81)
-scale = Vector2(4.0000005, 4.0624995)
+scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 frame_progress = 0.093845874
 script = ExtResource("21_ssebo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button Container/yellow" unique_id=2107032099]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 118.0
+theme_override_constants/separation = 30
+
+[node name="speed container" type="HBoxContainer" parent="Button Container/yellow/VBoxContainer" unique_id=112319767]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/yellow/VBoxContainer/speed container" unique_id=726481976 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/yellow/VBoxContainer/speed container" unique_id=1418696724 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/yellow/VBoxContainer/speed container" unique_id=1317297815 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/yellow/VBoxContainer/speed container" unique_id=824464893 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="jump container" type="HBoxContainer" parent="Button Container/yellow/VBoxContainer" unique_id=936120394]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/yellow/VBoxContainer/jump container" unique_id=2048728428 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/yellow/VBoxContainer/jump container" unique_id=240414530 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/yellow/VBoxContainer/jump container" unique_id=1285695038 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="health container" type="HBoxContainer" parent="Button Container/yellow/VBoxContainer" unique_id=81469814]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/yellow/VBoxContainer/health container" unique_id=1351920807 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/yellow/VBoxContainer/health container" unique_id=1783575117 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/yellow/VBoxContainer/health container" unique_id=948542879 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/yellow/VBoxContainer/health container" unique_id=1270018754 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star5" parent="Button Container/yellow/VBoxContainer/health container" unique_id=1837140839 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
 
 [node name="green" type="TextureButton" parent="Button Container" unique_id=694822226 node_paths=PackedStringArray("players") groups=["Green"]]
 custom_minimum_size = Vector2(555, 165)
@@ -896,9 +1043,9 @@ players = NodePath("../../players")
 
 [node name="label" type="Label" parent="Button Container/green" unique_id=1474988504]
 layout_mode = 0
-offset_left = 141.0
+offset_left = 130.0
 offset_top = 37.0
-offset_right = 235.0
+offset_right = 224.0
 offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_dgfc6")
@@ -906,6 +1053,7 @@ theme_override_font_sizes/font_size = 30
 text = "SPEED:
 JUMP: 
 HEALTH:"
+horizontal_alignment = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="Button Container/green" unique_id=1565965224]
 texture_filter = 1
@@ -917,6 +1065,117 @@ autoplay = "default"
 frame_progress = 0.2631795
 script = ExtResource("21_ssebo")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Button Container/green" unique_id=1679686450]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 118.0
+theme_override_constants/separation = 30
+
+[node name="speed container" type="HBoxContainer" parent="Button Container/green/VBoxContainer" unique_id=2089840724]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/green/VBoxContainer/speed container" unique_id=1031190105 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/green/VBoxContainer/speed container" unique_id=1211746808 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/green/VBoxContainer/speed container" unique_id=1128086050 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/green/VBoxContainer/speed container" unique_id=601969948 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star5" parent="Button Container/green/VBoxContainer/speed container" unique_id=1550556925 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="jump container" type="HBoxContainer" parent="Button Container/green/VBoxContainer" unique_id=120945130]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/green/VBoxContainer/jump container" unique_id=2005870106 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/green/VBoxContainer/jump container" unique_id=1286639970 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/green/VBoxContainer/jump container" unique_id=1997231513 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/green/VBoxContainer/jump container" unique_id=242655253 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="health container" type="HBoxContainer" parent="Button Container/green/VBoxContainer" unique_id=1856302470]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/green/VBoxContainer/health container" unique_id=1702399496 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/green/VBoxContainer/health container" unique_id=319257643 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/green/VBoxContainer/health container" unique_id=1205227372 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/green/VBoxContainer/health container" unique_id=1244872993 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
 [node name="red" type="TextureButton" parent="Button Container" unique_id=558351338 node_paths=PackedStringArray("players") groups=["Red"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
@@ -927,9 +1186,9 @@ players = NodePath("../../players")
 
 [node name="label" type="Label" parent="Button Container/red" unique_id=1583554142]
 layout_mode = 0
-offset_left = 141.0
+offset_left = 130.0
 offset_top = 37.0
-offset_right = 235.0
+offset_right = 224.0
 offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_dgfc6")
@@ -937,6 +1196,7 @@ theme_override_font_sizes/font_size = 30
 text = "SPEED:
 JUMP: 
 HEALTH:"
+horizontal_alignment = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="Button Container/red" unique_id=1043727265]
 texture_filter = 1
@@ -948,6 +1208,124 @@ autoplay = "default"
 frame_progress = 0.84950733
 script = ExtResource("21_ssebo")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Button Container/red" unique_id=1526539467]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 118.0
+theme_override_constants/separation = 30
+
+[node name="speed container" type="HBoxContainer" parent="Button Container/red/VBoxContainer" unique_id=317207504]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/red/VBoxContainer/speed container" unique_id=1569622594 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/red/VBoxContainer/speed container" unique_id=2060749730 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/red/VBoxContainer/speed container" unique_id=1546946208 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/red/VBoxContainer/speed container" unique_id=1657785097 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="jump container" type="HBoxContainer" parent="Button Container/red/VBoxContainer" unique_id=87686234]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/red/VBoxContainer/jump container" unique_id=991507080 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/red/VBoxContainer/jump container" unique_id=587548207 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/red/VBoxContainer/jump container" unique_id=215042259 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/red/VBoxContainer/jump container" unique_id=372140565 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star5" parent="Button Container/red/VBoxContainer/jump container" unique_id=1019236755 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="health container" type="HBoxContainer" parent="Button Container/red/VBoxContainer" unique_id=601437146]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/red/VBoxContainer/health container" unique_id=1819469861 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/red/VBoxContainer/health container" unique_id=214055653 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/red/VBoxContainer/health container" unique_id=407255840 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/red/VBoxContainer/health container" unique_id=467206398 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star5" parent="Button Container/red/VBoxContainer/health container" unique_id=1411013593 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
 [node name="blue" type="TextureButton" parent="Button Container" unique_id=2057171887 node_paths=PackedStringArray("players") groups=["Blue"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
@@ -958,9 +1336,9 @@ players = NodePath("../../players")
 
 [node name="label" type="Label" parent="Button Container/blue" unique_id=1933681018]
 layout_mode = 0
-offset_left = 141.0
+offset_left = 130.0
 offset_top = 37.0
-offset_right = 235.0
+offset_right = 224.0
 offset_bottom = 124.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_dgfc6")
@@ -968,6 +1346,7 @@ theme_override_font_sizes/font_size = 30
 text = "SPEED:
 JUMP: 
 HEALTH:"
+horizontal_alignment = 1
 
 [node name="sprite" type="AnimatedSprite2D" parent="Button Container/blue" unique_id=1634407693]
 texture_filter = 1
@@ -978,6 +1357,96 @@ sprite_frames = SubResource("SpriteFrames_sdnvj")
 autoplay = "default"
 frame_progress = 0.8048148
 script = ExtResource("21_ssebo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button Container/blue" unique_id=647030888]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 48.0
+offset_right = 400.0
+offset_bottom = 118.0
+theme_override_constants/separation = 30
+
+[node name="speed container" type="HBoxContainer" parent="Button Container/blue/VBoxContainer" unique_id=1470118086]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/blue/VBoxContainer/speed container" unique_id=1529761558 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/blue/VBoxContainer/speed container" unique_id=1060709364 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="jump container" type="HBoxContainer" parent="Button Container/blue/VBoxContainer" unique_id=873889869]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/blue/VBoxContainer/jump container" unique_id=1842285460 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/blue/VBoxContainer/jump container" unique_id=876982440 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="health container" type="HBoxContainer" parent="Button Container/blue/VBoxContainer" unique_id=1362352283]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="star" parent="Button Container/blue/VBoxContainer/health container" unique_id=1015515173 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star2" parent="Button Container/blue/VBoxContainer/health container" unique_id=1607228216 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star3" parent="Button Container/blue/VBoxContainer/health container" unique_id=1331819793 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star4" parent="Button Container/blue/VBoxContainer/health container" unique_id=1922264804 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star5" parent="Button Container/blue/VBoxContainer/health container" unique_id=1488146537 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
+
+[node name="star6" parent="Button Container/blue/VBoxContainer/health container" unique_id=873568162 instance=ExtResource("24_sj5x0")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2.5, 2.5)
 
 [node name="health container" type="CanvasLayer" parent="." unique_id=565122289]
 
@@ -1025,9 +1494,36 @@ stretch_mode = 2
 [node name="Complete Decoherence" parent="." unique_id=1610174719 instance=ExtResource("13_6skh4")]
 visible = false
 
+[node name="superposition container" type="Node2D" parent="." unique_id=340016475]
+
+[node name="superposition" parent="superposition container" unique_id=714630486 node_paths=PackedStringArray("oracle", "oracle_mover", "button_container") instance=ExtResource("29_5fn7l")]
+offset_left = -422.00006
+offset_top = -288.0
+offset_right = -347.00006
+offset_bottom = -268.0
+oracle = NodePath("../../Oracle")
+oracle_mover = NodePath("../../oracle_mover")
+button_container = NodePath("../../Button Container")
+
+[node name="Label" type="Label" parent="superposition container" unique_id=533885869]
+offset_left = -459.0
+offset_top = -318.0
+offset_right = 534.0
+offset_bottom = -26.0
+theme_override_fonts/font = ExtResource("30_sj5x0")
+theme_override_font_sizes/font_size = 100
+text = "Superposition "
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Oracle" parent="." unique_id=978057957 instance=ExtResource("15_2jwna")]
-position = Vector2(315.00003, 133)
+position = Vector2(17.000034, 245)
 scale = Vector2(15, 15)
+frame_progress = 0.0
+
+[node name="oracle_mover" type="AnimationPlayer" parent="." unique_id=1241395651]
+root_node = NodePath("../Oracle")
+libraries/ = SubResource("AnimationLibrary_uelq8")
 
 [connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/green" to="health container/Control/healthbar" method="_on_update_health"]

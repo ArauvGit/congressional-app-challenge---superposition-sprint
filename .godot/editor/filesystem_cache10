@@ -1,15 +1,16 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1791163860
+::res://::1791240300
 3...2...1...GO.mp3::AudioStreamMP3::7919858884658615526::1791078775::1791078775::1::::<><><>0<>0<>e3ffd8e85babb9767fe545ad3167b4d0<>res://.godot/imported/3...2...1...GO.mp3-7a26e72e53c2ce6db2facd649f34c8e1.mp3str::
 block break.mp3::AudioStreamMP3::3369507021346007912::1791078775::1791078775::1::::<><><>0<>0<>52aaf81d21b6fd336b1b15b0dd267756<>res://.godot/imported/block break.mp3-6129ed8eb2502c314279ea81a8cb52b5.mp3str::
 Block breaking.mp3::AudioStreamMP3::6930272474875666251::1791078775::1791078775::1::::<><><>0<>0<>1c83b368d1398c4ebac040d79f3ccbc7<>res://.godot/imported/Block breaking.mp3-1d4f7103b953ec247ba6614e09a510a4.mp3str::
-circle mask.jpg::CompressedTexture2D::2014239716698018831::1791163860::1791163862::1::::<><><>0<>0<>42edea94ab7315400a50bccc0b2f61e7<>res://.godot/imported/circle mask.jpg-a46d881777aac58887dc30046475f26c.ctex::
 countdown.tscn::PackedScene::4843989193633209244::1791160494::0::1::::<><><>0<>0<><>::uid://dk3o6ibstr1u5::::res://3...2...1...GO.mp3<>uid://yl5xfnuk4rpw::::res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf
 damage.mp3::AudioStreamMP3::8601246263663112249::1791154971::1791154973::1::::<><><>0<>0<>e1b2a09980385bcd7c28990d1e085926<>res://.godot/imported/damage.mp3-64238ae133fc3d4ff4649550e818111c.mp3str::
 dash.mp3::AudioStreamMP3::3680709843150780707::1791078775::1791078775::1::::<><><>0<>0<>78c19ee4fc788373f3901afc825d01bb<>res://.godot/imported/dash.mp3-8952cf0510b6a939d44a33897627ddba.mp3str::
 main menu music.mp3::AudioStreamMP3::6103612144873268555::1791079512::1791079522::1::::<><><>0<>0<>4b3b76cded00baebf8b807db0094c625<>res://.godot/imported/main menu music.mp3-dd08c42c4e6b2aba6b05483d503d6828.mp3str::
+oracle.tscn::PackedScene::177152179800476874::1791238458::0::1::::<><><>0<>0<><>::uid://l77ihysrh7hc::::res://Assets/Sprites/oracle bounce.png<>uid://cltlx5il3yhid::::res://Assets/Sprites/oracle superposition.png<>uid://trxh3ux4p5p::::res://Assets/Sprites/oracle tweak.png
 powerup.tscn::PackedScene::2746649160046649512::1790438687::0::1::::<><><>0<>0<><>::uid://cojsgwpdwu1b8::::res://Scripts/powerups.gd<>uid://ljyuuugh768h::::res://Assets/test powerup.png
-oracle.tscn::PackedScene::177152179800476874::1791161925::0::1::::<><><>0<>0<><>::uid://l77ihysrh7hc::::res://Assets/Sprites/oracle bounce.png
+superposition.tscn::PackedScene::3838471951517857296::1791235369::0::1::::<><><>0<>0<><>::uid://bmy3lo8xmxihq::::res://Assets/Sprites/superposition.png<>uid://b8t4odudn58uu::::res://superposition.gd
+superposition.gd::GDScript::4743661683601236832::1791240300::0::1::::<>TextureButton<><>0<>0<><>::
 win_area.tscn::PackedScene::3533488390533538580::1790438077::0::1::::<><><>0<>0<><>::uid://deu3apvjahbsw::::res://Assets/Sprites/powerups/base_powerup.png
 ::res://Assets/::1791078775
 background1.png::CompressedTexture2D::4204367390296807842::1789170137::1790437836::1::::<><><>0<>0<>2fedc3f3e5caa754f70c42463989d434<>res://.godot/imported/background1.png-850d81edfea52b7344aa7b21b611f36a.ctex::
@@ -30,12 +31,16 @@ blue robot palette.png::CompressedTexture2D::5047197732143827110::1786478047::17
 green robot color palette.png::CompressedTexture2D::2612294935995781756::1786478047::1786478047::1::::<><><>0<>0<>b9d7d18b832577a19642da21d6177cd2<>res://.godot/imported/green robot color palette.png-4a4e936e4b9880e371a633d59627798a.ctex::
 red robot palette.png::CompressedTexture2D::6069572362683071766::1786478047::1786478047::1::::<><><>0<>0<>ef0ae8a2f5a67305c98775324371c50d<>res://.godot/imported/red robot palette.png-3e53ea5b1414108c2ca710e5ccc71826.ctex::
 yellow robot color palette.png::CompressedTexture2D::2382975463463634604::1786478047::1786478047::1::::<><><>0<>0<>2f32c74b9fc7722db07527e35ba4c33f<>res://.godot/imported/yellow robot color palette.png-ec08de9f338a8d3c0bf9ed4087bac7d9.ctex::
-::res://Assets/Sprites/::1791162435
+::res://Assets/Sprites/::1791241336
 button.png::CompressedTexture2D::8608810725183989904::1791162433::1791162435::1::::<><><>0<>0<>74f62e80fdcac575854b68ce290d92b7<>res://.godot/imported/button.png-12fa84202ab84fdfc25f930107ab94bd.ctex::
 CACTileset.png::CompressedTexture2D::3834446068418829465::1790809080::1790809082::1::::<><><>0<>0<>02f2ad4025e9f788df90507459f9c942<>res://.godot/imported/CACTileset.png-918ea9b05e902e475fc561068a5dd6cc.ctex::
 moving_platform.png::CompressedTexture2D::7026615850141723347::1789335264::1789335273::1::::<><><>0<>0<>fb5b6f392c8d57894cf8858a1770378a<>res://.godot/imported/moving_platform.png-79f8195dbadf0a2b3b3535fe2d4883e9.ctex::
 oracle bounce.png::CompressedTexture2D::840095003847659768::1791161830::1791161832::1::::<><><>0<>0<>76867cfaa46998213a8bd765d309405f<>res://.godot/imported/oracle bounce.png-c8757d685c5a297422a7b64301355570.ctex::
+oracle superposition.png::CompressedTexture2D::5584852373509036175::1791238315::1791238317::1::::<><><>0<>0<>7cda675ee2701ff8c7436e6f86d979b5<>res://.godot/imported/oracle superposition.png-a470c7ccaa8be02160af46f4379af7f5.ctex::
+oracle tweak.png::CompressedTexture2D::40296851322555295::1791238282::1791238317::1::::<><><>0<>0<>468a27f815b75e6bf44b3c04b05e3cc1<>res://.godot/imported/oracle tweak.png-543b5a4e13e2e5e74084e812da40b5ae.ctex::
 Qubit.png::CompressedTexture2D::255202812475199442::1789939529::1789939767::1::::<><><>0<>0<>43b237b844bf292add539682c9b3031d<>res://.godot/imported/Qubit.png-efc4a716de0a3a1fd9199e358f32f138.ctex::
+star.png::CompressedTexture2D::8648804462386604218::1791241336::1791241338::1::::<><><>0<>0<>08fa565f70be4abd18ea394b7ea4709d<>res://.godot/imported/star.png-706fc427419221d7af10906eba10a7a7.ctex::
+superposition.png::CompressedTexture2D::3279952380344751158::1791240996::1791240998::1::::<><><>0<>0<>da4f17504dfd9dfb40274de2ac5c24c7<>res://.godot/imported/superposition.png-f24865548bf09325f37da9bd1d4f76d0.ctex::
 ::res://Assets/Sprites/powerups/::1789847541
 base_powerup.png::CompressedTexture2D::7483005877210429846::1789847516::1789847541::1::::<><><>0<>0<>0db5150e34295cf4c16b193c374ce78e<>res://.godot/imported/base_powerup.png-1a4551d698f2f169ad56da7456dd4ee3.ctex::
 health_powerup.png::CompressedTexture2D::2103247067136379566::1789838427::1789838545::1::::<><><>0<>0<>6db614a782d9d7cf6adc51bfafbd202b<>res://.godot/imported/health_powerup.png-689891741fa3283d35fbf7ec5cabb312.ctex::
@@ -63,14 +68,14 @@ icon.svg::CompressedTexture2D::583279896145231563::1786478047::1786478047::1::::
 race song.mp3::AudioStreamMP3::6291998073320938424::1789782917::1790437859::1::::<><><>0<>0<>d5792a1fd2da5d3e4dc304a8127e5c03<>res://.godot/imported/race song.mp3-658fd2957de762e9d9fe2e5025ffce64.mp3str::
 ::res://Random/More UID Scripts/::1786478041
 ::res://Random/UID scripts/::1786478041
-::res://Scenes/::1791162025
+::res://Scenes/::1791240402
 complete_decoherence.tscn::PackedScene::6895878899965196349::1790437852::0::1::::<><><>0<>0<><>::uid://dk0xv32d6o2me::::res://Scripts/death_screen.gd<>uid://bh44rfewlrght::::res://Assets/UI/Fonts copy/editundo.ttf<>uid://yl5xfnuk4rpw::::res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf
 enemy_trigger.gd::GDScript::3932987549663327194::1790528361::0::1::::<>Area2D<><>0<>0<><>::
 enemy_trigger.tscn::PackedScene::142177481534150610::1790528361::0::1::::<><><>0<>0<><>::uid://bwbfy3i0kktws::::res://Scenes/enemy_trigger.gd
 interference_area.tscn::PackedScene::2461915696828521651::1788477031::0::1::::<><><>0<>0<><>::uid://bu8x2wuusxhdp::::res://Scripts/interference_area.gd
 interference_cutscene.tscn::PackedScene::5454451048313948955::1789848728::0::1::::<><><>0<>0<><>::uid://uuhx4aku1gbc::::res://Scripts/sinwave.gd<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://bbctnk70cdued::::res://Scenes/interference_area.tscn
 level1.tscn::PackedScene::1512232672916903063::1790526685::0::1::::<><><>0<>0<><>::uid://b05vk1bybgy3k::::res://Assets/background1.png<>uid://cyco7wvujojvw::::res://Assets/background2.png<>uid://du3aa1hhy4nov::::res://Assets/background3.png<>uid://buvo1cdt82r7n::::res://Assets/Sprites/CACTileset.png<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://5pu052akh0i7::::res://Scenes/moving_platform.tscn<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn<>uid://ca4v3s4note5::::res://Scenes/enemy_trigger.tscn<>uid://c5ioeanfqeso0::::res://Scenes/complete_decoherence.tscn
-Level2.tscn::PackedScene::2959626695014355023::1791162025::0::1::::<><><>0<>0<><>::uid://b05vk1bybgy3k::::res://Assets/background1.png<>uid://cyco7wvujojvw::::res://Assets/background2.png<>uid://du3aa1hhy4nov::::res://Assets/background3.png<>uid://buvo1cdt82r7n::::res://Assets/Sprites/CACTileset.png<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://ca4v3s4note5::::res://Scenes/enemy_trigger.tscn<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://5pu052akh0i7::::res://Scenes/moving_platform.tscn<>uid://bqlwbjnua47wa::::res://win_area.tscn<>uid://c5ioeanfqeso0::::res://Scenes/complete_decoherence.tscn<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn<>uid://cr2w2ec0vpeo::::res://oracle.tscn
+Level2.tscn::PackedScene::2959626695014355023::1791240402::0::1::::<><><>0<>0<><>::uid://b05vk1bybgy3k::::res://Assets/background1.png<>uid://cyco7wvujojvw::::res://Assets/background2.png<>uid://du3aa1hhy4nov::::res://Assets/background3.png<>uid://buvo1cdt82r7n::::res://Assets/Sprites/CACTileset.png<>uid://3mpdsb8sxulq::::res://Assets/tileset.png<>uid://d01ladgcelxov::::res://Scenes/players.tscn<>uid://boo6p8a2nourf::::res://Scripts/button.gd<>uid://ca4v3s4note5::::res://Scenes/enemy_trigger.tscn<>uid://biek6q3ib03yg::::res://Scripts/health.gd<>uid://ykq2tubnd4dk::::res://Assets/verynewheart.png<>uid://duwf4cih8jlqm::::res://Assets/Sprites/button.png<>uid://5pu052akh0i7::::res://Scenes/moving_platform.tscn<>uid://bh44rfewlrght::::res://Assets/UI/Fonts copy/editundo.ttf<>uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://bqlwbjnua47wa::::res://win_area.tscn<>uid://c5ioeanfqeso0::::res://Scenes/complete_decoherence.tscn<>uid://87li06w08gsy::::res://Assets/Robot Color Palette/yellow robot color palette.png<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://u15rmcsem62e::::res://Scenes/powerup.tscn<>uid://mpq8fhe7fblg::::res://Assets/Sprites/Robot/dash.png<>uid://cr2w2ec0vpeo::::res://oracle.tscn<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://e6byip5j1lft::::res://Assets/Sprites/Robot/robot jump beta.png<>uid://c4xd7mwck1wub::::res://Assets/Sprites/Robot/malfunction sprite sheet.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://2solqm871klx::::res://Assets/Sprites/Robot/Wall Hang.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd<>uid://bdhod7ax3cd7a::::res://Assets/Robot Color Palette/green robot color palette.png<>uid://csqe78mmnm11k::::res://Assets/Robot Color Palette/red robot palette.png<>uid://buxncprcsc0ho::::res://superposition.tscn<>uid://yl5xfnuk4rpw::::res://Assets/UI/Fonts/PixelifySans-Medium.ttf
 level_assign.tscn::PackedScene::1338806349480726412::1790437852::0::1::::<><><>0<>0<><>::uid://cw62mn4yywf5g::::res://Scripts/level_choose.gd
 main_menu.tscn::PackedScene::5381477989013858767::1788304898::0::1::::<><><>0<>0<><>::uid://c8xiw3x7i7fmd::::res://Assets/UI/PixelifySans-SemiBold.ttf
 moving_platform.tscn::PackedScene::2137891577578711084::1790437852::0::1::::<><><>0<>0<><>::uid://c13q84hvyiuod::::res://Scripts/moving_platform_animation.gd<>uid://c7d0lo632b80f::::res://Assets/Sprites/moving_platform.png
@@ -80,21 +85,21 @@ powerup.tscn::PackedScene::1459303196839080950::1791080236::0::1::::<><><>0<>0<>
 race_song.tscn::PackedScene::6648012234219389597::1791078775::0::1::::<><><>0<>0<><>::uid://cvv5j3cwwg505::::res://Random/race song.mp3
 SFX.tscn::PackedScene::5096547842607474396::1791155038::0::1::::<><><>0<>0<><>::uid://dh3dhulsvhjmu::::res://Assets/jump.mp3<>uid://bso70u4800rbf::::res://dash.mp3<>uid://c50cts4etm71h::::res://Block breaking.mp3<>uid://dusrjfk0um3h2::::res://damage.mp3
 sprite.tscn::PackedScene::9037129395772497535::1788574121::0::1::::<><><>0<>0<><>::uid://o3y85immwc7q::::res://Scripts/colorswap.tres<>uid://cd55uyjye5vr7::::res://Assets/Robot Color Palette/blue robot palette.png<>uid://cnab73nqh2a1y::::res://Assets/Sprites/Robot/Robot Character idle.png<>uid://mpq8fhe7fblg::::res://Assets/Sprites/Robot/dash.png<>uid://qnudu3xkmuv1::::res://Assets/Sprites/Robot/Robot walk-Sheet.png<>uid://ckcx33himhpeo::::res://Scripts/sprite.gd
-::res://Scripts/::1791161450
-button.gd::GDScript::3399876531381982647::1791160989::0::1::::<>Button<><>0<>0<><>::
-colorswap.tres::VisualShader::1041964115692452680::1791154190::0::1::::<><><>0<>0<><>::
-Contestants.gd::GDScript::887084814954766303::1791161360::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
-damage_flash.gdshader::Shader::8974797330275535256::1791154190::0::1::::<><><>0<>0<><>::
-damage_flash.tres::Shader::5565093253385690247::1791154190::0::1::::<><><>0<>0<><>::
+::res://Scripts/::1791240300
+button.gd::GDScript::3399876531381982647::1791235369::0::1::::<>TextureButton<><>0<>0<><>::
+colorswap.tres::VisualShader::1041964115692452680::1791234445::0::1::::<><><>0<>0<><>::
+Contestants.gd::GDScript::887084814954766303::1791240300::0::1::::Contestant<>CharacterBody2D<><>0<>0<><>::
+damage_flash.gdshader::Shader::8974797330275535256::1791234445::0::1::::<><><>0<>0<><>::
+damage_flash.tres::Shader::5565093253385690247::1791234445::0::1::::<><><>0<>0<><>::
 death_screen.gd::GDScript::7914195436358590728::1790379491::0::1::::<>CanvasLayer<><>0<>0<><>::
 detector.gd::GDScript::7270826567967333916::1786478047::0::1::::<>RefCounted<><>0<>0<><>::
 enemy.gd::GDScript::4635814279672078000::1791156135::0::1::::enemy<>Contestant<><>0<>0<><>::
-global.gd::GDScript::2904525417413303067::1790117020::0::1::::<>Node<><>0<>0<><>::
+global.gd::GDScript::2904525417413303067::1791235291::0::1::::<>Node<><>0<>0<><>::
 health.gd::GDScript::2956852357346277118::1791161450::0::1::::<>HBoxContainer<><>0<>0<><>::
 interference_area.gd::GDScript::3859767916950248425::1789314813::0::1::::<>Area2D<><>0<>0<><>::
 level_choose.gd::GDScript::6382653154856594566::1789523626::0::1::::<>Button<><>0<>0<><>::
-moving_platform_animation.gd::GDScript::6656585817149181903::1790731399::0::1::::<>Node2D<><>0<>1<><>::
-player.gd::GDScript::3768574309311254635::1791161218::0::1::::Player<>Contestant<><>0<>0<><>::
+moving_platform_animation.gd::GDScript::6656585817149181903::1791164742::0::1::::<>Node2D<><>0<>1<><>::
+player.gd::GDScript::3768574309311254635::1791240300::0::1::::Player<>Contestant<><>0<>0<><>::
 player_movement.gd::GDScript::8606414477764631268::1787364801::0::1::::<>Player<><>0<>0<><>::
 powerups.gd::GDScript::5775169377590710475::1791081177::0::1::::<>Area2D<><>0<>0<><>::
 sinwave.gd::GDScript::1445532043710285068::1789848654::0::1::::Sinwave<>Line2D<><>0<>0<><>::
