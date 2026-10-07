@@ -2,6 +2,7 @@ extends TextureButton
 @export var oracle: AnimatedSprite2D
 @export var oracle_mover: AnimationPlayer
 @export var button_container: VBoxContainer
+@export var countdown: Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

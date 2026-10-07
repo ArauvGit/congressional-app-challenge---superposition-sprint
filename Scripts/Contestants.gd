@@ -10,6 +10,7 @@ var animated_sprite = get_child(2)
 var jump_count: int = 0
 var decoherence_multiplier: float = 1
 var checker: bool = false
+var invincible: bool = false
 var idle_checker: bool = false
 var dash_checker: bool = false
 var dash_cooldown: bool = false
@@ -64,6 +65,7 @@ var Powerup_information: Dictionary = {
 #endregion
 #region important functions
 func _ready():
+	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
 	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
@@ -195,9 +197,13 @@ func change_direction():
 func _decohere():
 	has_decohered = true
 	Global.damaged = true
+
+
+
+
 func tile_map() -> TileMapLayer:
 	var tile_map_layer = get_node($"../../course".get_path())
-	return tile_map_layer
+	return tile_map_layer 
 #endregion
 #region setters
 func set_jump(jump_change: int) -> int:
@@ -253,31 +259,32 @@ func wall_hang():
 			animated_sprite.play("dash")
 
 func dash():
-	Global.state = Global.States.DASHING
-	self.state_machine()
-	self.dash_checker = true
-	await get_tree().create_timer(0.3).timeout
-	for Name in self.Contestant_information.keys():
-		if self.get_groups()[0] == Name:
-			match self.animated_sprite:
-				var x when x.flip_h == false:
-					set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
-				var x when x.flip_h == true:
-					set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1) 
-	match self:
-		var x when x.is_on_floor_only():
-			Global.state = Global.States.MOVING
-			state_machine()
-		var x when x.is_on_wall_only():
-			Global.state = Global.States.WALL_HANGING
-			state_machine()
-		var x when not x.is_on_floor() or x.is_on_wall():
-			Global.state = Global.States.JUMPING
-			state_machine()
-	self.dash_checker = false
-	self.dash_cooldown = true
-	await animated_sprite.animation_finished
-	self.dash_cooldown = false
+	if not is_on_wall():
+		Global.state = Global.States.DASHING
+		self.state_machine()
+		self.dash_checker = true
+		await get_tree().create_timer(0.3).timeout
+		for Name in self.Contestant_information.keys():
+			if self.get_groups()[0] == Name:
+				match self.animated_sprite:
+					var x when x.flip_h == false:
+						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
+					var x when x.flip_h == true:
+						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1) 
+		match self:
+			var x when x.is_on_floor_only():
+				Global.state = Global.States.MOVING
+				state_machine()
+			var x when x.is_on_wall_only():
+				Global.state = Global.States.WALL_HANGING
+				state_machine()
+			var x when not x.is_on_floor() or x.is_on_wall():
+				Global.state = Global.States.JUMPING
+				state_machine()
+		self.dash_checker = false
+		self.dash_cooldown = true
+		await animated_sprite.animation_finished
+		self.dash_cooldown = false
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):

@@ -2,10 +2,6 @@ res://Scenes/Level2.tscn
 res://Scripts/damage_flash.gdshader
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
-res://Scripts/button.gd
-res://Scripts/global.gd
-res://superposition.gd
-res://oracle.tscn
+res://Scripts/sprite.gd
 res://Scripts/Contestants.gd
 res://Scripts/player.gd
-res://star.tscn

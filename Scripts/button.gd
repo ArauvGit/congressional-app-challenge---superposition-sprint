@@ -1,5 +1,8 @@
 extends TextureButton
 @export var players: Node2D
+@export var countdown: Control
+
+
 
 
 var groups: Array = ["blue", "green", "red", "yellow"]
@@ -36,6 +39,12 @@ func _pressed() -> void:
 		get_parent().hide()
 
 func _choose_type():
+	countdown.show()
+	var countdown_anim_player: AnimationPlayer = countdown.get_child(3)
+	countdown_anim_player.play("countdown")
+	await countdown_anim_player.animation_finished
+	players.show()
+	countdown.get_parent().queue_free()
 	for node in players.get_children():
 		if node is CharacterBody2D: 
 			node.jump()

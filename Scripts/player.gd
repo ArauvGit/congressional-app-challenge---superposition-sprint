@@ -85,6 +85,8 @@ func player_jump() -> void:
 		SFX.get_child(0).play()
 		double_jump()
 func double_jump() -> void:
+	if is_in_group("player"): 
+		SFX.get_child(0).play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 func player_dash():
@@ -116,6 +118,8 @@ func set_health(new_health: int) -> int:
 func player_decohere():
 	var damage_animation := func():
 		var tween = create_tween()
+		tween.tween_property(animated_sprite, "modulate", Color(0.576, 0.139, 0.22, 1.0), 0.05)
+		await get_tree().create_timer(0.05).timeout
 		for i in range(5):
 			tween.tween_property(animated_sprite, "modulate", Color("ffffff38"), 0.4)
 			tween.tween_property(animated_sprite, "modulate", Color("ffffffff"), 0.4)

@@ -14,7 +14,8 @@ func animation_state():
 	match Global.state:
 		Global.States.IDLE:
 			is_on_wall = false
-			play("default")
+			if not is_dashing:
+				play("default")
 		Global.States.MOVING:
 			is_on_wall = false
 			if not is_dashing:
