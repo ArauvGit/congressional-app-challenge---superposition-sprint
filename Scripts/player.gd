@@ -23,7 +23,6 @@ func _init() -> void:
 			node.move_local_x(position.x)
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
-	print(Global.damaged)
 	self_modulate = Color("a23466ff")
 	super(delta)
 	if is_on_floor():

@@ -154,17 +154,22 @@ func return_distance_dictionary():
 	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			var contestant_distance = Contestant_information.get(Name)["DISTANCE"]
-			contestant_distance = return_distance(self.global_position, win_area_pos)
-			distance_placement.append(contestant_distance)
+			contestant_distance = return_distance(get_tree().get_first_node_in_group(Name).global_position, win_area_pos)
+			if not distance_placement.has(contestant_distance):
+				distance_placement.append(contestant_distance)
 	organize_least_to_greatest(distance_placement)
 	index_place_matching()
+	print(distance_placement.size())
+	#print(distance_placement.map(func(element): return round(element)))
+	#print(placement.map(func(element): return element.name))
 
 
 func index_place_matching():
+	for person in $"..".get_children(): 
+		if not placement.has(person):
+			placement.append(person)
 	for Name in Contestant_information.keys():
 		var contestant = self
-		if not placement.has(contestant):
-			placement.append(contestant)
 		if get_groups()[0] == Name:
 			var contestant_info = Contestant_information.get(Name)
 			placement.set(distance_placement.find(contestant_info["DISTANCE"]), contestant)
