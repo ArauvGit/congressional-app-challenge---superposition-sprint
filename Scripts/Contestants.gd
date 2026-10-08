@@ -162,27 +162,26 @@ func return_distance_dictionary():
 		Contestant_information.get(Name)["DISTANCE"] = return_distance(get_tree().get_first_node_in_group(Name).global_position, win_area_pos) 
 	distance_placement.sort()
 	index_place_matching()
-	print(distance_placement.map(func(element): return round(element)))
+	#print(distance_placement.map(func(element): return round(element)))
 
 
 func index_place_matching():
 	for child in $"..".get_children(): 
 		if not placement.has(child):
-			placement.append(child)
-	match get_groups()[0]: 
-		"Yellow": 
-			placement.set(Contestant_information.Yellow["DISTANCE"],
-			get_tree().get_first_node_in_group("Yellow"))
-		"Green": 
-			placement.set(Contestant_information.Green["DISTANCE"],
-			get_tree().get_first_node_in_group("Green"))
-		"Red": 
-			placement.set(Contestant_information.Red["DISTANCE"],
-			get_tree().get_first_node_in_group("Red"))
-		"Blue": 
-			placement.set(Contestant_information.Blue["DISTANCE"],
-			get_tree().get_first_node_in_group("Blue"))
-	#print(placement.map(func(element): return element.name))
+			placement.append(child) 
+			placement.set(distance_placement.find(Contestant_information.get(child.get_groups()[0])["DISTANCE"]), child)
+	#placement.set(distance_placement.find(Contestant_information.Yellow["DISTANCE"]),
+	#$"..".get_child(0))
+	#placement.set(distance_placement.find(Contestant_information.Green["DISTANCE"]),
+	#$"..".get_child(1))
+	#placement.set(distance_placement.find(Contestant_information.Red["DISTANCE"]),
+	#$"..".get_child(2))
+	#placement.set(distance_placement.find(Contestant_information.Blue["DISTANCE"]),
+	#$"..".get_child(3)) 
+	
+	
+	
+	print(placement.map(func(element): return element.name))
 
 			
 
@@ -244,6 +243,7 @@ func jump_powerup():
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 
 				
+
 #endregion
 func squash(x: float, y: float, time: float):
 	create_tween().tween_property(self, "scale", Vector2(x, y), time)
