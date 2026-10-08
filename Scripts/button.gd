@@ -46,8 +46,6 @@ func _choose_type():
 	players.show()
 	countdown.get_parent().queue_free()
 	for node in players.get_children():
-		if node is CharacterBody2D: 
-			node.jump()
 		match node:
 			var x when x is CharacterBody2D and not x.is_in_group("player"):
 				node.set_enemy()

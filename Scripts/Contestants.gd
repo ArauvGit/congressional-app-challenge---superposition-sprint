@@ -67,9 +67,11 @@ var Powerup_information: Dictionary = {
 func _ready():
 	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
+	$"../../Oracle".show()
+	$"../../superposition container".show()
+	$"../../background_transparent".show()
 	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
-	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:
 
 	if Global.damaged:
@@ -151,28 +153,37 @@ func return_distance(pos1: Vector2, pos2: Vector2):
 func return_distance_dictionary():
 	var win_area = $"../../Win Area"
 	var win_area_pos = win_area.global_position
+	distance_placement = [
+		Contestant_information.Yellow["DISTANCE"], 
+		Contestant_information.Green["DISTANCE"], 
+		Contestant_information.Red["DISTANCE"], 
+		Contestant_information.Blue["DISTANCE"]]
 	for Name in Contestant_information.keys():
-		if get_groups()[0] == Name:
-			var contestant_distance = Contestant_information.get(Name)["DISTANCE"]
-			contestant_distance = return_distance(self.global_position, win_area_pos)
-			distance_placement.append(contestant_distance)
-	organize_least_to_greatest(distance_placement)
+		Contestant_information.get(Name)["DISTANCE"] = return_distance(get_tree().get_first_node_in_group(Name).global_position, win_area_pos) 
+	distance_placement.sort()
 	index_place_matching()
+	print(distance_placement.map(func(element): return round(element)))
 
 
 func index_place_matching():
-	for Name in Contestant_information.keys():
-		var contestant = self
-		if not placement.has(contestant):
-			placement.append(contestant)
-		if get_groups()[0] == Name:
-			var contestant_info = Contestant_information.get(Name)
-			placement.set(distance_placement.find(contestant_info["DISTANCE"]), contestant)
+	for child in $"..".get_children(): 
+		if not placement.has(child):
+			placement.append(child)
+	match get_groups()[0]: 
+		"Yellow": 
+			placement.set(Contestant_information.Yellow["DISTANCE"],
+			get_tree().get_first_node_in_group("Yellow"))
+		"Green": 
+			placement.set(Contestant_information.Green["DISTANCE"],
+			get_tree().get_first_node_in_group("Green"))
+		"Red": 
+			placement.set(Contestant_information.Red["DISTANCE"],
+			get_tree().get_first_node_in_group("Red"))
+		"Blue": 
+			placement.set(Contestant_information.Blue["DISTANCE"],
+			get_tree().get_first_node_in_group("Blue"))
+	#print(placement.map(func(element): return element.name))
 
-func organize_least_to_greatest(num_list: Array):
-	num_list.sort()
-	num_list.reverse()
-	return num_list
 			
 
 func land():

@@ -2,6 +2,11 @@ res://Scenes/Level2.tscn
 res://Scripts/damage_flash.gdshader
 res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
-res://Scripts/sprite.gd
+res://Scripts/button.gd
 res://Scripts/Contestants.gd
+res://Scripts/enemy.gd
+res://Scripts/global.gd
+res://Scripts/health.gd
 res://Scripts/player.gd
+res://Scripts/powerups.gd
+res://Scripts/sprite.gd
