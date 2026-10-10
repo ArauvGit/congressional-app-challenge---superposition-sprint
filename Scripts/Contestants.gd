@@ -73,7 +73,6 @@ func _ready():
 	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
 func _physics_process(delta: float) -> void:
-
 	if Global.damaged:
 		Global.state = Global.States.DAMAGING
 		state_machine()
@@ -153,38 +152,39 @@ func return_distance(pos1: Vector2, pos2: Vector2):
 func return_distance_dictionary():
 	var win_area = $"../../Win Area"
 	var win_area_pos = win_area.global_position
-	distance_placement = [
-		Contestant_information.Yellow["DISTANCE"], 
-		Contestant_information.Green["DISTANCE"], 
-		Contestant_information.Red["DISTANCE"], 
-		Contestant_information.Blue["DISTANCE"]]
+
 	for Name in Contestant_information.keys():
-		Contestant_information.get(Name)["DISTANCE"] = return_distance(get_tree().get_first_node_in_group(Name).global_position, win_area_pos) 
+		Contestant_information.get(Name)["DISTANCE"] = return_distance(
+			get_tree().get_first_node_in_group(Name).global_position,
+			win_area_pos
+		)
+
+	var yellow = Contestant_information.Yellow["DISTANCE"]
+	var green = Contestant_information.Green["DISTANCE"]
+	var red = Contestant_information.Red["DISTANCE"]
+	var blue = Contestant_information.Blue["DISTANCE"]
+
+	distance_placement = [
+		yellow,
+		green,
+		red,
+		blue
+	]
 	distance_placement.sort()
-	index_place_matching()
-	#print(distance_placement.map(func(element): return round(element)))
+	Global.distance_placement = distance_placement
+	#print(distance_placement.map(func(element): return str(element)))
 
 
 func index_place_matching():
-	for child in $"..".get_children(): 
+	for child in $"..".get_children():
 		if not placement.has(child):
-			placement.append(child) 
+			placement.append(child)
 			placement.set(distance_placement.find(Contestant_information.get(child.get_groups()[0])["DISTANCE"]), child)
-	#placement.set(distance_placement.find(Contestant_information.Yellow["DISTANCE"]),
-	#$"..".get_child(0))
-	#placement.set(distance_placement.find(Contestant_information.Green["DISTANCE"]),
-	#$"..".get_child(1))
-	#placement.set(distance_placement.find(Contestant_information.Red["DISTANCE"]),
-	#$"..".get_child(2))
-	#placement.set(distance_placement.find(Contestant_information.Blue["DISTANCE"]),
-	#$"..".get_child(3)) 
 	
 	
-	
-	print(placement.map(func(element): return element.name))
+	#print(placement.map(func(element): return element.name))
 
 			
-
 func land():
 	if can_squish and is_on_floor():
 		squash(1.3, 0.9, 0.05)
@@ -209,11 +209,9 @@ func _decohere():
 	Global.damaged = true
 
 
-
-
 func tile_map() -> TileMapLayer:
 	var tile_map_layer = get_node($"../../course".get_path())
-	return tile_map_layer 
+	return tile_map_layer
 #endregion
 #region setters
 func set_jump(jump_change: int) -> int:
@@ -243,7 +241,6 @@ func jump_powerup():
 			set_jump(JUMP_VELOCITY / Powerup_information["JUMP_BOOST"])
 
 				
-
 #endregion
 func squash(x: float, y: float, time: float):
 	create_tween().tween_property(self, "scale", Vector2(x, y), time)
@@ -281,7 +278,7 @@ func dash():
 					var x when x.flip_h == false:
 						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
 					var x when x.flip_h == true:
-						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1) 
+						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1)
 		match self:
 			var x when x.is_on_floor_only():
 				Global.state = Global.States.MOVING
