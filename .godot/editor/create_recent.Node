@@ -1,14 +1,14 @@
 CanvasLayer
+TextureRect
+PanelContainer
 VBoxContainer
+Label
 Sprite2D
 Control
 HBoxContainer
 Node2D
 AnimationPlayer
-Label
 TextureButton
 ColorRect
 AnimatedSprite2D
 AudioStreamPlayer
-Node
-CollisionShape2D

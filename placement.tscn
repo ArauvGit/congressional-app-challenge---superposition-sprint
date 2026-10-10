@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://cgybxjxp6j2co"]
+
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="1_2uq68"]
+[ext_resource type="Texture2D" uid="uid://nk7puel6r03q" path="res://placement container.png" id="1_ekwsb"]
+[ext_resource type="Script" uid="uid://by4xghysw02xm" path="res://placement.gd" id="2_ekwsb"]
+[ext_resource type="Texture2D" uid="uid://duma0uauhboxx" path="res://placement subcontainer 1.png" id="2_t7vgb"]
+[ext_resource type="Texture2D" uid="uid://dlxk2jsqgmyu" path="res://placement subcontainer 2.png" id="5_ud7qd"]
+
+[sub_resource type="Theme" id="Theme_sdnvj"]
+default_font = ExtResource("1_2uq68")
+
+[node name="Placement" type="TextureRect" unique_id=1969438867]
+custom_minimum_size = Vector2(75, 150)
+offset_right = 75.0
+offset_bottom = 150.0
+texture = ExtResource("1_ekwsb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1316904496]
+layout_mode = 0
+offset_left = 7.0
+offset_right = 67.0
+offset_bottom = 150.0
+size_flags_horizontal = 4
+theme_override_constants/separation = 7
+alignment = 1
+
+[node name="PanelContainer" type="TextureRect" parent="VBoxContainer" unique_id=534965813]
+custom_minimum_size = Vector2(60, 35)
+custom_maximum_size = Vector2(75, -1)
+layout_mode = 2
+texture = ExtResource("2_t7vgb")
+
+[node name="1st" type="Label" parent="VBoxContainer/PanelContainer" unique_id=524717094]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 37.0
+theme = SubResource("Theme_sdnvj")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 30
+text = "1st"
+horizontal_alignment = 1
+script = ExtResource("2_ekwsb")
+
+[node name="PanelContainer2" type="TextureRect" parent="VBoxContainer" unique_id=874068724]
+custom_minimum_size = Vector2(50, 25)
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 2
+texture = ExtResource("5_ud7qd")
+
+[node name="2nd" type="Label" parent="VBoxContainer/PanelContainer2" unique_id=670667373]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 25.0
+theme = SubResource("Theme_sdnvj")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "2nd"
+horizontal_alignment = 1
+script = ExtResource("2_ekwsb")
+
+[node name="PanelContainer3" type="TextureRect" parent="VBoxContainer" unique_id=207737397]
+custom_minimum_size = Vector2(50, 25)
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 2
+texture = ExtResource("5_ud7qd")
+
+[node name="3rd" type="Label" parent="VBoxContainer/PanelContainer3" unique_id=1828492491]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 25.0
+theme = SubResource("Theme_sdnvj")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "3rd"
+horizontal_alignment = 1
+script = ExtResource("2_ekwsb")
+
+[node name="PanelContainer4" type="TextureRect" parent="VBoxContainer" unique_id=1364154852]
+custom_minimum_size = Vector2(50, 25)
+custom_maximum_size = Vector2(50, -1)
+layout_mode = 2
+texture = ExtResource("5_ud7qd")
+
+[node name="4th" type="Label" parent="VBoxContainer/PanelContainer4" unique_id=1495245141]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 25.0
+theme = SubResource("Theme_sdnvj")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "4th"
+horizontal_alignment = 1
+script = ExtResource("2_ekwsb")
