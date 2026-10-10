@@ -113,7 +113,10 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 
-
+func return_speed(): 
+	for Name in Contestant_information.keys(): 
+		var speed_val = Contestant_information.get(Name)["SPEED"]
+		return speed_val
 func player_decohere():
 	var damage_animation := func():
 		var tween = create_tween()
@@ -126,7 +129,10 @@ func player_decohere():
 		SFX.get_child(3).play()
 		damage_animation.call()
 		set_health(Global.health - 1)
-		set_speed(SPEED * -1 * decoherence_multiplier)
+		set_speed(SPEED * -1 * decoherence_multiplier) 
+		await get_tree().create_timer(5).timeout
+		print("hi")
+	
 		velocity.y = -500
 		if is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
@@ -164,6 +170,7 @@ func interference_powerup():
 				Global.interference_works = false
 func die():
 	if Global.health <= 0:
+		Global.dead = true
 		for child in get_parent().get_parent().get_children():
 			if child is CanvasLayer and child.name.contains("Decoherence"):
 				child.show()

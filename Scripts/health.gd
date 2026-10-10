@@ -12,6 +12,8 @@ func _process(_delta: float) -> void:
 
 func update_health_display():
 	var child_node = get_child(0)
+	if Global.dead: 
+		return
 	while get_child_count() != Global.health:
 		if get_child_count() > Global.health:
 			for i in range(2):
