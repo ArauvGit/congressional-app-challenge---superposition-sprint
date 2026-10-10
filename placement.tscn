@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgybxjxp6j2co"]
 
-[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts/PixelifySans-Medium.ttf" id="1_2uq68"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="1_2uq68"]
 [ext_resource type="Texture2D" uid="uid://nk7puel6r03q" path="res://placement container.png" id="1_ekwsb"]
 [ext_resource type="Script" uid="uid://by4xghysw02xm" path="res://placement.gd" id="2_ekwsb"]
 [ext_resource type="Texture2D" uid="uid://duma0uauhboxx" path="res://placement subcontainer 1.png" id="2_t7vgb"]
@@ -10,7 +10,8 @@
 default_font = ExtResource("1_2uq68")
 
 [node name="Placement" type="TextureRect" unique_id=1969438867]
-custom_minimum_size = Vector2(75, 150)
+custom_minimum_size = Vector2(75, 140)
+custom_maximum_size = Vector2(-1, 150)
 offset_right = 75.0
 offset_bottom = 150.0
 texture = ExtResource("1_ekwsb")
@@ -36,7 +37,7 @@ offset_right = 60.0
 offset_bottom = 37.0
 theme = SubResource("Theme_sdnvj")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 30
 text = "1st"
 horizontal_alignment = 1
@@ -54,7 +55,7 @@ offset_right = 50.0
 offset_bottom = 25.0
 theme = SubResource("Theme_sdnvj")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "2nd"
 horizontal_alignment = 1
@@ -72,7 +73,7 @@ offset_right = 50.0
 offset_bottom = 25.0
 theme = SubResource("Theme_sdnvj")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "3rd"
 horizontal_alignment = 1
@@ -90,7 +91,7 @@ offset_right = 50.0
 offset_bottom = 25.0
 theme = SubResource("Theme_sdnvj")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 20
 text = "4th"
 horizontal_alignment = 1

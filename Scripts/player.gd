@@ -7,7 +7,6 @@ var nudge_multiplier: int = 0
 
 #region important functions
 func _init() -> void:
-	$"../../health container/Control/healthbar".show()
 	RaceSong.play()
 	self.connect("take_damage", player_decohere)
 	for Name in Contestant_information.keys():
@@ -29,9 +28,10 @@ func _physics_process(delta: float) -> void:
 		jump_count = 0
 	else:
 		can_squish = true
-	player_jump()
-	wall_jump()
-	player_dash()
+	if Global.can_interact:
+		player_jump()
+		wall_jump()
+		player_dash()
 	die()
 	player_camera_pos_config()
 	movement_freeze()
@@ -130,8 +130,6 @@ func player_decohere():
 		damage_animation.call()
 		set_health(Global.health - 1)
 		set_speed(SPEED * -1 * decoherence_multiplier) 
-		await get_tree().create_timer(5).timeout
-		print("hi")
 	
 		velocity.y = -500
 		if is_on_wall():

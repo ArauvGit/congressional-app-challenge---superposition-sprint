@@ -1,8 +1,8 @@
 extends Area2D
 var groups: Array = ["Health", "Speed", "Jump"]
 @onready var sprite: Sprite2D = $Sprite2D
-
-
+@export var interference: CanvasLayer
+@export var background_transparent: ColorRect
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -30,10 +30,13 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 					body.jump_powerup()
 					queue_free()
 			var x when x.is_in_group("Interference"):
-				if body.has_method("interference_powerup"):
-					if body.is_in_group("player"):
-						body.interference_powerup()
-						queue_free()
+				if body.is_in_group("player"):
+					Engine.time_scale *= 0.05 
+					Global.can_interact = false
+					background_transparent.show()
+					interference.show() 
+					Global.interference_activated = true
+					queue_free()
 	else: 
 		random()
 func weighted_choice(biggest: int, middle: int, smallest: int):
@@ -52,7 +55,6 @@ func choose_sprite():
 			sprite.texture = load("res://Assets/Sprites/powerups/jump_powerup.png")
 		"Jump": 
 			sprite.texture = load("res://Assets/Sprites/powerups/jump_powerup.png")
-		
 
 		
 func random():

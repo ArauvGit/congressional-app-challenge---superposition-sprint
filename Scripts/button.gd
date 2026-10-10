@@ -1,7 +1,8 @@
 extends TextureButton
 @export var players: Node2D
 @export var countdown: Control
-
+@export var healthbar: Control
+@export var placement: Control
 
 
 
@@ -24,6 +25,7 @@ func _pressed() -> void:
 	if Global.can_be_pressed:
 		$"../../players/Camera2D".zoom = Vector2(1, 1)
 		$"../../background_transparent".hide()
+		$"../../background_transparent".reparent($"../../background transparent container")
 		$"../../Oracle".hide()
 		if Global.is_pressed:
 			return
@@ -43,6 +45,8 @@ func _choose_type():
 	var countdown_anim_player: AnimationPlayer = countdown.get_child(3)
 	countdown_anim_player.play("countdown")
 	await countdown_anim_player.animation_finished
+	healthbar.show()
+	placement.show()
 	players.show()
 	countdown.get_parent().queue_free()
 	for node in players.get_children():
@@ -61,7 +65,3 @@ func choose_script():
 			node.set_script(preload("res://Scripts/enemy.gd"))
 		if node is CharacterBody2D:
 			node.jump()
-
-
-func _on_focus_entered() -> void:
-	pass # Replace with function body.

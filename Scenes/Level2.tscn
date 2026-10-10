@@ -31,7 +31,10 @@
 [ext_resource type="PackedScene" uid="uid://buxncprcsc0ho" path="res://superposition.tscn" id="29_5fn7l"]
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="30_sj5x0"]
 [ext_resource type="PackedScene" uid="uid://cgybxjxp6j2co" path="res://placement.tscn" id="31_sj5x0"]
+[ext_resource type="PackedScene" uid="uid://bud7hk2ll2gis" path="res://interference_container.tscn" id="31_uelq8"]
+[ext_resource type="PackedScene" uid="uid://bfeq57nntau7i" path="res://powerup.tscn" id="32_ubjqm"]
 [ext_resource type="PackedScene" uid="uid://cbap2ahkkr0aq" path="res://countdown.tscn" id="33_uelq8"]
+[ext_resource type="Texture2D" uid="uid://ctcqxkot1if6b" path="res://Assets/Sprites/powerups/interference_powerup_sprite.png" id="33_ywwsq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]
 texture = ExtResource("4_sgc6j")
@@ -779,6 +782,9 @@ tile_set = SubResource("TileSet_b68tq")
 [node name="Win Area" parent="." unique_id=1838188679 instance=ExtResource("13_1je60")]
 position = Vector2(4919, -45.999992)
 
+[node name="background transparent container" type="CanvasLayer" parent="." unique_id=205336002]
+layer = 0
+
 [node name="background_transparent" type="ColorRect" parent="." unique_id=507026061]
 visible = false
 offset_left = -588.0
@@ -825,11 +831,11 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(1186, -8.000008)
 scale = Vector2(2.5, 2.5)
-position_transform = 32918.449999672164
+position_transform = 50928.35000072048
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(35.594135, 0)
+position = Vector2(2.9236627, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)
@@ -846,7 +852,7 @@ offset_right = -22.0
 offset_bottom = 591.0
 theme_override_constants/separation = 10
 
-[node name="yellow" type="TextureButton" parent="Button Container" unique_id=1187604259 node_paths=PackedStringArray("players", "countdown") groups=["Yellow"]]
+[node name="yellow" type="TextureButton" parent="Button Container" unique_id=1187604259 node_paths=PackedStringArray("players", "countdown", "healthbar", "placement") groups=["Yellow"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
 offset_transform_enabled = true
@@ -855,6 +861,8 @@ stretch_mode = 0
 script = ExtResource("7_8wk15")
 players = NodePath("../../players")
 countdown = NodePath("../../CanvasLayer/countdown")
+healthbar = NodePath("../../health container/Control/healthbar")
+placement = NodePath("../../placement container/Placement")
 
 [node name="label" type="Label" parent="Button Container/yellow" unique_id=1015714170]
 layout_mode = 0
@@ -985,7 +993,7 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(2.5, 2.5)
 
-[node name="green" type="TextureButton" parent="Button Container" unique_id=694822226 node_paths=PackedStringArray("players", "countdown") groups=["Green"]]
+[node name="green" type="TextureButton" parent="Button Container" unique_id=694822226 node_paths=PackedStringArray("players", "countdown", "healthbar", "placement") groups=["Green"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
 texture_normal = ExtResource("9_uxnm3")
@@ -993,6 +1001,8 @@ stretch_mode = 0
 script = ExtResource("7_8wk15")
 players = NodePath("../../players")
 countdown = NodePath("../../CanvasLayer/countdown")
+healthbar = NodePath("../../health container/Control/healthbar")
+placement = NodePath("../../placement container/Placement")
 
 [node name="label" type="Label" parent="Button Container/green" unique_id=1474988504]
 layout_mode = 0
@@ -1129,7 +1139,7 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(2.5, 2.5)
 
-[node name="red" type="TextureButton" parent="Button Container" unique_id=558351338 node_paths=PackedStringArray("players", "countdown") groups=["Red"]]
+[node name="red" type="TextureButton" parent="Button Container" unique_id=558351338 node_paths=PackedStringArray("players", "countdown", "healthbar", "placement") groups=["Red"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
 texture_normal = ExtResource("9_uxnm3")
@@ -1137,6 +1147,8 @@ stretch_mode = 0
 script = ExtResource("7_8wk15")
 players = NodePath("../../players")
 countdown = NodePath("../../CanvasLayer/countdown")
+healthbar = NodePath("../../health container/Control/healthbar")
+placement = NodePath("../../placement container/Placement")
 
 [node name="label" type="Label" parent="Button Container/red" unique_id=1583554142]
 layout_mode = 0
@@ -1280,7 +1292,7 @@ size_flags_vertical = 4
 offset_transform_enabled = true
 offset_transform_scale = Vector2(2.5, 2.5)
 
-[node name="blue" type="TextureButton" parent="Button Container" unique_id=2057171887 node_paths=PackedStringArray("players", "countdown") groups=["Blue"]]
+[node name="blue" type="TextureButton" parent="Button Container" unique_id=2057171887 node_paths=PackedStringArray("players", "countdown", "healthbar", "placement") groups=["Blue"]]
 custom_minimum_size = Vector2(555, 165)
 layout_mode = 2
 texture_normal = ExtResource("9_uxnm3")
@@ -1288,6 +1300,8 @@ stretch_mode = 0
 script = ExtResource("7_8wk15")
 players = NodePath("../../players")
 countdown = NodePath("../../CanvasLayer/countdown")
+healthbar = NodePath("../../health container/Control/healthbar")
+placement = NodePath("../../placement container/Placement")
 
 [node name="label" type="Label" parent="Button Container/blue" unique_id=1933681018]
 layout_mode = 0
@@ -1483,6 +1497,34 @@ frame_progress = 0.0
 root_node = NodePath("../Oracle")
 libraries/ = SubResource("AnimationLibrary_uelq8")
 
+[node name="interference container" parent="." unique_id=157839272 instance=ExtResource("31_uelq8")]
+visible = false
+
+[node name="constructive" parent="interference container/horizontal container" parent_id_path=PackedInt32Array(157839272, 657021949) index="0" unique_id=1364241309 node_paths=PackedStringArray("yellow", "green", "red", "blue", "background_transparent", "win_area")]
+yellow = NodePath("../../../players/Yellow")
+green = NodePath("../../../players/Green")
+red = NodePath("../../../players/Red")
+blue = NodePath("../../../players/Blue")
+background_transparent = NodePath("../../../background_transparent")
+win_area = NodePath("../../../Win Area")
+
+[node name="destructive" parent="interference container/horizontal container" parent_id_path=PackedInt32Array(157839272, 657021949) index="1" unique_id=52676727 node_paths=PackedStringArray("yellow", "green", "red", "blue", "background_transparent", "win_area")]
+yellow = NodePath("../../../players/Yellow")
+green = NodePath("../../../players/Green")
+red = NodePath("../../../players/Red")
+blue = NodePath("../../../players/Blue")
+background_transparent = NodePath("../../../background_transparent")
+win_area = NodePath("../../../Win Area")
+
+[node name="interference test" parent="." unique_id=1003261113 node_paths=PackedStringArray("interference", "background_transparent") groups=["Interference"] instance=ExtResource("32_ubjqm")]
+position = Vector2(871, -62)
+interference = NodePath("../interference container")
+background_transparent = NodePath("../background_transparent")
+
+[node name="Sprite2D" parent="interference test" index="0" unique_id=1253056423]
+scale = Vector2(2, 2)
+texture = ExtResource("33_ywwsq")
+
 [node name="placement container" type="CanvasLayer" parent="." unique_id=1249943187]
 
 [node name="Placement" parent="placement container" unique_id=1969438867 instance=ExtResource("31_sj5x0")]
@@ -1490,8 +1532,10 @@ offset_left = 540.0
 offset_top = 20.0
 offset_right = 615.0
 offset_bottom = 170.0
+script = null
 
 [node name="1st" parent="placement container/Placement/VBoxContainer/PanelContainer" parent_id_path=PackedInt32Array(1969438867, 534965813) index="0" unique_id=524717094 node_paths=PackedStringArray("yellow", "green", "red", "blue", "win_area")]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 yellow = NodePath("../../../../../players/Yellow")
 green = NodePath("../../../../../players/Green")
 red = NodePath("../../../../../players/Red")
@@ -1535,4 +1579,6 @@ offset_bottom = 39.0
 
 [editable path="players"]
 [editable path="moving platforms/Moving platform"]
+[editable path="interference container"]
+[editable path="interference test"]
 [editable path="placement container/Placement"]

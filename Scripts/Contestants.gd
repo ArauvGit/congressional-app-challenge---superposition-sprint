@@ -67,6 +67,7 @@ var Powerup_information: Dictionary = {
 func _ready():
 	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
+	$"../../placement container/Placement".hide()
 	$"../../Oracle".show()
 	$"../../superposition container".show()
 	$"../../background_transparent".show()
