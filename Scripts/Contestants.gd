@@ -67,11 +67,12 @@ var Powerup_information: Dictionary = {
 func _ready():
 	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
+	$"../../Oracle".show()
+	$"../../superposition container".show()
+	$"../../background_transparent".show()
 	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
-	organize_least_to_greatest([3, 2, 5])
 func _physics_process(delta: float) -> void:
-
 	if Global.damaged:
 		Global.state = Global.States.DAMAGING
 		state_machine()
@@ -151,35 +152,39 @@ func return_distance(pos1: Vector2, pos2: Vector2):
 func return_distance_dictionary():
 	var win_area = $"../../Win Area"
 	var win_area_pos = win_area.global_position
+
 	for Name in Contestant_information.keys():
-		if get_groups()[0] == Name:
-			var contestant_distance = Contestant_information.get(Name)["DISTANCE"]
-			contestant_distance = return_distance(get_tree().get_first_node_in_group(Name).global_position, win_area_pos)
-			if not distance_placement.has(contestant_distance):
-				distance_placement.append(contestant_distance)
-	organize_least_to_greatest(distance_placement)
-	index_place_matching()
-	print(distance_placement.size())
-	#print(distance_placement.map(func(element): return round(element)))
-	#print(placement.map(func(element): return element.name))
+		Contestant_information.get(Name)["DISTANCE"] = return_distance(
+			get_tree().get_first_node_in_group(Name).global_position,
+			win_area_pos
+		)
+
+	var yellow = Contestant_information.Yellow["DISTANCE"]
+	var green = Contestant_information.Green["DISTANCE"]
+	var red = Contestant_information.Red["DISTANCE"]
+	var blue = Contestant_information.Blue["DISTANCE"]
+
+	distance_placement = [
+		yellow,
+		green,
+		red,
+		blue
+	]
+	distance_placement.sort()
+	Global.distance_placement = distance_placement
+	#print(distance_placement.map(func(element): return str(element)))
 
 
 func index_place_matching():
-	for person in $"..".get_children(): 
-		if not placement.has(person):
-			placement.append(person)
-	for Name in Contestant_information.keys():
-		var contestant = self
-		if get_groups()[0] == Name:
-			var contestant_info = Contestant_information.get(Name)
-			placement.set(distance_placement.find(contestant_info["DISTANCE"]), contestant)
+	for child in $"..".get_children():
+		if not placement.has(child):
+			placement.append(child)
+			placement.set(distance_placement.find(Contestant_information.get(child.get_groups()[0])["DISTANCE"]), child)
+	
+	
+	#print(placement.map(func(element): return element.name))
 
-func organize_least_to_greatest(num_list: Array):
-	num_list.sort()
-	num_list.reverse()
-	return num_list
 			
-
 func land():
 	if can_squish and is_on_floor():
 		squash(1.3, 0.9, 0.05)
@@ -204,11 +209,9 @@ func _decohere():
 	Global.damaged = true
 
 
-
-
 func tile_map() -> TileMapLayer:
 	var tile_map_layer = get_node($"../../course".get_path())
-	return tile_map_layer 
+	return tile_map_layer
 #endregion
 #region setters
 func set_jump(jump_change: int) -> int:
@@ -275,7 +278,7 @@ func dash():
 					var x when x.flip_h == false:
 						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
 					var x when x.flip_h == true:
-						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1) 
+						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1)
 		match self:
 			var x when x.is_on_floor_only():
 				Global.state = Global.States.MOVING

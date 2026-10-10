@@ -4,3 +4,9 @@ res://Scripts/colorswap.tres
 res://Scripts/damage_flash.tres
 res://Scripts/Contestants.gd
 res://Scripts/player.gd
+res://Scripts/health.gd
+res://Scripts/global.gd
+res://Scripts/enemy.gd
+res://Scenes/players.tscn
+res://placement.tscn
+res://placement.gd
