@@ -65,7 +65,9 @@ var Powerup_information: Dictionary = {
 #endregion
 #region important functions
 func _ready():
-	$"..".hide()
+	RaceSong.play(0)
+	RaceSong.stop()
+	$"..".hide() 
 	$"../../health container/Control/healthbar".hide()
 	$"../../placement container/Placement".hide()
 	$"../../Oracle".show()
@@ -144,6 +146,12 @@ func state_machine():
 func calculate_placement():
 	pass
 
+func return_speed(): 
+	for Name in Contestant_information.keys(): 
+		var speed_val = Contestant_information.get(Name)["SPEED"]
+		return speed_val
+		
+		
 func return_distance(pos1: Vector2, pos2: Vector2):
 	var distance_x = pos1.x - pos2.x
 	var distance_y = pos1.y - pos2.y
@@ -207,7 +215,7 @@ func change_direction():
 					set_speed(SPEED * -1)
 func _decohere():
 	has_decohered = true
-	Global.damaged = true
+	Global.damaged = true 
 
 
 func tile_map() -> TileMapLayer:
@@ -300,7 +308,7 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 		var cell_data = body.get_cell_tile_data(cell)
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Damageable"):
-				decoherence_multiplier -= 0.1
+				decoherence_multiplier -= 0.01
 				take_damage.emit()
 	var break_tile := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)

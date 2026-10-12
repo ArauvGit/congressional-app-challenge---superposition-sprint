@@ -15,6 +15,7 @@ var is_pressed: bool = false
 var health: int = 4
 var player_testers: Array = [false, false, false, false]
 var interference_activated: bool = false
+var interference_wave_activated: bool = false
 var damaged: bool = false
 var dead: bool = false
 var can_be_pressed: bool = false

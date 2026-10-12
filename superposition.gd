@@ -3,6 +3,8 @@ extends TextureButton
 @export var oracle_mover: AnimationPlayer
 @export var button_container: VBoxContainer
 @export var countdown: Control
+var can_increase: bool = true
+var can_decrease: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

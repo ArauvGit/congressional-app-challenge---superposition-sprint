@@ -113,7 +113,7 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 
-func return_speed(): 
+func return_speed(key: String) -> Variant: 
 	for Name in Contestant_information.keys(): 
 		var speed_val = Contestant_information.get(Name)["SPEED"]
 		return speed_val

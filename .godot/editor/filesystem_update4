@@ -1,14 +1,2 @@
-res://Scripts/Contestants.gd
-res://placement.gd
-res://Scenes/Level2.tscn
-res://Scripts/damage_flash.gdshader
-res://Scripts/colorswap.tres
-res://Scripts/damage_flash.tres
-res://placement.tscn
-res://Scripts/player.gd
-res://Scripts/button.gd
 res://interference.gd
-res://placement_size_control.gd
-res://Scripts/global.gd
-res://Scripts/health.gd
-res://Scripts/powerups.gd
+res://Scripts/player.gd

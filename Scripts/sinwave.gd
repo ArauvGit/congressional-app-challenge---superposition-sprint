@@ -1,222 +1,37 @@
-extends Line2D
+extends Line2D 
 class_name Sinwave
 @export var line_container: Node2D
-@export var players: Node2D
-@export var detector_top: Area2D
-@export var detector_bottom: Area2D
-
+@export var bg: ColorRect
+var wave_speed_multiplier: int = 3
 var y: float = 0
 var x: float = 0
-
-var yellow_position_adder: float = 0.2
-var green_position_adder: float = 0.3
-var red_position_adder: float = 0.1
-var blue_position_adder: float = 0.1
-var position_container: Array = [yellow_position_adder, green_position_adder, red_position_adder, blue_position_adder]
-var enemy_movement_timer: float = 0
-
+var line_tween_time: float = 1.2
 var wave_count: int = 3
-var wave_speed_multiplier: int = 1
-var vertical_movement: int = 1
-var enemy_movement_multiplier: int = 1
 
-var started_cancelling: bool = false
-var cancelled: bool = false
-# # Called when the node enters the scene tree for the first time.
-func is_player(node: Node2D) -> bool:
-	return Global.player_testers[node.get_index() - 1] == true or node.is_in_group("player")
-
-func _init() -> void: 
-	match self.get_index():
-		0:
-			wave_speed_multiplier = 4
-			self.add_to_group("Line One")
-		1:
-			wave_speed_multiplier = 3
-			self.add_to_group("Line Two")
-		2:
-			wave_speed_multiplier = 5
-			self.add_to_group("Line Three")
-		3:
-			wave_speed_multiplier = 2
-			self.add_to_group("Line Four")
-	while x != 641:
-		self.add_point(Vector2(x, y))
-		x += 1
-		set_y(15 * sin(0.15 * x))
-	set_player_position()
-
-func _ready() -> void: 
-	match self.get_index():
-		0:
-			wave_speed_multiplier = 4
-		1:
-			wave_speed_multiplier = 3
-		2:
-			wave_speed_multiplier = 5
-		3:
-			wave_speed_multiplier = 2
-	while x != 641:
-		self.add_point(Vector2(x, y))
-		x += 1
-		set_y(15 * sin(0.15 * x))
-	set_player_position()
+func _ready() -> void:
+	self.hide()
 
 # # Called every frame. 'delta' is the elapsed time since the previous frame.
 # func _process(delta: float) -> void:
 # 	pass
 
-
-func _physics_process(delta: float) -> void:
-	if Global.interference_works == false: 
-		return
-	if x >= 641:
-		for i in range(wave_speed_multiplier):
-			self.add_point(Vector2(x, y))
-			x += 1
-			set_y(15 * sin(0.15 * x))
-			self.remove_point(0)
-			self.translate(Vector2(-1, 0))
-	update_player_position(delta)
-	area_collisions(get_child(0))
-	change_direction(detector_bottom)
-	change_direction(detector_top)
 func set_y(new_value: float):
 	if y != new_value:
 		y = new_value
 	return y
-
-func update_player_position(delta):
-	enemy_movement_timer -= delta
-	for child in players.get_children():
-		var vertical_direction: float = Input.get_axis("move_up", "move_down")
-		if is_player(child):
-			for line in line_container.get_children():
-				if get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
-					if line.position.y < 300 or line.position.y > 60:
-						vertical_movement = 1
-						line.position.y += vertical_movement * vertical_direction
-		else:
-			for line in line_container.get_children():
-				if not get_tree().get_nodes_in_group(line.get_groups()[0]).any(is_player):
-					line.position.y += position_container[line.get_index()]
-					for node in child.get_children():
-						if node is AnimatedSprite2D:
-							node.position.y += position_container[line.get_index()]
-		match child:
-			var player_node when player_node.is_in_group("Yellow"):
-				child.add_to_group("Line One")
-				child.position.y = 15 * sin(0.15 * abs(x) * 1.1)
-			var player_node when player_node.is_in_group("Green"):
-				child.add_to_group("Line Two")
-				child.position.y = 15 * sin(0.15 * abs(x) * 1.25) + 60
-			var player_node when player_node.is_in_group("Red"):
-				child.add_to_group("Line Three")
-				child.position.y = 15 * sin(0.15 * abs(position.x) * 1.5) + 140
-			var player_node when player_node.is_in_group("Blue"):
-				child.add_to_group("Line Four")
-				child.position.y = 15 * sin(0.15 * abs(x)) + 220
-
-func randomized_enemy_movement(delta):
-	enemy_movement_timer -= delta
-		
-	if enemy_movement_timer <= 0:
-		for element in position_container:
-			element = randf_range(-0.2, 0.2)
-			enemy_movement_timer = 1
-			
-func set_player_position():
-	if is_instance_valid(players):
-		for child in players.get_children():
-			match child:
-				var character when character.is_in_group("Yellow"):
-					child.global_position = Vector2(50, %Line1.position.y)
-				var character when character.is_in_group("Green"):
-					child.global_position = Vector2(50, %Line2.position.y)
-				var character when character.is_in_group("Red"):
-					child.global_position = Vector2(50, %Line3.position.y)
-				var character when character.is_in_group("Blue"):
-					child.global_position = Vector2(50, %Line4.position.y)
-		#if not is_instance_valid($yellow):
-			#%Line1.queue_free()
-		#if not is_instance_valid($green):
-			#%Line2.queue_free()
-		#if not is_instance_valid($red):
-			#%Line3.queue_free()
-		#if not is_instance_valid($blue):
-			#%Line4.queue_free()
-	else:
-		push_error("players is null!")
-
-func area_collisions(area: Area2D) -> void:
-	var area_parent = area.get_parent()
-	if wave_count == 0:
-		area_parent.default_color = Color("FFF")
-		area_parent.add_to_group("Cancelled")
-	if area.get_overlapping_areas():
-		if area_parent is Line2D:
-			for node in get_tree().get_nodes_in_group(area_parent.get_groups()[0]):
-				if node is CharacterBody2D:
-					if not is_player(node):
-						started_cancelling = true
-					else:
-						started_cancelling = false
-					if started_cancelling == true:
-						if Input.is_action_just_pressed("Interference"):
-							flash_white(area_parent)
-							await get_tree().create_timer(0.04).timeout
-							fluctuate(area_parent, wave_count * 0.167)
-							wave_count -= 1
-	end_minigame()
-
-func change_direction(detector: Area2D):
-	if detector.has_overlapping_areas():
-		var area = detector.get_overlapping_areas()[0]
-		var contestant_wave = area.get_parent()
-		print(contestant_wave.get_groups())
-		if get_tree().get_nodes_in_group(contestant_wave.get_groups()[0]).any(is_player):
-			if detector.name.contains("top"):
-				for i in range(10):
-					contestant_wave.move_local_y(0.5)
-					await get_tree().process_frame
-			elif detector.name.contains("bottom"):
-				for i in range(10):
-					contestant_wave.move_local_y(-0.5)
-					await get_tree().process_frame
-		else:
-			if detector.name.contains("top"):
-				position_container[area.get_parent().get_index()] = 0.2
-				enemy_movement_timer = 0.1
-			elif detector.name.contains("bottom"):
-				position_container[area.get_parent().get_index()] = -0.2
-				enemy_movement_timer = 0.1
-
-		
-
-func flash_white(line: Line2D):
-	var checker: bool = false
-	var previous_default_color: Color = line.default_color
-	var timer_duration: float = 0.04
-	var tween = create_tween()
-	if previous_default_color == Color("FFF"):
-		return
-	if checker == false:
-		tween.tween_property(line, "default_color", Color("FFFF"), timer_duration)
-		tween.tween_property(line, "width", 5, timer_duration)
-		tween.tween_property(line, "default_color", previous_default_color, timer_duration)
-		tween.tween_property(line, "width", 2, timer_duration)
-		checker = true
-
-func fluctuate(line: Line2D, duration: float):
-	var color_tween: Tween = get_tree().create_tween()
-	for i in range(100):
-		color_tween.tween_property(line, "modulate", Color(1.0, 1.0, 1.0, 0.318), duration)
-		color_tween.tween_property(line, "modulate", Color("FFFF"), duration)
+func create_lines(): 
+	if Global.interference_wave_activated:
+		while x != 641:
+			self.add_point(Vector2(x, y))
+			x += 1
+			set_y(15 * sin(0.15 * x)) 
+			if x >= 641:
+				animate_lines()
 
 
-func end_minigame():
-	if get_tree().get_node_count_in_group("Cancelled") == 2:
-		for line in get_tree().get_nodes_in_group("Cancelled"):
-			for node in get_tree().get_nodes_in_group(line.get_groups()[0]):
-				node.queue_free()
-		self.queue_free()
+func animate_lines(): 
+	create_tween().set_trans(Tween.TRANS_EXPO).tween_property(self, "position", Vector2(position.x, 180), line_tween_time * Engine.time_scale) 
+	await get_tree().create_timer((line_tween_time - 0.4) * Engine.time_scale).timeout
+	bg.color = Color(1.0, 1.0, 1.0, 1.0) 
+	self.hide()
+	create_tween().tween_property(bg, "color", Color(0, 0, 0, 0), 4 * Engine.time_scale)
