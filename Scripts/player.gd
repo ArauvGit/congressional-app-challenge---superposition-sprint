@@ -113,10 +113,11 @@ func set_health(new_health: int) -> int:
 	update_health.emit()
 	return Global.health
 
-func return_speed(key: String) -> Variant: 
+func return_speed(): 
 	for Name in Contestant_information.keys(): 
-		var speed_val = Contestant_information.get(Name)["SPEED"]
-		return speed_val
+		if get_groups()[0] == Name:
+			var speed_val = Contestant_information.get(Name)["SPEED"]
+			return speed_val
 func player_decohere():
 	var damage_animation := func():
 		var tween = create_tween()

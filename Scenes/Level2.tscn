@@ -832,11 +832,11 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(1186, -8.000008)
 scale = Vector2(2.5, 2.5)
-position_transform = 67838.40000170477
+position_transform = 76167.95000218961
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(-46.633766, 0)
+position = Vector2(0.69418246, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)
@@ -1588,6 +1588,10 @@ offset_top = -1.0
 offset_right = 39.0
 offset_bottom = 39.0
 
+[connection signal="body_entered" from="Win Area" to="players/Yellow" method="_on_win_area_body_entered"]
+[connection signal="body_entered" from="Win Area" to="players/Green" method="_on_win_area_body_entered"]
+[connection signal="body_entered" from="Win Area" to="players/Red" method="_on_win_area_body_entered"]
+[connection signal="body_entered" from="Win Area" to="players/Blue" method="_on_win_area_body_entered"]
 [connection signal="update_health" from="players/Yellow" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/Green" to="health container/Control/healthbar" method="_on_update_health"]
 [connection signal="update_health" from="players/Red" to="health container/Control/healthbar" method="_on_update_health"]

@@ -67,7 +67,7 @@ var Powerup_information: Dictionary = {
 func _ready():
 	RaceSong.play(0)
 	RaceSong.stop()
-	$"..".hide() 
+	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
 	$"../../placement container/Placement".hide()
 	$"../../Oracle".show()
@@ -130,14 +130,8 @@ func state_machine():
 		Global.States.DASHING:
 			if not is_on_floor():
 				velocity.y = -150
-			for Name in Contestant_information.keys():
-				if get_groups()[0] == Name:
-					speed_sprite_flip()
-					match SPEED:
-						var x when x > 0:
-							set_speed(Contestant_information.get(Name)["SPEED"] * 4)
-						var x when x < 0:
-							set_speed(Contestant_information.get(Name)["SPEED"] * -4)
+			speed_sprite_flip()
+			set_speed(SPEED * 4)
 		Global.States.WALL_HANGING:
 			velocity.y = 50
 		Global.States.DAMAGING:
@@ -146,12 +140,7 @@ func state_machine():
 func calculate_placement():
 	pass
 
-func return_speed(): 
-	for Name in Contestant_information.keys(): 
-		var speed_val = Contestant_information.get(Name)["SPEED"]
-		return speed_val
-		
-		
+
 func return_distance(pos1: Vector2, pos2: Vector2):
 	var distance_x = pos1.x - pos2.x
 	var distance_y = pos1.y - pos2.y
@@ -215,7 +204,7 @@ func change_direction():
 					set_speed(SPEED * -1)
 func _decohere():
 	has_decohered = true
-	Global.damaged = true 
+	Global.damaged = true
 
 
 func tile_map() -> TileMapLayer:
@@ -237,9 +226,7 @@ func speed_powerup():
 	set_speed(SPEED * Powerup_information["SPEED_BOOST"])
 	await get_tree().create_timer(5).timeout
 	speed_powerup_active = false
-	for Name in Contestant_information.keys():
-		if get_groups()[0] == Name:
-			set_speed(Contestant_information.get(Name)["SPEED"])
+	set_speed(SPEED / Powerup_information["SPEED_BOOST"])
 func jump_powerup():
 	set_jump(JUMP_VELOCITY * Powerup_information["JUMP_BOOST"])
 	jump_powerup_active = true
@@ -281,13 +268,7 @@ func dash():
 		self.state_machine()
 		self.dash_checker = true
 		await get_tree().create_timer(0.3).timeout
-		for Name in self.Contestant_information.keys():
-			if self.get_groups()[0] == Name:
-				match self.animated_sprite:
-					var x when x.flip_h == false:
-						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier)
-					var x when x.flip_h == true:
-						set_speed(Contestant_information.get(Name)["SPEED"] * decoherence_multiplier * -1)
+		set_speed(SPEED * 0.25)
 		match self:
 			var x when x.is_on_floor_only():
 				Global.state = Global.States.MOVING
@@ -356,3 +337,7 @@ func set_player():
 
 func set_enemy():
 	self.add_to_group("enemy")
+
+
+func _on_win_area_body_entered(body: Node2D) -> void:
+	Global.game_won = true

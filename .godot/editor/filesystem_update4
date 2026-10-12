@@ -1,2 +1,12 @@
+res://Scenes/Level2.tscn
+res://Scripts/damage_flash.gdshader
+res://Scripts/colorswap.tres
+res://Scripts/damage_flash.tres
 res://interference.gd
+res://superposition.gd
+res://Scripts/Contestants.gd
+res://Scripts/global.gd
+res://Scripts/health.gd
 res://Scripts/player.gd
+res://Scripts/sinwave.gd
+res://Scripts/moving_platform_animation.gd

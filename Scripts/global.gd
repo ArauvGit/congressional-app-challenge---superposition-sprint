@@ -20,3 +20,4 @@ var damaged: bool = false
 var dead: bool = false
 var can_be_pressed: bool = false
 var distance_placement: Array = []
+var game_won: bool = false
