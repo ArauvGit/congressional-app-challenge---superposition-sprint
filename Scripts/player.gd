@@ -22,7 +22,6 @@ func _init() -> void:
 			node.move_local_x(position.x)
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
-	self_modulate = Color("a23466ff")
 	super(delta)
 	if is_on_floor():
 		jump_count = 0
@@ -105,7 +104,8 @@ func wall_jump():
 #endregion
 #region health
 func health_powerup():
-	set_health(Global.health + Powerup_information["RESTORATION"])
+	set_health(Global.health + Powerup_information["RESTORATION"]) 
+	decoherence_multiplier += decoherence_multiplier
 func set_health(new_health: int) -> int:
 	if Global.health != new_health:
 		Global.health = new_health
@@ -118,20 +118,20 @@ func return_speed():
 		if get_groups()[0] == Name:
 			var speed_val = Contestant_information.get(Name)["SPEED"]
 			return speed_val
+
 func player_decohere():
+	var color_change: ColorRect = animated_sprite.get_child(0)
 	var damage_animation := func():
-		var tween = create_tween()
-		tween.tween_property(animated_sprite, "modulate", Color(0.576, 0.139, 0.22, 1.0), 0.05)
-		await get_tree().create_timer(0.05).timeout
-		for i in range(5):
-			tween.tween_property(animated_sprite, "modulate", Color("ffffff38"), 0.4)
-			tween.tween_property(animated_sprite, "modulate", Color("ffffffff"), 0.4)
+		color_change.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		await get_tree().create_timer(0.02).timeout
+		color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.25)
+		Color(0.88, 0.0, 0.0, 1.0)
 	if damage_checker == false:
 		SFX.get_child(3).play()
+		freeze_frame()
 		damage_animation.call()
-		set_health(Global.health - 1)
 		set_speed(SPEED * -1 * decoherence_multiplier) 
-	
+		set_health(Global.health - 1)
 		velocity.y = -500
 		if is_on_wall():
 			move_local_x(10 * get_wall_normal().x)
@@ -148,7 +148,7 @@ func player_decohere():
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		match self:
-			var x when not x.is_on_floor() and not dash_checker:
+			var x when not x.is_on_floor() and not dash_checker and damage_checker == false:
 				Global.state = Global.States.JUMPING
 				state_machine()
 			var x when x.is_on_floor() and dash_checker == false:
@@ -167,6 +167,8 @@ func interference_powerup():
 			if Global.interference_works == true:
 				child.show()
 				Global.interference_works = false
+
+
 func die():
 	if Global.health <= 0:
 		Global.dead = true

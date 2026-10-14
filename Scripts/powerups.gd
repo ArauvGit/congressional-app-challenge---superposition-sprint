@@ -61,5 +61,5 @@ func random():
 	if Global.damaged == false: 
 		self.add_to_group(groups[randi_range(1, 2)]) 
 	elif Global.damaged == true: 
-		self.add_to_group(groups[weighted_choice(70, 15, 15)])
+		self.add_to_group(groups[weighted_choice(80, 10, 10)])
 		

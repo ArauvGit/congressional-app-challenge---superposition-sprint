@@ -34,6 +34,7 @@ for (int i = 0; i < colors_count; i++) {
 }
 
 new_color = texture(new_palette, new_uv);
+
 "
 
 [resource]
@@ -72,5 +73,6 @@ for (int i = 0; i < colors_count; i++) {
 }
 
 new_color = texture(new_palette, new_uv);
+
 "
 nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 3, 0, 7, 0, 4, 0, 7, 1, 5, 0, 7, 2, 6, 0, 7, 3, 7, 0, 0, 0)

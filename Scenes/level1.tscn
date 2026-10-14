@@ -398,15 +398,13 @@ tile_set = SubResource("TileSet_b68tq")
 unique_name_in_owner = true
 position = Vector2(-176, 116)
 
-[node name="yellow" parent="players" index="0" unique_id=1916415869 groups=["Line One"]]
-visible = false
+[node name="Yellow" parent="players" index="0" unique_id=1916415869 groups=["Line One"]]
 
-[node name="green" parent="players" index="1" unique_id=1041134616 groups=["Line Two"]]
-visible = false
+[node name="Green" parent="players" index="1" unique_id=1041134616 groups=["Line Two"]]
 
-[node name="red" parent="players" index="2" unique_id=206440627 groups=["Line Three"]]
+[node name="Red" parent="players" index="2" unique_id=206440627 groups=["Line Three"]]
 
-[node name="blue" parent="players" index="3" unique_id=86018735 groups=["Line Four"]]
+[node name="Blue" parent="players" index="3" unique_id=86018735 groups=["Line Four"]]
 
 [node name="Camera2D" parent="players" index="4" unique_id=1398605686]
 limit_left = -589
@@ -491,15 +489,18 @@ stretch_mode = 2
 
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("10_6e4cv")]
 position = Vector2(150, 36)
-position_transform = 0.1
+position_transform = 2386.599999998925
 position_adder = 0.1
 position_y = 75
 
-[node name="Sprite2D" parent="moving platforms/Moving platform/AnimatableBody2D" parent_id_path=PackedInt32Array(1789265333, 688504268) index="0" unique_id=1224412756]
+[node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
+position = Vector2(-44.794197, -67.19129)
+
+[node name="Sprite2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="0" unique_id=1224412756]
 position = Vector2(23.000008, 0)
 scale = Vector2(2.5, 2.5)
 
-[node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" parent_id_path=PackedInt32Array(1789265333, 688504268) index="1" unique_id=1110748938]
+[node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(24, -3)
 shape = SubResource("RectangleShape2D_sdnvj")
 
@@ -530,23 +531,6 @@ position = Vector2(175, 1)
 
 [node name="Complete Decoherence" parent="." unique_id=1610174719 instance=ExtResource("13_nxqqj")]
 visible = false
-
-[connection signal="update_health" from="players/yellow" to="health container/Control/healthbar" method="_on_update_health"]
-[connection signal="update_health" from="players/green" to="health container/Control/healthbar" method="_on_update_health"]
-[connection signal="update_health" from="players/red" to="health container/Control/healthbar" method="_on_update_health"]
-[connection signal="update_health" from="players/blue" to="health container/Control/healthbar" method="_on_update_health"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone" to="players/yellow" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone" to="players/green" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone" to="players/red" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone" to="players/blue" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone2" to="players/yellow" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone2" to="players/green" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone2" to="players/red" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone2" to="players/blue" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone3" to="players/yellow" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone3" to="players/green" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone3" to="players/red" method="_on_enemy_jump_zone_body_entered"]
-[connection signal="body_entered" from="enemy jump triggers/Enemy Jump Zone3" to="players/blue" method="_on_enemy_jump_zone_body_entered"]
 
 [editable path="players"]
 [editable path="moving platforms/Moving platform"]

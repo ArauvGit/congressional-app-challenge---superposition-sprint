@@ -6,14 +6,14 @@
 [node name="Moving platform" type="Node2D" unique_id=1789265333]
 position = Vector2(10, 0)
 script = ExtResource("1_hrpga")
-position_transform = 483.10000000007653
+position_transform = 534.2000000000629
 position_adder = 0.05
 position_x = 50
 position_y = -10
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=688504268]
-position = Vector2(-34.274216, 6.854843)
-collision_layer = 3
+position = Vector2(3.9582982, -0.79165965)
+collision_layer = 19
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1224412756]
 texture = ExtResource("2_anqd2")

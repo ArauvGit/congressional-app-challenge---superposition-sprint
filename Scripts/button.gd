@@ -36,7 +36,6 @@ func _pressed() -> void:
 			if node is CharacterBody2D:
 				node.set_player()
 				_choose_type()
-				node.jump()
 		Global.is_pressed = true
 		get_parent().hide()
 
@@ -50,11 +49,12 @@ func _choose_type():
 	players.show()
 	countdown.get_parent().queue_free()
 	for node in players.get_children():
-		if node is CharacterBody2D: 
-			node.jump()
+		if node.has_method("double_jump"): 
+			node.animated_sprite = node.get_child(2)
+			node.double_jump()        
 		match node:
 			var x when x is CharacterBody2D and not x.is_in_group("player"):
-				node.set_enemy()
+				node.add_to_group("enemy")
 	choose_script()
 				
 func choose_script():

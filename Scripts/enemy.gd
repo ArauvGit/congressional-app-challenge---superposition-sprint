@@ -12,8 +12,11 @@ var raycast_under_left = RayCast2D.new()
 var raycast_top = RayCast2D.new()
 var raycast_top_left = RayCast2D.new()
 var raycast_top_right = RayCast2D.new()
-var moving_platform_area = Area2D.new()
-var platform_col_shape = CollisionShape2D.new()
+
+var platform_area = Area2D.new()
+var platform_area_collision = CollisionShape2D.new()
+var length = get_contestant_jump() / -80
+var height = multiplier(get_contestant_jump(), -0.1) / 30
 #endregion
 #region jump variables
 var enemy_jump_count: int = 0
@@ -29,6 +32,7 @@ func _init():
 	self.connect("take_damage", decohere)
 	super.set_physics_process(true)
 	raycast_init()
+	area_init(platform_area, platform_area_collision)
 	print("the enemy script has been activated")
 	super.set_physics_process(true)
 	for Name in Contestant_information.keys():
@@ -42,6 +46,7 @@ func _physics_process(delta: float) -> void:
 	if self.enemy_jump_count != 2:
 		self.can_jump = true
 	raycast_detection()
+	area_calculations(platform_area, platform_area_collision)
 	super(delta)
 	change_direction()
 #endregion
@@ -100,12 +105,12 @@ func jump_cooldown_formula(jump_cooldown: float) -> float:
 #endregion
 #endregion
 #region raycast specific functions
-func raycast_multiplier(multiplier: float) -> float:
-	var formula = multiplier * -0.014
+func multiplier(multiplier1: float, multiplier2: float) -> float:
+	var formula = multiplier1 * multiplier2
 	return formula
 
 func raycast_init():
-	var scale_formula: float = raycast_multiplier(get_contestant_jump())
+	var scale_formula: float = multiplier(get_contestant_jump(), -0.014)
 	var default_target_pos_y: int = 20
 	var _under_target_pos_y: int = 16 # raycast_under_right handles tilemap stuff so this is better
 	var col_mask: int = 2
@@ -139,14 +144,25 @@ func raycast_init():
 	raycast_attributes.call(raycast_top_right, 135, scale_formula, default_target_pos_y, col_mask)
 
 	add_child(raycast_top_left)
-	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask) 
+	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask)
 
-# func raycast_speed_modification(): # fix later; could be the key to jump paradox
-# 	match self.SPEED:
-# 		var x when x > 0:
-# 			raycast_left.target_position.y = 10
-# 		var x when x < 0:
-# 			raycast_right.target_position.y = 10
+func area_init(area: Area2D, collision_shape: CollisionShape2D):
+	area.scale = Vector2(length, height) 
+	area.collision_mask = 5 
+	collision_shape.shape = RectangleShape2D.new()
+	collision_shape.scale = Vector2(length, height)
+	area.add_child(collision_shape)
+	add_child(area)
+func area_calculations(area: Area2D, collision_shape: CollisionShape2D): 
+	if area.has_overlapping_bodies(): 
+		var platform = area.get_overlapping_bodies()[0]
+		if platform.position.normalized().x == self.velocity.normalized().x:  
+			self.movement(0)
+			if platform.position.x == self.SPEED: 
+				self.movement(SPEED)
+				self.enemy_jump()
+
+
 func raycast_detection():
 	if self.raycast_right.is_colliding() or self.raycast_top_right.is_colliding() and not self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():

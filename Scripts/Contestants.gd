@@ -9,6 +9,7 @@ var placement: Array = []
 var animated_sprite = get_child(2)
 var jump_count: int = 0
 var decoherence_multiplier: float = 1
+var decoherence_reduction: float = 0.04
 var checker: bool = false
 var invincible: bool = false
 var idle_checker: bool = false
@@ -202,9 +203,26 @@ func change_direction():
 			if is_in_group("player"): # implement into player script later
 				if Input.is_action_just_pressed("move_right"):
 					set_speed(SPEED * -1)
+
+func freeze_frame(): 
+	Engine.time_scale = 0 
+	await get_tree().create_timer(0.02, true, true, true).timeout
+	Engine.time_scale = 1
+
 func _decohere():
 	has_decohered = true
 	Global.damaged = true
+	var color_change: ColorRect = animated_sprite.get_child(0)
+	var damage_animation := func():
+		color_change.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		await get_tree().create_timer(0.02).timeout
+		color_change.modulate = Color(1.0, 0, 0, (1.1 - decoherence_multiplier) * 1.2)
+		Color(0.88, 0.0, 0.0, 1.0)
+	if damage_checker == false:
+		SFX.get_child(3).play()
+		freeze_frame()
+		damage_animation.call()
+		set_speed(SPEED * -1 * decoherence_multiplier) 
 
 
 func tile_map() -> TileMapLayer:
@@ -259,7 +277,7 @@ func wall_hang():
 		state_machine()
 		if Input.is_action_just_pressed("dash"):
 			set_speed(SPEED * -1)
-			dash()
+			dash() 
 			animated_sprite.play("dash")
 
 func dash():
@@ -276,7 +294,7 @@ func dash():
 			var x when x.is_on_wall_only():
 				Global.state = Global.States.WALL_HANGING
 				state_machine()
-			var x when not x.is_on_floor() or x.is_on_wall():
+			var x when not x.is_on_floor() or x.is_on_wall() and Global.damaged == false:
 				Global.state = Global.States.JUMPING
 				state_machine()
 		self.dash_checker = false
@@ -284,12 +302,14 @@ func dash():
 		await animated_sprite.animation_finished
 		self.dash_cooldown = false
 
+
+
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Damageable"):
-				decoherence_multiplier -= 0.01
+				decoherence_multiplier -= decoherence_reduction
 				take_damage.emit()
 	var break_tile := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
@@ -332,12 +352,8 @@ func speed_sprite_flip():
 			change_direction()
 
 func set_player():
-	self.add_to_group("player")
+	self.add_to_group("player") 
 	Global.player_testers[self.get_index() - 1] = true
-
-func set_enemy():
-	self.add_to_group("enemy")
-
 
 func _on_win_area_body_entered(body: Node2D) -> void:
 	Global.game_won = true
