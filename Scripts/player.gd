@@ -23,6 +23,7 @@ func _init() -> void:
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
 	super(delta)
+	movement(SPEED)
 	if is_on_floor():
 		jump_count = 0
 	else:

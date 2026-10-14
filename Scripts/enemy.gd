@@ -14,9 +14,11 @@ var raycast_top_left = RayCast2D.new()
 var raycast_top_right = RayCast2D.new()
 
 var platform_area = Area2D.new()
-var platform_area_collision = CollisionShape2D.new()
-var length = get_contestant_jump() / -80
-var height = multiplier(get_contestant_jump(), -0.1) / 30
+var platform_area_collision = CollisionShape2D.new() 
+var platform_waiting: bool = false
+
+var length = get_contestant_jump() / -60
+var height = multiplier(get_contestant_jump(), -0.1) / 25
 #endregion
 #region jump variables
 var enemy_jump_count: int = 0
@@ -40,6 +42,13 @@ func _init():
 			health = Contestant_information.get(Name)["JUMP"]
 
 func _physics_process(delta: float) -> void:
+	print(SPEED)
+	if not platform_waiting:  
+		movement(SPEED)
+	else: 
+		movement(0)
+		Global.state = Global.States.IDLE
+		state_machine()
 	if is_on_floor():
 		self.enemy_jump_count = 0
 		self.can_jump = true
@@ -146,21 +155,29 @@ func raycast_init():
 	add_child(raycast_top_left)
 	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask)
 
-func area_init(area: Area2D, collision_shape: CollisionShape2D):
+func area_init(area: Area2D, collision_shape: CollisionShape2D): 
 	area.scale = Vector2(length, height) 
-	area.collision_mask = 5 
+	area.set_collision_mask_value(5, true) 
+	area.set_collision_mask_value(1, false)
+	area.set_collision_layer_value(1, true)
 	collision_shape.shape = RectangleShape2D.new()
 	collision_shape.scale = Vector2(length, height)
 	area.add_child(collision_shape)
 	add_child(area)
 func area_calculations(area: Area2D, collision_shape: CollisionShape2D): 
+	if platform_waiting:
+		Global.state = Global.States.IDLE
+		state_machine()
 	if area.has_overlapping_bodies(): 
 		var platform = area.get_overlapping_bodies()[0]
 		if platform.position.normalized().x == self.velocity.normalized().x:  
-			self.movement(0)
 			if platform.position.x == self.SPEED: 
-				self.movement(SPEED)
+				platform_waiting = false
 				self.enemy_jump()
+			else: 
+				platform_waiting = true  
+	else: 
+		platform_waiting = false
 
 
 func raycast_detection():

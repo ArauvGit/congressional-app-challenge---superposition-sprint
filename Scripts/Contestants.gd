@@ -115,9 +115,6 @@ func _physics_process(delta: float) -> void:
 		movement(0)
 		Global.state = Global.States.IDLE
 		state_machine()
-				
-	else:
-		movement(SPEED)
 	move_and_slide()
 	return_distance_dictionary()
 	_on_detector_body_entered(tile_map())
@@ -127,6 +124,7 @@ func state_machine():
 		Global.States.MOVING:
 			speed_sprite_flip()
 		Global.States.JUMPING:
+			movement(SPEED)
 			speed_sprite_flip()
 		Global.States.DASHING:
 			if not is_on_floor():

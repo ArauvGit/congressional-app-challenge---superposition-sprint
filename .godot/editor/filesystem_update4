@@ -1,5 +1,6 @@
-res://Scripts/enemy.gd
 res://Scenes/Level2.tscn
 res://Scripts/colorswap.tres
-res://Scenes/moving_platform.tscn
-res://Scenes/enemy_trigger.gd
+res://Scripts/enemy.gd
+res://Scripts/global.gd
+res://Scripts/Contestants.gd
+res://Scripts/player.gd
