@@ -1,6 +1,8 @@
-ColorRect
-CanvasLayer
 Label
+Panel
+CanvasLayer
+Node2D
+ColorRect
 VBoxContainer
 TextureButton
 Button
@@ -9,6 +11,4 @@ TextureRect
 PanelContainer
 Sprite2D
 Control
-Node2D
 AnimationPlayer
-AnimatedSprite2D

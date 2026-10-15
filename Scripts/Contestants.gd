@@ -70,7 +70,8 @@ func _ready():
 	RaceSong.stop()
 	$"..".hide()
 	$"../../health container/Control/healthbar".hide()
-	$"../../placement container/Placement".hide()
+	if not is_instance_valid(get_tree().get_first_node_in_group("tutorial")):
+		$"../../placement container/Placement".hide()
 	$"../../Oracle".show()
 	$"../../superposition container".show()
 	$"../../background_transparent".show()
@@ -116,7 +117,8 @@ func _physics_process(delta: float) -> void:
 		Global.state = Global.States.IDLE
 		state_machine()
 	move_and_slide()
-	return_distance_dictionary()
+	if not is_instance_valid(get_tree().get_first_node_in_group("tutorial")):
+		return_distance_dictionary()
 	_on_detector_body_entered(tile_map())
 func state_machine():
 	animated_sprite.animation_state()
@@ -127,8 +129,8 @@ func state_machine():
 			movement(SPEED)
 			speed_sprite_flip()
 		Global.States.DASHING:
-			if not is_on_floor():
-				velocity.y = -150
+			if not get_child(1).has_overlapping_bodies() or not is_on_floor():
+				velocity.y = -200
 			speed_sprite_flip()
 			set_speed(SPEED * 4)
 		Global.States.WALL_HANGING:

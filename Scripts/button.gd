@@ -45,7 +45,8 @@ func _choose_type():
 	countdown_anim_player.play("countdown")
 	await countdown_anim_player.animation_finished
 	healthbar.show()
-	placement.show()
+	if not is_instance_valid(get_tree().get_first_node_in_group("tutorial")):
+		placement.show()
 	players.show()
 	countdown.get_parent().queue_free()
 	for node in players.get_children():

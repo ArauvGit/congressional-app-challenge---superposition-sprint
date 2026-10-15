@@ -1,6 +1,6 @@
-res://Scenes/Level2.tscn
+res://tutorial_level.tscn
 res://Scripts/colorswap.tres
-res://Scripts/enemy.gd
-res://Scripts/global.gd
+res://Scripts/health.gd
+res://dialogue.gd
+res://tutorial.tscn
 res://Scripts/Contestants.gd
-res://Scripts/player.gd

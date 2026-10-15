@@ -17,7 +17,6 @@ func update_health_display():
 	else: 
 		while get_child_count() != Global.health:
 			if get_child_count() > Global.health:
-				create_tween()
 				remove_child(self.get_children().back())
 			elif get_child_count() < Global.health:
 				add_child(child_node.duplicate())

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cdfpnxmmpxcly"]
+
+[ext_resource type="Script" uid="uid://b2jx08w8igw7d" path="res://dialogue.gd" id="1_kp46k"]
+
+[node name="dialogue" type="CanvasLayer" unique_id=2065175651]
+
+[node name="Panel" type="Panel" parent="." unique_id=567736642]
+offset_left = 15.0
+offset_right = 626.0
+offset_bottom = 89.0
+
+[node name="text" type="Label" parent="Panel" unique_id=1004358010]
+layout_mode = 0
+offset_right = 612.0
+offset_bottom = 89.0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_kp46k")
