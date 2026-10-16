@@ -18,8 +18,7 @@ func animation_state():
 				play("default")
 		Global.States.MOVING:
 			is_on_wall = false
-			if not is_dashing:
-				play("run")
+			play("run")
 		Global.States.JUMPING:
 			is_on_wall = false
 			if not is_dashing:

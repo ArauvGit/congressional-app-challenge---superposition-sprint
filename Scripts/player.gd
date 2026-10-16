@@ -23,6 +23,7 @@ func _init() -> void:
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
 	super(delta)
+	print(SPEED)
 	movement(SPEED)
 	if is_on_floor():
 		jump_count = 0
@@ -106,7 +107,7 @@ func wall_jump():
 #region health
 func health_powerup():
 	set_health(Global.health + Powerup_information["RESTORATION"]) 
-	decoherence_multiplier += decoherence_multiplier
+	decoherence_multiplier = 1
 func set_health(new_health: int) -> int:
 	if Global.health != new_health:
 		Global.health = new_health
@@ -145,7 +146,6 @@ func player_decohere():
 			Global.damaged = true
 			Global.state = Global.States.DAMAGING
 			state_machine() 
-	
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
 		match self:

@@ -1,14 +1,14 @@
+TextureButton
+TextureRect
+RichTextLabel
 Label
 Panel
 CanvasLayer
 Node2D
 ColorRect
 VBoxContainer
-TextureButton
 Button
 HBoxContainer
-TextureRect
 PanelContainer
 Sprite2D
 Control
-AnimationPlayer

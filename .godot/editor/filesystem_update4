@@ -1,6 +1,7 @@
-res://tutorial_level.tscn
-res://Scripts/colorswap.tres
-res://Scripts/health.gd
 res://dialogue.gd
+res://dialogue.tscn
+res://Scripts/colorswap.tres
 res://tutorial.tscn
 res://Scripts/Contestants.gd
+res://Scripts/player.gd
+res://Scripts/sprite.gd

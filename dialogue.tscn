@@ -1,18 +1,38 @@
 [gd_scene format=3 uid="uid://cdfpnxmmpxcly"]
 
+[ext_resource type="Texture2D" uid="uid://bdmms310vyvwd" path="res://Assets/Sprites/text_container.png" id="1_758ep"]
 [ext_resource type="Script" uid="uid://b2jx08w8igw7d" path="res://dialogue.gd" id="1_kp46k"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_hoxo3"]
 
 [node name="dialogue" type="CanvasLayer" unique_id=2065175651]
 
-[node name="Panel" type="Panel" parent="." unique_id=567736642]
-offset_left = 15.0
-offset_right = 626.0
-offset_bottom = 89.0
+[node name="Panel" type="TextureButton" parent="." unique_id=905459227]
+clip_contents = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -310.0
+offset_right = 310.0
+offset_bottom = 90.0
+grow_horizontal = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("1_758ep")
+stretch_mode = 0
 
-[node name="text" type="Label" parent="Panel" unique_id=1004358010]
+[node name="text" type="RichTextLabel" parent="Panel" unique_id=2083957179]
+custom_minimum_size = Vector2(600, 85)
+custom_maximum_size = Vector2(620, 115)
 layout_mode = 0
-offset_right = 612.0
-offset_bottom = 89.0
+offset_left = 10.0
+offset_top = 2.5
+offset_right = 610.0
+offset_bottom = 87.5
+theme_override_fonts/normal_font = ExtResource("2_hoxo3")
+bbcode_enabled = true
+fit_content = true
+scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_kp46k")
+
+[connection signal="pressed" from="Panel" to="Panel/text" method="_on_panel_pressed"]

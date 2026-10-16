@@ -9,7 +9,7 @@ var placement: Array = []
 var animated_sprite = get_child(2)
 var jump_count: int = 0
 var decoherence_multiplier: float = 1
-var decoherence_reduction: float = 0.04
+var decoherence_reduction: float = 0.03
 var checker: bool = false
 var invincible: bool = false
 var idle_checker: bool = false
@@ -31,28 +31,28 @@ var SPEED = 0:
 #region dictionaries
 @export var Contestant_information: Dictionary = {
 	"Yellow": {
-		"SPEED": 195,
+		"SPEED": 215,
 		"JUMP": - 360,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Green": {
-		"SPEED": 210,
+		"SPEED": 230,
 		"JUMP": - 375,
 		"HEALTH": 4,
 		"DISTANCE": 0
 	},
 	
 	"Red": {
-		"SPEED": 200,
+		"SPEED": 250,
 		"JUMP": - 400,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Blue": {
-		"SPEED": 190,
+		"SPEED": 200,
 		"JUMP": - 350,
 		"HEALTH": 6,
 		"DISTANCE": 0
@@ -84,9 +84,6 @@ func _physics_process(delta: float) -> void:
 		# Add the gravity.
 	if is_on_floor(): # THIS CODE MIGHT CAUSE BUGS LATER. BE CAREFUL
 		jump_count = 0
-		if SPEED == 0:
-			Global.state = Global.States.IDLE
-			state_machine()
 		if dash_checker == false and SPEED != 0:
 			Global.state = Global.States.MOVING
 			state_machine()
@@ -97,11 +94,15 @@ func _physics_process(delta: float) -> void:
 				if not is_on_wall() and not Global.damaged and dash_checker == false:
 					Global.state = Global.States.JUMPING
 					state_machine()
+				if Global.damaged: 
+					Global.state = Global.States.DAMAGING 
+					state_machine()
 			var x when x.is_in_group("enemy"):
 				Global.state = Global.States.JUMPING
 				state_machine()
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("move_right") and checker == false:
+	if checker == false:
+		velocity.y = -500
 		for Name in Contestant_information.keys():
 			if get_groups()[0] == Name:
 				set_speed(Contestant_information.get(Name)["SPEED"])
@@ -124,8 +125,10 @@ func state_machine():
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.MOVING:
+			print("moving")
 			speed_sprite_flip()
 		Global.States.JUMPING:
+			print("jumping")
 			movement(SPEED)
 			speed_sprite_flip()
 		Global.States.DASHING:
@@ -136,7 +139,7 @@ func state_machine():
 		Global.States.WALL_HANGING:
 			velocity.y = 50
 		Global.States.DAMAGING:
-			pass
+			print("damaging")
 
 func calculate_placement():
 	pass
@@ -294,7 +297,7 @@ func dash():
 			var x when x.is_on_wall_only():
 				Global.state = Global.States.WALL_HANGING
 				state_machine()
-			var x when not x.is_on_floor() or x.is_on_wall() and Global.damaged == false:
+			var x when not x.is_on_floor() and Global.damaged == false or not x.is_on_wall() and Global.damaged == false:
 				Global.state = Global.States.JUMPING
 				state_machine()
 		self.dash_checker = false
