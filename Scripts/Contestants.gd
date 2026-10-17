@@ -3,7 +3,7 @@ class_name Contestant
 @warning_ignore("unused_signal")
 signal update_health
 signal take_damage
-signal landed
+signal decoherence_end
 #region variables
 var distance_placement: Array = []
 var placement: Array = []
@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 				if not is_on_wall() and not damage_checker and dash_checker == false:
 					Global.state = Global.States.JUMPING
 					state_machine()
-				if damage_checker:
+				if damage_checker and not dash_checker:
 					Global.state = Global.States.DAMAGING
 					state_machine()
 			var x when x.is_in_group("enemy"):
@@ -112,10 +112,8 @@ func state_machine():
 	animated_sprite.animation_state()
 	match Global.state:
 		Global.States.MOVING:
-			print("moving")
 			speed_sprite_flip()
 		Global.States.JUMPING:
-			print("jumping")
 			movement(SPEED)
 			speed_sprite_flip()
 		Global.States.DASHING:
@@ -125,8 +123,6 @@ func state_machine():
 			set_speed(SPEED * 4)
 		Global.States.WALL_HANGING:
 			velocity.y = 50
-		Global.States.DAMAGING:
-			print("damaging")
 
 func calculate_placement():
 	pass
@@ -176,7 +172,7 @@ func index_place_matching():
 			
 func land():
 	if can_squish and is_on_floor():
-		landed.emit()
+		decoherence_end.emit()
 		squash(1.3, 0.9, 0.05)
 		can_squish = false
 		if Global.damaged:
@@ -264,6 +260,7 @@ func jump():
 
 func wall_hang():
 	if is_on_wall_only():
+		decoherence_end.emit()
 		Global.state = Global.States.WALL_HANGING
 		state_machine()
 		if Input.is_action_just_pressed("dash"):
@@ -273,6 +270,7 @@ func wall_hang():
 
 func dash():
 	if not is_on_wall():
+		decoherence_end.emit()
 		Global.state = Global.States.DASHING
 		self.state_machine()
 		self.dash_checker = true
@@ -280,18 +278,16 @@ func dash():
 		set_speed(SPEED * 0.25)
 		match self:
 			var x when x.is_on_floor_only():
+				damage_checker = false
 				Global.state = Global.States.MOVING
 				state_machine()
 			var x when x.is_on_wall_only():
 				Global.state = Global.States.WALL_HANGING
 				state_machine()
-			var x when not x.is_on_floor() and Global.damaged == false or not x.is_on_wall() and Global.damaged == false:
+			var x when not x.is_on_floor() and damage_checker == false or not x.is_on_wall():
 				Global.state = Global.States.JUMPING
 				state_machine()
 		self.dash_checker = false
-		self.dash_cooldown = true
-		await animated_sprite.animation_finished
-		self.dash_cooldown = false
 
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:

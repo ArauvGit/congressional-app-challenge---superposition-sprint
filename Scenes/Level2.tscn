@@ -882,11 +882,11 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(753.00006, -6)
 scale = Vector2(2.5, 2.5)
-position_transform = 32818.24999966633
+position_transform = 41748.900000186164
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(45.073208, 0)
+position = Vector2(-11.166364, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)

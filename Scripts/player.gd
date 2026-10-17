@@ -4,18 +4,17 @@ var detector: Area2D = get_child(1)
 var can_play_animation: bool = true
 var camera_nudge: int = 185
 var nudge_multiplier: int = 0
-
-
+var color_change: ColorRect = animated_sprite.get_child(0)
+var can_decohere: bool = true
 #region important functions
 func _init() -> void:
 	RaceSong.play()
+	print()
 	self.connect("take_damage", player_decohere)
 	for Name in Contestant_information.keys():
 		if self.get_groups()[0] == Name:
 			set_health(Contestant_information.get(Name)["HEALTH"])
 	super.set_physics_process(true)
-	print("the player script has been activated")
-	print(self.get_groups())
 	for node in get_parent().get_children():
 		if node is Camera2D:
 			node.position_smoothing_enabled = true
@@ -24,7 +23,6 @@ func _init() -> void:
 		self.move_to_front()
 func _physics_process(delta: float) -> void:
 	super(delta)
-	print(SPEED)
 	movement(SPEED)
 	if is_on_floor():
 		jump_count = 0
@@ -110,7 +108,6 @@ func health_powerup():
 	set_health(Global.health + Powerup_information["RESTORATION"])
 	decoherence_multiplier = 1
 func set_health(new_health: int) -> int:
-	print("HEALTH")
 	if Global.health != new_health:
 		Global.health = new_health
 	health_damage_checker()
@@ -124,43 +121,50 @@ func return_speed():
 			return speed_val
 
 func player_decohere():
-	var color_change: ColorRect = animated_sprite.get_child(0)
-	var damage_animation := func():
-		color_change.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		await get_tree().create_timer(0.02).timeout
-		color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
-		Color(0.88, 0.0, 0.0, 1.0)
-	if damage_checker == false:
-		SFX.get_child(3).play()
-		freeze_frame()
-		damage_animation.call()
-		set_speed(SPEED * -1 * decoherence_multiplier) 
-		set_health(Global.health - 1)
-		velocity.y = -500
-		if is_on_wall():
-			move_local_x(10 * get_wall_normal().x)
-			for i in range(10):
-				move_local_y(-1)
-				await get_tree().process_frame
-			player_jump()
-			state_machine()
-		elif not is_on_floor():
-			Global.damaged = true
-			Global.state = Global.States.DAMAGING
-			state_machine() 
-		damage_checker = true
-		await get_tree().create_timer(1).timeout
-		damage_checker = false # create dedicated invincibility function later with damage flash
-		match self:
-			var x when x.is_on_floor() and dash_checker == false:
-				Global.state = Global.States.MOVING
+	if can_decohere:
+		var damage_animation := func():
+			color_change.color = Color(1.0, 1.0, 1.0, 1.0)
+			await get_tree().create_timer(0.02).timeout
+			color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
+			Color(0.88, 0.0, 0.0, 1.0)
+		if damage_checker == false:
+			SFX.get_child(3).play()
+			freeze_frame()
+			damage_animation.call()
+			set_speed(SPEED * -1 * decoherence_multiplier)
+			set_health(Global.health - 1)
+			velocity.y = -500
+			if is_on_wall():
+				move_local_x(10 * get_wall_normal().x)
+				for i in range(10):
+					move_local_y(-1)
+					await get_tree().process_frame
+				player_jump()
 				state_machine()
-			var x when x.is_on_wall():
-				Global.state = Global.States.WALL_HANGING
+			elif not is_on_floor():
+				Global.state = Global.States.DAMAGING
 				state_machine()
-		if dash_checker == true:
-			Global.state = Global.States.DASHING
-			state_machine()
+			damage_checker = true
+			await get_tree().create_timer(1).timeout
+			await decoherence_end
+			damage_checker = false # create dedicated invincibility function later with damage flash
+			invincibility()
+			match self:
+				var x when x.is_on_floor() and dash_checker == false:
+					Global.state = Global.States.MOVING
+					state_machine()
+				var x when x.is_on_wall():
+					Global.state = Global.States.WALL_HANGING
+					state_machine()
+func invincibility(): 
+	create_tween().tween_property(color_change, "color", Color(0.99, 0.495, 0.0, 1.0), 0.1)
+	can_decohere = false
+	await get_tree().create_timer(3).timeout 
+	create_tween().tween_property(color_change, "color", Color(1, 0, 0, (1.2 - decoherence_multiplier) * 1.15), 0.1)
+	can_decohere = true
+
+
+
 func interference_powerup():
 	for child in get_parent().get_parent().get_children():
 		if child is CanvasLayer and child.name.contains("Interference"):
