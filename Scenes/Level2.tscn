@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://cbap2ahkkr0aq" path="res://countdown.tscn" id="33_uelq8"]
 [ext_resource type="Texture2D" uid="uid://ctcqxkot1if6b" path="res://Assets/Sprites/powerups/interference_powerup_sprite.png" id="33_ywwsq"]
 [ext_resource type="PackedScene" uid="uid://cjyganyfs86ct" path="res://Scenes/interference_cutscene.tscn" id="35_ywwsq"]
+[ext_resource type="PackedScene" uid="uid://ca4v3s4note5" path="res://Scenes/enemy_trigger.tscn" id="37_4xs5x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6f85"]
 texture = ExtResource("4_sgc6j")
@@ -880,11 +881,11 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(753.00006, -6)
 scale = Vector2(2.5, 2.5)
-position_transform = 5848.850000012512
+position_transform = 24525.649999783353
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(-37.41584, 0)
+position = Vector2(36.34671, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)
@@ -1635,6 +1636,10 @@ offset_left = -1.0
 offset_top = -1.0
 offset_right = 39.0
 offset_bottom = 39.0
+
+[node name="Enemy Trigger" parent="." unique_id=197600304 groups=["Moving Platform Failsafe"] instance=ExtResource("37_4xs5x")]
+position = Vector2(471, -27)
+scale = Vector2(3, 1)
 
 [connection signal="body_entered" from="Win Area" to="players/Yellow" method="_on_win_area_body_entered"]
 [connection signal="body_entered" from="Win Area" to="players/Green" method="_on_win_area_body_entered"]

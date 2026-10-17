@@ -92,8 +92,7 @@ func enemy_jump():
 		double_jump()
 		enemy_jump_count = 2
 
-func on_trigger_area_entered():
-	print("hi")
+
 
 func double_jump():
 	velocity.y = JUMP_VELOCITY
@@ -164,6 +163,10 @@ func area_init(area: Area2D, collision_shape: CollisionShape2D):
 	collision_shape.scale = Vector2(length, height)
 	area.add_child(collision_shape)
 	add_child(area)
+
+func account_margin_error(num1: float, num2: float, num3: float): 
+	return num1 == num2 - num3 or num1 == num2 + num3 
+
 func area_calculations(area: Area2D, collision_shape: CollisionShape2D): 
 	if platform_waiting:
 		Global.state = Global.States.IDLE
@@ -171,7 +174,7 @@ func area_calculations(area: Area2D, collision_shape: CollisionShape2D):
 	if area.has_overlapping_bodies(): 
 		var platform = area.get_overlapping_bodies()[0]
 		if platform.position.normalized().x == self.velocity.normalized().x:  
-			if platform.position.x == self.SPEED: 
+			if account_margin_error(platform.global_position.x, self.SPEED, platform.get_child(0).texture.get_size().x * 2.5):
 				platform_waiting = false
 				self.enemy_jump()
 			else: 

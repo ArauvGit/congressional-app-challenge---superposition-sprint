@@ -1,7 +1,7 @@
-res://dialogue.gd
-res://dialogue.tscn
-res://Scripts/colorswap.tres
 res://tutorial.tscn
-res://Scripts/Contestants.gd
-res://Scripts/player.gd
+res://Scripts/colorswap.tres
+res://tutorial_level.tscn
+res://Scenes/Level2.tscn
+res://Scripts/enemy.gd
 res://Scripts/sprite.gd
+res://Scenes/enemy_trigger.gd

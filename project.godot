@@ -48,6 +48,7 @@ Yellow=""
 "Change Direction Trigger"=""
 "Jump Trigger"=""
 "Dash Trigger"=""
+"Moving Platform Failsafe"=""
 
 [gui]
 
