@@ -5,6 +5,7 @@ var can_play_animation: bool = true
 var camera_nudge: int = 185
 var nudge_multiplier: int = 0
 
+
 #region important functions
 func _init() -> void:
 	RaceSong.play()
@@ -37,13 +38,13 @@ func _physics_process(delta: float) -> void:
 	player_camera_pos_config()
 	movement_freeze()
 #endregion
-#region movement 
+#region movement contes
 func player_camera_pos_config():
 	for node in self.get_children():
 		if node is Camera2D:
 			if get_platform_velocity() == Vector2.ZERO:
 				node.global_position.x = self.global_position.x + camera_nudge * velocity.normalized().x
-			else: 
+			else:
 				node.global_position.x = self.global_position.x
 func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
@@ -85,7 +86,7 @@ func player_jump() -> void:
 		SFX.get_child(0).play()
 		double_jump()
 func double_jump() -> void:
-	if is_in_group("player"): 
+	if is_in_group("player"):
 		SFX.get_child(0).play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
@@ -106,17 +107,18 @@ func wall_jump():
 #endregion
 #region health
 func health_powerup():
-	set_health(Global.health + Powerup_information["RESTORATION"]) 
+	set_health(Global.health + Powerup_information["RESTORATION"])
 	decoherence_multiplier = 1
 func set_health(new_health: int) -> int:
+	print("HEALTH")
 	if Global.health != new_health:
 		Global.health = new_health
 	health_damage_checker()
 	update_health.emit()
 	return Global.health
 
-func return_speed(): 
-	for Name in Contestant_information.keys(): 
+func return_speed():
+	for Name in Contestant_information.keys():
 		if get_groups()[0] == Name:
 			var speed_val = Contestant_information.get(Name)["SPEED"]
 			return speed_val
@@ -126,7 +128,7 @@ func player_decohere():
 	var damage_animation := func():
 		color_change.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		await get_tree().create_timer(0.02).timeout
-		color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.25)
+		color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
 		Color(0.88, 0.0, 0.0, 1.0)
 	if damage_checker == false:
 		SFX.get_child(3).play()
@@ -148,20 +150,17 @@ func player_decohere():
 			state_machine() 
 		damage_checker = true
 		await get_tree().create_timer(1).timeout
+		damage_checker = false # create dedicated invincibility function later with damage flash
 		match self:
-			var x when not x.is_on_floor() and not dash_checker and damage_checker == false:
-				Global.state = Global.States.JUMPING
-				state_machine()
 			var x when x.is_on_floor() and dash_checker == false:
 				Global.state = Global.States.MOVING
 				state_machine()
 			var x when x.is_on_wall():
 				Global.state = Global.States.WALL_HANGING
 				state_machine()
-			var x when dash_checker == true:
-				Global.state = Global.States.DASHING
-				state_machine()
-		damage_checker = false # create dedicated invincibility function later with damage flash
+		if dash_checker == true:
+			Global.state = Global.States.DASHING
+			state_machine()
 func interference_powerup():
 	for child in get_parent().get_parent().get_children():
 		if child is CanvasLayer and child.name.contains("Interference"):

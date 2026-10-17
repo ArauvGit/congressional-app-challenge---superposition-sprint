@@ -1,13 +1,30 @@
 extends TextureButton
 @export var oracle: AnimatedSprite2D
 @export var oracle_mover: AnimationPlayer
-@export var button_container: VBoxContainer
+@export var button_container: VBoxContainer 
+@export var healthbar: HBoxContainer
+@export var players: Node2D
+@export var background_transparent: ColorRect 
+@export var camera: Camera2D
 @export var countdown: Control
+@export var superposition_container: Node2D
+@export var root_node: Node2D
 var can_increase: bool = true
 var can_decrease: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	RaceSong.play(0)
+	RaceSong.stop()
+	players.hide()
+	healthbar.hide()
+	if root_node.get_groups()[0] == "tutorial":
+		for child in root_node.get_children(): 
+			if child.name == "placement container": 
+				child.hide()
+	oracle.show()
+	superposition_container.show()
+	background_transparent.show()
+	camera.position_smoothing_enabled = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -3,6 +3,7 @@ class_name Contestant
 @warning_ignore("unused_signal")
 signal update_health
 signal take_damage
+signal landed
 #region variables
 var distance_placement: Array = []
 var placement: Array = []
@@ -20,7 +21,6 @@ var speed_powerup_active: bool = false
 var jump_powerup_active: bool = false
 var can_break: bool = true
 var damage_checker: bool = false
-var damage_shader: Shader = load("res://Scripts/damage_flash.gdshader")
 
 var has_decohered: bool = false
 var JUMP_VELOCITY = 0:
@@ -66,21 +66,8 @@ var Powerup_information: Dictionary = {
 #endregion
 #region important functions
 func _ready():
-	RaceSong.play(0)
-	RaceSong.stop()
-	$"..".hide()
-	$"../../health container/Control/healthbar".hide()
-	if not is_instance_valid(get_tree().get_first_node_in_group("tutorial")):
-		$"../../placement container/Placement".hide()
-	$"../../Oracle".show()
-	$"../../superposition container".show()
-	$"../../background_transparent".show()
-	$"../Camera2D".position_smoothing_enabled = false
 	set_physics_process(false)
 func _physics_process(delta: float) -> void:
-	if Global.damaged:
-		Global.state = Global.States.DAMAGING
-		state_machine()
 		# Add the gravity.
 	if is_on_floor(): # THIS CODE MIGHT CAUSE BUGS LATER. BE CAREFUL
 		jump_count = 0
@@ -91,11 +78,11 @@ func _physics_process(delta: float) -> void:
 		#if adding, MODIFY THIS CODE
 		match self:
 			var x when x.is_in_group("player"):
-				if not is_on_wall() and not Global.damaged and dash_checker == false:
+				if not is_on_wall() and not damage_checker and dash_checker == false:
 					Global.state = Global.States.JUMPING
 					state_machine()
-				if Global.damaged: 
-					Global.state = Global.States.DAMAGING 
+				if damage_checker:
+					Global.state = Global.States.DAMAGING
 					state_machine()
 			var x when x.is_in_group("enemy"):
 				Global.state = Global.States.JUMPING
@@ -189,10 +176,11 @@ func index_place_matching():
 			
 func land():
 	if can_squish and is_on_floor():
+		landed.emit()
 		squash(1.3, 0.9, 0.05)
 		can_squish = false
-	if Global.damaged and is_on_floor():
-		Global.damaged = false
+		if Global.damaged:
+			Global.damaged = false
 		
 func change_direction():
 	var _move_right = Input.is_action_just_pressed("move_right")
@@ -207,8 +195,8 @@ func change_direction():
 				if Input.is_action_just_pressed("move_right"):
 					set_speed(SPEED * -1)
 
-func freeze_frame(): 
-	Engine.time_scale = 0 
+func freeze_frame():
+	Engine.time_scale = 0
 	await get_tree().create_timer(0.02, true, true, true).timeout
 	Engine.time_scale = 1
 
@@ -225,7 +213,7 @@ func _decohere():
 		SFX.get_child(3).play()
 		freeze_frame()
 		damage_animation.call()
-		set_speed(SPEED * -1 * decoherence_multiplier) 
+		set_speed(SPEED * -1 * decoherence_multiplier)
 
 
 func tile_map() -> TileMapLayer:
@@ -280,7 +268,7 @@ func wall_hang():
 		state_machine()
 		if Input.is_action_just_pressed("dash"):
 			set_speed(SPEED * -1)
-			dash() 
+			dash()
 			animated_sprite.play("dash")
 
 func dash():
@@ -304,7 +292,6 @@ func dash():
 		self.dash_cooldown = true
 		await animated_sprite.animation_finished
 		self.dash_cooldown = false
-
 
 
 func _on_detector_body_entered(body: TileMapLayer) -> void:
@@ -355,7 +342,7 @@ func speed_sprite_flip():
 			change_direction()
 
 func set_player():
-	self.add_to_group("player") 
+	self.add_to_group("player")
 	Global.player_testers[self.get_index() - 1] = true
 
 func _on_win_area_body_entered(body: Node2D) -> void:

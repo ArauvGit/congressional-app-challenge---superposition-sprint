@@ -90,12 +90,6 @@ region = Rect2(128, 0, 32, 32)
 atlas = ExtResource("7_ekrhb")
 region = Rect2(160, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pd04j"]
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4dnj7"]
-region = Rect2(32, 0, 32, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_3d5ho"]
 atlas = ExtResource("9_2vq0w")
 region = Rect2(0, 0, 32, 32)
@@ -223,12 +217,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pd04j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4dnj7")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3d5ho")
 }, {
@@ -359,6 +347,7 @@ material = SubResource("ShaderMaterial_so2ip")
 position = Vector2(2, 0.9999995)
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"malfunction"
 autoplay = "default"
 script = ExtResource("10_3d5ho")
 

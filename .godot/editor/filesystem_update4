@@ -5,3 +5,8 @@ res://Scenes/Level2.tscn
 res://Scripts/enemy.gd
 res://Scripts/sprite.gd
 res://Scenes/enemy_trigger.gd
+res://Scenes/players.tscn
+res://Scripts/Contestants.gd
+res://Scripts/player.gd
+res://Scenes/player.tscn
+res://superposition.gd
