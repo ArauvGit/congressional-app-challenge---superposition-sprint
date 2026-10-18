@@ -34,6 +34,8 @@ func _physics_process(delta: float) -> void:
 		player_dash()
 	die()
 	player_camera_pos_config()
+	tutorial_cutscene_show()
+	tutorial_enemy_show()
 	movement_freeze()
 #endregion
 #region movement contes
@@ -169,6 +171,78 @@ func invincibility():
 	can_decohere = true
 
 
+func tutorial_cutscene_show(): 
+	var triggers_function = func(): 
+		for node in get_parent().get_parent().get_children(): 
+			if node.name == "triggers": 
+				return node 
+	var triggers = triggers_function.call()
+	var slomo = func(): 
+		for node in get_parent().get_parent().get_children(): 
+			if node.name == "background_transparent": 
+				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "modulate", Color(1, 1, 1, 1), 0.2)
+		create_tween().tween_property(get_parent().get_parent().get_child(0).get_child(0), "modulate", Color(1, 1, 1, 1), 0.2)
+		create_tween().set_trans(Tween.TRANS_EXPO).tween_property(Engine, "time_scale", 0.1, 0.2)
+		for node in self.get_children(): 
+			if node is Camera2D:
+				node.position_smoothing_speed = 10
+				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "zoom", Vector2(1.75, 1.75), 0.5 / Engine.time_scale)
+	var undo_slomo = func(): 
+		print('undo slomo')
+		for node in self.get_children(): 
+			if node is Camera2D:
+				node.position_smoothing_speed = 3
+				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "zoom", Vector2(1, 1), 0.2)
+		create_tween().tween_property(get_parent().get_parent().get_child(0).get_child(0), "modulate", Color(1, 1, 1, 0), 0.2)
+		for node in get_parent().get_parent().get_children():
+			if node.name == "background_transparent":
+				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "modulate", Color(1, 1, 1, 0), 0.2)
+		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(Engine, "time_scale", 1, 0.5)
+	var dialogue = func(): 
+		for node in get_parent().get_parent().get_child(0).get_children(): 
+			node.get_child(0).show()
+	for node in triggers.get_children(): 
+		if node.has_overlapping_bodies():
+			if node.get_overlapping_bodies().any(func(element): return element.is_in_group("player")):
+				if node.name.contains("cutscene"): 
+					dialogue.call()
+					slomo.call()  
+					cutscene_dialogue.emit()
+				await stop_tutorial_dialogue 
+				undo_slomo.call()
+			
+
+
+				
+func tutorial_enemy_show(): 
+	var trigger_parent = func(): 
+		for child in get_parent().get_parent().get_children(): 
+			if child.name == "triggers": 
+				return child
+	var trigger_function = func(): 
+		for child in trigger_parent.call().get_children(): 
+			if child.name.contains("enemy"): 
+				return child #I can't believe this worked
+	var trigger = trigger_function.call() 
+	
+	var placement_parent = func(): 
+		for child in get_parent().get_parent().get_children(): 
+			if child.name == "placement container": 
+				return child
+	var placement_function = func(): 
+		return placement_parent.call().get_child(0) 
+	var placement = placement_function.call() 
+	if trigger.has_overlapping_bodies():
+		for body in trigger.get_overlapping_bodies(): 	                                    
+			if body.is_in_group("enemy"): 
+				body.movement(0)
+			elif body == self: 
+				print("HELLO")
+				for node in get_parent().get_children(): 
+					if node.visible == false: 
+						node.enemy_jump()
+						node.show()
+				placement.show()
 
 func interference_powerup():
 	for child in get_parent().get_parent().get_children():

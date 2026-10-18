@@ -4,6 +4,8 @@ class_name Contestant
 signal update_health
 signal take_damage
 signal decoherence_end
+signal cutscene_dialogue
+signal stop_tutorial_dialogue
 
 #region variables
 var distance_placement: Array = []
@@ -347,3 +349,7 @@ func set_player():
 
 func _on_win_area_body_entered(body: Node2D) -> void:
 	Global.game_won = true
+
+
+func input() -> void:
+	stop_tutorial_dialogue.emit()

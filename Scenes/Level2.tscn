@@ -32,7 +32,7 @@
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="30_sj5x0"]
 [ext_resource type="PackedScene" uid="uid://cgybxjxp6j2co" path="res://placement.tscn" id="31_sj5x0"]
 [ext_resource type="PackedScene" uid="uid://bud7hk2ll2gis" path="res://interference_container.tscn" id="31_uelq8"]
-[ext_resource type="PackedScene" uid="uid://bfeq57nntau7i" path="res://powerup.tscn" id="32_ubjqm"]
+[ext_resource type="PackedScene" uid="uid://u15rmcsem62e" path="res://Scenes/powerup.tscn" id="32_ubjqm"]
 [ext_resource type="PackedScene" uid="uid://cbap2ahkkr0aq" path="res://countdown.tscn" id="33_uelq8"]
 [ext_resource type="Texture2D" uid="uid://ctcqxkot1if6b" path="res://Assets/Sprites/powerups/interference_powerup_sprite.png" id="33_ywwsq"]
 [ext_resource type="PackedScene" uid="uid://cjyganyfs86ct" path="res://Scenes/interference_cutscene.tscn" id="35_ywwsq"]
@@ -818,67 +818,55 @@ position = Vector2(-176, 68)
 [node name="Yellow" parent="players" index="0" unique_id=1916415869 groups=["Line One"]]
 modulate = Color(0.9999997, 0.96427995, 0.9643186, 1)
 position = Vector2(80, -24)
-speed_value = 230
-jump_value = 300
-health_value = 100
 
 [node name="sprite" parent="players/Yellow" index="2" unique_id=92008973]
 clip_children = 2
 animation = &"malfunction"
 
 [node name="color change" type="ColorRect" parent="players/Yellow/sprite" index="0" unique_id=1297344438]
-modulate = Color(1, 1, 1, 0)
 offset_left = -17.599998
 offset_top = -13.199999
 offset_right = 22.400002
 offset_bottom = 26.800001
+color = Color(1, 1, 1, 0)
 
 [node name="Green" parent="players" index="1" unique_id=1041134616 groups=["Line Two"]]
 position = Vector2(160, -24)
-speed_value = 250
-jump_value = 290
-health_value = 4
 
 [node name="sprite" parent="players/Green" index="2" unique_id=1978129541]
 clip_children = 2
 
-[node name="color change" type="ColorRect" parent="players/Green" index="3" unique_id=1792663941]
-modulate = Color(1, 1, 1, 0)
-offset_left = -30.0
-offset_top = -35.999996
-offset_right = 22.8
-offset_bottom = 18.800007
+[node name="color change" type="ColorRect" parent="players/Green/sprite" index="0" unique_id=1792663941]
+offset_left = -12.8
+offset_top = -14.799997
+offset_right = 40.0
+offset_bottom = 40.000008
+color = Color(1, 1, 1, 0)
 
 [node name="Red" parent="players" index="2" unique_id=206440627 groups=["Line Three"]]
-speed_value = 230
-jump_value = 400
-health_value = 5
 
 [node name="sprite" parent="players/Red" index="2" unique_id=1361858006]
 clip_children = 2
 
 [node name="color change" type="ColorRect" parent="players/Red/sprite" index="0" unique_id=1997372212]
-modulate = Color(1, 1, 1, 0)
 offset_left = -12.800003
 offset_top = -15.599999
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(1, 1, 1, 0)
 
 [node name="Blue" parent="players" index="3" unique_id=86018735 groups=["Line Four"]]
 position = Vector2(240, -25)
-speed_value = 200
-jump_value = 300
-health_value = 6
 
 [node name="sprite" parent="players/Blue" index="2" unique_id=667662941]
 clip_children = 2
 
 [node name="color change" type="ColorRect" parent="players/Blue/sprite" index="0" unique_id=341449900]
-modulate = Color(1, 1, 1, 0)
 offset_left = -13.600005
 offset_top = -13.999999
 offset_right = 26.399994
 offset_bottom = 26.0
+color = Color(1, 1, 1, 0)
 
 [node name="Camera2D" parent="players" index="4" unique_id=1398605686]
 position = Vector2(8, -19)
@@ -895,12 +883,8 @@ drag_right_margin = 0.25
 position = Vector2(753.00006, -6)
 scale = Vector2(2.5, 2.5)
 position_transform = 42243.25000021493
-position_y = 0
 
-[node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(48.732822, 0)
-
-[node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
+[node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" parent_id_path=PackedInt32Array(1789265333, 688504268) index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)
 scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_5fn7l")

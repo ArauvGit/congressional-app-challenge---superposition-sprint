@@ -42,7 +42,6 @@ func _init():
 			health = Contestant_information.get(Name)["JUMP"]
 
 func _physics_process(delta: float) -> void:
-	print(SPEED)
 	if not platform_waiting:  
 		movement(SPEED)
 	else: 

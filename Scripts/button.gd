@@ -24,8 +24,7 @@ func _process(_delta: float) -> void:
 func _pressed() -> void:
 	if Global.can_be_pressed:
 		$"../../players/Camera2D".zoom = Vector2(1, 1)
-		$"../../background_transparent".hide()
-		$"../../background_transparent".reparent($"../../background transparent container")
+		create_tween().tween_property($"../../background_transparent", "modulate", Color(1, 1, 1, 0), 0.1)
 		$"../../Oracle".hide()
 		if Global.is_pressed:
 			return

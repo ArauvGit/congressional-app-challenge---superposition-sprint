@@ -5,7 +5,7 @@
 
 [node name="dialogue" type="CanvasLayer" unique_id=2065175651]
 
-[node name="Panel" type="TextureButton" parent="." unique_id=905459227]
+[node name="Panel" type="NinePatchRect" parent="." unique_id=546156315]
 clip_contents = true
 anchors_preset = 5
 anchor_left = 0.5
@@ -15,8 +15,12 @@ offset_right = 310.0
 offset_bottom = 90.0
 grow_horizontal = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("1_758ep")
-stretch_mode = 0
+texture = ExtResource("1_758ep")
+region_rect = Rect2(-1, -1, 251, 38)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
 
 [node name="text" type="RichTextLabel" parent="Panel" unique_id=2083957179]
 custom_minimum_size = Vector2(600, 85)
@@ -32,5 +36,3 @@ fit_content = true
 scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="Panel" to="Panel/text" method="_on_panel_pressed"]
