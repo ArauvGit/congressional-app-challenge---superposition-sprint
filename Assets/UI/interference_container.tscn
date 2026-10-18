@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://milbpaktsub4"]
+
+[ext_resource type="Texture2D" uid="uid://cpo3k6elyefrn" path="res://Assets/Sprites/containers/destructive interference.png" id="1_dviws"]
+[ext_resource type="Script" path="res://Scripts/interference.gd" id="2_us4ik"]
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="3_8xhth"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="4_tctnp"]
+[ext_resource type="Texture2D" uid="uid://bu5poplpdiv3w" path="res://Assets/Sprites/containers/constructive interference.png" id="5_n3p4a"]
+
+[node name="interference container" type="CanvasLayer" unique_id=157839272]
+
+[node name="horizontal container" type="HBoxContainer" parent="." unique_id=657021949]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -237.5
+offset_top = -150.0
+offset_right = 237.5
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="destructive" type="TextureButton" parent="horizontal container" unique_id=1364241309]
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(-1, 100000)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("1_dviws")
+stretch_mode = 0
+script = ExtResource("2_us4ik")
+
+[node name="text" type="VBoxContainer" parent="horizontal container/destructive" unique_id=350922928]
+custom_minimum_size = Vector2(175, 200)
+custom_maximum_size = Vector2(175, 100000)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -189.0
+offset_right = 87.5
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 13
+
+[node name="title" type="Label" parent="horizontal container/destructive/text" unique_id=1405150110]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_8xhth")
+theme_override_font_sizes/font_size = 18
+text = " Destructive 
+Interference"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="horizontal container/destructive/text" unique_id=779473940]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+offset_transform_position = Vector2(0, 10)
+theme_override_fonts/font = ExtResource("4_tctnp")
+theme_override_font_sizes/font_size = 14
+text = "How quantum computers cancel out the low-probability states. Destroy the two competitors in last place."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="constructive" type="TextureButton" parent="horizontal container" unique_id=968188239]
+custom_minimum_size = Vector2(200, 200)
+custom_maximum_size = Vector2(-1, 100000)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_n3p4a")
+stretch_mode = 0
+script = ExtResource("2_us4ik")
+
+[node name="text" type="VBoxContainer" parent="horizontal container/constructive" unique_id=85193570]
+custom_minimum_size = Vector2(175, 200)
+custom_maximum_size = Vector2(175, 100000)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -87.5
+offset_top = -189.0
+offset_right = 87.5
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 13
+
+[node name="title" type="Label" parent="horizontal container/constructive/text" unique_id=277898489]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_8xhth")
+theme_override_font_sizes/font_size = 18
+text = "Constructive
+Interference"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="description" type="Label" parent="horizontal container/constructive/text" unique_id=1145536166]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+offset_transform_position = Vector2(0, 10)
+theme_override_fonts/font = ExtResource("4_tctnp")
+theme_override_font_sizes/font_size = 12
+text = "How quantum computers amplify the high-probability states. Combine with one competitor one place higher or beneath you and get a temporary stat boost."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="mouse_entered" from="horizontal container/destructive" to="horizontal container/destructive" method="on_hover_entered"]
+[connection signal="mouse_entered" from="horizontal container/destructive" to="horizontal container/destructive" method="on_button_hover"]
+[connection signal="mouse_exited" from="horizontal container/destructive" to="horizontal container/destructive" method="on_hover_exit"]
+[connection signal="pressed" from="horizontal container/destructive" to="horizontal container/destructive" method="_on_destructive_pressed"]
+[connection signal="mouse_entered" from="horizontal container/constructive" to="horizontal container/constructive" method="on_button_hover"]
+[connection signal="mouse_exited" from="horizontal container/constructive" to="horizontal container/constructive" method="on_hover_exit"]
+[connection signal="pressed" from="horizontal container/constructive" to="horizontal container/constructive" method="_on_constructive_pressed"]

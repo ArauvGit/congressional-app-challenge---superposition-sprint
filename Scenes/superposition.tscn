@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cwil2s4e2xir7"]
+
+[ext_resource type="Texture2D" uid="uid://bmy3lo8xmxihq" path="res://Assets/Sprites/containers/superposition.png" id="1_lcblq"]
+
+[sub_resource type="GDScript" id="GDScript_wsdy8"]
+script/source = "extends TextureButton
+@export var oracle: AnimatedSprite2D
+@export var oracle_mover: AnimationPlayer
+@export var button_container: VBoxContainer 
+@export var healthbar: HBoxContainer
+@export var players: Node2D
+@export var background_transparent: ColorRect 
+@export var camera: Camera2D
+@export var countdown: Control
+@export var superposition_container: Node2D
+@export var root_node: Node2D
+var can_increase: bool = true
+var can_decrease: bool = true
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	RaceSong.play(0)
+	RaceSong.stop()
+	players.hide()
+	for node in players.get_children(): 
+		if node is CharacterBody2D:
+			node.Contestant_information.get(node.name)[\"SPEED\"] = 1
+	healthbar.hide()
+	if root_node.get_groups()[0] == \"tutorial\":
+		for child in root_node.get_children(): 
+			if child.name == \"placement container\": 
+				child.hide()
+	oracle.show()
+	superposition_container.show()
+	background_transparent.show()
+	camera.position_smoothing_enabled = false
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_pressed() -> void:
+	button_container_setup()
+	get_parent().hide()
+	Global.can_be_pressed = true
+	oracle_mover.play(\"move\")
+	oracle.play(\"rise\")
+	await oracle.animation_finished
+	await get_tree().create_timer(1).timeout
+	button_container_show()
+	get_parent().queue_free()
+	oracle.play(\"tweak\")
+
+
+func button_container_setup():
+	button_container.show()
+	for child in button_container.get_children():
+		child.modulate = Color(1.0, 1.0, 1.0, 0.0)
+
+func button_container_show(): 
+	for child in button_container.get_children():
+		child.create_tween().tween_property(child, \"modulate\", Color(1.0, 1.0, 1.0, 1.0), 0.5)
+"
+
+[node name="superposition" type="TextureButton" unique_id=714630486]
+custom_minimum_size = Vector2(25, 100)
+custom_maximum_size = Vector2(60, 15)
+offset_right = 75.0
+offset_bottom = 200.0
+scale = Vector2(15, 15)
+texture_normal = ExtResource("1_lcblq")
+script = SubResource("GDScript_wsdy8")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

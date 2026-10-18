@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://w41m5xq2oxu4"]
+
+[ext_resource type="PackedScene" uid="uid://bj83ks0ym3e7x" path="res://Scenes/dialogue.tscn" id="1_0hfk5"]
+[ext_resource type="Texture2D" uid="uid://bkf5ijkrwpm84" path="res://Assets/Sprites/tutorial level/tutorial_background1.png" id="1_k6rhx"]
+[ext_resource type="Script" path="res://Scripts/bit movement.gd" id="3_hffke"]
+[ext_resource type="Texture2D" uid="uid://dpsxn42k47qx3" path="res://Assets/Sprites/tutorial level/computer.png" id="3_o41vv"]
+[ext_resource type="Texture2D" uid="uid://bmok1dgcmysr7" path="res://Assets/Sprites/tutorial level/car.png" id="4_hffke"]
+[ext_resource type="Texture2D" uid="uid://bnciv2b8my3jq" path="res://Assets/Sprites/tutorial level/quantum computer.png" id="5_ufppo"]
+[ext_resource type="Script" uid="uid://c8n2bfcpm3ij2" path="res://Scripts/animate_sin.gd" id="6_ipiwr"]
+[ext_resource type="Texture2D" uid="uid://bno460v81faqy" path="res://Assets/Sprites/tutorial level/shrodingers cat.png" id="7_eholo"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="8_f5nhl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68tq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ye5a"]
+atlas = ExtResource("7_eholo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcoa3"]
+atlas = ExtResource("7_eholo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvbl2"]
+atlas = ExtResource("7_eholo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi1t0"]
+atlas = ExtResource("7_eholo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b68tq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ye5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcoa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvbl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi1t0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Cutscene" type="Node2D" unique_id=1652339689]
+
+[node name="ColorRect" type="Sprite2D" parent="." unique_id=1984250747]
+texture_filter = 1
+position = Vector2(319.00003, 179.99998)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_k6rhx")
+
+[node name="bits" type="Node2D" parent="." unique_id=1289856139]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bits" unique_id=746972237]
+position = Vector2(-60, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"red"
+autoplay = "red"
+script = ExtResource("3_hffke")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bits" unique_id=986580570]
+position = Vector2(100, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"yellow"
+autoplay = "yellow"
+script = ExtResource("3_hffke")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="bits" unique_id=786403326]
+position = Vector2(260, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"red"
+autoplay = "red"
+script = ExtResource("3_hffke")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="bits" unique_id=1284957080]
+position = Vector2(420, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"yellow"
+autoplay = "yellow"
+script = ExtResource("3_hffke")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="bits" unique_id=2011132411]
+position = Vector2(573.00006, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+autoplay = "red"
+script = ExtResource("3_hffke")
+
+[node name="dialogue" parent="." unique_id=2065175651 instance=ExtResource("1_0hfk5")]
+
+[node name="pictures" type="Node2D" parent="." unique_id=1365184549]
+modulate = Color(1, 1, 1, 0)
+
+[node name="computer" type="Node2D" parent="pictures" unique_id=1246404761]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Panel" type="Panel" parent="pictures/computer" unique_id=1867498460]
+offset_left = 199.0
+offset_top = 115.0
+offset_right = 299.0
+offset_bottom = 215.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b68tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="pictures/computer" unique_id=579456255]
+position = Vector2(250.99997, 165)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_o41vv")
+
+[node name="car" type="Node2D" parent="pictures" unique_id=1534013813]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Panel" type="Panel" parent="pictures/car" unique_id=205703448]
+offset_left = 333.0
+offset_top = 116.0
+offset_right = 433.0
+offset_bottom = 216.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b68tq")
+
+[node name="Sprite2D" type="Sprite2D" parent="pictures/car" unique_id=238513716]
+position = Vector2(380, 164)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("4_hffke")
+
+[node name="color" type="ColorRect" parent="pictures" unique_id=49611279]
+modulate = Color(1, 1, 1, 0)
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.83, 0.56108, 0.23239997, 1)
+
+[node name="quantum sprites" type="Node2D" parent="pictures" unique_id=945798092]
+
+[node name="QuantumComputer" type="Sprite2D" parent="pictures/quantum sprites" unique_id=1428937523]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 217)
+scale = Vector2(5, 5)
+texture = ExtResource("5_ufppo")
+script = ExtResource("6_ipiwr")
+
+[node name="shrodingers cat" type="AnimatedSprite2D" parent="pictures/quantum sprites" unique_id=1212267276]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(509, 204)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_b68tq")
+autoplay = "default"
+frame_progress = 0.37426656
+
+[node name="numbers" type="Node2D" parent="pictures" unique_id=2058764117]
+
+[node name="0" type="RichTextLabel" parent="pictures/numbers" unique_id=1794430937]
+modulate = Color(1, 1, 1, 0)
+offset_left = 115.0
+offset_top = 100.0
+offset_right = 275.0
+offset_bottom = 260.0
+theme_override_fonts/normal_font = ExtResource("8_f5nhl")
+theme_override_font_sizes/normal_font_size = 100
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="1" type="RichTextLabel" parent="pictures/numbers" unique_id=2043432722]
+modulate = Color(1, 1, 1, 0)
+offset_left = 375.0
+offset_top = 100.0
+offset_right = 535.0
+offset_bottom = 260.0
+theme_override_fonts/normal_font = ExtResource("8_f5nhl")
+theme_override_font_sizes/normal_font_size = 100
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[editable path="dialogue"]

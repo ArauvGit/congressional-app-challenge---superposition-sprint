@@ -1,6 +1,11 @@
+res://tutorial_level.gd
 res://tutorial_level.tscn
 res://Scripts/colorswap.tres
-res://dialogue.tscn
+res://placement.tscn
 res://cutscene.tscn
-res://tutorial.gd
-res://tutorial_level.gd
+res://Scenes/powerup.tscn
+res://Scenes/placement.tscn
+res://Scenes/superposition.tscn
+res://Scenes/cutscene.tscn
+res://Scenes/dialogue.tscn
+res://Scripts/tutorial.gd
