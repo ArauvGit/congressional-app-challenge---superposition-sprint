@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://bud7hk2ll2gis"]
 
-[ext_resource type="Texture2D" uid="uid://cpo3k6elyefrn" path="res://Assets/Sprites/destructive interference.png" id="1_gpl6e"]
+[ext_resource type="Texture2D" uid="uid://cpo3k6elyefrn" path="res://Assets/Sprites/containers/destructive interference.png" id="1_gpl6e"]
 [ext_resource type="Script" uid="uid://d3ol13xgdgvjw" path="res://interference.gd" id="2_0agmc"]
 [ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="3_k4vdc"]
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="4_qj54t"]
-[ext_resource type="Texture2D" uid="uid://bu5poplpdiv3w" path="res://Assets/Sprites/constructive interference.png" id="5_jc5sx"]
+[ext_resource type="Texture2D" uid="uid://bu5poplpdiv3w" path="res://Assets/Sprites/containers/constructive interference.png" id="5_jc5sx"]
 
 [node name="interference container" type="CanvasLayer" unique_id=157839272]
 

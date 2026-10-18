@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cr2w2ec0vpeo"]
 
-[ext_resource type="Texture2D" uid="uid://l77ihysrh7hc" path="res://Assets/Sprites/oracle bounce.png" id="1_6swne"]
-[ext_resource type="Texture2D" uid="uid://cltlx5il3yhid" path="res://Assets/Sprites/oracle superposition.png" id="2_i3jto"]
-[ext_resource type="Texture2D" uid="uid://trxh3ux4p5p" path="res://Assets/Sprites/oracle tweak.png" id="3_nc7aa"]
+[ext_resource type="Texture2D" uid="uid://l77ihysrh7hc" path="res://Assets/Sprites/oracle/oracle bounce.png" id="1_6swne"]
+[ext_resource type="Texture2D" uid="uid://cltlx5il3yhid" path="res://Assets/Sprites/oracle/oracle superposition.png" id="2_i3jto"]
+[ext_resource type="Texture2D" uid="uid://trxh3ux4p5p" path="res://Assets/Sprites/oracle/oracle tweak.png" id="3_nc7aa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jyeob"]
 atlas = ExtResource("1_6swne")

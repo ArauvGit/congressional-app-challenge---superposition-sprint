@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpo3k6elyefrn"
-path="res://.godot/imported/destructive interference.png-fe472bd79446787a0f54f0d55b552757.ctex"
+uid="uid://bno460v81faqy"
+path="res://.godot/imported/shrodingers cat.png-8a68f33cbc34db36adaf03b56e45b54d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/destructive interference.png"
-dest_files=["res://.godot/imported/destructive interference.png-fe472bd79446787a0f54f0d55b552757.ctex"]
+source_file="res://Assets/Sprites/tutorial level/shrodingers cat.png"
+dest_files=["res://.godot/imported/shrodingers cat.png-8a68f33cbc34db36adaf03b56e45b54d.ctex"]
 
 [params]
 

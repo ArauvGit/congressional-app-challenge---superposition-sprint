@@ -818,6 +818,9 @@ position = Vector2(-176, 68)
 [node name="Yellow" parent="players" index="0" unique_id=1916415869 groups=["Line One"]]
 modulate = Color(0.9999997, 0.96427995, 0.9643186, 1)
 position = Vector2(80, -24)
+speed_value = 230
+jump_value = 300
+health_value = 100
 
 [node name="sprite" parent="players/Yellow" index="2" unique_id=92008973]
 clip_children = 2
@@ -832,6 +835,9 @@ offset_bottom = 26.800001
 
 [node name="Green" parent="players" index="1" unique_id=1041134616 groups=["Line Two"]]
 position = Vector2(160, -24)
+speed_value = 250
+jump_value = 290
+health_value = 4
 
 [node name="sprite" parent="players/Green" index="2" unique_id=1978129541]
 clip_children = 2
@@ -844,6 +850,9 @@ offset_right = 22.8
 offset_bottom = 18.800007
 
 [node name="Red" parent="players" index="2" unique_id=206440627 groups=["Line Three"]]
+speed_value = 230
+jump_value = 400
+health_value = 5
 
 [node name="sprite" parent="players/Red" index="2" unique_id=1361858006]
 clip_children = 2
@@ -857,6 +866,9 @@ offset_bottom = 40.0
 
 [node name="Blue" parent="players" index="3" unique_id=86018735 groups=["Line Four"]]
 position = Vector2(240, -25)
+speed_value = 200
+jump_value = 300
+health_value = 6
 
 [node name="sprite" parent="players/Blue" index="2" unique_id=667662941]
 clip_children = 2
@@ -882,11 +894,11 @@ drag_right_margin = 0.25
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(753.00006, -6)
 scale = Vector2(2.5, 2.5)
-position_transform = 41748.900000186164
+position_transform = 42243.25000021493
 position_y = 0
 
 [node name="AnimatableBody2D" parent="moving platforms/Moving platform" index="0" unique_id=688504268]
-position = Vector2(-11.166364, 0)
+position = Vector2(48.732822, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/Moving platform/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(-0.5345459, -2.7999961)

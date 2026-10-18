@@ -1,12 +1,6 @@
-res://tutorial.tscn
-res://Scripts/colorswap.tres
 res://tutorial_level.tscn
-res://Scenes/Level2.tscn
-res://Scripts/enemy.gd
-res://Scripts/sprite.gd
-res://Scenes/enemy_trigger.gd
-res://Scenes/players.tscn
-res://Scripts/Contestants.gd
-res://Scripts/player.gd
-res://Scenes/player.tscn
-res://superposition.gd
+res://Scripts/colorswap.tres
+res://dialogue.tscn
+res://cutscene.tscn
+res://tutorial.gd
+res://tutorial_level.gd

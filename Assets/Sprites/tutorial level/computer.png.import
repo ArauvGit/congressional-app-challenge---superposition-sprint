@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu5poplpdiv3w"
-path="res://.godot/imported/constructive interference.png-38532d10c691402a780195dcdc81d238.ctex"
+uid="uid://dpsxn42k47qx3"
+path="res://.godot/imported/computer.png-88e9bb8c3a974f433e559324aee14fdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/constructive interference.png"
-dest_files=["res://.godot/imported/constructive interference.png-38532d10c691402a780195dcdc81d238.ctex"]
+source_file="res://Assets/Sprites/tutorial level/computer.png"
+dest_files=["res://.godot/imported/computer.png-88e9bb8c3a974f433e559324aee14fdb.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdmms310vyvwd"
-path="res://.godot/imported/text_container.png-f2aa0fe67f8e2b2b2b05b28f0645db09.ctex"
+uid="uid://bmy3lo8xmxihq"
+path="res://.godot/imported/superposition.png-e2890389bce5531437400cf091015f5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/text_container.png"
-dest_files=["res://.godot/imported/text_container.png-f2aa0fe67f8e2b2b2b05b28f0645db09.ctex"]
+source_file="res://Assets/Sprites/containers/superposition.png"
+dest_files=["res://.godot/imported/superposition.png-e2890389bce5531437400cf091015f5b.ctex"]
 
 [params]
 

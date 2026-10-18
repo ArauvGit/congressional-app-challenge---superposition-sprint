@@ -16,6 +16,9 @@ func _ready() -> void:
 	RaceSong.play(0)
 	RaceSong.stop()
 	players.hide()
+	for node in players.get_children(): 
+		if node is CharacterBody2D:
+			node.Contestant_information.get(node.name)["SPEED"] = 1
 	healthbar.hide()
 	if root_node.get_groups()[0] == "tutorial":
 		for child in root_node.get_children(): 

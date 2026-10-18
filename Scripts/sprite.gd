@@ -40,12 +40,12 @@ func animation_state():
 			if not is_dashing:
 				play("wall_hang")
 		Global.States.DASHING:
-			if not is_damaged:
-				play("dash")
-				is_dashing = true
+			play("dash")
+			is_dashing = true
 			await animation_finished
 			is_dashing = false
 			is_damaged = false
 		Global.States.DAMAGING:
+			if not is_dashing: 
+				play("malfunction")
 			is_damaged = true
-			play("malfunction")

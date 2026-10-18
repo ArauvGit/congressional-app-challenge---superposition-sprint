@@ -4,6 +4,7 @@ class_name Contestant
 signal update_health
 signal take_damage
 signal decoherence_end
+
 #region variables
 var distance_placement: Array = []
 var placement: Array = []
@@ -21,7 +22,6 @@ var speed_powerup_active: bool = false
 var jump_powerup_active: bool = false
 var can_break: bool = true
 var damage_checker: bool = false
-
 var has_decohered: bool = false
 var JUMP_VELOCITY = 0:
 	set = set_jump
@@ -29,10 +29,11 @@ var SPEED = 0:
 	set = set_speed
 #endregion
 #region dictionaries
-@export var Contestant_information: Dictionary = {
+
+var Contestant_information: Dictionary = {
 	"Yellow": {
 		"SPEED": 215,
-		"JUMP": - 360,
+		"JUMP": - 370,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
@@ -53,7 +54,7 @@ var SPEED = 0:
 	
 	"Blue": {
 		"SPEED": 200,
-		"JUMP": - 350,
+		"JUMP": - 365,
 		"HEALTH": 6,
 		"DISTANCE": 0
 	}
@@ -89,7 +90,7 @@ func _physics_process(delta: float) -> void:
 				state_machine()
 		velocity += get_gravity() * delta
 	if checker == false:
-		velocity.y = -500
+		velocity.y = -300
 		for Name in Contestant_information.keys():
 			if get_groups()[0] == Name:
 				set_speed(Contestant_information.get(Name)["SPEED"])
@@ -117,8 +118,9 @@ func state_machine():
 			movement(SPEED)
 			speed_sprite_flip()
 		Global.States.DASHING:
-			if not get_child(1).has_overlapping_bodies() or not is_on_floor():
-				velocity.y = -200
+			animated_sprite.play("dash")
+			if not is_on_floor():
+				velocity.y = -225
 			speed_sprite_flip()
 			set_speed(SPEED * 4)
 		Global.States.WALL_HANGING:
@@ -259,6 +261,8 @@ func jump():
 	jump_count += 1
 
 func wall_hang():
+	if is_on_floor(): 
+		return
 	if is_on_wall_only():
 		decoherence_end.emit()
 		Global.state = Global.States.WALL_HANGING
@@ -266,15 +270,15 @@ func wall_hang():
 		if Input.is_action_just_pressed("dash"):
 			set_speed(SPEED * -1)
 			dash()
-			animated_sprite.play("dash")
 
 func dash():
 	if not is_on_wall():
 		decoherence_end.emit()
+		animated_sprite.play("dash")
 		Global.state = Global.States.DASHING
 		self.state_machine()
 		self.dash_checker = true
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.32).timeout
 		set_speed(SPEED * 0.25)
 		match self:
 			var x when x.is_on_floor_only():
@@ -288,14 +292,14 @@ func dash():
 				Global.state = Global.States.JUMPING
 				state_machine()
 		self.dash_checker = false
-
-
+		self.dash_cooldown = true 
+		await get_tree().create_timer(0.5).timeout
+		self.dash_cooldown = false
 func _on_detector_body_entered(body: TileMapLayer) -> void:
 	var deal_damage := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)
 		if is_instance_valid(cell_data):
 			if cell_data.get_custom_data("Damageable"):
-				decoherence_multiplier -= decoherence_reduction
 				take_damage.emit()
 	var break_tile := func(cell: Vector2):
 		var cell_data = body.get_cell_tile_data(cell)

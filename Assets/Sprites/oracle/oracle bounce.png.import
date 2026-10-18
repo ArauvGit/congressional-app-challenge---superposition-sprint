@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://trxh3ux4p5p"
-path="res://.godot/imported/oracle tweak.png-543b5a4e13e2e5e74084e812da40b5ae.ctex"
+uid="uid://l77ihysrh7hc"
+path="res://.godot/imported/oracle bounce.png-2304749920de5fcb3f05aeada8b72c09.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/oracle tweak.png"
-dest_files=["res://.godot/imported/oracle tweak.png-543b5a4e13e2e5e74084e812da40b5ae.ctex"]
+source_file="res://Assets/Sprites/oracle/oracle bounce.png"
+dest_files=["res://.godot/imported/oracle bounce.png-2304749920de5fcb3f05aeada8b72c09.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cltlx5il3yhid"
-path="res://.godot/imported/oracle superposition.png-a470c7ccaa8be02160af46f4379af7f5.ctex"
+uid="uid://bmok1dgcmysr7"
+path="res://.godot/imported/car.png-1f40ce6b82db5e7834d4c8293227e4da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/oracle superposition.png"
-dest_files=["res://.godot/imported/oracle superposition.png-a470c7ccaa8be02160af46f4379af7f5.ctex"]
+source_file="res://Assets/Sprites/tutorial level/car.png"
+dest_files=["res://.godot/imported/car.png-1f40ce6b82db5e7834d4c8293227e4da.ctex"]
 
 [params]
 

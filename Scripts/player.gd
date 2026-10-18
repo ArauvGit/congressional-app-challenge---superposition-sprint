@@ -44,6 +44,7 @@ func player_camera_pos_config():
 				node.global_position.x = self.global_position.x + camera_nudge * velocity.normalized().x
 			else:
 				node.global_position.x = self.global_position.x
+			node.position.y = -25
 func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
 		match animated_sprite:
@@ -99,7 +100,7 @@ func wall_jump():
 		if Input.is_action_just_pressed("jump"):
 			Global.state = Global.States.JUMPING
 			state_machine()
-			move_local_x(10 * get_wall_normal().x)
+			move_local_x(10 * round(get_wall_normal().x))
 			set_speed(SPEED * -1)
 			double_jump()
 #endregion
@@ -125,17 +126,18 @@ func player_decohere():
 		var damage_animation := func():
 			color_change.color = Color(1.0, 1.0, 1.0, 1.0)
 			await get_tree().create_timer(0.02).timeout
-			color_change.modulate = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
+			color_change.color = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
 			Color(0.88, 0.0, 0.0, 1.0)
 		if damage_checker == false:
 			SFX.get_child(3).play()
 			freeze_frame()
 			damage_animation.call()
-			set_speed(SPEED * -1 * decoherence_multiplier)
+			decoherence_multiplier -= decoherence_reduction
+			set_speed(SPEED * decoherence_multiplier)
 			set_health(Global.health - 1)
 			velocity.y = -500
 			if is_on_wall():
-				move_local_x(10 * get_wall_normal().x)
+				move_local_x(10 * round(get_wall_normal().x))
 				for i in range(10):
 					move_local_y(-1)
 					await get_tree().process_frame
@@ -156,8 +158,11 @@ func player_decohere():
 				var x when x.is_on_wall():
 					Global.state = Global.States.WALL_HANGING
 					state_machine()
+				var x when Global.state == Global.States.DASHING: 
+					state_machine()
+					dash()
 func invincibility(): 
-	create_tween().tween_property(color_change, "color", Color(0.99, 0.495, 0.0, 1.0), 0.1)
+	create_tween().tween_property(color_change, "color", Color(0.99, 0.495, 0.0, 0.5), 0.1)
 	can_decohere = false
 	await get_tree().create_timer(3).timeout 
 	create_tween().tween_property(color_change, "color", Color(1, 0, 0, (1.2 - decoherence_multiplier) * 1.15), 0.1)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l77ihysrh7hc"
-path="res://.godot/imported/oracle bounce.png-c8757d685c5a297422a7b64301355570.ctex"
+uid="uid://cbq03e7lqvddf"
+path="res://.godot/imported/red bit.png-b9e7ee2484f49c737f8397c26a7844cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/oracle bounce.png"
-dest_files=["res://.godot/imported/oracle bounce.png-c8757d685c5a297422a7b64301355570.ctex"]
+source_file="res://Assets/Sprites/tutorial level/red bit.png"
+dest_files=["res://.godot/imported/red bit.png-b9e7ee2484f49c737f8397c26a7844cc.ctex"]
 
 [params]
 

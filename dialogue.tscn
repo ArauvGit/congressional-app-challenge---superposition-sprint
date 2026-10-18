@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cdfpnxmmpxcly"]
 
-[ext_resource type="Texture2D" uid="uid://bdmms310vyvwd" path="res://Assets/Sprites/text_container.png" id="1_758ep"]
-[ext_resource type="Script" uid="uid://b2jx08w8igw7d" path="res://dialogue.gd" id="1_kp46k"]
+[ext_resource type="Texture2D" uid="uid://bdmms310vyvwd" path="res://Assets/Sprites/tutorial level/text_container.png" id="1_758ep"]
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_hoxo3"]
 
 [node name="dialogue" type="CanvasLayer" unique_id=2065175651]
@@ -33,6 +32,5 @@ fit_content = true
 scroll_following = true
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("1_kp46k")
 
 [connection signal="pressed" from="Panel" to="Panel/text" method="_on_panel_pressed"]
