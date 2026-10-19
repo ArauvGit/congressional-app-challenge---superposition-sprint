@@ -34,8 +34,9 @@ func _physics_process(delta: float) -> void:
 		player_dash()
 	die()
 	player_camera_pos_config()
-	tutorial_cutscene_show()
-	tutorial_enemy_show()
+	if get_tree().get_first_node_in_group("tutorial"):
+		tutorial_cutscene_show()
+		tutorial_enemy_show()
 	movement_freeze()
 #endregion
 #region movement contes
@@ -208,6 +209,7 @@ func tutorial_cutscene_show():
 					dialogue.call()
 					slomo.call()  
 					cutscene_dialogue.emit()
+					node.queue_free()
 				await stop_tutorial_dialogue 
 				undo_slomo.call()
 			

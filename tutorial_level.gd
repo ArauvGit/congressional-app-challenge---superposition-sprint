@@ -11,9 +11,10 @@ var text_counter = 0
 var break_1: int = 11
 var break_2: int = 24
 var tutorial_dialogue: Dictionary = {
-	1: "Press Space, W or Up Arrow Key to jump.",
-	2: "You can jump twice by clicking Space, W, or the Up Arrow Key in the air to clear bigger obstacles.",
-	3: "Your qubit state just decohered - making it unstable and slightly lowering its stats. 
+	1: "Press Space, W or Up Arrow to jump.",
+	2: "You can jump twice with Space, W or Up Arrow to clear bigger obstacles - try it now.",
+	3: "Cracked blocks break after you walk on them for too long. So don't wander and keep moving",
+	4: "Your qubit state just decohered - making it unstable and slightly lowering its stats. 
 	Every time it decoheres, your state becomes redder. Orange signifies temporary invincibility. "
 	}
 var tutorial_counter: int = 1
@@ -37,23 +38,22 @@ func tutorial():
 		tutorial_counter += 1
 		can_change = false
 func _input(event: InputEvent) -> void:
-	if text.contains(event.as_text()):
+	if text.contains(event.as_text()): 
 		input.emit()
 
 func animate_text(animated_words: String):
+	var time: float = 0.003
+	if Engine.time_scale != 1: 
+		time *= Engine.time_scale
 	text = animated_words 
 	visible_characters = 0
-	print(len(animated_words))
 	while text_counter != len(animated_words): 
-		print(text_counter)
-		animation_finished = false 
 		text_counter += 1
 		visible_characters = text_counter
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(0.05).timeout
 	if text_counter == len(animated_words): 
 		animation_finished = true
-		return
-
-
+	else: 
+		animation_finished = false
 func cutscene_dialogue() -> void:
 	tutorial()

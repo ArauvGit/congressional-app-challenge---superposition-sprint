@@ -3,7 +3,7 @@ signal input
 @onready var pictures: Node2D = $"../../../pictures"
 @onready var numbers: Node2D = $"../../../pictures/numbers"
 @onready var quantum_sprites: Node2D = $"../../../pictures/quantum sprites"
-var panel: TextureButton = get_parent()
+var panel: NinePatchRect = get_parent()
 var animation_finished: bool = false
 var text_array: Array
 var text_counter = 0
@@ -46,8 +46,7 @@ var tutorial_counter: int = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _ready() -> void:
-	#await get_tree().create_timer(3).timeout
-	tutorial_counter = 16
+	await get_tree().create_timer(3).timeout
 	tutorial()
 func _physics_process(delta: float) -> void: 
 	handle_pictures()

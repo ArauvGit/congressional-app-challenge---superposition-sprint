@@ -10,8 +10,8 @@
 [ext_resource type="Script" uid="uid://c8n2bfcpm3ij2" path="res://Scripts/animate_sin.gd" id="7_3q24f"]
 [ext_resource type="Texture2D" uid="uid://bno460v81faqy" path="res://Assets/Sprites/tutorial level/shrodingers cat.png" id="8_3q24f"]
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="9_8ye5a"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
+[ext_resource type="Texture2D" uid="uid://cbq03e7lqvddf" path="res://Assets/Sprites/tutorial level/red bit.png" id="10_vi1t0"]
+[ext_resource type="Texture2D" uid="uid://ckkhj8cq23l0m" path="res://Assets/Sprites/tutorial level/yellow bit.png" id="11_1titf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b68tq"]
 
@@ -51,14 +51,68 @@ animations = [{
 "speed": 9.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ed5nn"]
+atlas = ExtResource("10_vi1t0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gysb"]
+atlas = ExtResource("10_vi1t0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2u6u"]
+atlas = ExtResource("10_vi1t0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pby01"]
+atlas = ExtResource("11_1titf")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyjru"]
+atlas = ExtResource("11_1titf")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v3wj"]
+atlas = ExtResource("11_1titf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdnvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ed5nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gysb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2u6u")
+}],
+"loop": 1,
+"name": &"red",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pby01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyjru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v3wj")
+}],
+"loop": 1,
+"name": &"yellow",
+"speed": 10.0
+}]
+
 [node name="Cutscene" type="Node2D" unique_id=1652339689]
 
 [node name="dialogue" parent="." unique_id=2065175651 instance=ExtResource("1_ye7fo")]
 
-[node name="Panel" parent="dialogue" index="0" unique_id=905459227]
+[node name="Panel" parent="dialogue" index="0" unique_id=546156315]
 offset_top = 18.0
 offset_bottom = 108.0
-ignore_texture_size = true
 
 [node name="text" parent="dialogue/Panel" index="0" unique_id=2083957179]
 custom_minimum_size = Vector2(550, 85)
@@ -72,47 +126,6 @@ texture_filter = 1
 position = Vector2(319.00003, 179.99998)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("2_53jq0")
-
-[node name="bits" type="Node2D" parent="." unique_id=1289856139]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bits" unique_id=746972237]
-position = Vector2(-60, 230)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"red"
-autoplay = "red"
-script = ExtResource("4_p30sb")
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bits" unique_id=986580570]
-position = Vector2(100, 230)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"yellow"
-autoplay = "yellow"
-script = ExtResource("4_p30sb")
-
-[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="bits" unique_id=786403326]
-position = Vector2(260, 230)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"red"
-autoplay = "red"
-script = ExtResource("4_p30sb")
-
-[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="bits" unique_id=1284957080]
-position = Vector2(420, 230)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_sdnvj")
-animation = &"yellow"
-autoplay = "yellow"
-script = ExtResource("4_p30sb")
-
-[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="bits" unique_id=2011132411]
-position = Vector2(573.00006, 230)
-scale = Vector2(2.5, 2.5)
-sprite_frames = SubResource("SpriteFrames_sdnvj")
-autoplay = "red"
-script = ExtResource("4_p30sb")
 
 [node name="pictures" type="Node2D" parent="." unique_id=1365184549]
 
@@ -172,6 +185,7 @@ frame_progress = 0.37426656
 [node name="numbers" type="Node2D" parent="pictures" unique_id=2058764117]
 
 [node name="0" type="RichTextLabel" parent="pictures/numbers" unique_id=1794430937]
+modulate = Color(1, 1, 1, 0)
 offset_left = 115.0
 offset_top = 100.0
 offset_right = 275.0
@@ -183,6 +197,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="1" type="RichTextLabel" parent="pictures/numbers" unique_id=2043432722]
+modulate = Color(1, 1, 1, 0)
 offset_left = 375.0
 offset_top = 100.0
 offset_right = 535.0
@@ -192,5 +207,49 @@ theme_override_font_sizes/normal_font_size = 100
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="bits" type="Node2D" parent="." unique_id=1289856139]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bits" unique_id=746972237]
+position = Vector2(-60, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"red"
+autoplay = "red"
+script = ExtResource("4_p30sb")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bits" unique_id=986580570]
+position = Vector2(100, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"yellow"
+autoplay = "yellow"
+frame_progress = 0.9484667
+script = ExtResource("4_p30sb")
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="bits" unique_id=786403326]
+position = Vector2(260, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"red"
+autoplay = "red"
+script = ExtResource("4_p30sb")
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="bits" unique_id=1284957080]
+position = Vector2(420, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"yellow"
+autoplay = "yellow"
+frame_progress = 0.8525906
+script = ExtResource("4_p30sb")
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="bits" unique_id=2011132411]
+position = Vector2(573.00006, 230)
+scale = Vector2(2.5, 2.5)
+sprite_frames = SubResource("SpriteFrames_sdnvj")
+animation = &"red"
+autoplay = "red"
+script = ExtResource("4_p30sb")
 
 [editable path="dialogue"]

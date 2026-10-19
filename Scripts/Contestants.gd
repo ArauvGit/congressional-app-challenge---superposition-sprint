@@ -34,7 +34,7 @@ var SPEED = 0:
 
 var Contestant_information: Dictionary = {
 	"Yellow": {
-		"SPEED": 215,
+		"SPEED": 220,
 		"JUMP": - 370,
 		"HEALTH": 5,
 		"DISTANCE": 0
@@ -48,14 +48,14 @@ var Contestant_information: Dictionary = {
 	},
 	
 	"Red": {
-		"SPEED": 250,
+		"SPEED": 240,
 		"JUMP": - 400,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Blue": {
-		"SPEED": 200,
+		"SPEED": 210,
 		"JUMP": - 365,
 		"HEALTH": 6,
 		"DISTANCE": 0
