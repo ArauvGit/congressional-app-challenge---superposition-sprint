@@ -12,7 +12,7 @@ var break_1: int = 11
 var break_2: int = 24
 var tutorial_dialogue: Dictionary = {
 	1: "Press Space, W or Up Arrow to jump.",
-	2: "You can jump twice with Space, W or Up Arrow to clear bigger obstacles - try it now.",
+	2: "You can jump twice to clear bigger obstacles",
 	3: "Cracked blocks break after you walk on them for too long. So don't wander and keep moving",
 	4: "Your qubit state just decohered - making it unstable and slightly lowering its stats. 
 	Every time it decoheres, your state becomes redder. Orange signifies temporary invincibility. "
@@ -38,19 +38,19 @@ func tutorial():
 		tutorial_counter += 1
 		can_change = false
 func _input(event: InputEvent) -> void:
-	if text.contains(event.as_text()): 
-		input.emit()
+	var is_in_text = func(element): return text.contains(element)
+	if InputMap.get_actions().any(is_in_text):
+		var action = InputMap.get_actions().filter(is_in_text)[0]
+		if InputMap.action_has_event(action, event):
+			input.emit()
 
 func animate_text(animated_words: String):
-	var time: float = 0.003
-	if Engine.time_scale != 1: 
-		time *= Engine.time_scale
 	text = animated_words 
 	visible_characters = 0
 	while text_counter != len(animated_words): 
 		text_counter += 1
 		visible_characters = text_counter
-		await get_tree().create_timer(0.05).timeout
+		await get_tree().create_timer(0.01).timeout
 	if text_counter == len(animated_words): 
 		animation_finished = true
 	else: 

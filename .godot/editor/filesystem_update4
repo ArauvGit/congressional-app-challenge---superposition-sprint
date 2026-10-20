@@ -1,8 +1,5 @@
-res://tutorial_level.gd
-res://tutorial.gd
-res://cutscene.tscn
-res://Scripts/colorswap.tres
-res://Scripts/player.gd
-res://tutorial_level.tscn
 res://Scenes/Level2.tscn
+res://Scripts/colorswap.tres
+res://Scenes/player.tscn
+res://Scripts/player.gd
 res://Scripts/Contestants.gd

@@ -121,8 +121,8 @@ func state_machine():
 			speed_sprite_flip()
 		Global.States.DASHING:
 			animated_sprite.play("dash")
-			if not is_on_floor():
-				velocity.y = -225
+			if not is_on_floor(): 
+				velocity.y = -200
 			speed_sprite_flip()
 			set_speed(SPEED * 4)
 		Global.States.WALL_HANGING:
@@ -326,6 +326,7 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 	if is_on_wall():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
 		deal_damage.call(cell)
+		break_tile.call(cell)
 	elif is_on_floor_only():
 		var cell = body.local_to_map(body.to_local(self.global_position + Vector2(0, 32)))
 		deal_damage.call(cell)

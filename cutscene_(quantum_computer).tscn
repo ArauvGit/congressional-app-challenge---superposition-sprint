@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bdv57jl76c05"]
+
+[ext_resource type="PackedScene" uid="uid://cdfpnxmmpxcly" path="res://dialogue.tscn" id="1_y2y7n"]
+[ext_resource type="Script" uid="uid://c3ybqtr7pkv6r" path="res://quantum tutorial dialogue.gd" id="2_3sgww"]
+[ext_resource type="PackedScene" uid="uid://cr2w2ec0vpeo" path="res://oracle.tscn" id="6_15c1w"]
+
+[node name="Cutscene" type="Node2D" unique_id=1652339689]
+
+[node name="dialogue" parent="." unique_id=2065175651 instance=ExtResource("1_y2y7n")]
+
+[node name="Panel" parent="dialogue" index="0" unique_id=546156315]
+offset_left = 63.0
+offset_bottom = 156.0
+
+[node name="text" parent="dialogue/Panel" index="0" unique_id=2083957179]
+custom_minimum_size = Vector2(230, 85)
+custom_maximum_size = Vector2(230, 150)
+offset_left = 8.0
+offset_top = 5.5
+offset_right = 238.0
+offset_bottom = 150.0
+script = ExtResource("2_3sgww")
+
+[node name="Oracle" parent="." unique_id=978057957 instance=ExtResource("6_15c1w")]
+position = Vector2(204, 235)
+scale = Vector2(10, 10)
+
+[editable path="dialogue"]

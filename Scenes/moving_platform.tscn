@@ -3,11 +3,13 @@
 [ext_resource type="Script" uid="uid://c13q84hvyiuod" path="res://Scripts/moving_platform_animation.gd" id="1_hrpga"]
 [ext_resource type="Texture2D" uid="uid://c7d0lo632b80f" path="res://Assets/Sprites/moving_platform.png" id="2_anqd2"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ywwsq"]
+size = Vector2(31.999996, 12.4)
+
 [node name="Moving platform" type="Node2D" unique_id=1789265333]
 position = Vector2(10, 0)
 script = ExtResource("1_hrpga")
 position_transform = 560.0500000000394
-radius_multiplier = 0
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=688504268]
 scale = Vector2(2.5, 2.5)
@@ -17,3 +19,6 @@ collision_layer = 19
 texture = ExtResource("2_anqd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D" unique_id=1110748938]
+position = Vector2(0, -2.5999992)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_ywwsq")

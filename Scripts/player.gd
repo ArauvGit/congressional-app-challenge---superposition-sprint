@@ -6,6 +6,8 @@ var camera_nudge: int = 185
 var nudge_multiplier: int = 0
 var color_change: ColorRect = animated_sprite.get_child(0)
 var can_decohere: bool = true
+
+var coyote_time_possible: bool = true
 #region important functions
 func _init() -> void:
 	RaceSong.play()
@@ -33,6 +35,7 @@ func _physics_process(delta: float) -> void:
 		wall_jump()
 		player_dash()
 	die()
+	coyote_time()
 	player_camera_pos_config()
 	if get_tree().get_first_node_in_group("tutorial"):
 		tutorial_cutscene_show()
@@ -68,11 +71,25 @@ func health_damage_checker():
 		Global.damaged = true
 	else:
 		Global.damaged = false
+func coyote_time(): 
+	print(coyote_time_possible)
+	if is_on_floor(): 
+		coyote_time_possible = true 
+	elif not is_on_floor(): 
+		if jump_count == 0:
+			coyote_time_possible = true 
+			await get_tree().create_timer(2).timeout
+			coyote_time_possible = false
+		else: 
+			coyote_time_possible = false
+		return coyote_time_possible
+
+
 func player_jump() -> void:
 	speed_sprite_flip()
 	if jump_count == 1:
 		return
-	if is_on_floor():
+	if coyote_time_possible:
 		self.scale.x = 1
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
@@ -106,6 +123,10 @@ func wall_jump():
 			move_local_x(10 * round(get_wall_normal().x))
 			set_speed(SPEED * -1)
 			double_jump()
+	elif is_on_floor() and is_on_wall(): 
+		if Input.is_action_just_pressed("jump"):
+			create_tween().tween_property(self, "position", Vector2(position.x + 25 * get_wall_normal().x, position.y), 0.1)
+			set_speed(SPEED * -1)
 #endregion
 #region health
 func health_powerup():
