@@ -44,12 +44,13 @@ func _physics_process(delta: float) -> void:
 #endregion
 #region movement contes
 func player_camera_pos_config():
+	var platform_nudge = camera_nudge / 2
 	for node in self.get_children():
 		if node is Camera2D:
 			if get_platform_velocity() == Vector2.ZERO:
 				node.global_position.x = self.global_position.x + camera_nudge * velocity.normalized().x
 			else:
-				node.global_position.x = self.global_position.x
+				node.global_position.x = self.global_position.x - platform_nudge * velocity.normalized().x
 			node.position.y = -25
 func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
@@ -57,8 +58,9 @@ func movement_freeze():
 			var x when x.flip_h:
 				camera_nudge = -300
 			var x when not x.flip_h:
-				camera_nudge = 300
-		
+				camera_nudge = 300 
+		if Input.is_action_just_pressed("jump"):
+			velocity.y == get_platform_velocity().y / 2
 	else:
 		movement(SPEED)
 		camera_nudge = 185
