@@ -1,4 +1,2 @@
 res://Scenes/level1.tscn
 res://Scripts/colorswap.tres
-res://Scenes/Level2.tscn
-res://Scripts/player.gd
