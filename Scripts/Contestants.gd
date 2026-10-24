@@ -323,7 +323,7 @@ func _on_detector_body_entered(body: TileMapLayer) -> void:
 				body.set_cell(cell, 0, Vector2(9, 5), 0)
 			else:
 				can_break = true
-	if is_on_wall():
+	if is_on_wall_only():
 		var cell = body.local_to_map(body.to_local(self.global_position - Vector2(32, 0) * get_wall_normal()))
 		deal_damage.call(cell)
 		break_tile.call(cell)

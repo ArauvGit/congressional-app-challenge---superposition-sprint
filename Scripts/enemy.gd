@@ -26,7 +26,8 @@ var jump_checker: bool = false
 var can_jump: bool = true
 var jump_toggle_time: int = 3
 var timer_duration: float = jump_cooldown_formula(get_contestant_jump())
-var health: int = 0
+var color_change: ColorRect = animated_sprite.get_child(0)
+var can_decohere: bool = true
 #endregion
 #endregion
 #region important functions
@@ -37,9 +38,6 @@ func _init():
 	area_init(platform_area, platform_area_collision)
 	print("the enemy script has been activated")
 	super.set_physics_process(true)
-	for Name in Contestant_information.keys():
-		if get_groups()[0] == Name and jump_powerup_active == false:
-			health = Contestant_information.get(Name)["JUMP"]
 
 func _physics_process(delta: float) -> void:
 	if not platform_waiting:  
@@ -240,14 +238,49 @@ func damage_detection(tileMap: TileMapLayer, raycast: RayCast2D):
 						elif can_jump == false or enemy_jump_count >= 2:
 							enemy_dash()
 func decohere():
-	if damage_checker == false:
-		health -= 1
-		if is_on_floor():
-			velocity.y = -300
-			set_speed(SPEED * 0.9)
-		elif is_on_wall():
-			move_local_x(10 * get_wall_normal().x)
-		damage_checker = true
-		await get_tree().create_timer(1).timeout
-		damage_checker = false # create dedicated invincibility function later with damage flash
+	if can_decohere:
+		var damage_animation := func():
+			color_change.color = Color(1.0, 1.0, 1.0, 1.0)
+			await get_tree().create_timer(0.02).timeout
+			color_change.color = Color(1.0, 0, 0, (1.2 - decoherence_multiplier) * 1.15)
+			Color(0.88, 0.0, 0.0, 1.0)
+		if damage_checker == false:
+			SFX.get_child(3).play()
+			freeze_frame()
+			damage_animation.call()
+			decoherence_multiplier -= decoherence_reduction
+			set_speed(SPEED * decoherence_multiplier)
+
+			velocity.y = -500
+			if is_on_wall():
+				move_local_x(10 * round(get_wall_normal().x))
+				for i in range(10):
+					move_local_y(-1)
+					await get_tree().process_frame
+				enemy_jump()
+				state_machine()
+			elif not is_on_floor():
+				Global.state = Global.States.DAMAGING
+				state_machine()
+			damage_checker = true
+			await get_tree().create_timer(1).timeout
+			await decoherence_end
+			damage_checker = false # create dedicated invincibility function later with damage flash
+			invincibility()
+			match self:
+				var x when x.is_on_floor() and dash_checker == false:
+					Global.state = Global.States.MOVING
+					state_machine()
+				var x when x.is_on_wall():
+					Global.state = Global.States.WALL_HANGING
+					state_machine()
+				var x when Global.state == Global.States.DASHING: 
+					state_machine()
+					dash()
+func invincibility(): 
+	create_tween().tween_property(color_change, "color", Color(0.99, 0.495, 0.0, 0.5), 0.1)
+	can_decohere = false
+	await get_tree().create_timer(3).timeout 
+	create_tween().tween_property(color_change, "color", Color(1, 0, 0, (1.2 - decoherence_multiplier) * 1.15), 0.1)
+	can_decohere = true
 #endregion		
