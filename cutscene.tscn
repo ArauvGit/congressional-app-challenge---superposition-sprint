@@ -113,6 +113,11 @@ animations = [{
 [node name="Panel" parent="dialogue" index="0" unique_id=546156315]
 offset_top = 18.0
 offset_bottom = 108.0
+region_rect = Rect2(-4, -4, 256, 44)
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
 
 [node name="text" parent="dialogue/Panel" index="0" unique_id=2083957179]
 custom_minimum_size = Vector2(550, 85)

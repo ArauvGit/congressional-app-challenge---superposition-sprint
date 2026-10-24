@@ -1,6 +1,13 @@
-res://Scripts/Contestants.gd
-res://Scenes/level1.tscn
-res://Scripts/colorswap.tres
 res://win.tscn
-res://Scripts/player.gd
+res://Scripts/colorswap.tres
+res://Scripts/end_screen.gd
+res://Scenes/level1.tscn
+res://Scripts/Contestants.gd
+res://lose.tscn
 res://Scripts/enemy.gd
+res://Scripts/player.gd
+res://Scenes/Level2.tscn
+res://tutorial_level.tscn
+res://tutorial_level.gd
+res://Scenes/enemy_trigger.gd
+res://cutscene.tscn

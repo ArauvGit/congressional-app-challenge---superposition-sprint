@@ -880,41 +880,39 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="horizontal" parent="moving platforms" unique_id=88169260 instance=ExtResource("18_8tbre")]
 position = Vector2(410, -479)
-position_transform = 57687.60000111392
+position_transform = 69722.40000181443
 position_adder = 0.05
 position_x = 100
 
 [node name="AnimatableBody2D" parent="moving platforms/horizontal" index="0" unique_id=688504268]
-position = Vector2(99.84934, 0)
+position = Vector2(-83.28521, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/horizontal/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -3.199999)
-scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_anqd2")
 
 [node name="vertical" parent="moving platforms" unique_id=1789265333 instance=ExtResource("18_8tbre")]
 position = Vector2(858, -533)
-position_transform = 59925.040001240915
+position_transform = 71959.84000194143
 position_adder = 0.05
 position_y = 85
 
 [node name="AnimatableBody2D" parent="moving platforms/vertical" index="0" unique_id=688504268]
-position = Vector2(0, 66.04393)
+position = Vector2(0, -84.933784)
 
 [node name="CollisionShape2D" parent="moving platforms/vertical/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0.15682602, -2.511363)
-scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("RectangleShape2D_h47qk")
 
 [node name="diagonal" parent="moving platforms" unique_id=1993147868 instance=ExtResource("18_8tbre")]
 position = Vector2(-294, -589)
-position_transform = 64366.48999908619
+position_transform = 78808.24999852577
 position_adder = 0.06
 position_x = 60
 position_y = 60
 
 [node name="AnimatableBody2D" parent="moving platforms/diagonal" index="0" unique_id=688504268]
-position = Vector2(59.75128, 59.75128)
+position = Vector2(-58.38542, -58.38542)
 
 [node name="CollisionShape2D" parent="moving platforms/diagonal/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0.5782318, -1.8218231)
@@ -923,12 +921,12 @@ shape = SubResource("RectangleShape2D_j4cnl")
 
 [node name="vertical other" parent="moving platforms" unique_id=643098854 instance=ExtResource("18_8tbre")]
 position = Vector2(-480, -542)
-position_transform = 64366.48999908619
+position_transform = 78808.24999852577
 position_adder = 0.06
 position_y = 105
 
 [node name="AnimatableBody2D" parent="moving platforms/vertical other" index="0" unique_id=688504268]
-position = Vector2(0, 104.56474)
+position = Vector2(0, -102.17449)
 
 [node name="CollisionShape2D" parent="moving platforms/vertical other/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2)

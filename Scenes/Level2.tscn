@@ -949,185 +949,185 @@ drag_right_margin = 0.25
 
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("8_5fn7l")]
 position = Vector2(2167, -99)
-position_transform = 46127.600000441045
+position_transform = 46340.15000045342
 position_adder = 0.05
 position_x = 125
 
 [node name="Moving platform2" parent="moving platforms" unique_id=484164268 instance=ExtResource("8_5fn7l")]
 position = Vector2(4221, -219)
-position_transform = 42544.20000023246
+position_transform = 42756.75000024483
 position_adder = 0.05
 position_y = 125
 
 [node name="Moving platform3" parent="moving platforms" unique_id=824948806 instance=ExtResource("8_5fn7l")]
 position = Vector2(4426, -212)
-position_transform = 42825.95000024886
+position_transform = 43038.50000026123
 position_adder = 0.05
 position_x = 100
 
 [node name="Moving platform4" parent="moving platforms" unique_id=2122089303 instance=ExtResource("8_5fn7l")]
 position = Vector2(6728, -1337)
-position_transform = 24629.899999781832
+position_transform = 24842.44999977874
 position_adder = 0.05
 position_x = 100
 position_y = 100
 
 [node name="Moving platform5" parent="moving platforms" unique_id=1832715503 instance=ExtResource("8_5fn7l")]
 position = Vector2(6441, -1337)
-position_transform = 24629.899999781832
+position_transform = 24842.44999977874
 position_adder = 0.05
 position_x = -100
 position_y = 100
 
 [node name="Moving platform8" parent="moving platforms" unique_id=1413174509 instance=ExtResource("8_5fn7l")]
 position = Vector2(6049, -1337)
-position_transform = 24629.899999781832
+position_transform = 24842.44999977874
 position_adder = 0.05
 position_x = 100
 position_y = 100
 
 [node name="Moving platform9" parent="moving platforms" unique_id=2046190605 instance=ExtResource("8_5fn7l")]
 position = Vector2(5765, -1337)
-position_transform = 24629.899999781832
+position_transform = 24842.44999977874
 position_adder = 0.05
 position_x = -100
 position_y = 100
 
 [node name="Moving platform10" parent="moving platforms" unique_id=1042840552 instance=ExtResource("8_5fn7l")]
 position = Vector2(2941, -1116)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 100
 position_y = 100
 
 [node name="Moving platform11" parent="moving platforms" unique_id=896525118 instance=ExtResource("8_5fn7l")]
 position = Vector2(2941, -964)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -100
 position_y = 100
 
 [node name="Moving platform12" parent="moving platforms" unique_id=1186212208 instance=ExtResource("8_5fn7l")]
 position = Vector2(2790, -964)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -100
 position_y = -100
 
 [node name="Moving platform13" parent="moving platforms" unique_id=1698500321 instance=ExtResource("8_5fn7l")]
 position = Vector2(2790, -1116)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 100
 position_y = -100
 
 [node name="Moving platform14" parent="moving platforms" unique_id=609814445 instance=ExtResource("8_5fn7l")]
 position = Vector2(3528, -1146)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -75
 position_y = 75
 
 [node name="Moving platform15" parent="moving platforms" unique_id=1614030078 instance=ExtResource("8_5fn7l")]
 position = Vector2(3529, -941)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -75
 position_y = -75
 
 [node name="Moving platform16" parent="moving platforms" unique_id=638095855 instance=ExtResource("8_5fn7l")]
 position = Vector2(3287, -939)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 75
 position_y = -75
 
 [node name="Moving platform17" parent="moving platforms" unique_id=1204424973 instance=ExtResource("8_5fn7l")]
 position = Vector2(3286, -1145)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 75
 position_y = 75
 
 [node name="Moving platform18" parent="moving platforms" unique_id=1689225700 instance=ExtResource("8_5fn7l")]
 position = Vector2(1890, -1116)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 100
 position_y = 100
 
 [node name="Moving platform19" parent="moving platforms" unique_id=1768312124 instance=ExtResource("8_5fn7l")]
 position = Vector2(1890, -964)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -100
 position_y = 100
 
 [node name="Moving platform20" parent="moving platforms" unique_id=737130631 instance=ExtResource("8_5fn7l")]
 position = Vector2(1739, -964)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -100
 position_y = -100
 
 [node name="Moving platform21" parent="moving platforms" unique_id=1402326489 instance=ExtResource("8_5fn7l")]
 position = Vector2(1739, -1116)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 100
 position_y = -100
 
 [node name="Moving platform22" parent="moving platforms" unique_id=343161818 instance=ExtResource("8_5fn7l")]
 position = Vector2(2477, -1146)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -75
 position_y = 75
 
 [node name="Moving platform23" parent="moving platforms" unique_id=1874196126 instance=ExtResource("8_5fn7l")]
 position = Vector2(2478, -941)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = -75
 position_y = -75
 
 [node name="Moving platform24" parent="moving platforms" unique_id=1588699369 instance=ExtResource("8_5fn7l")]
 position = Vector2(2236, -939)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 75
 position_y = -75
 
 [node name="Moving platform25" parent="moving platforms" unique_id=1363058635 instance=ExtResource("8_5fn7l")]
 position = Vector2(2235, -1145)
-position_transform = 14921.199999923116
+position_transform = 15133.749999920023
 position_adder = 0.05
 position_x = 75
 position_y = 75
 
 [node name="Moving platform6" parent="moving platforms" unique_id=1953107224 instance=ExtResource("8_5fn7l")]
 position = Vector2(5070, -707)
-position_transform = 5504.50000001126
+position_transform = 5717.050000012034
 position_adder = 0.05
 position_y = 150
 
 [node name="Moving platform7" parent="moving platforms" unique_id=53034319 instance=ExtResource("8_5fn7l")]
 position = Vector2(5241, -589)
-position_transform = 7333.710000019372
+position_transform = 7588.770000021073
 position_adder = 0.06
 position_x = 50
 position_y = 50
 
 [node name="Moving platform26" parent="moving platforms" unique_id=1167491792 instance=ExtResource("8_5fn7l")]
 position = Vector2(5444, -589)
-position_transform = 7333.710000019372
+position_transform = 7588.770000021073
 position_adder = 0.06
 position_x = -50
 position_y = 50
 
 [node name="Moving platform27" parent="moving platforms" unique_id=1432310766 instance=ExtResource("8_5fn7l")]
 position = Vector2(5622, -462)
-position_transform = 7333.710000019372
+position_transform = 7588.770000021073
 position_adder = 0.06
 position_x = 50
 position_y = 75

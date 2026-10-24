@@ -13,9 +13,9 @@ var break_2: int = 24
 var tutorial_dialogue: Dictionary = {
 	1: "Press Space, W or Up Arrow to jump.",
 	2: "You can jump twice to clear bigger obstacles",
-	3: "Cracked blocks break after you walk on them for too long. So don't wander and keep moving",
+	3: "Cracked blocks break after you walk on them for too long. [jump to continue]",
 	4: "Your qubit state just decohered - making it unstable and slightly lowering its stats. 
-	Every time it decoheres, your state becomes redder. Orange signifies temporary invincibility. "
+	Every time it decoheres, your state becomes redder. Orange signifies temporary invincibility. [jump to continue] "
 	}
 var tutorial_counter: int = 1
 # Called when the node enters the scene tree for the first time.
@@ -50,7 +50,7 @@ func animate_text(animated_words: String):
 	while text_counter != len(animated_words): 
 		text_counter += 1
 		visible_characters = text_counter
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.05 * Engine.time_scale).timeout
 	if text_counter == len(animated_words): 
 		animation_finished = true
 	else: 

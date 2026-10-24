@@ -2,7 +2,7 @@ extends Contestant
 class_name Player
 var detector: Area2D = get_child(1)
 var can_play_animation: bool = true
-var camera_nudge: int = 185
+var camera_nudge: float = 185
 var nudge_multiplier: int = 0
 var color_change: ColorRect = animated_sprite.get_child(0)
 var can_decohere: bool = true
@@ -40,17 +40,19 @@ func _physics_process(delta: float) -> void:
 	if get_tree().get_first_node_in_group("tutorial"):
 		tutorial_cutscene_show()
 		tutorial_enemy_show()
+
 	movement_freeze()
+	
 #endregion
 #region movement contes
 func player_camera_pos_config():
-	var platform_nudge = camera_nudge / 2
+	var platform_nudge = camera_nudge / 5
 	for node in self.get_children():
 		if node is Camera2D:
 			if get_platform_velocity() == Vector2.ZERO:
 				node.global_position.x = self.global_position.x + camera_nudge * velocity.normalized().x
 			else:
-				node.global_position.x = self.global_position.x - platform_nudge * velocity.normalized().x
+				node.global_position = self.global_position + Vector2(platform_nudge, platform_nudge) * velocity.normalized()
 			node.position.y = -25
 func movement_freeze():
 	if get_platform_velocity() != Vector2.ZERO:
@@ -95,8 +97,6 @@ func player_jump() -> void:
 		self.scale.x = 1
 		jump_count = 0
 	if Input.is_action_just_pressed("jump") and jump_count == 0:
-		SFX.get_child(0).pitch_scale = randf_range(0.5, 1.5)
-		SFX.get_child(0).play()
 		jump()
 		jump_count += 1
 		if is_on_floor():
@@ -206,16 +206,12 @@ func tutorial_cutscene_show():
 			if node.name == "background_transparent": 
 				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "modulate", Color(1, 1, 1, 1), 0.2)
 		create_tween().tween_property(get_parent().get_parent().get_child(0).get_child(0), "modulate", Color(1, 1, 1, 1), 0.2)
-		create_tween().set_trans(Tween.TRANS_EXPO).tween_property(Engine, "time_scale", 0.1, 0.2)
-		for node in self.get_children(): 
-			if node is Camera2D:
-				node.position_smoothing_speed = 10
-				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "zoom", Vector2(1.75, 1.75), 0.5 / Engine.time_scale)
+		create_tween().set_trans(Tween.TRANS_EXPO).tween_property(Engine, "time_scale", 0.05, 0.2)
+		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(get_child(3), "zoom", Vector2(1.75, 1.75), 0.5 / Engine.time_scale)
 	var undo_slomo = func(): 
-		print('undo slomo')
 		for node in self.get_children(): 
 			if node is Camera2D:
-				node.position_smoothing_speed = 3
+				node.position_smoothing_speed = 2
 				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "zoom", Vector2(1, 1), 0.2)
 		create_tween().tween_property(get_parent().get_parent().get_child(0).get_child(0), "modulate", Color(1, 1, 1, 0), 0.2)
 		for node in get_parent().get_parent().get_children():
@@ -229,12 +225,13 @@ func tutorial_cutscene_show():
 		if node.has_overlapping_bodies():
 			if node.get_overlapping_bodies().any(func(element): return element.is_in_group("player")):
 				if node.name.contains("cutscene"): 
-					dialogue.call()
 					slomo.call()  
+					dialogue.call()
 					cutscene_dialogue.emit()
 					node.queue_free()
 				await stop_tutorial_dialogue 
 				undo_slomo.call()
+							
 			
 
 

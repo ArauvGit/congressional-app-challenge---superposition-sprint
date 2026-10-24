@@ -34,28 +34,28 @@ var SPEED = 0:
 
 var Contestant_information: Dictionary = {
 	"Yellow": {
-		"SPEED": 220,
+		"SPEED": 210,
 		"JUMP": - 370,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Green": {
-		"SPEED": 230,
+		"SPEED": 220,
 		"JUMP": - 375,
 		"HEALTH": 4,
 		"DISTANCE": 0
 	},
 	
 	"Red": {
-		"SPEED": 240,
+		"SPEED": 225,
 		"JUMP": - 400,
 		"HEALTH": 5,
 		"DISTANCE": 0
 	},
 	
 	"Blue": {
-		"SPEED": 210,
+		"SPEED": 205,
 		"JUMP": - 365,
 		"HEALTH": 6,
 		"DISTANCE": 0
@@ -258,7 +258,8 @@ func movement(move_speed):
 	return velocity.x
 
 func jump():
-	#speed_sprite_flip()
+	SFX.get_child(0).pitch_scale = randf_range(0.5, 1.5)
+	SFX.get_child(0).play()
 	velocity.y = JUMP_VELOCITY
 	jump_count += 1
 
