@@ -1,5 +1,5 @@
 extends CanvasLayer
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@export var animation_player: AnimationPlayer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,3 +16,7 @@ func _process(_delta: float) -> void:
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 	Global.is_pressed = false
+
+
+func _on_level_select_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/level_assign.tscn")

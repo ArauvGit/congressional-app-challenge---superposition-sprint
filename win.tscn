@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://cu5fera72ia4n"]
+
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="1_hgi8f"]
+[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://Scripts/end_screen.gd" id="1_tmki8"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_tmki8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yblwc"]
+bg_color = Color(0.7089437, 0.17783621, 0.1804738, 1)
+border_width_bottom = 7
+border_color = Color(0.48010463, 0.099321716, 0.0994933, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="Animation" id="Animation_qwoht"]
+length = 2.2500000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("complete:theme_override_font_sizes/font_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.36666662, 1.0666666, 1.3),
+"transitions": PackedFloat32Array(0.24999958, 0.2679433, 0.75786036),
+"update": 0,
+"values": [1, 165, 105]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("calculation:theme_override_font_sizes/font_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1, 75]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("button container/level select:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5333333, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("button container/play again:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2, 1.6333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eyhs5"]
+resource_name = "test"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.20306301, 2.4622865),
+"update": 0,
+"values": [Vector2(0, -75), Vector2(0, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4bre"]
+_data = {
+&"RESET": SubResource("Animation_qwoht"),
+&"test": SubResource("Animation_eyhs5")
+}
+
+[node name="Win" type="CanvasLayer" unique_id=580976974 node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_tmki8")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="background" type="ColorRect" parent="." unique_id=930454956]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.9472162, 0.6986936, 0, 0.62352943)
+metadata/_edit_use_anchors_ = true
+
+[node name="UI Container" type="VBoxContainer" parent="." unique_id=916826675]
+custom_minimum_size = Vector2(640, 360)
+offset_top = 10.0
+offset_right = 640.0
+offset_bottom = 370.0
+
+[node name="calculation" type="Label" parent="UI Container" unique_id=1352201140]
+layout_mode = 2
+offset_transform_position_ratio = Vector2(0, 100)
+theme_override_fonts/font = ExtResource("1_hgi8f")
+theme_override_font_sizes/font_size = 1
+text = "Calculation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="complete" type="Label" parent="UI Container" unique_id=1409468561]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8666667, 0, 1)
+theme_override_fonts/font = ExtResource("1_hgi8f")
+theme_override_font_sizes/font_size = 1
+text = "SUCCESS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="button container" type="VBoxContainer" parent="UI Container" unique_id=1587631586]
+custom_minimum_size = Vector2(640, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="play again" type="Button" parent="UI Container/button container" unique_id=1618861802]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 45)
+custom_maximum_size = Vector2(225, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_tmki8")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_yblwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yblwc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yblwc")
+text = "Play Again?
+"
+
+[node name="level select" type="Button" parent="UI Container/button container" unique_id=707266924]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(300, 45)
+custom_maximum_size = Vector2(225, 225)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_tmki8")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_yblwc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yblwc")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yblwc")
+text = "Level Selection
+"
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=277150061]
+root_node = NodePath("../UI Container")
+libraries/ = SubResource("AnimationLibrary_u4bre")
+
+[connection signal="pressed" from="UI Container/button container/play again" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI Container/button container/level select" to="." method="_on_level_select_pressed"]

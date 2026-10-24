@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5ioeanfqeso0"]
 
-[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://Scripts/death_screen.gd" id="1_eyhs5"]
+[ext_resource type="Script" uid="uid://dk0xv32d6o2me" path="res://Scripts/end_screen.gd" id="1_eyhs5"]
 [ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="1_qwoht"]
 [ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="3_0ynjc"]
 
@@ -48,8 +48,9 @@ _data = {
 &"test": SubResource("Animation_eyhs5")
 }
 
-[node name="Complete Decoherence" type="CanvasLayer" unique_id=1610174719]
+[node name="Complete Decoherence" type="CanvasLayer" unique_id=1610174719 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_eyhs5")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="background" type="ColorRect" parent="." unique_id=1204151230]
 offset_right = 640.0

@@ -348,9 +348,12 @@ func set_player():
 	self.add_to_group("player")
 	Global.player_testers[self.get_index() - 1] = true
 
-func _on_win_area_body_entered(body: Node2D) -> void:
-	Global.game_won = true
-
-
 func input() -> void:
 	stop_tutorial_dialogue.emit()
+
+func _on_win_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"): 
+		var win_scene = preload("res://win.tscn")
+		var win_instantiated = win_scene.instantiate()
+		get_parent().get_parent().add_child(win_instantiated)
+		get_tree().change_scene_to_node(win_instantiated)

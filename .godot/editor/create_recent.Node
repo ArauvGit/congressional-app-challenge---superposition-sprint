@@ -1,6 +1,7 @@
-NinePatchRect
 ColorRect
 CanvasLayer
+VBoxContainer
+NinePatchRect
 CollisionShape2D
 Area2D
 Node2D
@@ -11,4 +12,3 @@ TextureRect
 Panel
 TextureButton
 PanelContainer
-Label

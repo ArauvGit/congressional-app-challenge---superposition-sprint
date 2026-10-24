@@ -858,7 +858,7 @@ tile_map_data = PackedByteArray("AAD//wIAAAAHAAEAAAAAAAIAAAAHAAEAAAABAAIAAAAHAAE
 tile_set = SubResource("TileSet_b68tq")
 
 [node name="Win Area" parent="." unique_id=1838188679 instance=ExtResource("6_daeh6")]
-position = Vector2(9608, -1648)
+position = Vector2(376.00003, -192.00002)
 
 [node name="background transparent container" type="CanvasLayer" parent="." unique_id=205336002]
 layer = 0
@@ -954,26 +954,26 @@ drag_right_margin = 0.25
 
 [node name="Moving platform" parent="moving platforms" unique_id=1789265333 instance=ExtResource("10_6e4cv")]
 position = Vector2(4016, -174)
-position_transform = 16275.349999903408
+position_transform = 18593.449999869677
 position_adder = 0.05
 position_x = 100
 
 [node name="Moving platform2" parent="moving platforms" unique_id=1631968321 instance=ExtResource("10_6e4cv")]
 position = Vector2(5315, -302)
-position_transform = 14185.099999933826
+position_transform = 16503.199999900095
 position_adder = 0.05
 position_y = 150
 
 [node name="Moving platform3" parent="moving platforms" unique_id=816430362 instance=ExtResource("10_6e4cv")]
 position = Vector2(5664, -944)
-position_transform = 9270.810000016647
+position_transform = 11125.290000057128
 position_adder = 0.04
 position_x = 115
 position_y = 100
 
 [node name="Moving platform4" parent="moving platforms" unique_id=2018665 instance=ExtResource("10_6e4cv")]
 position = Vector2(5312, -944)
-position_transform = 9270.810000016647
+position_transform = 11125.290000057128
 position_adder = 0.04
 position_x = -125
 position_y = 100
@@ -1735,13 +1735,13 @@ offset_bottom = 39.0
 
 [node name="Moving platform" parent="." unique_id=667969945 instance=ExtResource("10_6e4cv")]
 position = Vector2(3394, -368)
-position_transform = 3590.580000008975
+position_transform = 4981.44000000483
 position_adder = 0.03
 position_y = 225
 
 [node name="Moving platform2" parent="." unique_id=1201660022 instance=ExtResource("10_6e4cv")]
 position = Vector2(8354, -1408)
-position_transform = 1028.7599999996132
+position_transform = 2883.2399999979266
 position_adder = 0.04
 position_y = 160
 
