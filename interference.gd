@@ -62,11 +62,13 @@ func reset():
 
 
 func _on_destructive_pressed() -> void:
+	var player_distance: float = return_player().return_distance(return_player().global_position, win_area.global_position)
+	var filtered_placement = Global.distance_placement.filter(func(element): return not element == player_distance)
 	if Global.interference_activated:
 		for i in range(2):
-			for item in Global.distance_placement:
-				var item_index = Global.distance_placement.find(item)
-				if item_index == return_player() - 1 or item_index == return_player() - 2:
+			for item in filtered_placement:
+				var item_index = filtered_placement.find(item)
+				if item_index == 1 or item_index == 2:
 					match item:
 						var x when x == get_yellow_distance():
 							print("deleted " + str(yellow.name))
@@ -102,50 +104,50 @@ func _on_constructive_pressed() -> void:
 	var player = return_player()
 	var player_distance: float = return_player().return_distance(return_player().global_position, win_area.global_position)
 	if Global.interference_activated:
-		if player_distance == Global.distance_placement[0]:
-			for item in Global.distance_placement:
-				var item_index = Global.distance_placement.find(item)
-				if item_index == 1:
-					match item:
-						var x when x == get_yellow_distance():
-							print("deleted " + str(yellow.name))
-							Global.distance_placement.erase(item)
-							yellow.queue_free()
-						var x when x == get_green_distance():
-							print("deleted " + str(green.name))
-							Global.distance_placement.erase(item)
-							green.queue_free()
-						var x when x == get_red_distance():
-							print("deleted " + str(red.name))
-							Global.distance_placement.erase(item)
-							red.queue_free()
-						var x when x == get_blue_distance():
-							print("deleted " + str(blue.name))
-							Global.distance_placement.erase(item)
-							blue.queue_free()
-		elif player_distance != Global.distance_placement[0]:
-			for item in Global.distance_placement:
-				var item_index = Global.distance_placement.find(item)
-				if item_index == 0:
-					match item:
-						var x when x == get_yellow_distance():
-							print("deleted " + str(yellow.name))
-							Global.distance_placement.erase(item)
-							yellow.queue_free()
-						var x when x == get_green_distance():
-							print("deleted " + str(green.name))
-							Global.distance_placement.erase(item)
-							green.queue_free()
-						var x when x == get_red_distance():
-							print("deleted " + str(red.name))
-							Global.distance_placement.erase(item)
-							red.queue_free()
-						var x when x == get_blue_distance():
-							print("deleted " + str(blue.name))
-							Global.distance_placement.erase(item)
-							blue.queue_free()
+		var filtered_placement = Global.distance_placement.filter(func(element): return not element == player_distance)
+		for item in filtered_placement:
+			var item_index = filtered_placement.find(item)
+			if item_index == 0:
+				match item:
+					var x when x == get_yellow_distance():
+						print("deleted " + str(yellow.name))
+						Global.distance_placement.erase(item)
+						yellow.queue_free()
+					var x when x == get_green_distance():
+						print("deleted " + str(green.name))
+						Global.distance_placement.erase(item)
+						green.queue_free()
+					var x when x == get_red_distance():
+						print("deleted " + str(red.name))
+						Global.distance_placement.erase(item)
+						red.queue_free()
+					var x when x == get_blue_distance():
+						print("deleted " + str(blue.name))
+						Global.distance_placement.erase(item)
+						blue.queue_free()
+		#elif player_distance != Global.distance_placement[0]:
+			#for item in Global.distance_placement:
+				#var item_index = Global.distance_placement.find(item)
+				#if item_index == 0:
+					#match item:
+						#var x when x == get_yellow_distance():
+							#print("deleted " + str(yellow.name))
+							#Global.distance_placement.erase(item)
+							#yellow.queue_free()
+						#var x when x == get_green_distance():
+							#print("deleted " + str(green.name))
+							#Global.distance_placement.erase(item)
+							#green.queue_free()
+						#var x when x == get_red_distance():
+							#print("deleted " + str(red.name))
+							#Global.distance_placement.erase(item)
+							#red.queue_free()
+						#var x when x == get_blue_distance():
+							#print("deleted " + str(blue.name))
+							#Global.distance_placement.erase(item)
+							#blue.queue_free()
 		placement_container.get_child(-1).queue_free()
-		player.set_speed(player.SPEED / player.decoherence_multiplier * 1.5)
+		player.set_speed(player.SPEED / player.decoherence_multiplier * 1.2)
 		player.set_jump(player.JUMP_VELOCITY * 1.15)
 		can_modulate = true
 		reset()

@@ -1,7 +1,4 @@
-res://Scenes/Level2.tscn
-res://Scripts/colorswap.tres
 res://Scenes/level1.tscn
-res://Scripts/enemy.gd
-res://Scenes/enemy_trigger.gd
+res://Scripts/colorswap.tres
 res://interference.gd
-res://Scripts/powerups.gd
+res://Scenes/enemy_trigger.gd
