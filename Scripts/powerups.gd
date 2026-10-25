@@ -33,7 +33,7 @@ func _on_body_entered(body: CharacterBody2D) -> void:
 				if body.is_in_group("player"):
 					Engine.time_scale *= 0.05 
 					Global.can_interact = false
-					background_transparent.show()
+					create_tween().tween_property(background_transparent, "modulate", Color(1, 1, 1, 1), 0.2)
 					interference.show() 
 					Global.interference_activated = true
 					queue_free()

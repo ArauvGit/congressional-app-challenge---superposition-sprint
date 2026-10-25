@@ -1,7 +1,7 @@
-res://tutorial_level.gd
-res://Scripts/Contestants.gd
-res://Scripts/player.gd
-res://Scenes/level1.tscn
-res://Scripts/colorswap.tres
-res://Scripts/enemy.gd
 res://Scenes/Level2.tscn
+res://Scripts/colorswap.tres
+res://Scenes/level1.tscn
+res://Scripts/enemy.gd
+res://Scenes/enemy_trigger.gd
+res://interference.gd
+res://Scripts/powerups.gd

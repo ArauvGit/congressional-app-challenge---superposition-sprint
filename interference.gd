@@ -66,7 +66,7 @@ func _on_destructive_pressed() -> void:
 		for i in range(2):
 			for item in Global.distance_placement:
 				var item_index = Global.distance_placement.find(item)
-				if item_index == 2 or item_index == 3:
+				if item_index == return_player() - 1 or item_index == return_player() - 2:
 					match item:
 						var x when x == get_yellow_distance():
 							print("deleted " + str(yellow.name))

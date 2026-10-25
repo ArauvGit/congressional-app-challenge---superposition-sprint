@@ -7,11 +7,7 @@ var raycast_parent = Node2D.new()
 var raycast_right = RayCast2D.new()
 var raycast_left = RayCast2D.new()
 var raycast_under = RayCast2D.new()
-var raycast_under_right = RayCast2D.new()
-var raycast_under_left = RayCast2D.new()
 var raycast_top = RayCast2D.new()
-var raycast_top_left = RayCast2D.new()
-var raycast_top_right = RayCast2D.new()
 
 var platform_area = Area2D.new()
 var platform_area_collision = CollisionShape2D.new() 
@@ -85,9 +81,9 @@ func enemy_jump():
 		await get_tree().create_timer(timer_duration).timeout
 		jump_checker = false
 		enemy_jump_count += 1
-	#if not is_on_floor() and jump_checker == false and can_jump:
-		#double_jump()
-		#enemy_jump_count = 2
+	if not is_on_floor() and jump_checker == false and can_jump:
+		double_jump()
+		enemy_jump_count = 2
 
 
 
@@ -135,21 +131,10 @@ func raycast_init():
 	
 	add_child(raycast_under)
 	raycast_attributes.call(raycast_under, 0, scale_formula, default_target_pos_y + 10, col_mask)
-
-	add_child(raycast_under_right)
-	raycast_attributes.call(raycast_under_right, 45, scale_formula / 1.3, 16, col_mask)
-
-	add_child(raycast_under_left)
-	raycast_attributes.call(raycast_under_left, -45, scale_formula / 1.3, 16, col_mask)
 	
 	add_child(raycast_top)
 	raycast_attributes.call(raycast_top, 180, scale_formula, default_target_pos_y, col_mask)
 
-	add_child(raycast_top_right)
-	raycast_attributes.call(raycast_top_right, 135, scale_formula, default_target_pos_y, col_mask)
-
-	add_child(raycast_top_left)
-	raycast_attributes.call(raycast_top_left, -135, scale_formula, default_target_pos_y, col_mask)
 
 func area_init(area: Area2D, collision_shape: CollisionShape2D): 
 	area.scale = Vector2(length, height) 
@@ -181,13 +166,13 @@ func area_calculations(area: Area2D, collision_shape: CollisionShape2D):
 
 
 func raycast_detection():
-	if self.raycast_right.is_colliding() or self.raycast_top_right.is_colliding() and not self.raycast_left.is_colliding():
+	if self.raycast_right.is_colliding() and not self.raycast_left.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
 		else:
 			enemy_jump()
 	
-	elif self.raycast_left.is_colliding() or self.raycast_top_left.is_colliding() and not self.raycast_right.is_colliding():
+	elif self.raycast_left.is_colliding()  and not self.raycast_right.is_colliding():
 		if self.raycast_top.is_colliding():
 			return
 		else:
@@ -205,21 +190,8 @@ func raycast_detection():
 		if raycast_right.get_collider() is TileMapLayer and raycast_left.get_collider() is TileMapLayer:
 			wall_jump()
 
-	#if self.raycast_under_right.is_colliding(): # not an elif because it is independent from raycast_right/left
-		#damage_detection(tile_map(), raycast_under_right)
-	#elif self.raycast_under_left.is_colliding():
-		#damage_detection(tile_map(), raycast_under_left)
-	
-	if not self.raycast_under_right.is_colliding() or not self.raycast_under_left.is_colliding():
-		if not is_on_floor() or abs(get_floor_normal().x) != 1:
-			return
-		set_speed(SPEED * -1)
 	if self.raycast_under.is_colliding():
 		damage_detection(tile_map(), raycast_under)
-	# if self.raycast_top_right.is_colliding():
-	# 	damage_detection(tile_map(), raycast_top_right)
-	# elif self.raycast_top_left.is_colliding():
-		damage_detection(tile_map(), raycast_top_left)
 #endregion
 #region damage
 func damage_detection(tileMap: TileMapLayer, raycast: RayCast2D):

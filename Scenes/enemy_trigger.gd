@@ -18,7 +18,9 @@ func _on_body_entered(body: Node2D) -> void:
 				if body.has_method("enemy_jump"): 
 					body.enemy_jump()
 			"Moving Platform Failsafe":
-				await get_tree().create_timer(5).timeout
+				Global.platform_waiting = true 
+				await get_tree().create_timer(3).timeout
+				Global.platform_waiting = false
 				body.enemy_jump()
 			"Dash Trigger": 
 				if body.has_method("enemy_dash"):
