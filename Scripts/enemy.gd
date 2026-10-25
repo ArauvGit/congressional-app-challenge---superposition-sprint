@@ -85,9 +85,9 @@ func enemy_jump():
 		await get_tree().create_timer(timer_duration).timeout
 		jump_checker = false
 		enemy_jump_count += 1
-	if not is_on_floor() and jump_checker == false and can_jump:
-		double_jump()
-		enemy_jump_count = 2
+	#if not is_on_floor() and jump_checker == false and can_jump:
+		#double_jump()
+		#enemy_jump_count = 2
 
 
 
@@ -250,7 +250,6 @@ func decohere():
 			damage_animation.call()
 			decoherence_multiplier -= decoherence_reduction
 			set_speed(SPEED * decoherence_multiplier)
-
 			velocity.y = -500
 			if is_on_wall():
 				move_local_x(10 * round(get_wall_normal().x))
