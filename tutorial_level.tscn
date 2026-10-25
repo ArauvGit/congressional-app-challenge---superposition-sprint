@@ -736,7 +736,6 @@ _data = {
 [node name="dialogue" parent="." unique_id=2065175651 instance=ExtResource("1_0hc4p")]
 
 [node name="Panel" parent="dialogue" index="0" unique_id=546156315]
-modulate = Color(1, 1, 1, 0)
 offset_left = 151.0
 offset_top = 65.0
 offset_bottom = 285.0
@@ -880,12 +879,12 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="horizontal" parent="moving platforms" unique_id=88169260 instance=ExtResource("18_8tbre")]
 position = Vector2(410, -479)
-position_transform = 69722.40000181443
+position_transform = 73498.50000203423
 position_adder = 0.05
 position_x = 100
 
 [node name="AnimatableBody2D" parent="moving platforms/horizontal" index="0" unique_id=688504268]
-position = Vector2(-83.28521, 0)
+position = Vector2(-77.69907, 0)
 
 [node name="CollisionShape2D" parent="moving platforms/horizontal/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -3.199999)
@@ -893,12 +892,12 @@ shape = SubResource("RectangleShape2D_anqd2")
 
 [node name="vertical" parent="moving platforms" unique_id=1789265333 instance=ExtResource("18_8tbre")]
 position = Vector2(858, -533)
-position_transform = 71959.84000194143
+position_transform = 75735.94000216122
 position_adder = 0.05
 position_y = 85
 
 [node name="AnimatableBody2D" parent="moving platforms/vertical" index="0" unique_id=688504268]
-position = Vector2(0, -84.933784)
+position = Vector2(0, -84.87196)
 
 [node name="CollisionShape2D" parent="moving platforms/vertical/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0.15682602, -2.511363)
@@ -906,13 +905,13 @@ shape = SubResource("RectangleShape2D_h47qk")
 
 [node name="diagonal" parent="moving platforms" unique_id=1993147868 instance=ExtResource("18_8tbre")]
 position = Vector2(-294, -589)
-position_transform = 78808.24999852577
+position_transform = 83339.56999834994
 position_adder = 0.06
 position_x = 60
 position_y = 60
 
 [node name="AnimatableBody2D" parent="moving platforms/diagonal" index="0" unique_id=688504268]
-position = Vector2(-58.38542, -58.38542)
+position = Vector2(-36.78303, -36.78303)
 
 [node name="CollisionShape2D" parent="moving platforms/diagonal/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0.5782318, -1.8218231)
@@ -921,12 +920,12 @@ shape = SubResource("RectangleShape2D_j4cnl")
 
 [node name="vertical other" parent="moving platforms" unique_id=643098854 instance=ExtResource("18_8tbre")]
 position = Vector2(-480, -542)
-position_transform = 78808.24999852577
+position_transform = 83339.56999834994
 position_adder = 0.06
 position_y = 105
 
 [node name="AnimatableBody2D" parent="moving platforms/vertical other" index="0" unique_id=688504268]
-position = Vector2(0, -102.17449)
+position = Vector2(0, -64.37031)
 
 [node name="CollisionShape2D" parent="moving platforms/vertical other/AnimatableBody2D" index="1" unique_id=1110748938]
 position = Vector2(0, -2)
@@ -955,7 +954,7 @@ position = Vector2(336, 81)
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="triggers/cutscenetrigger2" unique_id=1431650048]
-position = Vector2(53, 22)
+position = Vector2(168, 22)
 shape = SubResource("RectangleShape2D_sy8xv")
 
 [node name="cutscenetrigger3" type="Area2D" parent="triggers" unique_id=1383613972]
@@ -971,6 +970,14 @@ position = Vector2(2206, 81)
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="triggers/cutscenetrigger4" unique_id=1921648143]
+position = Vector2(-93, -33)
+shape = SubResource("RectangleShape2D_sy8xv")
+
+[node name="cutscenetrigger5" type="Area2D" parent="triggers" unique_id=1565276999]
+position = Vector2(3518, 22)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="triggers/cutscenetrigger5" unique_id=839177284]
 position = Vector2(-93, -33)
 shape = SubResource("RectangleShape2D_sy8xv")
 

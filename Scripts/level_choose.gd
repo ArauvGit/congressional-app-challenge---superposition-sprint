@@ -19,3 +19,7 @@ func level_1_pressed() -> void:
 
 func level_2_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Level2.tscn")
+
+
+func tutorial_pressed() -> void:
+	get_tree().change_scene_to_file("res://tutorial_level.tscn")

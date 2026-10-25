@@ -957,20 +957,20 @@ drag_right_margin = 0.25
 
 [node name="Moving platform2" parent="moving platforms" unique_id=1631968321 instance=ExtResource("10_6e4cv")]
 position = Vector2(5352, -456)
-position_transform = 116374.4500045285
+position_transform = 118205.30000463506
 position_adder = 0.05
 position_y = 120
 
 [node name="Moving platform3" parent="moving platforms" unique_id=816430362 instance=ExtResource("10_6e4cv")]
 position = Vector2(5655.077, -987.5)
-position_transform = 91030.2899971639
+position_transform = 92494.96999692945
 position_adder = 0.04
 position_x = 115
 position_y = 100
 
 [node name="Moving platform4" parent="moving platforms" unique_id=2018665 instance=ExtResource("10_6e4cv")]
 position = Vector2(5303.077, -987.5)
-position_transform = 91030.2899971639
+position_transform = 92494.96999692945
 position_adder = 0.04
 position_x = -115
 position_y = 100
@@ -1128,7 +1128,11 @@ position = Vector2(8031.0195, -1462.3462)
 metadata/_scene_painted = true
 
 [node name="Enemy Trigger52" parent="Enemy Trigger Container" unique_id=1006074170 groups=["Jump Trigger"] instance=ExtResource("9_nstho")]
-position = Vector2(7896, -1226)
+position = Vector2(7856, -1232)
+metadata/_scene_painted = true
+
+[node name="Enemy Trigger80" parent="Enemy Trigger Container" unique_id=364075592 groups=["Dash Trigger"] instance=ExtResource("9_nstho")]
+position = Vector2(7909, -1294)
 metadata/_scene_painted = true
 
 [node name="Enemy Trigger53" parent="Enemy Trigger Container" unique_id=1458522599 groups=["Jump Trigger"] instance=ExtResource("9_nstho")]
@@ -2033,7 +2037,7 @@ offset_bottom = 385.0
 
 [node name="Moving platform2" parent="." unique_id=1201660022 instance=ExtResource("10_6e4cv")]
 position = Vector2(8353, -1472)
-position_transform = 82788.2399984832
+position_transform = 84252.91999824875
 position_adder = 0.04
 position_y = 210
 

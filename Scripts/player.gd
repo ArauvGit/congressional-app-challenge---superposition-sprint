@@ -207,7 +207,7 @@ func tutorial_cutscene_show():
 				create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(node, "modulate", Color(1, 1, 1, 1), 0.2)
 		create_tween().tween_property(get_parent().get_parent().get_child(0).get_child(0), "modulate", Color(1, 1, 1, 1), 0.2)
 		create_tween().set_trans(Tween.TRANS_EXPO).tween_property(Engine, "time_scale", 0.05, 0.2)
-		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(get_child(3), "zoom", Vector2(1.75, 1.75), 0.5 / Engine.time_scale)
+		create_tween().set_trans(Tween.TRANS_CUBIC).tween_property(get_child(3), "zoom", Vector2(1.75, 1.75), 0.3 / Engine.time_scale)
 	var undo_slomo = func(): 
 		for node in self.get_children(): 
 			if node is Camera2D:
@@ -259,7 +259,6 @@ func tutorial_enemy_show():
 			if body.is_in_group("enemy"): 
 				body.movement(0)
 			elif body == self: 
-				print("HELLO")
 				for node in get_parent().get_children(): 
 					if node.visible == false: 
 						node.enemy_jump()

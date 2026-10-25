@@ -1,4 +1,9 @@
-res://Scenes/level1.tscn
+res://Scenes/Level2.tscn
 res://Scripts/colorswap.tres
-res://interference.gd
+res://Scenes/level1.tscn
 res://Scenes/enemy_trigger.gd
+res://tutorial_level.tscn
+res://Scripts/player.gd
+res://tutorial_level.gd
+res://Scenes/level_assign.tscn
+res://Scripts/level_choose.gd
