@@ -6,7 +6,7 @@ var camera_nudge: float = 185
 var nudge_multiplier: int = 0
 var color_change: ColorRect = animated_sprite.get_child(0)
 var can_decohere: bool = true
-
+var can_die: bool = true
 var coyote_time_possible: bool = true
 #region important functions
 func _init() -> void:

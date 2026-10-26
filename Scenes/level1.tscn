@@ -37,6 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://cgybxjxp6j2co" path="res://placement.tscn" id="33_n1l2m"]
 [ext_resource type="PackedScene" uid="uid://cjyganyfs86ct" path="res://Scenes/interference_cutscene.tscn" id="34_j77vw"]
 [ext_resource type="PackedScene" uid="uid://cbap2ahkkr0aq" path="res://countdown.tscn" id="35_yc6fi"]
+[ext_resource type="PackedScene" uid="uid://bo1yi3g5wxqm" path="res://invisiblewall.tscn" id="38_p4bhf"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_dr50b"]
 tile_data = PackedInt32Array(65536, 851968, 0, 1, 1048576, 2, 65537, 983040, 3)
@@ -957,20 +958,20 @@ drag_right_margin = 0.25
 
 [node name="Moving platform2" parent="moving platforms" unique_id=1631968321 instance=ExtResource("10_6e4cv")]
 position = Vector2(5352, -456)
-position_transform = 118205.30000463506
+position_transform = 119966.9500047376
 position_adder = 0.05
 position_y = 120
 
 [node name="Moving platform3" parent="moving platforms" unique_id=816430362 instance=ExtResource("10_6e4cv")]
 position = Vector2(5655.077, -987.5)
-position_transform = 92494.96999692945
+position_transform = 93904.28999670385
 position_adder = 0.04
 position_x = 115
 position_y = 100
 
 [node name="Moving platform4" parent="moving platforms" unique_id=2018665 instance=ExtResource("10_6e4cv")]
 position = Vector2(5303.077, -987.5)
-position_transform = 92494.96999692945
+position_transform = 93904.28999670385
 position_adder = 0.04
 position_x = -115
 position_y = 100
@@ -2037,9 +2038,16 @@ offset_bottom = 385.0
 
 [node name="Moving platform2" parent="." unique_id=1201660022 instance=ExtResource("10_6e4cv")]
 position = Vector2(8353, -1472)
-position_transform = 84252.91999824875
+position_transform = 85662.23999802316
 position_adder = 0.04
 position_y = 210
+
+[node name="invisiblewall" parent="." unique_id=1070007213 instance=ExtResource("38_p4bhf")]
+position = Vector2(-584, 176)
+
+[node name="invisiblewall2" parent="." unique_id=1543452639 instance=ExtResource("38_p4bhf")]
+position = Vector2(9928, 144)
+rotation = 3.1398425
 
 [connection signal="body_entered" from="Win Area" to="players/Yellow" method="_on_win_area_body_entered"]
 [connection signal="body_entered" from="Win Area" to="players/Green" method="_on_win_area_body_entered"]

@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://be1qjt71ldvgv"]
+
+[ext_resource type="FontFile" uid="uid://bh44rfewlrght" path="res://Assets/UI/Fonts copy/editundo.ttf" id="1_7vrkn"]
+[ext_resource type="Script" uid="uid://cx3mgrdkahout" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_fu7sn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+bg_color = Color(0.7089437, 0.17783621, 0.1804738, 1)
+border_width_bottom = 7
+border_color = Color(0.48010463, 0.099321716, 0.0994933, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Main Menu" type="Control" unique_id=1875087060]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fu7sn")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=508381269]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+
+[node name="Label" type="Label" parent="." unique_id=159784310]
+layout_mode = 0
+offset_top = 16.0
+offset_right = 640.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(1, 0.7166667, 0, 1)
+theme_override_fonts/font = ExtResource("1_7vrkn")
+theme_override_font_sizes/font_size = 90
+text = "SUPERPOSITION
+SPRINT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="level select" type="Button" parent="." unique_id=1759534761]
+custom_minimum_size = Vector2(300, 45)
+custom_maximum_size = Vector2(225, 225)
+layout_mode = 0
+offset_left = 199.0
+offset_top = 210.0
+offset_right = 424.0
+offset_bottom = 295.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_fu7sn")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jix8l")
+text = "Level Selection
+"
+autowrap_mode = 3
+
+[connection signal="pressed" from="level select" to="." method="_on_level_select_pressed"]

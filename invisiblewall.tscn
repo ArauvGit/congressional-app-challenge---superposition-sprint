@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bo1yi3g5wxqm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sdnvj"]
+
+[node name="invisiblewall" type="StaticBody2D" unique_id=1070007213]
+collision_layer = 65535
+collision_mask = 65535
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=688386316]
+rotation = 1.5761536
+shape = SubResource("WorldBoundaryShape2D_sdnvj")
