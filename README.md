@@ -1,0 +1,1 @@
+Superposition Sprint is a video game designed by Aarav Shah for the Congressional App Challenge, 2026. It is a quantum computing video game focused on educating people on the basics of Grover's algorithm through a fun racing game.
