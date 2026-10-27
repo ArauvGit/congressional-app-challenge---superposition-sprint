@@ -69,6 +69,8 @@ var Powerup_information: Dictionary = {
 #endregion
 #region important functions
 func _ready():
+	for child in SFX.get_children(): 
+		child.stop()
 	set_physics_process(false)
 func _physics_process(delta: float) -> void:
 		# Add the gravity.
@@ -355,6 +357,25 @@ func input() -> void:
 func _on_win_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"): 
 		var win_scene = preload("res://win.tscn")
-		var win_instantiated = win_scene.instantiate()
-		get_parent().get_parent().add_child(win_instantiated)
-		get_tree().change_scene_to_node(win_instantiated)
+		Transition.get_child(1).play("transition")
+		await get_tree().create_timer(0.5).timeout
+		RaceSong.stop() 
+		for child in SFX.get_children(): 
+			if child.get_index() != 5: 
+				child.stop()
+			else: 
+				child.play()
+		get_tree().call_deferred("change_scene_to_packed", win_scene)
+		return
+	else: 
+		var lose_scene = preload("res://lose.tscn")
+		Transition.get_child(1).play("transition")
+		await get_tree().create_timer(0.5).timeout
+		RaceSong.stop()
+		for child in SFX.get_children(): 
+			if child.get_index() != 4: 
+				child.stop()
+			else: 
+				child.play()
+		get_tree().call_deferred("change_scene_to_packed", lose_scene)
+		return

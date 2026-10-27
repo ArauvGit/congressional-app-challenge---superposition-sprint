@@ -231,8 +231,9 @@ func tutorial_cutscene_show():
 					node.queue_free()
 				await stop_tutorial_dialogue 
 				undo_slomo.call()
-							
-			
+
+									
+					
 
 
 				
@@ -264,6 +265,11 @@ func tutorial_enemy_show():
 						node.enemy_jump()
 						node.show()
 				placement.show()
+			await get_tree().create_timer(2).timeout 
+			if body.is_in_group("enemy"): 
+				body.hide()
+				return
+				
 
 func interference_powerup():
 	for child in get_parent().get_parent().get_children():

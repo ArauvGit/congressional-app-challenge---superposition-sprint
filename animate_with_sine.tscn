@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://qgoqkad4ogum"]
+
+[ext_resource type="Script" uid="uid://duipdedqwhevq" path="res://Scripts/sinanimate.gd" id="1_jmv2k"]
+
+[node name="Animate With Sine" type="Node" unique_id=918182286]
+script = ExtResource("1_jmv2k")

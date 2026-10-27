@@ -4,6 +4,10 @@
 [ext_resource type="AudioStream" uid="uid://bso70u4800rbf" path="res://dash.mp3" id="2_n6df4"]
 [ext_resource type="AudioStream" uid="uid://c50cts4etm71h" path="res://Block breaking.mp3" id="3_4owgd"]
 [ext_resource type="AudioStream" uid="uid://dusrjfk0um3h2" path="res://damage.mp3" id="4_u8acq"]
+[ext_resource type="AudioStream" uid="uid://dssowrfcmfmvl" path="res://lose.mp3" id="5_qv7xu"]
+[ext_resource type="AudioStream" uid="uid://cotyp76hvkobm" path="res://win.mp3" id="6_ip542"]
+[ext_resource type="AudioStream" uid="uid://b5eedk7tuota4" path="res://level select.mp3" id="7_ip542"]
+[ext_resource type="AudioStream" uid="uid://cs7vun6j8we56" path="res://main menu music.mp3" id="8_85mdg"]
 
 [node name="SFX" type="Node" unique_id=140379366]
 
@@ -20,3 +24,15 @@ max_polyphony = 5
 [node name="damage" type="AudioStreamPlayer" parent="." unique_id=1505124091]
 stream = ExtResource("4_u8acq")
 pitch_scale = 1.1
+
+[node name="lose" type="AudioStreamPlayer" parent="." unique_id=751135701]
+stream = ExtResource("5_qv7xu")
+
+[node name="win" type="AudioStreamPlayer" parent="." unique_id=630621281]
+stream = ExtResource("6_ip542")
+
+[node name="level" type="AudioStreamPlayer" parent="." unique_id=1984606835]
+stream = ExtResource("7_ip542")
+
+[node name="main menu" type="AudioStreamPlayer" parent="." unique_id=1666279208]
+stream = ExtResource("8_85mdg")

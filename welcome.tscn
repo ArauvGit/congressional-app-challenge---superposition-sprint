@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://pr0roj0aqgel"]
+
+[ext_resource type="Texture2D" uid="uid://bdmms310vyvwd" path="res://Assets/Sprites/tutorial level/text_container.png" id="1_6xvht"]
+[ext_resource type="FontFile" uid="uid://yl5xfnuk4rpw" path="res://Assets/UI/Fonts copy/PixelifySans-Medium.ttf" id="2_f0t8f"]
+[ext_resource type="Script" uid="uid://bh515vrc47662" path="res://welcome.gd" id="3_6xvht"]
+
+[node name="welcome" type="CanvasLayer" unique_id=2065175651]
+
+[node name="Panel" type="NinePatchRect" parent="." unique_id=546156315]
+modulate = Color(1, 1, 1, 0)
+clip_contents = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -321.0
+offset_top = 199.0
+offset_right = 310.0
+offset_bottom = 299.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_6xvht")
+region_rect = Rect2(-1, -1, 250, 38)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="text" type="RichTextLabel" parent="Panel" unique_id=2083957179]
+custom_minimum_size = Vector2(-1, -1)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 613.0
+offset_bottom = 72.0
+theme_override_fonts/normal_font = ExtResource("2_f0t8f")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+scroll_following = true
+scroll_following_visible_characters = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_6xvht")

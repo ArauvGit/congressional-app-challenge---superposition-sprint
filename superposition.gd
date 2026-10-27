@@ -1,4 +1,7 @@
 extends TextureButton
+signal text_end
+
+
 @export var oracle: AnimatedSprite2D
 @export var oracle_mover: AnimationPlayer
 @export var button_container: VBoxContainer 
@@ -36,6 +39,7 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
+	text_end.emit()
 	button_container_setup()
 	get_parent().hide()
 	Global.can_be_pressed = true

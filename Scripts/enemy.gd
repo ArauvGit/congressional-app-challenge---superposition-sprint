@@ -247,7 +247,9 @@ func decohere():
 					state_machine()
 				var x when Global.state == Global.States.DASHING: 
 					state_machine()
-					dash()
+					dash() 
+func health_powerup(): 
+	decoherence_multiplier = 1
 func invincibility(): 
 	create_tween().tween_property(color_change, "color", Color(0.99, 0.495, 0.0, 0.5), 0.1)
 	can_decohere = false

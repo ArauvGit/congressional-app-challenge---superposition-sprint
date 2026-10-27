@@ -4,7 +4,7 @@
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("ColorRect:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -19,12 +19,12 @@ resource_name = "transition"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("ColorRect:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(2.4622886, 1, 2.4622889),
+"transitions": PackedFloat32Array(2.8284273, 0.61557186, 2.8284261),
 "update": 0,
 "values": [Vector2(-640, 0), Vector2(0, 0), Vector2(640, 0)]
 }
@@ -35,7 +35,9 @@ _data = {
 &"transition": SubResource("Animation_2gi1b")
 }
 
-[node name="transition" type="ColorRect" unique_id=296669012]
+[node name="transition" type="CanvasLayer" unique_id=1200706015]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2118272]
 offset_left = -640.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 1)

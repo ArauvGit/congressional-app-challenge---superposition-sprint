@@ -26,14 +26,14 @@ script = ExtResource("1_fu7sn")
 layout_mode = 0
 offset_right = 640.0
 offset_bottom = 360.0
-color = Color(0.06879827, 0.06879828, 0.06879828, 1)
+color = Color(1, 0.7176471, 0, 1)
 
 [node name="Label" type="Label" parent="." unique_id=159784310]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 640.0
 offset_bottom = 177.0
-theme_override_colors/font_color = Color(1, 0.7166667, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("1_7vrkn")
 theme_override_font_sizes/font_size = 90
 text = "SUPERPOSITION
